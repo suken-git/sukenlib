@@ -1,9 +1,6 @@
-#ifndef SUKEN_H
-
-#define SUKEN_H
+#pragma once
 
 #include"Manager.h"
-
 
 //セーフカラーについて
 //0、51、102、153、204、255の6段階のRGBで計216使えます。
@@ -2525,5 +2522,3 @@ private:
 
 
 
-
-#endif

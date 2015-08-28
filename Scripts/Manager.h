@@ -1,5 +1,4 @@
-#ifndef MANAGER_H
-#define MANAGER_H
+#pragma once
 
 #define DEBUG
 #define DEBUG_DRAW
@@ -92,5 +91,3 @@ extern CEvent Event;
 
 class CMidi;
 extern CMidi MD;
-
-#endif
