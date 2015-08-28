@@ -1,7 +1,6 @@
 #include"Suken.h"
 
-void Awake(){
-	
+void Awake(){	
 	
 
 }
