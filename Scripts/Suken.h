@@ -16,6 +16,18 @@
 #define M_PINK GetColor( 255 , 128 , 128 )
 #define YELLOW GetColor( 255 , 255 , 0)
 
+inline void WarningSK(const char* format, ...){
+	 char tmpchar[256];
+    sprintf_s(tmpchar, "警告 : \n\n%s\n\n", format);
+	printfDx(tmpchar);
+	printfDx("PRESS ANY KEY TO CONTINUE...");
+    ScreenFlip();
+    WaitKey();
+    clsDx();
+    ClearDrawScreen();
+}
+
+//void DebugDrawString( int dispX , int dispY , const char* format, ... );
 
 extern bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0");
 extern bool GetFilePath(char *_filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
@@ -56,7 +68,8 @@ public:
 		ChangeWindowMode(TRUE);
 		SetAlwaysRunFlag(TRUE);//常時起動するのでTRUE
 		SetOutApplicationLogValidFlag( FALSE );//ログ出力抑制するのでFALSE
-		DxLib_Init(); SetDrawScreen( DX_SCREEN_BACK );
+		DxLib_Init(); 
+		SetDrawScreen( DX_SCREEN_BACK );
 		SetTransColor( 255 , 0 , 255 );	//マゼンタ透過
 		if(loadingImgPath[0] != NULL){
 			loadingImg = LoadGraph(loadingImgPath);
@@ -67,6 +80,9 @@ public:
 		hdc = GetDC( GetMainWindowHandle() );//デバイスコンテキストの取得
 		refreshRate = GetDeviceCaps( hdc , VREFRESH );//リフレッシュレートの取得
 		ReleaseDC( GetMainWindowHandle() , hdc );//デバイスコンテクストの解放
+
+
+		display = CreateDC(TEXT("DISPLAY") , NULL , NULL , NULL);
 
 		ScreenFlip();
 
@@ -84,12 +100,6 @@ public:
 	}
 	bool GetUseThread_Awake(){
 		return useThread_AwakeFlag;
-	}
-	void SetSyncDrawLoop(bool flag){
-		IsSyncDrawLoop = flag;
-	}
-	bool GetSyncDrawLoop(){
-		return IsSyncDrawLoop;
 	}
 	void SetLoadingGraph(const char *path){
 		strcpy(loadingImgPath,path);
@@ -191,7 +201,11 @@ public:
 
 		handleChild.push_back(handle);
 	}
+	HDC GetDisplayDC(){
+		return display;
+	}
 private:
+	HDC display ;//ディスプレイドライバ
 	int frame;
 	int count;
 	int startTime;
@@ -208,7 +222,6 @@ private:
 	int *screenShotGrHandleAdress;
 	char loadingImgPath[256];
 	int loadingImg;
-	bool IsSyncDrawLoop;
 	bool useThread_AwakeFlag;
 	int loadingMinimalTime;
 };
@@ -432,6 +445,10 @@ public:
 //例えば MD.Lang(100, 72)でMidiを鳴らせる。
 
 /////FROM NUNULIB
+//現在時刻取得関数///////////////////////////////////////////
+SYSTEMTIME GetNowSystemTime();  //SYSTEMTIME型で日本時刻を取得
+std::string GetNowSystemTimeString();  //string型(00/00/00 00:00:00 000)で現在日本時刻を取得
+
 inline int DrawCenterString(int cx, int y, const TCHAR *String, int color, bool centerY=false){ //xを左右の中心にしてDrawStringで文字描画（※yは上下中心ではなく上辺）
     if (centerY){
         return DxLib::DrawString(cx-GetDrawStringWidth(String, strlen(String))/2, y-GetFontSize()/2, String, color);    //あくまで目安 
@@ -441,6 +458,123 @@ inline int DrawCenterString(int cx, int y, const TCHAR *String, int color, bool 
 }
 int DrawCenterString(int cx, int y, int color, const TCHAR* format, ...);
 int DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format, ...);
+
+///エラー&デバッグ出力用関数///////////////////////////////////////////////////////
+#define ERRORDX(...)     ErrorDx(__LINE__, __FUNCTION__, __FILE__,  __VA_ARGS__)
+#define WARNINGDX(...) WarningDx(__LINE__, __FUNCTION__, __FILE__,  __VA_ARGS__)
+#define DEBUGDX(...)     DebugDx(__LINE__, __FUNCTION__, __FILE__,  __VA_ARGS__)
+ 
+ 
+inline void myprintLog(const char* filename, const char* format, va_list args){
+    #ifndef MYLOG_DISABLE
+        FILE *fp;
+        errno_t error;
+        char txtfilename[1024];
+        sprintf_s(txtfilename, "%s.txt", filename);
+        if(error = fopen_s(&fp, txtfilename, "a") != 0){
+            return;
+        }else{
+            char tmpchar[1024];
+            vsprintf_s(tmpchar, format, args);
+            fprintf_s(fp, "[%s]:%s\n", GetNowSystemTimeString().c_str(), tmpchar);
+            fclose(fp);
+        }
+    #endif
+}
+inline void myLog(const char* format, ...){
+    va_list args;
+    va_start(args, format);
+    myprintLog("MyLog", format, args);
+    va_end(args);
+}
+inline void myLogf(const char* filename, const char* format, ...){
+    va_list args;
+    va_start(args, format);
+    myprintLog(filename, format, args);
+    va_end(args);
+}
+inline void myprintfDx(const char* format, va_list args, const char* filename=NULL, int line=0){
+    char string[1024];
+    vsprintf_s(string, format, args);   //va_startとva_endは呼び出し元でする
+    if (filename!=NULL) sprintf_s(string, "%s\n->%s(%d)\n", string, filename, line);
+ 
+    myLogf("MyLog_Printed", "PRINT: %s", string);
+    printfDx(string);
+    ScreenFlip();
+    WaitKey();
+    clsDx();
+    ClearDrawScreen();
+}
+inline void ErrorDx(int line, const char* func, const char* filename, const char* format, ...){
+    char tmpchar[256];
+    va_list args;   va_start(args, format);
+    sprintf_s(tmpchar, "Error->%s\n->%s", format, func);
+    myprintfDx(tmpchar, args, filename, line);
+    va_end(args);
+}
+inline void ErrorDx(const char* format, char* filename, int line, ...){
+    va_list args;
+    va_start(args, line);
+    myprintfDx(format, args, filename, line);
+    va_end(args);
+}
+inline void ErrorDx(const char* format, ...){
+    va_list args;
+    va_start(args, format);
+    myprintfDx(format, args);
+    va_end(args);
+}
+inline void WarningDx(int line, const char* func, const char* filename, const char* format, ...){
+    #ifndef WARNINGDX_DISABLE 
+        char tmpchar[256];
+        va_list args;   va_start(args, format);
+        sprintf_s(tmpchar, "Warning->%s\n->%s", format, func);
+        myprintfDx(tmpchar, args, filename, line);
+        va_end(args);
+    #endif
+}
+inline void WarningDx(const char* format, char* filename, int line, ...){
+    #ifndef WARNINGDX_DISABLE 
+        va_list args;
+        va_start(args, line);
+        myprintfDx(format, args, filename, line);
+        va_end(args);
+    #endif
+}
+inline void WarningDx(const char* format, ...){
+    #ifndef WARNINGDX_DISABLE 
+        va_list args;
+        va_start(args, format);
+        myprintfDx(format, args);
+        va_end(args);
+    #endif
+}
+inline void DebugDx(int line, const char* func, const char* filename, const char* format, ...){
+    #ifndef DEBUGDX_DISABLE 
+        char tmpchar[256];
+        va_list args;   va_start(args, format);
+        sprintf_s(tmpchar, "Debug->%s\n->%s", format, func);
+        myprintfDx(tmpchar, args, filename, line);
+        va_end(args);
+    #endif
+}
+inline void DebugDx(const char* format, char* filename, int line, ...){
+    #ifndef DEBUGDX_DISABLE 
+        va_list args;
+        va_start(args, line);
+        myprintfDx(format, args, filename, line);
+        va_end(args);
+    #endif
+}
+inline void DebugDx(const char* format, ...){
+    #ifndef DEBUGDX_DISABLE 
+        va_list args;
+        va_start(args, format);
+        myprintfDx(format, args);
+        va_end(args);
+    #endif
+}
+/////////////////////////////////////////////////////////////
 
 //////////////////////////////////////
 
@@ -670,7 +804,20 @@ using namespace suken;
 
 unsigned int fanctorial(unsigned int num);			//
 unsigned int combination(unsigned int n , unsigned int r);					//nCrとかやるあれ。組み合わせ
-void DrawBezier(vector<CVector> &In , unsigned int vertexNum , int color );
+
+typedef vector<CVector> BEZIER ;
+//ベジェ曲線の描画（ GetBezier関数で作成したデータが必要　）
+////GetBezier関数で作成したデータを用いてベジェ曲線を描画する
+//引数
+// data  : GetBezier関数で作成したベジェ曲線データ
+// color : 描画色を指定
+void DrawBezier( BEZIER &data ,  int color );
+	//ベジェ曲線頂点データの作成
+////ベジェ曲線の計算をマイフレームするのは無駄なので計算済みのデータを作成する
+//引数
+// In　　　　: 制御点（CVector型）を指定する（2つ以上）
+// vertexNum : 作成するデータの細かさを指定（ベジェ曲線の構成頂点の数）
+BEZIER GetBezier(vector<CVector> &In , unsigned int vertexNum );
 
 CVector GetIntersection( int a1 , int b1 , int a2 , int b2 );
 
@@ -753,6 +900,8 @@ public:
 		DrawLine(GetLeftBottom(),GetLeftTop(),WHITE);
 	}
 	void Loop(){
+
+		center.Loop();
 #ifdef DEBUG_DRAW
 		Draw(WHITE);
 		
@@ -1368,6 +1517,42 @@ public:
          int NUM7	;   //  ７キー
          int NUM8	;   //  ８キー
          int NUM9	;   //  ９キー
+		 void Loop(){
+			 //全てのキーの押下状態を取得
+			char buf[256];
+			GetHitKeyStateAll( buf ) ;
+			for(int i=0;i<256;i++){
+				if( buf[i] == 0 ){
+					count[i]++;
+				}else if( buf[i] == 1 ){
+					count[i] = 0;
+				}
+			}
+		 }
+		 bool GetPressed(int keyCode){
+			 //キーコードチェック
+			 if( keyCode < 256 && keyCode >= 0 ){
+				if( count[keyCode] == 0 ){
+					return true;
+				}else{
+					return false;
+				}
+			 }else{
+				WarningSK("CKey::GetPressedの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				return false;
+			 }
+		 }
+		 int GetCount(int keyCode){
+			//キーコードチェック
+			 if( keyCode < 256 && keyCode >= 0 ){
+				return count[keyCode];
+			 }else{
+				WarningSK("CKey::GetCountの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				return -1;
+			 }
+		 }
+	private:
+		 int count[256];
 };
 //マウス定義クラス
 class CMouse{
@@ -1573,6 +1758,9 @@ public:
 	}
 	private:
 		bool IsLeft;
+		/*bool CheckScene(){
+		
+		}*/
 };
 //入力イベント定義クラス
 class CEvent{
@@ -1583,6 +1771,7 @@ public:
 		RMouse.SetRight();
 	}
 	void Loop(){
+		key.Loop();
 		LMouse.Loop();
 		RMouse.Loop();
 	}
@@ -1601,20 +1790,14 @@ public:
 		useKey = true;
 	}
 	
-	void AddEventListener( int inputCode , void func() , void func_draw() = NULL){
+	void AddEventListener( int inputCode , void func() ){
 				
 				keyTemp.keyCode=inputCode;
 				keyTemp.pFunc=func;
 				keyTask.push_back(keyTemp);
-				if(func_draw != NULL){
-					keyTemp.keyCode=inputCode;
-					keyTemp.pFunc=func_draw;
-					keyTask_Draw.push_back(keyTemp);
-				}
-				
 
 	}
-	void RemoveEventListener( int inputCode , void func() , void func_draw() = NULL ){
+	void RemoveEventListener( int inputCode , void func()  ){
 
 		vector< CKeyIn >::iterator it = keyTask.begin();
 
@@ -1627,35 +1810,16 @@ public:
 			}
 			it++;
 		}
-		if(func_draw != NULL){
-			vector< CKeyIn >::iterator it_d = keyTask_Draw.begin();
-
-			while( ( it_d != keyTask_Draw.end() ) ){
-
-				if( it_d->keyCode == inputCode && it_d->pFunc == func_draw  ){
-
-					keyTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-			}
-		}
 		
 	}
-	void AddEventListener( CMouseIn input , void func() , void func_draw() = NULL ){
+	void AddEventListener( CMouseIn input , void func()  ){
 
 				mouseTemp=input;
 				mouseTemp.pFunc=func;
 				mouseTask.push_back(mouseTemp);
-				if(func_draw != NULL){
-					mouseTemp=input;
-					mouseTemp.pFunc=func_draw;
-					mouseTask_Draw.push_back(mouseTemp);
-				}
 				
-
 	}
-	bool RemoveEventListener( CMouseIn input , void func() , void func_draw() = NULL ){
+	bool RemoveEventListener( CMouseIn input , void func()  ){
 
 		vector< CMouseIn >::iterator it = mouseTask.begin();
 
@@ -1669,35 +1833,15 @@ public:
 			it++;
 		}
 		
-		if(func_draw != NULL){
-			vector< CMouseIn >::iterator it_d = mouseTask_Draw.begin();
-
-			while( ( it_d != mouseTask_Draw.end() ) ){
-					
-				if( it_d->pFunc == func_draw && it_d->type == input.type && it_d->x1 == input.x1 && it_d->x2 == input.x2 && it_d->y1 == input.y1 && it_d->y2 == input.y2  ){
-
-					mouseTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-			}
-		}
-		
 	}
-	void AddEventListener( CpMouseIn input , void func() , void func_draw() = NULL ){
+	void AddEventListener( CpMouseIn input , void func()  ){
 
 				pMouseTemp=input;
 				pMouseTemp.pFunc=func;
 				pMouseTask.push_back(pMouseTemp);
-				if(func_draw != NULL){
-					pMouseTemp=input;
-					pMouseTemp.pFunc=func_draw;
-					pMouseTask_Draw.push_back(pMouseTemp);
-				}
 				
-
 	}
-	void RemoveEventListener( CpMouseIn input , void func() , void func_draw() = NULL ){
+	void RemoveEventListener( CpMouseIn input , void func()  ){
 
 		vector< CpMouseIn >::iterator it = pMouseTask.begin();
 
@@ -1710,31 +1854,13 @@ public:
 			}
 			it++;
 		}
-		if(func_draw != NULL){
-			vector< CpMouseIn >::iterator it_d = pMouseTask_Draw.begin();
-
-			while( ( it_d != pMouseTask_Draw.end() ) ){
-
-				if( it_d->pFunc == func_draw && it_d->type == input.type && it_d->x1 == input.x1 && it_d->x2 == input.x2 && it_d->y1 == input.y1 && it_d->y2 == input.y2  ){
-
-					pMouseTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-		}
-		}
-		
 	}
-	void AddEventListener( char input , void func() , void func_draw() = NULL ){
+	void AddEventListener( char input , void func()  ){
 			frameTemp.pFunc=func;
 			frameTask.push_back(frameTemp);
-			if(func_draw != NULL){
-				frameTemp.pFunc=func_draw;
-				frameTask_Draw.push_back(frameTemp);
-			}
 			
 	}
-	void RemoveEventListener( char input , void func() , void func_draw() = NULL ){
+	void RemoveEventListener( char input , void func()  ){
 
 		vector< CFrame >::iterator it = frameTask.begin();
 
@@ -1748,32 +1874,14 @@ public:
 			it++;
 		}
 		
-		if(func_draw != NULL){
-			vector< CFrame >::iterator it_d = frameTask_Draw.begin();
-
-			while( ( it_d != frameTask_Draw.end() ) ){
-	
-				if( it_d->pFunc ==  func_draw  ){
-
-					frameTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-		}
-		}
 	}
-	void AddEventListener( bool* input , void func() , void func_draw() = NULL ){
+	void AddEventListener( bool* input , void func()  ){
 			boolTemp.pFunc=func;
 			boolTemp.pBool=input;
 			boolTask.push_back(boolTemp);
 			
-			if(func_draw != NULL){
-				boolTemp.pFunc=func_draw;
-				boolTemp.pBool=input;
-				boolTask_Draw.push_back(boolTemp);
-			}
 	}
-	void RemoveEventListener( bool* input , void func() , void func_draw() = NULL ){
+	void RemoveEventListener( bool* input , void func()  ){
 
 		vector< CBoolean >::iterator it = boolTask.begin();
 
@@ -1786,20 +1894,7 @@ public:
 			}
 			it++;
 		}
-		
-		if(func_draw != NULL){
-			vector< CBoolean >::iterator it_d = boolTask_Draw.begin();
-
-			while( ( it_d != boolTask_Draw.end() ) ){
-
-				if( it_d->pBool == input && it_d->pFunc == func_draw  ){
-
-					boolTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-			}
-		}
+	
 	}
 	
 	void Loop(){
@@ -2239,15 +2334,35 @@ public:
 //シーンクラス
 class CScene{
 public:
-	void Loop(){
-		
-		input.Loop();
-		collision.Loop();
-		
+	CScene(){
+		serialNum = sceneNum;
+		sceneNum++;
+		focus = false;
+		sceneChild = NULL;
 	}
-	void DrawLoop(){
+	void Loop(){
+		if(!focus){
+			input.useKey = false;
+			input.useMouse = false;
+		}
+		input.Loop();
 		input.DrawLoop();
+
+		collision.Loop();
 		collision.DrawLoop();
+
+		ButtonLoop();
+
+		if( sceneChild != NULL ){
+			sceneChild->Loop();
+		}
+		if(focus){
+			input.useKey = true;
+			input.useMouse = true;
+		}
+	}
+	void ButtonLoop(){
+		
 
 		vector<CButton>::iterator it = buttonChild.begin();
 		if( buttonChild.size() != 0 ){
@@ -2290,12 +2405,41 @@ public:
 				it1++;
 			}
 		}
+		
 	}
 	CCollisionManager collision;
 	CInput input;
 	vector<CButton> buttonChild;
 	vector<CpButton> pButtonChild;
+	CScene *sceneChild;
+	
+	void SetFocus(bool _focus){
+		focus = _focus;
+	}
+	void addChild(CScene *_scene){
+		if(focus){
+			if( sceneChild != NULL ){
+				removeChild();
+			}
+			//フォーカスの移行
+			this->SetFocus(false);
+			_scene->SetFocus(true);
+			//追加
+			sceneChild = _scene;
+		}else{
+			WarningSK("現在有効ではないシーンに入れ子のシーンを追加することはできません");
+		}
 
+	}
+	void removeChild(){
+		if( sceneChild != NULL ){
+			//フォーカスの移行
+			sceneChild->SetFocus(false);
+			this->SetFocus(true);
+			//削除
+			sceneChild = NULL;
+		}
+	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)() ){
 		CButton temp;
 		temp.IsUseGraph = false;
@@ -2433,13 +2577,24 @@ public:
 
 		pButtonChild.push_back( temp );
 	}
+	//数研ライブラリ内部関数（使用禁止）
+	void ResetSceneNum(){
+		sceneNum = 1;
+	}
+	unsigned int GetSerialNum(){
+		return serialNum;
+	}
 private:
+	bool focus;
+	static unsigned int sceneNum;
+	unsigned int serialNum;
 };
 //ゲームシステム総括クラス
 class CGame{
 public:
 	CGame(){
 		useDrawLoopFlag =true;
+		rootScene.ResetSceneNum();
 	}
 	~CGame(){
 /*
@@ -2449,33 +2604,45 @@ public:
 			MessageBox(NULL,info,"MemoryLeakChecher",MB_OK);
 		}
 		*/
+		rootScene.SetFocus(true);
 	}
 	void awake(){
 
 	}
 	void addChild(CScene* _scene){
+		
+		rootScene.SetFocus(false);
 
+		_scene->SetFocus(true);
 		sceneChild.push_back(_scene);
 
 	}
 	void removeChild(CScene* _scene){
-
+		_scene->SetFocus(false);
 		vector<CScene*>::iterator it=sceneChild.begin();
 
 		while( it != sceneChild.end() ) {
 			if(*it==_scene){
+				
 				sceneChild.erase(it);
 				break;
 			}
 			it++;
 		}
+
+		if(sceneChild.empty()){
+			rootScene.SetFocus(true);
+		}
 		
 
 	}
 	void removeChild(){
-		
+		sceneChild.front()->SetFocus(false);
 		sceneChild.pop_back();
-
+		
+		if(sceneChild.empty()){
+			rootScene.SetFocus(true);
+		}
 	}
 	void Loop(){
 	
@@ -2492,18 +2659,7 @@ public:
 
 		}
 	}
-	void DrawLoop(){
-	
-		if( !sceneChild.size() == 0 ){
 
-			sceneChild.back()->DrawLoop();
-
-		}else{
-			
-			rootScene.DrawLoop();
-
-		}
-	}
 	
 	void SetUseDrawLoop(bool flag){
 		useDrawLoopFlag = flag;
@@ -2515,6 +2671,7 @@ public:
 	CScene rootScene;
 private:
 	bool useDrawLoopFlag;
+	
 	
 };
 

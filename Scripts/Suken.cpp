@@ -16,7 +16,11 @@ void null(){
 
 }
 
-
+//void DebugDrawString( int dispX , int dispY , const char* format, ... ){
+//	char tmpchar[256];
+//	sprintf_s(tmpchar, "%s", format);
+//	TextOut(System.GetDisplayDC(),dispX,dispY,(LPCTSTR)tmpchar,(int)strlen(tmpchar));
+//}
 
 
 
@@ -267,7 +271,7 @@ CIntData::CIntData(char *_DataName){
 	int Len;
 	Len = std::strlen (_DataName);
 	DataName = new char [Len + 1];
-	std::strcpy(DataName , _DataName);
+	strcpy(DataName , _DataName);
 	DataName[Len] = '\0';
 }
 
@@ -581,7 +585,36 @@ CVector GetIntersection( int a1 , int b1 , int a2 , int b2 ){
 
 
 /// FROM NUNULIB
-
+//現在時刻取得関数///////////////////////////////////////////
+SYSTEMTIME GetNowSystemTime(){
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+     
+    FILETIME ft1;
+    FILETIME ft2;
+    SystemTimeToFileTime(&st, &ft1);
+     
+    //a こちらでもOK。動作は確認済み。
+    //long long int t = (long long int)(ft1.dwHighDateTime)<<32 | ft1.dwLowDateTime;
+    //t += (long long int)9*60*60*1000*1000*10; //1日・・・24*60*60*1000*1000*10 
+    //ft2.dwHighDateTime = t>>32; // & 0xFFFFFFFF;
+    //ft2.dwLowDateTime = (int)t;   
+     
+    //b
+    FileTimeToLocalFileTime(&ft1, &ft2);
+ 
+    FileTimeToSystemTime(&ft2, &st);
+    return st;
+}
+std::string GetNowSystemTimeString(){
+    char currentTime[25] = { 0 };
+    SYSTEMTIME st = GetNowSystemTime();
+    wsprintf(currentTime, "%04d/%02d/%02d %02d:%02d:%02d %03d",
+        st.wYear, st.wMonth, st.wDay,
+        st.wHour, st.wMinute, st.wSecond, st.wMilliseconds); 
+    std::string tmp = currentTime;
+    return tmp;
+}
 //DrawCenterString Notフォーマット版
 int DrawCenterString(int cx, int y, int color, const TCHAR* format, ...){
     va_list args;
@@ -617,7 +650,7 @@ int DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format
  
     return for_return;  
 }
-
+//フォント追加（パス入力必須）
 void AddFontFromPath(char *path){
 
 	LPCSTR font_path = path; // 読み込むフォントファイルのパス
@@ -636,14 +669,22 @@ unsigned int fanctorial(unsigned int num){
 		return ( num * fanctorial( num - 1 ) );
 	}
 }
-
+//組み合わせ（nとrはそれぞれ「nCr」のnとr）
 unsigned int combination(unsigned int n , unsigned int r){
 	return ( fanctorial( n ) / ( fanctorial( n-r ) * fanctorial( r ) ) );
 }
-void DrawBezier(vector<CVector> &In , unsigned int vertexNum , int color ){
+
+//ベジェ曲線
+
+//ベジェ曲線頂点データの作成
+////ベジェ曲線の計算をマイフレームするのは無駄なので計算済みのデータを作成する
+//引数
+// In　　　　: 制御点（CVector型）を指定する（2つ以上）
+// vertexNum : 作成するデータの細かさを指定（ベジェ曲線の構成頂点の数）
+BEZIER GetBezier(vector<CVector> &In , unsigned int vertexNum ){
 	
 	const int N = In.size();
-	vector<CVector> vertexes;
+	BEZIER vertexes;
 	vertexes.push_back(In[0]);
 	float t = 0.0f;
 
@@ -664,8 +705,18 @@ void DrawBezier(vector<CVector> &In , unsigned int vertexNum , int color ){
 		vertexes.push_back(vertex);
 	}
 	
-	for(unsigned int i = 0; i < vertexes.size() - 1; i++){
-		DrawLine( (int)vertexes[ i ].x ,(int)vertexes[ i ].y , (int)vertexes[ i+1 ].x , (int)vertexes[ i+1 ].y , color );
+	return vertexes;
+}
+//ベジェ曲線の描画（ GetBezier関数で作成したデータが必要　）
+////GetBezier関数で作成したデータを用いてベジェ曲線を描画する
+//引数
+// data  : GetBezier関数で作成したベジェ曲線データ
+// color : 描画色を指定
+void DrawBezier( BEZIER &data ,  int color ){
+	for(unsigned int i = 0; i < data.size() - 1; i++){
+		DrawLine( (int)data[ i ].x ,(int)data[ i ].y , (int)data[ i+1 ].x , (int)data[ i+1 ].y , color );
 	}
 }
 
+//
+unsigned int CScene::sceneNum;
