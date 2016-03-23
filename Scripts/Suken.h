@@ -34,19 +34,21 @@ inline void WarningSK(const char* format, ...){
     ClearDrawScreen();
 }
 /**
-*	@brief 値を設定する
-*	@param value 現在の値
-* @return 成功したらtrue。無効な値が設定された場合はfalse。
+*	@brief ダイアログを開いて、。
+*	マップエディタなどを作るときに便利かも
+*	@param  filename 開きたいファイル名を格納した文字列
+*	@param filetype 現在無効
+* @return true
 */
 extern bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0");
 /**
-*	@brief ダイアログを開いて、選択したファイルのパスを取得する。
+*	@brief ダイアログを開いて、ファイルを保存する。
 *	マップエディタなどを作るときに便利かも
-*	@param  _filename ファイル名を格納したいchar型配列のアドレスを指定
+*	@param  filename 保存したいファイル名を格納した文字列
 *	@param filetype 現在無効
-* @return 成功したらtrue。無効な値が設定された場合はfalse。
+* @return true
 */
-extern bool GetFilePath(char *_filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
+extern bool SaveFile(char *filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
 class CPos{
 public:
 	CPos(){

@@ -37,7 +37,7 @@ bool SelectOpenFile(  char *filename , char *filetype)
     return TRUE;
 }
 
-bool GetFilePath(char *filename ,char *filetype){
+bool SaveFile(char *filename ,char *filetype){
 	static OPENFILENAME     ofn;
     static TCHAR            szPath[ MAX_PATH ];
     static TCHAR            szFile[ MAX_PATH ];
