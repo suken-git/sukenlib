@@ -1300,259 +1300,254 @@ public:
 	void (*pFunc)();
 	bool* pBool;
 };
+
+//template<typename T>
+//class _CKeyIn{
+//public:
+//	int keyCode;
+//	void *pFunc;
+//};
+//template<typename T>
+//class _CMouseIn{
+//public:
+//	_CMouseIn(){
+//		
+//	}
+//	int x1,x2,y1,y2;
+//	void *pFunc;
+//	int type;
+//	
+//};
+//template<typename T>
+//class _CpMouseIn{
+//public:
+//	_CpMouseIn(){
+//		
+//	}
+//	int *x1,*x2,*y1,*y2;
+//	void *pFunc;
+//	int type;
+//	
+//};
+//template<typename T>
+//class _CKeyBoolIn{
+//public:
+//	int keyCode;
+//	bool *pBool;
+//};
+//template<typename T>
+//class _CMouseBoolIn{
+//public:
+//	int x1,x2,y1,y2;
+//	bool *pBool;
+//	int type;
+//	
+//
+//};
+//template<typename T>
+//class _CpMouseBoolIn{
+//public:
+//	int *x1,*x2,*y1,*y2;
+//	bool *pBool;
+//	int type;
+//	
+//};
+//template<typename T>
+//class _CFrame{
+//public:
+//	void *pFunc;
+//};
+//template<typename T>
+//class _CBoolean{
+//public:
+//	void *pFunc;
+//	bool* pBool;
+//};
+
+
+
 //キーボード定義クラス
 class CKey{
 public:
 	CKey(){
 
-      BACK = KEY_INPUT_BACK	;
-      TAB = KEY_INPUT_TAB	;
-      RETURN = KEY_INPUT_RETURN	;
-
-      LSHIFT = KEY_INPUT_LSHIFT	;
-      RSHIFT = KEY_INPUT_RSHIFT	; 
-      LCONTROL = KEY_INPUT_LCONTROL	;
-      RCONTROL = KEY_INPUT_RCONTROL	; 
-      ESCAPE = KEY_INPUT_ESCAPE	; 
-      SPACE = KEY_INPUT_SPACE	; 
-      PGUP = KEY_INPUT_PGUP	; 
-      PGDN = KEY_INPUT_PGDN	;
-      END = KEY_INPUT_END	; 
-      HOME = KEY_INPUT_HOME	;
-      LEFT = KEY_INPUT_LEFT	; 
-      UP = KEY_INPUT_UP	; 
-      RIGHT = KEY_INPUT_RIGHT	; 
-      DOWN = KEY_INPUT_DOWN	; 
-      INSERT = KEY_INPUT_INSERT	; 
-      _DELETE = KEY_INPUT_DELETE	;
-
-      MINUS = KEY_INPUT_MINUS	; 
-      YEN = KEY_INPUT_YEN	; 
-      PREVTRACK = KEY_INPUT_PREVTRACK	; 
-      PERIOD = KEY_INPUT_PERIOD	;
-      SLASH = KEY_INPUT_SLASH	;
-      LALT = KEY_INPUT_LALT	;
-      RALT = KEY_INPUT_RALT	; 
-      SCROLL = KEY_INPUT_SCROLL	; 
-      SEMICOLON = KEY_INPUT_SEMICOLON	;
-      COLON = KEY_INPUT_COLON	; 
-      LBRACKET = KEY_INPUT_LBRACKET	;
-      RBRACKET = KEY_INPUT_RBRACKET	; 
-      AT = KEY_INPUT_AT	; 
-      BACKSLASH = KEY_INPUT_BACKSLASH	; 
-      COMMA = KEY_INPUT_COMMA	; 
-      CAPSLOCK = KEY_INPUT_CAPSLOCK	;
-      PAUSE = KEY_INPUT_PAUSE	; 
-
-      NUMPAD0 = KEY_INPUT_NUMPAD0	;
-      NUMPAD1 = KEY_INPUT_NUMPAD1	; 
-      NUMPAD2 = KEY_INPUT_NUMPAD2	; 
-      NUMPAD3 = KEY_INPUT_NUMPAD3	; 
-      NUMPAD4 = KEY_INPUT_NUMPAD4	; 
-      NUMPAD5 = KEY_INPUT_NUMPAD5	; 
-      NUMPAD6 = KEY_INPUT_NUMPAD6	; 
-      NUMPAD7 = KEY_INPUT_NUMPAD7	; 
-      NUMPAD8 = KEY_INPUT_NUMPAD8	; 
-      NUMPAD9 = KEY_INPUT_NUMPAD9	; 
-      MULTIPLY = KEY_INPUT_MULTIPLY	; 
-      ADD = KEY_INPUT_ADD	; 
-      SUBTRACT = KEY_INPUT_SUBTRACT	;
-      DECIMAL = KEY_INPUT_DECIMAL	; 
-      DIVIDE = KEY_INPUT_DIVIDE	; 
-      NUMPADENTER = KEY_INPUT_NUMPADENTER	; 
-
-      F1 = KEY_INPUT_F1	; 
-      F2 = KEY_INPUT_F2	;
-      F3 = KEY_INPUT_F3	; 
-      F4 = KEY_INPUT_F4	; 
-      F5 = KEY_INPUT_F5	; 
-      F6 = KEY_INPUT_F6	; 
-      F7 = KEY_INPUT_F7	;
-      F8 = KEY_INPUT_F8	; 
-      F9 = KEY_INPUT_F9	; 
-      F10 = KEY_INPUT_F10	; 
-      F11 = KEY_INPUT_F11	; 
-      F12 = KEY_INPUT_F12	; 
-
-      A = KEY_INPUT_A	;  
-      B = KEY_INPUT_B	;  
-      C = KEY_INPUT_C	;  
-      D = KEY_INPUT_D	;  
-      E = KEY_INPUT_E	;  
-      F = KEY_INPUT_F	;  
-      D = KEY_INPUT_G	;  
-      H = KEY_INPUT_H	;  
-      I = KEY_INPUT_I	;  
-      J = KEY_INPUT_J	;  
-      K = KEY_INPUT_K	;  
-      L = KEY_INPUT_L	;  
-      M = KEY_INPUT_M	; 
-      N = KEY_INPUT_N	;  
-      O = KEY_INPUT_O	;  
-      P = KEY_INPUT_P	; 
-      Q = KEY_INPUT_Q	;  
-      R = KEY_INPUT_R	;  
-      S = KEY_INPUT_S	;  
-      T = KEY_INPUT_T	;  
-      U = KEY_INPUT_U	;  
-      V = KEY_INPUT_V	;  
-      W = KEY_INPUT_W	;  
-      X = KEY_INPUT_X	;  
-      Y = KEY_INPUT_Y	;  
-      Z = KEY_INPUT_Z	;  
-      NUM0 = KEY_INPUT_0	;  
-      NUM1 = KEY_INPUT_1	;  
-      NUM2 = KEY_INPUT_2	;  
-      NUM3 = KEY_INPUT_3	;  
-      NUM4 = KEY_INPUT_4	;  
-      NUM5 = KEY_INPUT_5	;  
-      NUM6 = KEY_INPUT_6	;  
-      NUM7 = KEY_INPUT_7	;  
-      NUM8 = KEY_INPUT_8	;  
-      NUM9 = KEY_INPUT_9	; 
+      
 
 	}
-	     int BACK	;   //  バックスペースキー
-         int TAB	;   //  タブキー
-         int RETURN	;   //  エンターキー
 
-         int LSHIFT	;   //  左シフトキー
-         int RSHIFT	;   //  右シフトキー
-         int LCONTROL	;   //  左コントロールキー
-         int RCONTROL	;   //  右コントロールキー
-         int ESCAPE	;   //  エスケープキー
-         int SPACE	;   //  スペースキー
-         int PGUP	;   //  ＰａｇｅＵＰキー
-         int PGDN	;   //  ＰａｇｅＤｏｗｎキー
-         int END	;   //  エンドキー
-         int HOME	;   //  ホームキー
-         int LEFT	;   //  左キー
-         int UP	;   //  上キー
-         int RIGHT	;   //  右キー
-         int DOWN	;   //  下キー
-		 int INSERT ;   //  インサートキー
+	  static const int BACK = KEY_INPUT_BACK	;
+      static const int TAB = KEY_INPUT_TAB	;
+      static const int RETURN = KEY_INPUT_RETURN	;
 
-		 int _DELETE ;   //  デリートキー
-         int MINUS	;   //  －キー
-         int YEN	;   //  ￥キー
-         int PREVTRACK	;   //  ＾キー
-         int PERIOD	;   //  ．キー
-         int SLASH	;   //  ／キー
-         int LALT	;   //  左ＡＬＴキー
-         int RALT	;   //  右ＡＬＴキー
-         int SCROLL	;   //  ScrollLockキー
-         int SEMICOLON	;   //  ；キー
-         int COLON	;   //  ：キー
-         int LBRACKET	;   //  ［キー
-         int RBRACKET	;   //  ］キー
-         int AT	;   //  ＠キー
-         int BACKSLASH	;   //  ＼キー
-         int COMMA	;   //  ，キー
-         int CAPSLOCK	;   //  CaspLockキー
-         int PAUSE	;   //  PauseBreakキー
+      static const int LSHIFT = KEY_INPUT_LSHIFT	;
+      static const int RSHIFT = KEY_INPUT_RSHIFT	; 
+      static const int LCONTROL = KEY_INPUT_LCONTROL	;
+      static const int RCONTROL = KEY_INPUT_RCONTROL	; 
+      static const int ESCAPE = KEY_INPUT_ESCAPE	; 
+      static const int SPACE = KEY_INPUT_SPACE	; 
+      static const int PGUP = KEY_INPUT_PGUP	; 
+      static const int PGDN = KEY_INPUT_PGDN	;
+      static const int END = KEY_INPUT_END	; 
+      static const int HOME = KEY_INPUT_HOME	;
+      static const int LEFT = KEY_INPUT_LEFT	; 
+      static const int UP = KEY_INPUT_UP	; 
+      static const int RIGHT = KEY_INPUT_RIGHT	; 
+      static const int DOWN = KEY_INPUT_DOWN	; 
+      static const int INSERT = KEY_INPUT_INSERT	; 
+      static const int _DELETE = KEY_INPUT_DELETE	;
 
-         int NUMPAD0	;   //  テンキー０
-         int NUMPAD1	;   //  テンキー１
-         int NUMPAD2	;   //  テンキー２
-         int NUMPAD3	;   //  テンキー３
-         int NUMPAD4	;   //  テンキー４
-         int NUMPAD5	;   //  テンキー５
-         int NUMPAD6	;   //  テンキー６
-         int NUMPAD7	;   //  テンキー７
-         int NUMPAD8	;   //  テンキー８
-         int NUMPAD9	;   //  テンキー９
-         int MULTIPLY	;   //  テンキー＊キー
-         int ADD	;   //  テンキー＋キー
-         int SUBTRACT	;   //  テンキー－キー
-         int DECIMAL	;   //  テンキー．キー
-         int DIVIDE	;   //  テンキー／キー
-         int NUMPADENTER	;   //  テンキーのエンターキー
+      static const int MINUS = KEY_INPUT_MINUS	; 
+      static const int YEN = KEY_INPUT_YEN	; 
+      static const int PREVTRACK = KEY_INPUT_PREVTRACK	; 
+      static const int PERIOD = KEY_INPUT_PERIOD	;
+      static const int SLASH = KEY_INPUT_SLASH	;
+      static const int LALT = KEY_INPUT_LALT	;
+      static const int RALT = KEY_INPUT_RALT	; 
+      static const int SCROLL = KEY_INPUT_SCROLL	; 
+      static const int SEMICOLON = KEY_INPUT_SEMICOLON	;
+      static const int COLON = KEY_INPUT_COLON	; 
+      static const int LBRACKET = KEY_INPUT_LBRACKET	;
+      static const int RBRACKET = KEY_INPUT_RBRACKET	; 
+      static const int AT = KEY_INPUT_AT	; 
+      static const int BACKSLASH = KEY_INPUT_BACKSLASH	; 
+      static const int COMMA = KEY_INPUT_COMMA	; 
+      static const int CAPSLOCK = KEY_INPUT_CAPSLOCK	;
+      static const int PAUSE = KEY_INPUT_PAUSE	; 
 
-         int F1	;   //  Ｆ１キー
-         int F2	;   //  Ｆ２キー
-         int F3	;   //  Ｆ３キー
-         int F4	;   //  Ｆ４キー
-         int F5	;   //  Ｆ５キー
-         int F6	;   //  Ｆ６キー
-         int F7	;   //  Ｆ７キー
-         int F8	;   //  Ｆ８キー
-         int F9	;   //  Ｆ９キー
-         int F10	;   //  Ｆ１０キー
-         int F11	;   //  Ｆ１１キー
-         int F12	;   //  Ｆ１２キー
+      static const int NUMPAD0 = KEY_INPUT_NUMPAD0	;
+      static const int NUMPAD1 = KEY_INPUT_NUMPAD1	; 
+      static const int NUMPAD2 = KEY_INPUT_NUMPAD2	; 
+      static const int NUMPAD3 = KEY_INPUT_NUMPAD3	; 
+      static const int NUMPAD4 = KEY_INPUT_NUMPAD4	; 
+      static const int NUMPAD5 = KEY_INPUT_NUMPAD5	; 
+      static const int NUMPAD6 = KEY_INPUT_NUMPAD6	; 
+      static const int NUMPAD7 = KEY_INPUT_NUMPAD7	; 
+      static const int NUMPAD8 = KEY_INPUT_NUMPAD8	; 
+      static const int NUMPAD9 = KEY_INPUT_NUMPAD9	; 
+      static const int MULTIPLY = KEY_INPUT_MULTIPLY	; 
+      static const int ADD = KEY_INPUT_ADD	; 
+      static const int SUBTRACT = KEY_INPUT_SUBTRACT	;
+      static const int DECIMAL = KEY_INPUT_DECIMAL	; 
+      static const int DIVIDE = KEY_INPUT_DIVIDE	; 
+      static const int NUMPADENTER = KEY_INPUT_NUMPADENTER	; 
 
-         int A	;   //  Ａキー
-         int B	;   //  Ｂキー
-         int C	;   //  Ｃキー
-         int D	;   //  Ｄキー
-         int E	;   //  Ｅキー
-         int F	;   //  Ｆキー
-         int G	;   //  Ｇキー
-         int H	;   //  Ｈキー
-         int I	;   //  Ｉキー
-         int J	;   //  Ｊキー
-         int K	;   //  Ｋキー
-         int L	;   //  Ｌキー
-         int M	;   //  Ｍキー
-         int N	;   //  Ｎキー
-         int O	;   //  Ｏキー
-         int P	;   //  Ｐキー
-         int Q	;   //  Ｑキー
-         int R	;   //  Ｒキー
-         int S	;   //  Ｓキー
-         int T	;   //  Ｔキー
-         int U	;   //  Ｕキー
-         int V	;   //  Ｖキー
-         int W	;   //  Ｗキー
-         int X	;   //  Ｘキー
-         int Y	;   //  Ｙキー
-         int Z	;   //  Ｚキー
-         int NUM0	;   //  ０キー
-         int NUM1	;   //  １キー
-         int NUM2	;   //  ２キー
-         int NUM3	;   //  ３キー
-         int NUM4	;   //  ４キー
-         int NUM5	;   //  ５キー
-         int NUM6	;   //  ６キー
-         int NUM7	;   //  ７キー
-         int NUM8	;   //  ８キー
-         int NUM9	;   //  ９キー
-		 void Loop(){
+      static const int F1 = KEY_INPUT_F1	; 
+      static const int F2 = KEY_INPUT_F2	;
+      static const int F3 = KEY_INPUT_F3	; 
+      static const int F4 = KEY_INPUT_F4	; 
+      static const int F5 = KEY_INPUT_F5	; 
+      static const int F6 = KEY_INPUT_F6	; 
+      static const int F7 = KEY_INPUT_F7	;
+      static const int F8 = KEY_INPUT_F8	; 
+      static const int F9 = KEY_INPUT_F9	; 
+      static const int F10 = KEY_INPUT_F10	; 
+      static const int F11 = KEY_INPUT_F11	; 
+      static const int F12 = KEY_INPUT_F12	; 
+
+      static const int A = KEY_INPUT_A	;  
+      static const int B = KEY_INPUT_B	;  
+      static const int C = KEY_INPUT_C	;  
+      static const int D = KEY_INPUT_D	;  
+      static const int E = KEY_INPUT_E	;  
+      static const int F = KEY_INPUT_F	;  
+      static const int G = KEY_INPUT_G	;  
+      static const int H = KEY_INPUT_H	;  
+      static const int I = KEY_INPUT_I	;  
+      static const int J = KEY_INPUT_J	;  
+      static const int K = KEY_INPUT_K	;  
+      static const int L = KEY_INPUT_L	;  
+      static const int M = KEY_INPUT_M	; 
+      static const int N = KEY_INPUT_N	;  
+      static const int O = KEY_INPUT_O	;  
+      static const int P = KEY_INPUT_P	; 
+      static const int Q = KEY_INPUT_Q	;  
+      static const int R = KEY_INPUT_R	;  
+      static const int S = KEY_INPUT_S	;  
+      static const int T = KEY_INPUT_T	;  
+      static const int U = KEY_INPUT_U	;  
+      static const int V = KEY_INPUT_V	;  
+      static const int W = KEY_INPUT_W	;  
+      static const int X = KEY_INPUT_X	;  
+      static const int Y = KEY_INPUT_Y	;  
+      static const int Z = KEY_INPUT_Z	;  
+      static const int NUM0 = KEY_INPUT_0	;  
+      static const int NUM1 = KEY_INPUT_1	;  
+      static const int NUM2 = KEY_INPUT_2	;  
+      static const int NUM3 = KEY_INPUT_3	;  
+      static const int NUM4 = KEY_INPUT_4	;  
+      static const int NUM5 = KEY_INPUT_5	;  
+      static const int NUM6 = KEY_INPUT_6	;  
+      static const int NUM7 = KEY_INPUT_7	;  
+      static const int NUM8 = KEY_INPUT_8	;  
+      static const int NUM9 = KEY_INPUT_9	; 
+
+
+	  void Loop(){
 			 //全てのキーの押下状態を取得
 			char buf[256];
 			GetHitKeyStateAll( buf ) ;
 			for(int i=0;i<256;i++){
 				if( buf[i] == 0 ){
-					count[i]++;
+					count[i] += 1.0f;
 				}else if( buf[i] == 1 ){
-					count[i] = 0;
+					if(count[i] < 1.0f){
+						count[i] = 0.5f;
+					}else{
+						count[i] = 0.0f;
+					}
 				}
 			}
-		 }
-		 bool GetPressed(int keyCode){
+	  }
+	  bool GetPush(int keyCode){
 			 //キーコードチェック
 			 if( keyCode < 256 && keyCode >= 0 ){
-				if( count[keyCode] == 0 ){
+				if( count[keyCode] < 1.0f ){
 					return true;
 				}else{
 					return false;
 				}
 			 }else{
-				WarningSK("CKey::GetPressedの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				WarningSK("CKey::GetPushの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				return false;
+			 }
+		 }
+		 bool GetDown(int keyCode){
+			 //キーコードチェック
+			 if( keyCode < 256 && keyCode >= 0 ){
+				if( count[keyCode] == 0.0f ){
+					return true;
+				}else{
+					return false;
+				}
+			 }else{
+				WarningSK("CKey::GetDownの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				return false;
+			 }
+		 }
+		 bool GetUp(int keyCode){
+			 //キーコードチェック
+			 if( keyCode < 256 && keyCode >= 0 ){
+				if( count[keyCode] == 1.5f ){
+					return true;
+				}else{
+					return false;
+				}
+			 }else{
+				WarningSK("CKey::GetUpの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
 				return false;
 			 }
 		 }
 		 int GetCount(int keyCode){
 			//キーコードチェック
 			 if( keyCode < 256 && keyCode >= 0 ){
-				return count[keyCode];
+				return (int)(count[keyCode]);
 			 }else{
 				WarningSK("CKey::GetCountの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
 				return -1;
 			 }
 		 }
 	private:
-		 int count[256];
+		 float count[256];
 };
 //マウス定義クラス
 class CMouse{
@@ -1895,8 +1890,138 @@ public:
 			it++;
 		}
 	
+	}	
+
+
+/*
+	template<typename T>
+	void AddEventListener( int inputCode , T *func ){
+				
+				_keyTemp.keyCode=inputCode;
+				_keyTemp.pFunc = func;
+				_keyTask.push_back(_keyTemp);
+
 	}
+	template<typename T>
+	void RemoveEventListener( int inputCode , T *func  ){
+
+		vector< _CKeyIn >::iterator it = _keyTask.begin();
+
+		while( ( it != _keyTask.end() ) ){
+
+			if( it->keyCode == inputCode && it->pFunc == func  ){
+
+				_keyTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	template<typename T>
+	void AddEventListener( _CMouseIn input , T *func  ){
+
+				_mouseTemp=input;
+				_mouseTemp.pFunc=func;
+				_mouseTask.push_back(_mouseTemp);
+				
+	}
+	template<typename T>
+	bool RemoveEventListener( _CMouseIn input , T *func  ){
+
+		vector< _CMouseIn >::iterator it = _mouseTask.begin();
+
+		while( ( it != _mouseTask.end() ) ){
+
+			if( it->pFunc == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
+
+				_mouseTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	template<typename T>
+	void AddEventListener( _CpMouseIn input , T *func()  ){
+
+				_pMouseTemp=input;
+				_pMouseTemp.pFunc=func;
+				_pMouseTask.push_back(_pMouseTemp);
+				
+	}
+	template<typename T>
+	void RemoveEventListener( _CpMouseIn input , T *func()  ){
+
+		vector< _CpMouseIn >::iterator it = _pMouseTask.begin();
+
+		while( ( it != _pMouseTask.end() ) ){
+
+			if( it->pFunc == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
+
+				_pMouseTask.erase( it );
+				break;
+			}
+			it++;
+		}
+	}
+	template<typename T>
+	void AddEventListener( char input , T *func  ){
+			_frameTemp.pFunc=func;
+			_frameTask.push_back(_frameTemp);
+			
+	}
+	template<typename T>
+	void RemoveEventListener( char input , T *func  ){
+
+		vector< _CFrame >::iterator it = _frameTask.begin();
+
+		while( ( it != _frameTask.end() ) ){
+
+			if( it->pFunc ==  func  ){
+
+				_frameTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	template<typename T>
+	void AddEventListener( bool* input , T *func  ){
+			_boolTemp.pFunc=func;
+			_boolTemp.pBool=input;
+			_boolTask.push_back(_boolTemp);
+			
+	}
+	template<typename T>
+	void RemoveEventListener( bool* input , T *func  ){
+
+		vector< _CBoolean >::iterator it = _boolTask.begin();
+
+		while( ( it != _boolTask.end() ) ){
+
+			if( it->pBool == input && it->pFunc == func  ){
+
+				_boolTask.erase( it );
+				break;
+			}
+			it++;
+		}
 	
+	}	
+
+*/
+
+
+
+
+
+
+
+
+
+
 	void Loop(){
 
 		
@@ -1915,6 +2040,18 @@ public:
 				}
 				it++;
 			}
+
+			/*vector<_CKeyIn>::iterator _it=_keyTask.begin();
+
+			while( _it != _keyTask.end() ) {
+				if(CheckHitKey(_it->keyCode)){
+
+					_CKeyIn temp=*_it;
+					temp.pFunc();
+
+				}
+				_it++;
+			}*/
 
 			
 		}
@@ -1992,6 +2129,73 @@ public:
 				it1++;
 			}
 
+/*
+			vector<_CMouseIn>::iterator _it1=_mouseTask.begin();
+
+			while( _it1 != _mouseTask.end() ) {
+
+				_CMouseIn temp = *_it1;
+			
+				switch(temp.type){
+				
+				case MOUSE_OFF :
+					if(temp.x1>mouseX && temp.x2<mouseX ){
+						if(temp.y1>mouseY && temp.y2<mouseY){
+							
+								temp.pFunc();
+							
+						}
+					}
+					break;
+				case MOUSE_ON :
+					if(temp.x1<mouseX && temp.x2>mouseX ){
+						if(temp.y1<mouseY && temp.y2>mouseY){
+							
+								temp.pFunc();
+							
+						}
+					}
+					break;
+
+				case MOUSE_PUSH :
+					if(temp.x1<mouseX && temp.x2>mouseX ){
+						if(temp.y1<mouseY && temp.y2>mouseY){
+							if(mouseInput){
+								
+									temp.pFunc();
+								
+							}
+						}
+					} 
+					break;
+				case MOUSE_CLICK :
+					if(temp.x1<mouseX && temp.x2>mouseX ){
+						if(temp.y1<mouseY && temp.y2>mouseY){
+							if(mouseInput && !preMouseInput ){
+								
+									temp.pFunc();
+								
+							} 
+						}
+					}
+					break;
+				case MOUSE_RELEASE :
+					if(temp.x1<mouseX && temp.x2>mouseX ){
+						if(temp.y1<mouseY && temp.y2>mouseY){
+							if( !mouseInput && preMouseInput ){
+								
+									temp.pFunc();
+								
+							} 
+						}	
+					}
+					break;
+				default :
+					break;
+				}
+				_it1++;
+			}
+*/
 			vector<CpMouseIn>::iterator it11 =pMouseTask.begin();
 
 				while( it11 != pMouseTask.end() ) {
@@ -2060,15 +2264,92 @@ public:
 				}
 			}
 
+/*
+			vector<_CpMouseIn>::iterator _it11 =_pMouseTask.begin();
+
+				while( _it11 != _pMouseTask.end() ) {
+
+					_CpMouseIn temp = *_it11;
+					
+					
+					switch(temp.type){
+				
+					case MOUSE_OFF :
+						if( *(temp.x1) > mouseX && *(temp.x2) < mouseX ){
+							if( *(temp.y1) > mouseY && *(temp.y2) < mouseY ){
+								
+									temp.pFunc();
+								
+							}
+						}
+						break;
+					case MOUSE_ON :
+						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
+							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY){
+								
+									temp.pFunc();
+								
+							} 
+						} 
+						break;
+
+					case MOUSE_PUSH :
+						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
+							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
+								if( mouseInput ){
+									
+										temp.pFunc();
+									
+								} 
+							}
+						} 
+						break;
+					case MOUSE_CLICK :
+						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
+							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
+								if( mouseInput && !preMouseInput ){
+									
+										temp.pFunc();
+									
+								} 
+							} 
+						} 
+						break;
+					case MOUSE_RELEASE :
+						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
+							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
+								if( !mouseInput && preMouseInput ){
+									
+										temp.pFunc();
+									
+								}	
+							} 
+						} 
+						break;
+					default :
+						break;
+					}
+					_it11++;
+				}
+			}
+*/
 			
 		//ループ
-		vector<CFrame>::iterator it2=frameTask.begin();
+		vector<CFrame>::iterator it2 = frameTask.begin();
 
 		while( it2 != frameTask.end() ) {
 			CFrame temp=*it2;
 			temp.pFunc();
 			it2++;
 		}
+/*
+		vector<_CFrame>::iterator _it2=_frameTask.begin();
+
+		while( _it2 != _frameTask.end() ) {
+			_CFrame temp=*_it2;
+			temp.pFunc();
+			_it2++;
+		}*/
 		
 
 		//bool
@@ -2086,7 +2367,22 @@ public:
 
 			it3++;
 		}
+/*
+		vector<_CBoolean>::iterator _it3=_boolTask.begin();
 
+		while( _it3 != _boolTask.end() ) {
+			
+			_CBoolean temp=*_it3;
+
+			if(*(temp.pBool)){
+			
+				temp.pFunc();
+
+			}
+
+			_it3++;
+		}
+*/
 	}//end of void Loop()
 	void DrawLoop(){
 		//KEY
@@ -2291,6 +2587,21 @@ private:
 	CBoolean boolTemp;
 	vector<CBoolean> boolTask;
 
+	//_CKeyIn _keyTemp;
+	//vector<_CKeyIn> _keyTask;
+
+	//_CMouseIn _mouseTemp;
+	//vector<_CMouseIn> _mouseTask;
+
+	//_CpMouseIn _pMouseTemp;
+	//vector<_CpMouseIn> _pMouseTask;
+
+	//_CFrame _frameTemp;
+	//vector<_CFrame> _frameTask;
+
+	//_CBoolean _boolTemp;
+	//vector<_CBoolean> _boolTask;
+
 	vector<CKeyIn> keyTask_Draw;
 	vector<CMouseIn> mouseTask_Draw;
 	vector<CpMouseIn> pMouseTask_Draw;
@@ -2416,10 +2727,10 @@ public:
 	void SetFocus(bool _focus){
 		focus = _focus;
 	}
-	void addChild(CScene *_scene){
+	void AddChild(CScene *_scene){
 		if(focus){
 			if( sceneChild != NULL ){
-				removeChild();
+				RemoveChild();
 			}
 			//フォーカスの移行
 			this->SetFocus(false);
@@ -2427,17 +2738,19 @@ public:
 			//追加
 			sceneChild = _scene;
 		}else{
-			WarningSK("現在有効ではないシーンに入れ子のシーンを追加することはできません");
+			WarningSK("現在有効ではないシーンに入れ子のシーンを追加することはできません(CScene::AddChild)");
 		}
 
 	}
-	void removeChild(){
+	void RemoveChild(){
 		if( sceneChild != NULL ){
 			//フォーカスの移行
 			sceneChild->SetFocus(false);
 			this->SetFocus(true);
 			//削除
 			sceneChild = NULL;
+		}else{
+			WarningSK("CScene::RemoveChildが呼び出されましたがCScene::sceneChildにシーンがありません");
 		}
 	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)() ){
@@ -2609,7 +2922,7 @@ public:
 	void awake(){
 
 	}
-	void addChild(CScene* _scene){
+	void AddChild(CScene* _scene){
 		
 		rootScene.SetFocus(false);
 
@@ -2617,7 +2930,7 @@ public:
 		sceneChild.push_back(_scene);
 
 	}
-	void removeChild(CScene* _scene){
+	void RemoveChild(CScene* _scene){
 		_scene->SetFocus(false);
 		vector<CScene*>::iterator it=sceneChild.begin();
 

@@ -4,6 +4,7 @@
 
 int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	//処理設定　ここから//////////////////////////////////////////////
+	DxLib::SetMainWindowText("SukenLib");
 	System.SetTargetFps(60.0);				//目標のフレームレートを設定
 	System.SetLoadingGraph("LOGO.png");	//ローディング画面に表示する画像のアドレスを指定
 	System.SetUseThread_Awake(false);		//void Awake()の実行をバックグラウンドで行うかどうか
