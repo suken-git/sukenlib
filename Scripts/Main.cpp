@@ -2,7 +2,8 @@
 
 
 void Awake(){	
-	
+	char temp[256];
+	GetFilePath("");
 }
 
 void GameLoopEnter(){

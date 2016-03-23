@@ -37,7 +37,7 @@ bool SelectOpenFile(  char *filename , char *filetype)
     return TRUE;
 }
 
-bool GetFilePath(char *_filename ,char *filetype){
+bool GetFilePath(char *filename ,char *filetype){
 	static OPENFILENAME     ofn;
     static TCHAR            szPath[ MAX_PATH ];
     static TCHAR            szFile[ MAX_PATH ];
@@ -49,7 +49,7 @@ bool GetFilePath(char *_filename ,char *filetype){
         ofn.lStructSize         = sizeof(OPENFILENAME);
 		ofn.hwndOwner           = DxLib::GetMainWindowHandle();
         ofn.lpstrInitialDir     = szPath;       // 初期フォルダ位置
-        ofn.lpstrFile           = _filename;       // 選択ファイル格納
+        ofn.lpstrFile           = filename;       // 選択ファイル格納
         ofn.nMaxFile            = MAX_PATH;
         ofn.lpstrDefExt         = TEXT(".*");
         ofn.lpstrFilter         = filetype;
@@ -57,7 +57,7 @@ bool GetFilePath(char *_filename ,char *filetype){
         ofn.Flags               = OFN_FILEMUSTEXIST | OFN_OVERWRITEPROMPT;
     }
     if ( GetSaveFileName(&ofn) ){
-        MessageBox( GetMainWindowHandle(), _filename, TEXT("ファイル名を付けて保存"), MB_OK );
+        MessageBox( GetMainWindowHandle(), filename, TEXT("ファイル名を付けて保存"), MB_OK );
     }
 
 	return true;

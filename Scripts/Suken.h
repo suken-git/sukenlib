@@ -15,6 +15,13 @@
 #define LIGHTGREEN GetColor( 128 , 255 , 128 )
 #define M_PINK GetColor( 255 , 128 , 128 )
 #define YELLOW GetColor( 255 , 255 , 0)
+/**
+*	@brief 数研ライブラリ独自デバッグ用関数
+*	exeの動作を一時的に止め、エラーメッセージを表示する。
+*	何かしらの操作をすることで復旧可能。
+*	@param format 出力する警告文の書式付き文字列のアドレス
+* @return なし
+*/
 
 inline void WarningSK(const char* format, ...){
 	 char tmpchar[256];
@@ -26,8 +33,19 @@ inline void WarningSK(const char* format, ...){
     clsDx();
     ClearDrawScreen();
 }
-
+/**
+*	@brief 値を設定する
+*	@param value 現在の値
+* @return 成功したらtrue。無効な値が設定された場合はfalse。
+*/
 extern bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0");
+/**
+*	@brief ダイアログを開いて、選択したファイルのパスを取得する。
+*	マップエディタなどを作るときに便利かも
+*	@param  _filename ファイル名を格納したいchar型配列のアドレスを指定
+*	@param filetype 現在無効
+* @return 成功したらtrue。無効な値が設定された場合はfalse。
+*/
 extern bool GetFilePath(char *_filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
 class CPos{
 public:
