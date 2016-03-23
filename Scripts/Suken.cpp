@@ -16,11 +16,6 @@ void null(){
 
 }
 
-//void DebugDrawString( int dispX , int dispY , const char* format, ... ){
-//	char tmpchar[256];
-//	sprintf_s(tmpchar, "%s", format);
-//	TextOut(System.GetDisplayDC(),dispX,dispY,(LPCTSTR)tmpchar,(int)strlen(tmpchar));
-//}
 
 
 

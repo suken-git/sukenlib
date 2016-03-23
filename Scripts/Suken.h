@@ -27,8 +27,6 @@ inline void WarningSK(const char* format, ...){
     ClearDrawScreen();
 }
 
-//void DebugDrawString( int dispX , int dispY , const char* format, ... );
-
 extern bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0");
 extern bool GetFilePath(char *_filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
 class CPos{
@@ -1301,72 +1299,7 @@ public:
 	bool* pBool;
 };
 
-//template<typename T>
-//class _CKeyIn{
-//public:
-//	int keyCode;
-//	void *pFunc;
-//};
-//template<typename T>
-//class _CMouseIn{
-//public:
-//	_CMouseIn(){
-//		
-//	}
-//	int x1,x2,y1,y2;
-//	void *pFunc;
-//	int type;
-//	
-//};
-//template<typename T>
-//class _CpMouseIn{
-//public:
-//	_CpMouseIn(){
-//		
-//	}
-//	int *x1,*x2,*y1,*y2;
-//	void *pFunc;
-//	int type;
-//	
-//};
-//template<typename T>
-//class _CKeyBoolIn{
-//public:
-//	int keyCode;
-//	bool *pBool;
-//};
-//template<typename T>
-//class _CMouseBoolIn{
-//public:
-//	int x1,x2,y1,y2;
-//	bool *pBool;
-//	int type;
-//	
-//
-//};
-//template<typename T>
-//class _CpMouseBoolIn{
-//public:
-//	int *x1,*x2,*y1,*y2;
-//	bool *pBool;
-//	int type;
-//	
-//};
-//template<typename T>
-//class _CFrame{
-//public:
-//	void *pFunc;
-//};
-//template<typename T>
-//class _CBoolean{
-//public:
-//	void *pFunc;
-//	bool* pBool;
-//};
 
-
-
-//キーボード定義クラス
 class CKey{
 public:
 	CKey(){
@@ -1892,136 +1825,6 @@ public:
 	
 	}	
 
-
-/*
-	template<typename T>
-	void AddEventListener( int inputCode , T *func ){
-				
-				_keyTemp.keyCode=inputCode;
-				_keyTemp.pFunc = func;
-				_keyTask.push_back(_keyTemp);
-
-	}
-	template<typename T>
-	void RemoveEventListener( int inputCode , T *func  ){
-
-		vector< _CKeyIn >::iterator it = _keyTask.begin();
-
-		while( ( it != _keyTask.end() ) ){
-
-			if( it->keyCode == inputCode && it->pFunc == func  ){
-
-				_keyTask.erase( it );
-				break;
-			}
-			it++;
-		}
-		
-	}
-	template<typename T>
-	void AddEventListener( _CMouseIn input , T *func  ){
-
-				_mouseTemp=input;
-				_mouseTemp.pFunc=func;
-				_mouseTask.push_back(_mouseTemp);
-				
-	}
-	template<typename T>
-	bool RemoveEventListener( _CMouseIn input , T *func  ){
-
-		vector< _CMouseIn >::iterator it = _mouseTask.begin();
-
-		while( ( it != _mouseTask.end() ) ){
-
-			if( it->pFunc == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
-
-				_mouseTask.erase( it );
-				break;
-			}
-			it++;
-		}
-		
-	}
-	template<typename T>
-	void AddEventListener( _CpMouseIn input , T *func()  ){
-
-				_pMouseTemp=input;
-				_pMouseTemp.pFunc=func;
-				_pMouseTask.push_back(_pMouseTemp);
-				
-	}
-	template<typename T>
-	void RemoveEventListener( _CpMouseIn input , T *func()  ){
-
-		vector< _CpMouseIn >::iterator it = _pMouseTask.begin();
-
-		while( ( it != _pMouseTask.end() ) ){
-
-			if( it->pFunc == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
-
-				_pMouseTask.erase( it );
-				break;
-			}
-			it++;
-		}
-	}
-	template<typename T>
-	void AddEventListener( char input , T *func  ){
-			_frameTemp.pFunc=func;
-			_frameTask.push_back(_frameTemp);
-			
-	}
-	template<typename T>
-	void RemoveEventListener( char input , T *func  ){
-
-		vector< _CFrame >::iterator it = _frameTask.begin();
-
-		while( ( it != _frameTask.end() ) ){
-
-			if( it->pFunc ==  func  ){
-
-				_frameTask.erase( it );
-				break;
-			}
-			it++;
-		}
-		
-	}
-	template<typename T>
-	void AddEventListener( bool* input , T *func  ){
-			_boolTemp.pFunc=func;
-			_boolTemp.pBool=input;
-			_boolTask.push_back(_boolTemp);
-			
-	}
-	template<typename T>
-	void RemoveEventListener( bool* input , T *func  ){
-
-		vector< _CBoolean >::iterator it = _boolTask.begin();
-
-		while( ( it != _boolTask.end() ) ){
-
-			if( it->pBool == input && it->pFunc == func  ){
-
-				_boolTask.erase( it );
-				break;
-			}
-			it++;
-		}
-	
-	}	
-
-*/
-
-
-
-
-
-
-
-
-
-
 	void Loop(){
 
 		
@@ -2041,17 +1844,7 @@ public:
 				it++;
 			}
 
-			/*vector<_CKeyIn>::iterator _it=_keyTask.begin();
-
-			while( _it != _keyTask.end() ) {
-				if(CheckHitKey(_it->keyCode)){
-
-					_CKeyIn temp=*_it;
-					temp.pFunc();
-
-				}
-				_it++;
-			}*/
+			
 
 			
 		}
@@ -2129,73 +1922,7 @@ public:
 				it1++;
 			}
 
-/*
-			vector<_CMouseIn>::iterator _it1=_mouseTask.begin();
 
-			while( _it1 != _mouseTask.end() ) {
-
-				_CMouseIn temp = *_it1;
-			
-				switch(temp.type){
-				
-				case MOUSE_OFF :
-					if(temp.x1>mouseX && temp.x2<mouseX ){
-						if(temp.y1>mouseY && temp.y2<mouseY){
-							
-								temp.pFunc();
-							
-						}
-					}
-					break;
-				case MOUSE_ON :
-					if(temp.x1<mouseX && temp.x2>mouseX ){
-						if(temp.y1<mouseY && temp.y2>mouseY){
-							
-								temp.pFunc();
-							
-						}
-					}
-					break;
-
-				case MOUSE_PUSH :
-					if(temp.x1<mouseX && temp.x2>mouseX ){
-						if(temp.y1<mouseY && temp.y2>mouseY){
-							if(mouseInput){
-								
-									temp.pFunc();
-								
-							}
-						}
-					} 
-					break;
-				case MOUSE_CLICK :
-					if(temp.x1<mouseX && temp.x2>mouseX ){
-						if(temp.y1<mouseY && temp.y2>mouseY){
-							if(mouseInput && !preMouseInput ){
-								
-									temp.pFunc();
-								
-							} 
-						}
-					}
-					break;
-				case MOUSE_RELEASE :
-					if(temp.x1<mouseX && temp.x2>mouseX ){
-						if(temp.y1<mouseY && temp.y2>mouseY){
-							if( !mouseInput && preMouseInput ){
-								
-									temp.pFunc();
-								
-							} 
-						}	
-					}
-					break;
-				default :
-					break;
-				}
-				_it1++;
-			}
-*/
 			vector<CpMouseIn>::iterator it11 =pMouseTask.begin();
 
 				while( it11 != pMouseTask.end() ) {
@@ -2264,77 +1991,7 @@ public:
 				}
 			}
 
-/*
-			vector<_CpMouseIn>::iterator _it11 =_pMouseTask.begin();
 
-				while( _it11 != _pMouseTask.end() ) {
-
-					_CpMouseIn temp = *_it11;
-					
-					
-					switch(temp.type){
-				
-					case MOUSE_OFF :
-						if( *(temp.x1) > mouseX && *(temp.x2) < mouseX ){
-							if( *(temp.y1) > mouseY && *(temp.y2) < mouseY ){
-								
-									temp.pFunc();
-								
-							}
-						}
-						break;
-					case MOUSE_ON :
-						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
-							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY){
-								
-									temp.pFunc();
-								
-							} 
-						} 
-						break;
-
-					case MOUSE_PUSH :
-						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
-							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
-								if( mouseInput ){
-									
-										temp.pFunc();
-									
-								} 
-							}
-						} 
-						break;
-					case MOUSE_CLICK :
-						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
-							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
-								if( mouseInput && !preMouseInput ){
-									
-										temp.pFunc();
-									
-								} 
-							} 
-						} 
-						break;
-					case MOUSE_RELEASE :
-						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
-							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
-								if( !mouseInput && preMouseInput ){
-									
-										temp.pFunc();
-									
-								}	
-							} 
-						} 
-						break;
-					default :
-						break;
-					}
-					_it11++;
-				}
-			}
-*/
-			
-		//ループ
 		vector<CFrame>::iterator it2 = frameTask.begin();
 
 		while( it2 != frameTask.end() ) {
@@ -2342,17 +1999,7 @@ public:
 			temp.pFunc();
 			it2++;
 		}
-/*
-		vector<_CFrame>::iterator _it2=_frameTask.begin();
 
-		while( _it2 != _frameTask.end() ) {
-			_CFrame temp=*_it2;
-			temp.pFunc();
-			_it2++;
-		}*/
-		
-
-		//bool
 		vector<CBoolean>::iterator it3=boolTask.begin();
 
 		while( it3 != boolTask.end() ) {
@@ -2367,22 +2014,7 @@ public:
 
 			it3++;
 		}
-/*
-		vector<_CBoolean>::iterator _it3=_boolTask.begin();
 
-		while( _it3 != _boolTask.end() ) {
-			
-			_CBoolean temp=*_it3;
-
-			if(*(temp.pBool)){
-			
-				temp.pFunc();
-
-			}
-
-			_it3++;
-		}
-*/
 	}//end of void Loop()
 	void DrawLoop(){
 		//KEY
@@ -2587,21 +2219,6 @@ private:
 	CBoolean boolTemp;
 	vector<CBoolean> boolTask;
 
-	//_CKeyIn _keyTemp;
-	//vector<_CKeyIn> _keyTask;
-
-	//_CMouseIn _mouseTemp;
-	//vector<_CMouseIn> _mouseTask;
-
-	//_CpMouseIn _pMouseTemp;
-	//vector<_CpMouseIn> _pMouseTask;
-
-	//_CFrame _frameTemp;
-	//vector<_CFrame> _frameTask;
-
-	//_CBoolean _boolTemp;
-	//vector<_CBoolean> _boolTask;
-
 	vector<CKeyIn> keyTask_Draw;
 	vector<CMouseIn> mouseTask_Draw;
 	vector<CpMouseIn> pMouseTask_Draw;
@@ -2726,6 +2343,9 @@ public:
 	
 	void SetFocus(bool _focus){
 		focus = _focus;
+	}
+	bool GetFocus(){
+		return focus;
 	}
 	void AddChild(CScene *_scene){
 		if(focus){
