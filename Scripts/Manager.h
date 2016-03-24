@@ -2,6 +2,9 @@
 
 #define DEBUG
 #define DEBUG_DRAW
+//#define USE_LUA  //Luaスクリプトを使うならコメントアウトを解除する
+//そしてプロジェクト直下にlua5.1.dllを配置
+//それでも動かないなら「C\lua」と「C\lua\include」が適切に配置されているかを確認する
 
 
 #define WINDOW_WIDTH 900
@@ -25,6 +28,9 @@ using namespace std;
 #define _CRTDBG_MAP_ALLOC
 #define _USE_MATH_DEFINES
 #include"math.h"
+#ifdef USE_LUA
+#include "lua.hpp"
+#endif
 //for MIDI
 #include <windows.h>
 #include <mmsystem.h>

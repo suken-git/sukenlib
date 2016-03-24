@@ -73,13 +73,6 @@ public:
 	
 	}
 	void Awake(){
-		/*
-		０：今までどおりの普通のウインドウ
-		１：タイトルバーなし、縁あり
-		２：タイトルバーも縁もなし
-		*/
-		DxLib::SetWindowStyleMode(0) ;
-
 		//ゲームの超基本設定、普通何もいじらない
 		SetWindowIconID( 101 ) ;//アイコンのやつ
 		SetGraphMode( WINDOW_WIDTH ,  WINDOW_HEIGHT , 32 ) ;//SetWindowSize(WINDOW_WIDTH , WINDOW_HEIGHT );
@@ -102,6 +95,10 @@ public:
 
 		display = CreateDC(TEXT("DISPLAY") , NULL , NULL , NULL);
 
+
+#ifdef USE_LUA
+	Lua = luaL_newstate();
+#endif
 		ScreenFlip();
 
 		N = refreshRate;//1秒に一回fpsを算出
@@ -209,6 +206,7 @@ public:
 	float GetTargetFps(){
 		return targetFps;
 	}
+
 	//新しいスレッドを作る。
 	void CreateNewThread( void(*pFunc)() ){
 		if(handleChild.empty()){				
@@ -222,6 +220,11 @@ public:
 	HDC GetDisplayDC(){
 		return display;
 	}
+#ifdef USE_LUA
+	lua_State *GetLua(){
+		return Lua;
+	}
+#endif
 private:
 	HDC display ;//ディスプレイドライバ
 	int frame;
@@ -242,6 +245,9 @@ private:
 	int loadingImg;
 	bool useThread_AwakeFlag;
 	int loadingMinimalTime;
+#ifdef USE_LUA
+	lua_State *Lua;
+#endif
 };
 void SukenExecute(char *URL);
 class CIntData{///マイナスには未対応
