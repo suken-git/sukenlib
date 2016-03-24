@@ -55,20 +55,8 @@ const int MOUSE_RELEASE =	14;
 
 const char FRAME_EVENT	=	'E';
 
-#define INPUT_0		Event.key.Q
-#define INPUT_1		Event.key.W
-#define INPUT_2		Event.key.E
-#define INPUT_3		Event.key.R
-#define INPUT_4		Event.key.T
-#define INPUT_5		Event.key.Y
-#define INPUT_6		Event.key.U
-#define INPUT_7		Event.key.I
-#define INPUT_8		Event.key.O
-#define INPUT_9		Event.key.P
 
 void Awake();
-//void GameLoop();
-void GameDrawLoop();
 void GameLoopEnter();
 void GameLoopExit();
 
@@ -83,8 +71,7 @@ extern CSystem System;
 class CGame;
 extern CGame game;
 
-class CScene;
-extern CScene GameMain;
+
 
 class CEvent;
 extern CEvent Event;

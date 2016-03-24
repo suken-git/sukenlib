@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\プロジェクトに追加すべきファイル_VC用;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -89,7 +89,6 @@
     <ClCompile Include="System.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\プロジェクトに追加すべきファイル_VC用\DxLib.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Suken.h" />
   </ItemGroup>
@@ -97,6 +96,9 @@
     <ProjectReference Include="stage\stage.vcxproj">
       <Project>{a74596ab-8b6a-452f-9e7d-0c5b2110821e}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

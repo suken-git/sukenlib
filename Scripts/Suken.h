@@ -15,10 +15,40 @@
 #define LIGHTGREEN GetColor( 128 , 255 , 128 )
 #define M_PINK GetColor( 255 , 128 , 128 )
 #define YELLOW GetColor( 255 , 255 , 0)
+/**
+*	@brief 数研ライブラリ独自デバッグ用関数
+*	exeの動作を一時的に止め、エラーメッセージを表示する。
+*	何かしらの操作をすることで復旧可能。
+*	@param format 出力する警告文の書式付き文字列のアドレス
+* @return なし
+*/
 
-
+inline void WarningSK(const char* format, ...){
+	 char tmpchar[256];
+    sprintf_s(tmpchar, "警告 : \n\n%s\n\n", format);
+	printfDx(tmpchar);
+	printfDx("PRESS ANY KEY TO CONTINUE...");
+    ScreenFlip();
+    WaitKey();
+    clsDx();
+    ClearDrawScreen();
+}
+/**
+*	@brief ダイアログを開いて、。
+*	マップエディタなどを作るときに便利かも
+*	@param  filename 開きたいファイル名を格納した文字列
+*	@param filetype 現在無効
+* @return true
+*/
 extern bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0");
-extern bool GetFilePath(char *_filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
+/**
+*	@brief ダイアログを開いて、ファイルを保存する。
+*	マップエディタなどを作るときに便利かも
+*	@param  filename 保存したいファイル名を格納した文字列
+*	@param filetype 現在無効
+* @return true
+*/
+extern bool SaveFile(char *filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
 class CPos{
 public:
 	CPos(){
@@ -56,7 +86,8 @@ public:
 		ChangeWindowMode(TRUE);
 		SetAlwaysRunFlag(TRUE);//常時起動するのでTRUE
 		SetOutApplicationLogValidFlag( FALSE );//ログ出力抑制するのでFALSE
-		DxLib_Init(); SetDrawScreen( DX_SCREEN_BACK );
+		DxLib_Init(); 
+		SetDrawScreen( DX_SCREEN_BACK );
 		SetTransColor( 255 , 0 , 255 );	//マゼンタ透過
 		if(loadingImgPath[0] != NULL){
 			loadingImg = LoadGraph(loadingImgPath);
@@ -67,6 +98,9 @@ public:
 		hdc = GetDC( GetMainWindowHandle() );//デバイスコンテキストの取得
 		refreshRate = GetDeviceCaps( hdc , VREFRESH );//リフレッシュレートの取得
 		ReleaseDC( GetMainWindowHandle() , hdc );//デバイスコンテクストの解放
+
+
+		display = CreateDC(TEXT("DISPLAY") , NULL , NULL , NULL);
 
 		ScreenFlip();
 
@@ -84,12 +118,6 @@ public:
 	}
 	bool GetUseThread_Awake(){
 		return useThread_AwakeFlag;
-	}
-	void SetSyncDrawLoop(bool flag){
-		IsSyncDrawLoop = flag;
-	}
-	bool GetSyncDrawLoop(){
-		return IsSyncDrawLoop;
 	}
 	void SetLoadingGraph(const char *path){
 		strcpy(loadingImgPath,path);
@@ -191,7 +219,11 @@ public:
 
 		handleChild.push_back(handle);
 	}
+	HDC GetDisplayDC(){
+		return display;
+	}
 private:
+	HDC display ;//ディスプレイドライバ
 	int frame;
 	int count;
 	int startTime;
@@ -208,7 +240,6 @@ private:
 	int *screenShotGrHandleAdress;
 	char loadingImgPath[256];
 	int loadingImg;
-	bool IsSyncDrawLoop;
 	bool useThread_AwakeFlag;
 	int loadingMinimalTime;
 };
@@ -432,6 +463,10 @@ public:
 //例えば MD.Lang(100, 72)でMidiを鳴らせる。
 
 /////FROM NUNULIB
+//現在時刻取得関数///////////////////////////////////////////
+SYSTEMTIME GetNowSystemTime();  //SYSTEMTIME型で日本時刻を取得
+std::string GetNowSystemTimeString();  //string型(00/00/00 00:00:00 000)で現在日本時刻を取得
+
 inline int DrawCenterString(int cx, int y, const TCHAR *String, int color, bool centerY=false){ //xを左右の中心にしてDrawStringで文字描画（※yは上下中心ではなく上辺）
     if (centerY){
         return DxLib::DrawString(cx-GetDrawStringWidth(String, strlen(String))/2, y-GetFontSize()/2, String, color);    //あくまで目安 
@@ -441,6 +476,123 @@ inline int DrawCenterString(int cx, int y, const TCHAR *String, int color, bool 
 }
 int DrawCenterString(int cx, int y, int color, const TCHAR* format, ...);
 int DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format, ...);
+
+///エラー&デバッグ出力用関数///////////////////////////////////////////////////////
+#define ERRORDX(...)     ErrorDx(__LINE__, __FUNCTION__, __FILE__,  __VA_ARGS__)
+#define WARNINGDX(...) WarningDx(__LINE__, __FUNCTION__, __FILE__,  __VA_ARGS__)
+#define DEBUGDX(...)     DebugDx(__LINE__, __FUNCTION__, __FILE__,  __VA_ARGS__)
+ 
+ 
+inline void myprintLog(const char* filename, const char* format, va_list args){
+    #ifndef MYLOG_DISABLE
+        FILE *fp;
+        errno_t error;
+        char txtfilename[1024];
+        sprintf_s(txtfilename, "%s.txt", filename);
+        if(error = fopen_s(&fp, txtfilename, "a") != 0){
+            return;
+        }else{
+            char tmpchar[1024];
+            vsprintf_s(tmpchar, format, args);
+            fprintf_s(fp, "[%s]:%s\n", GetNowSystemTimeString().c_str(), tmpchar);
+            fclose(fp);
+        }
+    #endif
+}
+inline void myLog(const char* format, ...){
+    va_list args;
+    va_start(args, format);
+    myprintLog("MyLog", format, args);
+    va_end(args);
+}
+inline void myLogf(const char* filename, const char* format, ...){
+    va_list args;
+    va_start(args, format);
+    myprintLog(filename, format, args);
+    va_end(args);
+}
+inline void myprintfDx(const char* format, va_list args, const char* filename=NULL, int line=0){
+    char string[1024];
+    vsprintf_s(string, format, args);   //va_startとva_endは呼び出し元でする
+    if (filename!=NULL) sprintf_s(string, "%s\n->%s(%d)\n", string, filename, line);
+ 
+    myLogf("MyLog_Printed", "PRINT: %s", string);
+    printfDx(string);
+    ScreenFlip();
+    WaitKey();
+    clsDx();
+    ClearDrawScreen();
+}
+inline void ErrorDx(int line, const char* func, const char* filename, const char* format, ...){
+    char tmpchar[256];
+    va_list args;   va_start(args, format);
+    sprintf_s(tmpchar, "Error->%s\n->%s", format, func);
+    myprintfDx(tmpchar, args, filename, line);
+    va_end(args);
+}
+inline void ErrorDx(const char* format, char* filename, int line, ...){
+    va_list args;
+    va_start(args, line);
+    myprintfDx(format, args, filename, line);
+    va_end(args);
+}
+inline void ErrorDx(const char* format, ...){
+    va_list args;
+    va_start(args, format);
+    myprintfDx(format, args);
+    va_end(args);
+}
+inline void WarningDx(int line, const char* func, const char* filename, const char* format, ...){
+    #ifndef WARNINGDX_DISABLE 
+        char tmpchar[256];
+        va_list args;   va_start(args, format);
+        sprintf_s(tmpchar, "Warning->%s\n->%s", format, func);
+        myprintfDx(tmpchar, args, filename, line);
+        va_end(args);
+    #endif
+}
+inline void WarningDx(const char* format, char* filename, int line, ...){
+    #ifndef WARNINGDX_DISABLE 
+        va_list args;
+        va_start(args, line);
+        myprintfDx(format, args, filename, line);
+        va_end(args);
+    #endif
+}
+inline void WarningDx(const char* format, ...){
+    #ifndef WARNINGDX_DISABLE 
+        va_list args;
+        va_start(args, format);
+        myprintfDx(format, args);
+        va_end(args);
+    #endif
+}
+inline void DebugDx(int line, const char* func, const char* filename, const char* format, ...){
+    #ifndef DEBUGDX_DISABLE 
+        char tmpchar[256];
+        va_list args;   va_start(args, format);
+        sprintf_s(tmpchar, "Debug->%s\n->%s", format, func);
+        myprintfDx(tmpchar, args, filename, line);
+        va_end(args);
+    #endif
+}
+inline void DebugDx(const char* format, char* filename, int line, ...){
+    #ifndef DEBUGDX_DISABLE 
+        va_list args;
+        va_start(args, line);
+        myprintfDx(format, args, filename, line);
+        va_end(args);
+    #endif
+}
+inline void DebugDx(const char* format, ...){
+    #ifndef DEBUGDX_DISABLE 
+        va_list args;
+        va_start(args, format);
+        myprintfDx(format, args);
+        va_end(args);
+    #endif
+}
+/////////////////////////////////////////////////////////////
 
 //////////////////////////////////////
 
@@ -670,7 +822,20 @@ using namespace suken;
 
 unsigned int fanctorial(unsigned int num);			//
 unsigned int combination(unsigned int n , unsigned int r);					//nCrとかやるあれ。組み合わせ
-void DrawBezier(vector<CVector> &In , unsigned int vertexNum , int color );
+
+typedef vector<CVector> BEZIER ;
+//ベジェ曲線の描画（ GetBezier関数で作成したデータが必要　）
+////GetBezier関数で作成したデータを用いてベジェ曲線を描画する
+//引数
+// data  : GetBezier関数で作成したベジェ曲線データ
+// color : 描画色を指定
+void DrawBezier( BEZIER &data ,  int color );
+	//ベジェ曲線頂点データの作成
+////ベジェ曲線の計算をマイフレームするのは無駄なので計算済みのデータを作成する
+//引数
+// In　　　　: 制御点（CVector型）を指定する（2つ以上）
+// vertexNum : 作成するデータの細かさを指定（ベジェ曲線の構成頂点の数）
+BEZIER GetBezier(vector<CVector> &In , unsigned int vertexNum );
 
 CVector GetIntersection( int a1 , int b1 , int a2 , int b2 );
 
@@ -753,6 +918,8 @@ public:
 		DrawLine(GetLeftBottom(),GetLeftTop(),WHITE);
 	}
 	void Loop(){
+
+		center.Loop();
 #ifdef DEBUG_DRAW
 		Draw(WHITE);
 		
@@ -1151,223 +1318,189 @@ public:
 	void (*pFunc)();
 	bool* pBool;
 };
-//キーボード定義クラス
+
+
 class CKey{
 public:
 	CKey(){
 
-      BACK = KEY_INPUT_BACK	;
-      TAB = KEY_INPUT_TAB	;
-      RETURN = KEY_INPUT_RETURN	;
-
-      LSHIFT = KEY_INPUT_LSHIFT	;
-      RSHIFT = KEY_INPUT_RSHIFT	; 
-      LCONTROL = KEY_INPUT_LCONTROL	;
-      RCONTROL = KEY_INPUT_RCONTROL	; 
-      ESCAPE = KEY_INPUT_ESCAPE	; 
-      SPACE = KEY_INPUT_SPACE	; 
-      PGUP = KEY_INPUT_PGUP	; 
-      PGDN = KEY_INPUT_PGDN	;
-      END = KEY_INPUT_END	; 
-      HOME = KEY_INPUT_HOME	;
-      LEFT = KEY_INPUT_LEFT	; 
-      UP = KEY_INPUT_UP	; 
-      RIGHT = KEY_INPUT_RIGHT	; 
-      DOWN = KEY_INPUT_DOWN	; 
-      INSERT = KEY_INPUT_INSERT	; 
-      _DELETE = KEY_INPUT_DELETE	;
-
-      MINUS = KEY_INPUT_MINUS	; 
-      YEN = KEY_INPUT_YEN	; 
-      PREVTRACK = KEY_INPUT_PREVTRACK	; 
-      PERIOD = KEY_INPUT_PERIOD	;
-      SLASH = KEY_INPUT_SLASH	;
-      LALT = KEY_INPUT_LALT	;
-      RALT = KEY_INPUT_RALT	; 
-      SCROLL = KEY_INPUT_SCROLL	; 
-      SEMICOLON = KEY_INPUT_SEMICOLON	;
-      COLON = KEY_INPUT_COLON	; 
-      LBRACKET = KEY_INPUT_LBRACKET	;
-      RBRACKET = KEY_INPUT_RBRACKET	; 
-      AT = KEY_INPUT_AT	; 
-      BACKSLASH = KEY_INPUT_BACKSLASH	; 
-      COMMA = KEY_INPUT_COMMA	; 
-      CAPSLOCK = KEY_INPUT_CAPSLOCK	;
-      PAUSE = KEY_INPUT_PAUSE	; 
-
-      NUMPAD0 = KEY_INPUT_NUMPAD0	;
-      NUMPAD1 = KEY_INPUT_NUMPAD1	; 
-      NUMPAD2 = KEY_INPUT_NUMPAD2	; 
-      NUMPAD3 = KEY_INPUT_NUMPAD3	; 
-      NUMPAD4 = KEY_INPUT_NUMPAD4	; 
-      NUMPAD5 = KEY_INPUT_NUMPAD5	; 
-      NUMPAD6 = KEY_INPUT_NUMPAD6	; 
-      NUMPAD7 = KEY_INPUT_NUMPAD7	; 
-      NUMPAD8 = KEY_INPUT_NUMPAD8	; 
-      NUMPAD9 = KEY_INPUT_NUMPAD9	; 
-      MULTIPLY = KEY_INPUT_MULTIPLY	; 
-      ADD = KEY_INPUT_ADD	; 
-      SUBTRACT = KEY_INPUT_SUBTRACT	;
-      DECIMAL = KEY_INPUT_DECIMAL	; 
-      DIVIDE = KEY_INPUT_DIVIDE	; 
-      NUMPADENTER = KEY_INPUT_NUMPADENTER	; 
-
-      F1 = KEY_INPUT_F1	; 
-      F2 = KEY_INPUT_F2	;
-      F3 = KEY_INPUT_F3	; 
-      F4 = KEY_INPUT_F4	; 
-      F5 = KEY_INPUT_F5	; 
-      F6 = KEY_INPUT_F6	; 
-      F7 = KEY_INPUT_F7	;
-      F8 = KEY_INPUT_F8	; 
-      F9 = KEY_INPUT_F9	; 
-      F10 = KEY_INPUT_F10	; 
-      F11 = KEY_INPUT_F11	; 
-      F12 = KEY_INPUT_F12	; 
-
-      A = KEY_INPUT_A	;  
-      B = KEY_INPUT_B	;  
-      C = KEY_INPUT_C	;  
-      D = KEY_INPUT_D	;  
-      E = KEY_INPUT_E	;  
-      F = KEY_INPUT_F	;  
-      D = KEY_INPUT_G	;  
-      H = KEY_INPUT_H	;  
-      I = KEY_INPUT_I	;  
-      J = KEY_INPUT_J	;  
-      K = KEY_INPUT_K	;  
-      L = KEY_INPUT_L	;  
-      M = KEY_INPUT_M	; 
-      N = KEY_INPUT_N	;  
-      O = KEY_INPUT_O	;  
-      P = KEY_INPUT_P	; 
-      Q = KEY_INPUT_Q	;  
-      R = KEY_INPUT_R	;  
-      S = KEY_INPUT_S	;  
-      T = KEY_INPUT_T	;  
-      U = KEY_INPUT_U	;  
-      V = KEY_INPUT_V	;  
-      W = KEY_INPUT_W	;  
-      X = KEY_INPUT_X	;  
-      Y = KEY_INPUT_Y	;  
-      Z = KEY_INPUT_Z	;  
-      NUM0 = KEY_INPUT_0	;  
-      NUM1 = KEY_INPUT_1	;  
-      NUM2 = KEY_INPUT_2	;  
-      NUM3 = KEY_INPUT_3	;  
-      NUM4 = KEY_INPUT_4	;  
-      NUM5 = KEY_INPUT_5	;  
-      NUM6 = KEY_INPUT_6	;  
-      NUM7 = KEY_INPUT_7	;  
-      NUM8 = KEY_INPUT_8	;  
-      NUM9 = KEY_INPUT_9	; 
+      
 
 	}
-	     int BACK	;   //  バックスペースキー
-         int TAB	;   //  タブキー
-         int RETURN	;   //  エンターキー
 
-         int LSHIFT	;   //  左シフトキー
-         int RSHIFT	;   //  右シフトキー
-         int LCONTROL	;   //  左コントロールキー
-         int RCONTROL	;   //  右コントロールキー
-         int ESCAPE	;   //  エスケープキー
-         int SPACE	;   //  スペースキー
-         int PGUP	;   //  ＰａｇｅＵＰキー
-         int PGDN	;   //  ＰａｇｅＤｏｗｎキー
-         int END	;   //  エンドキー
-         int HOME	;   //  ホームキー
-         int LEFT	;   //  左キー
-         int UP	;   //  上キー
-         int RIGHT	;   //  右キー
-         int DOWN	;   //  下キー
-		 int INSERT ;   //  インサートキー
+	  static const int BACK = KEY_INPUT_BACK	;
+      static const int TAB = KEY_INPUT_TAB	;
+      static const int RETURN = KEY_INPUT_RETURN	;
 
-		 int _DELETE ;   //  デリートキー
-         int MINUS	;   //  －キー
-         int YEN	;   //  ￥キー
-         int PREVTRACK	;   //  ＾キー
-         int PERIOD	;   //  ．キー
-         int SLASH	;   //  ／キー
-         int LALT	;   //  左ＡＬＴキー
-         int RALT	;   //  右ＡＬＴキー
-         int SCROLL	;   //  ScrollLockキー
-         int SEMICOLON	;   //  ；キー
-         int COLON	;   //  ：キー
-         int LBRACKET	;   //  ［キー
-         int RBRACKET	;   //  ］キー
-         int AT	;   //  ＠キー
-         int BACKSLASH	;   //  ＼キー
-         int COMMA	;   //  ，キー
-         int CAPSLOCK	;   //  CaspLockキー
-         int PAUSE	;   //  PauseBreakキー
+      static const int LSHIFT = KEY_INPUT_LSHIFT	;
+      static const int RSHIFT = KEY_INPUT_RSHIFT	; 
+      static const int LCONTROL = KEY_INPUT_LCONTROL	;
+      static const int RCONTROL = KEY_INPUT_RCONTROL	; 
+      static const int ESCAPE = KEY_INPUT_ESCAPE	; 
+      static const int SPACE = KEY_INPUT_SPACE	; 
+      static const int PGUP = KEY_INPUT_PGUP	; 
+      static const int PGDN = KEY_INPUT_PGDN	;
+      static const int END = KEY_INPUT_END	; 
+      static const int HOME = KEY_INPUT_HOME	;
+      static const int LEFT = KEY_INPUT_LEFT	; 
+      static const int UP = KEY_INPUT_UP	; 
+      static const int RIGHT = KEY_INPUT_RIGHT	; 
+      static const int DOWN = KEY_INPUT_DOWN	; 
+      static const int INSERT = KEY_INPUT_INSERT	; 
+      static const int _DELETE = KEY_INPUT_DELETE	;
 
-         int NUMPAD0	;   //  テンキー０
-         int NUMPAD1	;   //  テンキー１
-         int NUMPAD2	;   //  テンキー２
-         int NUMPAD3	;   //  テンキー３
-         int NUMPAD4	;   //  テンキー４
-         int NUMPAD5	;   //  テンキー５
-         int NUMPAD6	;   //  テンキー６
-         int NUMPAD7	;   //  テンキー７
-         int NUMPAD8	;   //  テンキー８
-         int NUMPAD9	;   //  テンキー９
-         int MULTIPLY	;   //  テンキー＊キー
-         int ADD	;   //  テンキー＋キー
-         int SUBTRACT	;   //  テンキー－キー
-         int DECIMAL	;   //  テンキー．キー
-         int DIVIDE	;   //  テンキー／キー
-         int NUMPADENTER	;   //  テンキーのエンターキー
+      static const int MINUS = KEY_INPUT_MINUS	; 
+      static const int YEN = KEY_INPUT_YEN	; 
+      static const int PREVTRACK = KEY_INPUT_PREVTRACK	; 
+      static const int PERIOD = KEY_INPUT_PERIOD	;
+      static const int SLASH = KEY_INPUT_SLASH	;
+      static const int LALT = KEY_INPUT_LALT	;
+      static const int RALT = KEY_INPUT_RALT	; 
+      static const int SCROLL = KEY_INPUT_SCROLL	; 
+      static const int SEMICOLON = KEY_INPUT_SEMICOLON	;
+      static const int COLON = KEY_INPUT_COLON	; 
+      static const int LBRACKET = KEY_INPUT_LBRACKET	;
+      static const int RBRACKET = KEY_INPUT_RBRACKET	; 
+      static const int AT = KEY_INPUT_AT	; 
+      static const int BACKSLASH = KEY_INPUT_BACKSLASH	; 
+      static const int COMMA = KEY_INPUT_COMMA	; 
+      static const int CAPSLOCK = KEY_INPUT_CAPSLOCK	;
+      static const int PAUSE = KEY_INPUT_PAUSE	; 
 
-         int F1	;   //  Ｆ１キー
-         int F2	;   //  Ｆ２キー
-         int F3	;   //  Ｆ３キー
-         int F4	;   //  Ｆ４キー
-         int F5	;   //  Ｆ５キー
-         int F6	;   //  Ｆ６キー
-         int F7	;   //  Ｆ７キー
-         int F8	;   //  Ｆ８キー
-         int F9	;   //  Ｆ９キー
-         int F10	;   //  Ｆ１０キー
-         int F11	;   //  Ｆ１１キー
-         int F12	;   //  Ｆ１２キー
+      static const int NUMPAD0 = KEY_INPUT_NUMPAD0	;
+      static const int NUMPAD1 = KEY_INPUT_NUMPAD1	; 
+      static const int NUMPAD2 = KEY_INPUT_NUMPAD2	; 
+      static const int NUMPAD3 = KEY_INPUT_NUMPAD3	; 
+      static const int NUMPAD4 = KEY_INPUT_NUMPAD4	; 
+      static const int NUMPAD5 = KEY_INPUT_NUMPAD5	; 
+      static const int NUMPAD6 = KEY_INPUT_NUMPAD6	; 
+      static const int NUMPAD7 = KEY_INPUT_NUMPAD7	; 
+      static const int NUMPAD8 = KEY_INPUT_NUMPAD8	; 
+      static const int NUMPAD9 = KEY_INPUT_NUMPAD9	; 
+      static const int MULTIPLY = KEY_INPUT_MULTIPLY	; 
+      static const int ADD = KEY_INPUT_ADD	; 
+      static const int SUBTRACT = KEY_INPUT_SUBTRACT	;
+      static const int DECIMAL = KEY_INPUT_DECIMAL	; 
+      static const int DIVIDE = KEY_INPUT_DIVIDE	; 
+      static const int NUMPADENTER = KEY_INPUT_NUMPADENTER	; 
 
-         int A	;   //  Ａキー
-         int B	;   //  Ｂキー
-         int C	;   //  Ｃキー
-         int D	;   //  Ｄキー
-         int E	;   //  Ｅキー
-         int F	;   //  Ｆキー
-         int G	;   //  Ｇキー
-         int H	;   //  Ｈキー
-         int I	;   //  Ｉキー
-         int J	;   //  Ｊキー
-         int K	;   //  Ｋキー
-         int L	;   //  Ｌキー
-         int M	;   //  Ｍキー
-         int N	;   //  Ｎキー
-         int O	;   //  Ｏキー
-         int P	;   //  Ｐキー
-         int Q	;   //  Ｑキー
-         int R	;   //  Ｒキー
-         int S	;   //  Ｓキー
-         int T	;   //  Ｔキー
-         int U	;   //  Ｕキー
-         int V	;   //  Ｖキー
-         int W	;   //  Ｗキー
-         int X	;   //  Ｘキー
-         int Y	;   //  Ｙキー
-         int Z	;   //  Ｚキー
-         int NUM0	;   //  ０キー
-         int NUM1	;   //  １キー
-         int NUM2	;   //  ２キー
-         int NUM3	;   //  ３キー
-         int NUM4	;   //  ４キー
-         int NUM5	;   //  ５キー
-         int NUM6	;   //  ６キー
-         int NUM7	;   //  ７キー
-         int NUM8	;   //  ８キー
-         int NUM9	;   //  ９キー
+      static const int F1 = KEY_INPUT_F1	; 
+      static const int F2 = KEY_INPUT_F2	;
+      static const int F3 = KEY_INPUT_F3	; 
+      static const int F4 = KEY_INPUT_F4	; 
+      static const int F5 = KEY_INPUT_F5	; 
+      static const int F6 = KEY_INPUT_F6	; 
+      static const int F7 = KEY_INPUT_F7	;
+      static const int F8 = KEY_INPUT_F8	; 
+      static const int F9 = KEY_INPUT_F9	; 
+      static const int F10 = KEY_INPUT_F10	; 
+      static const int F11 = KEY_INPUT_F11	; 
+      static const int F12 = KEY_INPUT_F12	; 
+
+      static const int A = KEY_INPUT_A	;  
+      static const int B = KEY_INPUT_B	;  
+      static const int C = KEY_INPUT_C	;  
+      static const int D = KEY_INPUT_D	;  
+      static const int E = KEY_INPUT_E	;  
+      static const int F = KEY_INPUT_F	;  
+      static const int G = KEY_INPUT_G	;  
+      static const int H = KEY_INPUT_H	;  
+      static const int I = KEY_INPUT_I	;  
+      static const int J = KEY_INPUT_J	;  
+      static const int K = KEY_INPUT_K	;  
+      static const int L = KEY_INPUT_L	;  
+      static const int M = KEY_INPUT_M	; 
+      static const int N = KEY_INPUT_N	;  
+      static const int O = KEY_INPUT_O	;  
+      static const int P = KEY_INPUT_P	; 
+      static const int Q = KEY_INPUT_Q	;  
+      static const int R = KEY_INPUT_R	;  
+      static const int S = KEY_INPUT_S	;  
+      static const int T = KEY_INPUT_T	;  
+      static const int U = KEY_INPUT_U	;  
+      static const int V = KEY_INPUT_V	;  
+      static const int W = KEY_INPUT_W	;  
+      static const int X = KEY_INPUT_X	;  
+      static const int Y = KEY_INPUT_Y	;  
+      static const int Z = KEY_INPUT_Z	;  
+      static const int NUM0 = KEY_INPUT_0	;  
+      static const int NUM1 = KEY_INPUT_1	;  
+      static const int NUM2 = KEY_INPUT_2	;  
+      static const int NUM3 = KEY_INPUT_3	;  
+      static const int NUM4 = KEY_INPUT_4	;  
+      static const int NUM5 = KEY_INPUT_5	;  
+      static const int NUM6 = KEY_INPUT_6	;  
+      static const int NUM7 = KEY_INPUT_7	;  
+      static const int NUM8 = KEY_INPUT_8	;  
+      static const int NUM9 = KEY_INPUT_9	; 
+
+
+	  void Loop(){
+			 //全てのキーの押下状態を取得
+			char buf[256];
+			GetHitKeyStateAll( buf ) ;
+			for(int i=0;i<256;i++){
+				if( buf[i] == 0 ){
+					count[i] += 1.0f;
+				}else if( buf[i] == 1 ){
+					if(count[i] < 1.0f){
+						count[i] = 0.5f;
+					}else{
+						count[i] = 0.0f;
+					}
+				}
+			}
+	  }
+	  bool GetPush(int keyCode){
+			 //キーコードチェック
+			 if( keyCode < 256 && keyCode >= 0 ){
+				if( count[keyCode] < 1.0f ){
+					return true;
+				}else{
+					return false;
+				}
+			 }else{
+				WarningSK("CKey::GetPushの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				return false;
+			 }
+		 }
+		 bool GetDown(int keyCode){
+			 //キーコードチェック
+			 if( keyCode < 256 && keyCode >= 0 ){
+				if( count[keyCode] == 0.0f ){
+					return true;
+				}else{
+					return false;
+				}
+			 }else{
+				WarningSK("CKey::GetDownの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				return false;
+			 }
+		 }
+		 bool GetUp(int keyCode){
+			 //キーコードチェック
+			 if( keyCode < 256 && keyCode >= 0 ){
+				if( count[keyCode] == 1.5f ){
+					return true;
+				}else{
+					return false;
+				}
+			 }else{
+				WarningSK("CKey::GetUpの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				return false;
+			 }
+		 }
+		 int GetCount(int keyCode){
+			//キーコードチェック
+			 if( keyCode < 256 && keyCode >= 0 ){
+				return (int)(count[keyCode]);
+			 }else{
+				WarningSK("CKey::GetCountの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+				return -1;
+			 }
+		 }
+	private:
+		 float count[256];
 };
 //マウス定義クラス
 class CMouse{
@@ -1573,6 +1706,9 @@ public:
 	}
 	private:
 		bool IsLeft;
+		/*bool CheckScene(){
+		
+		}*/
 };
 //入力イベント定義クラス
 class CEvent{
@@ -1583,6 +1719,7 @@ public:
 		RMouse.SetRight();
 	}
 	void Loop(){
+		key.Loop();
 		LMouse.Loop();
 		RMouse.Loop();
 	}
@@ -1601,20 +1738,14 @@ public:
 		useKey = true;
 	}
 	
-	void AddEventListener( int inputCode , void func() , void func_draw() = NULL){
+	void AddEventListener( int inputCode , void func() ){
 				
 				keyTemp.keyCode=inputCode;
 				keyTemp.pFunc=func;
 				keyTask.push_back(keyTemp);
-				if(func_draw != NULL){
-					keyTemp.keyCode=inputCode;
-					keyTemp.pFunc=func_draw;
-					keyTask_Draw.push_back(keyTemp);
-				}
-				
 
 	}
-	void RemoveEventListener( int inputCode , void func() , void func_draw() = NULL ){
+	void RemoveEventListener( int inputCode , void func()  ){
 
 		vector< CKeyIn >::iterator it = keyTask.begin();
 
@@ -1627,35 +1758,16 @@ public:
 			}
 			it++;
 		}
-		if(func_draw != NULL){
-			vector< CKeyIn >::iterator it_d = keyTask_Draw.begin();
-
-			while( ( it_d != keyTask_Draw.end() ) ){
-
-				if( it_d->keyCode == inputCode && it_d->pFunc == func_draw  ){
-
-					keyTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-			}
-		}
 		
 	}
-	void AddEventListener( CMouseIn input , void func() , void func_draw() = NULL ){
+	void AddEventListener( CMouseIn input , void func()  ){
 
 				mouseTemp=input;
 				mouseTemp.pFunc=func;
 				mouseTask.push_back(mouseTemp);
-				if(func_draw != NULL){
-					mouseTemp=input;
-					mouseTemp.pFunc=func_draw;
-					mouseTask_Draw.push_back(mouseTemp);
-				}
 				
-
 	}
-	bool RemoveEventListener( CMouseIn input , void func() , void func_draw() = NULL ){
+	bool RemoveEventListener( CMouseIn input , void func()  ){
 
 		vector< CMouseIn >::iterator it = mouseTask.begin();
 
@@ -1669,35 +1781,15 @@ public:
 			it++;
 		}
 		
-		if(func_draw != NULL){
-			vector< CMouseIn >::iterator it_d = mouseTask_Draw.begin();
-
-			while( ( it_d != mouseTask_Draw.end() ) ){
-					
-				if( it_d->pFunc == func_draw && it_d->type == input.type && it_d->x1 == input.x1 && it_d->x2 == input.x2 && it_d->y1 == input.y1 && it_d->y2 == input.y2  ){
-
-					mouseTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-			}
-		}
-		
 	}
-	void AddEventListener( CpMouseIn input , void func() , void func_draw() = NULL ){
+	void AddEventListener( CpMouseIn input , void func()  ){
 
 				pMouseTemp=input;
 				pMouseTemp.pFunc=func;
 				pMouseTask.push_back(pMouseTemp);
-				if(func_draw != NULL){
-					pMouseTemp=input;
-					pMouseTemp.pFunc=func_draw;
-					pMouseTask_Draw.push_back(pMouseTemp);
-				}
 				
-
 	}
-	void RemoveEventListener( CpMouseIn input , void func() , void func_draw() = NULL ){
+	void RemoveEventListener( CpMouseIn input , void func()  ){
 
 		vector< CpMouseIn >::iterator it = pMouseTask.begin();
 
@@ -1710,31 +1802,13 @@ public:
 			}
 			it++;
 		}
-		if(func_draw != NULL){
-			vector< CpMouseIn >::iterator it_d = pMouseTask_Draw.begin();
-
-			while( ( it_d != pMouseTask_Draw.end() ) ){
-
-				if( it_d->pFunc == func_draw && it_d->type == input.type && it_d->x1 == input.x1 && it_d->x2 == input.x2 && it_d->y1 == input.y1 && it_d->y2 == input.y2  ){
-
-					pMouseTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-		}
-		}
-		
 	}
-	void AddEventListener( char input , void func() , void func_draw() = NULL ){
+	void AddEventListener( char input , void func()  ){
 			frameTemp.pFunc=func;
 			frameTask.push_back(frameTemp);
-			if(func_draw != NULL){
-				frameTemp.pFunc=func_draw;
-				frameTask_Draw.push_back(frameTemp);
-			}
 			
 	}
-	void RemoveEventListener( char input , void func() , void func_draw() = NULL ){
+	void RemoveEventListener( char input , void func()  ){
 
 		vector< CFrame >::iterator it = frameTask.begin();
 
@@ -1748,32 +1822,14 @@ public:
 			it++;
 		}
 		
-		if(func_draw != NULL){
-			vector< CFrame >::iterator it_d = frameTask_Draw.begin();
-
-			while( ( it_d != frameTask_Draw.end() ) ){
-	
-				if( it_d->pFunc ==  func_draw  ){
-
-					frameTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-		}
-		}
 	}
-	void AddEventListener( bool* input , void func() , void func_draw() = NULL ){
+	void AddEventListener( bool* input , void func()  ){
 			boolTemp.pFunc=func;
 			boolTemp.pBool=input;
 			boolTask.push_back(boolTemp);
 			
-			if(func_draw != NULL){
-				boolTemp.pFunc=func_draw;
-				boolTemp.pBool=input;
-				boolTask_Draw.push_back(boolTemp);
-			}
 	}
-	void RemoveEventListener( bool* input , void func() , void func_draw() = NULL ){
+	void RemoveEventListener( bool* input , void func()  ){
 
 		vector< CBoolean >::iterator it = boolTask.begin();
 
@@ -1786,22 +1842,9 @@ public:
 			}
 			it++;
 		}
-		
-		if(func_draw != NULL){
-			vector< CBoolean >::iterator it_d = boolTask_Draw.begin();
-
-			while( ( it_d != boolTask_Draw.end() ) ){
-
-				if( it_d->pBool == input && it_d->pFunc == func_draw  ){
-
-					boolTask_Draw.erase( it_d );
-					break;
-				}
-				it_d++;
-			}
-		}
-	}
 	
+	}	
+
 	void Loop(){
 
 		
@@ -1820,6 +1863,8 @@ public:
 				}
 				it++;
 			}
+
+			
 
 			
 		}
@@ -1897,6 +1942,7 @@ public:
 				it1++;
 			}
 
+
 			vector<CpMouseIn>::iterator it11 =pMouseTask.begin();
 
 				while( it11 != pMouseTask.end() ) {
@@ -1965,18 +2011,15 @@ public:
 				}
 			}
 
-			
-		//ループ
-		vector<CFrame>::iterator it2=frameTask.begin();
+
+		vector<CFrame>::iterator it2 = frameTask.begin();
 
 		while( it2 != frameTask.end() ) {
 			CFrame temp=*it2;
 			temp.pFunc();
 			it2++;
 		}
-		
 
-		//bool
 		vector<CBoolean>::iterator it3=boolTask.begin();
 
 		while( it3 != boolTask.end() ) {
@@ -2239,15 +2282,35 @@ public:
 //シーンクラス
 class CScene{
 public:
-	void Loop(){
-		
-		input.Loop();
-		collision.Loop();
-		
+	CScene(){
+		serialNum = sceneNum;
+		sceneNum++;
+		focus = false;
+		sceneChild = NULL;
 	}
-	void DrawLoop(){
+	void Loop(){
+		if(!focus){
+			input.useKey = false;
+			input.useMouse = false;
+		}
+		input.Loop();
 		input.DrawLoop();
+
+		collision.Loop();
 		collision.DrawLoop();
+
+		ButtonLoop();
+
+		if( sceneChild != NULL ){
+			sceneChild->Loop();
+		}
+		if(focus){
+			input.useKey = true;
+			input.useMouse = true;
+		}
+	}
+	void ButtonLoop(){
+		
 
 		vector<CButton>::iterator it = buttonChild.begin();
 		if( buttonChild.size() != 0 ){
@@ -2290,12 +2353,46 @@ public:
 				it1++;
 			}
 		}
+		
 	}
 	CCollisionManager collision;
 	CInput input;
 	vector<CButton> buttonChild;
 	vector<CpButton> pButtonChild;
+	CScene *sceneChild;
+	
+	void SetFocus(bool _focus){
+		focus = _focus;
+	}
+	bool GetFocus(){
+		return focus;
+	}
+	void AddChild(CScene *_scene){
+		if(focus){
+			if( sceneChild != NULL ){
+				RemoveChild();
+			}
+			//フォーカスの移行
+			this->SetFocus(false);
+			_scene->SetFocus(true);
+			//追加
+			sceneChild = _scene;
+		}else{
+			WarningSK("現在有効ではないシーンに入れ子のシーンを追加することはできません(CScene::AddChild)");
+		}
 
+	}
+	void RemoveChild(){
+		if( sceneChild != NULL ){
+			//フォーカスの移行
+			sceneChild->SetFocus(false);
+			this->SetFocus(true);
+			//削除
+			sceneChild = NULL;
+		}else{
+			WarningSK("CScene::RemoveChildが呼び出されましたがCScene::sceneChildにシーンがありません");
+		}
+	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)() ){
 		CButton temp;
 		temp.IsUseGraph = false;
@@ -2433,13 +2530,24 @@ public:
 
 		pButtonChild.push_back( temp );
 	}
+	//数研ライブラリ内部関数（使用禁止）
+	void ResetSceneNum(){
+		sceneNum = 1;
+	}
+	unsigned int GetSerialNum(){
+		return serialNum;
+	}
 private:
+	bool focus;
+	static unsigned int sceneNum;
+	unsigned int serialNum;
 };
 //ゲームシステム総括クラス
 class CGame{
 public:
 	CGame(){
 		useDrawLoopFlag =true;
+		rootScene.ResetSceneNum();
 	}
 	~CGame(){
 /*
@@ -2449,33 +2557,45 @@ public:
 			MessageBox(NULL,info,"MemoryLeakChecher",MB_OK);
 		}
 		*/
+		rootScene.SetFocus(true);
 	}
 	void awake(){
 
 	}
-	void addChild(CScene* _scene){
+	void AddChild(CScene* _scene){
+		
+		rootScene.SetFocus(false);
 
+		_scene->SetFocus(true);
 		sceneChild.push_back(_scene);
 
 	}
-	void removeChild(CScene* _scene){
-
+	void RemoveChild(CScene* _scene){
+		_scene->SetFocus(false);
 		vector<CScene*>::iterator it=sceneChild.begin();
 
 		while( it != sceneChild.end() ) {
 			if(*it==_scene){
+				
 				sceneChild.erase(it);
 				break;
 			}
 			it++;
 		}
+
+		if(sceneChild.empty()){
+			rootScene.SetFocus(true);
+		}
 		
 
 	}
 	void removeChild(){
-		
+		sceneChild.front()->SetFocus(false);
 		sceneChild.pop_back();
-
+		
+		if(sceneChild.empty()){
+			rootScene.SetFocus(true);
+		}
 	}
 	void Loop(){
 	
@@ -2492,18 +2612,7 @@ public:
 
 		}
 	}
-	void DrawLoop(){
-	
-		if( !sceneChild.size() == 0 ){
 
-			sceneChild.back()->DrawLoop();
-
-		}else{
-			
-			rootScene.DrawLoop();
-
-		}
-	}
 	
 	void SetUseDrawLoop(bool flag){
 		useDrawLoopFlag = flag;
@@ -2515,6 +2624,7 @@ public:
 	CScene rootScene;
 private:
 	bool useDrawLoopFlag;
+	
 	
 };
 
