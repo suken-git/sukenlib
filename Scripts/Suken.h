@@ -849,7 +849,7 @@ class CTransform{
 public:
 	CTransform(){
 		//prePosition = position = velocity = acceralate = VGet(0,0);
-		rotation = 0;
+		rotation = 0.0f;
 		gravity = GRAVITY;
 		airResistance = 0 ;
 	}
@@ -874,10 +874,15 @@ public:
 		
 		///速度
 		velocity += (acceralate + gravity ) / System.GetFps();
-		//velocity *= ( 1 - ( airResistance / System.GetFps() ));
+		velocity *= ( 1 - ( airResistance / System.GetFps() ));
 		///位置
 		prePosition = position;
 		position += velocity / System.GetFps();
+		if( velocity.y > 0.0f ){
+			rotation = acos(VNorm(velocity).x);
+		}else{
+			rotation = -acos(VNorm(velocity).x);
+		}
 	}
 };
 class CSuperGameObject{
@@ -1023,8 +1028,40 @@ public:
 
 		}
 	}
+	void AddCollisionFalse(CCircle *c){
+		noCollision.push_back(c);
+	}
+	void RemoveCollisionFalse(CCircle *c){
+		if(!noCollision.empty()){
+			vector<CCircle*>::iterator it = noCollision.begin();
+			while( ( it != noCollision.end() ) ){
+
+				if( *it ==  c  ){
+
+					noCollision.erase( it );
+					break;
+				}
+				it++;
+			}
+		}
+	}
+	bool GetIsNoCollision(CCircle *c){
+		if(!noCollision.empty()){
+			vector<CCircle*>::iterator it = noCollision.begin();
+			while( ( it != noCollision.end() ) ){
+
+				if( *it ==  c  ){
+
+					return true;
+				}
+				it++;
+			}
+		}
+		return false;
+	}
 private:
 	vector<void(*)()> onCollisionTask;
+	vector<CCircle*> noCollision;
 };
 
 class CCollisionManager{
@@ -1044,14 +1081,22 @@ public:
 		
 		for(unsigned int i=0;i<physicsCircle.size();i++){
 			physicsCircle[i]->onCollision = false;
+			physicsCircle[i]->Loop();
+		}
+		for(unsigned int i=0;i<fixedCircle.size();i++){
+			fixedCircle[i]->onCollision = false;
+			fixedCircle[i]->Loop();
 		}
 		for(unsigned int i=0;i<physicsCircle.size();i++){
-			physicsCircle[i]->Loop();
 			for(unsigned int j=i+1;j<physicsCircle.size();j++){
-				CollisionCircle(*physicsCircle[i],*physicsCircle[j]);
+				if( !physicsCircle[i]->GetIsNoCollision(physicsCircle[j]) && !physicsCircle[j]->GetIsNoCollision(physicsCircle[i])){
+					CollisionCircle(*physicsCircle[i],*physicsCircle[j]);
+				}
 			}
 			for(unsigned int j=0;j<fixedCircle.size();j++){
-				CollisionCircle(*physicsCircle[i],*fixedCircle[j]);
+				if( !physicsCircle[i]->GetIsNoCollision(fixedCircle[j]) && !fixedCircle[j]->GetIsNoCollision(physicsCircle[i])){
+					CollisionCircle(*physicsCircle[i],*fixedCircle[j]);
+				}
 			}
 		}
 		for(unsigned int i=0;i<physicsRect.size();i++){
@@ -1100,17 +1145,19 @@ public:
 		CVector constVec = C * ( reflectionRate * dot / totalWeight ); // 定数ベクトル
 
 		//速度書き換え
-		
-		//if(!A.IsKinematic){
-			A.center.velocity += constVec * (-B.mass);
-		//}
-		//if(!B.IsKinematic){
-			B.center.velocity += constVec  * A.mass ;
-		//}
-
 		// 衝突後位置の算出
-		A.center.position += (A.center.velocity) * 0.1f;
-		B.center.position += (B.center.velocity) * 0.1f;
+		if(!A.IsKinematic){
+			A.center.velocity += constVec * (-B.mass);
+			A.center.position += (A.center.velocity) * 0.05f;
+		}
+		if(!B.IsKinematic){
+			B.center.velocity += constVec  * A.mass ;
+			B.center.position += (B.center.velocity) * 0.05f;
+		}
+
+		
+		
+		
 
 	}
 	bool CollisionCircle(CCircle &A , CCircle &B){
@@ -1169,7 +1216,7 @@ public:
    DxLib::DrawCircle((int)(A.center.position.x +0.5), (int)(A.center.position.y+0.5) , (int)(A.radius+0.5) ,GREEN ,true );
    DxLib::DrawCircle((int)(B.center.position.x +0.5), (int)(B.center.position.y+0.5) , (int)(B.radius+0.5) ,GREEN ,true );
 #endif
-   CollisionCircleCalc(A ,B ,pOut_t0);
+   CollisionCircleCalc(A ,B ,( 1.0f - abs(pOut_t0) ) / 60.0f );
    return true; // 衝突報告
 
 	}
