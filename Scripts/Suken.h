@@ -24,6 +24,7 @@
 */
 
 inline void WarningSK(const char* format, ...){
+#ifdef DEBUG
 	 char tmpchar[256];
     sprintf_s(tmpchar, "警告 : \n\n%s\n\n", format);
 	printfDx(tmpchar);
@@ -32,6 +33,7 @@ inline void WarningSK(const char* format, ...){
     WaitKey();
     clsDx();
     ClearDrawScreen();
+#endif
 }
 /**
 *	@brief ダイアログを開いて、。
@@ -1328,6 +1330,7 @@ public:
 	void (*pFuncVoid)();
 	void (*pFuncInt)(int);
 	int *pInt;
+	int Int;
 };
 class CMouseIn{
 public:
@@ -1340,6 +1343,7 @@ public:
 	void (*pFuncVoid)();
 	void (*pFuncInt)(int);
 	int *pInt;
+	int Int;
 	int type;
 	
 };
@@ -1354,6 +1358,7 @@ public:
 	void (*pFuncVoid)();
 	void (*pFuncInt)(int);
 	int *pInt;
+	int Int;
 	int type;
 	
 };
@@ -1387,6 +1392,7 @@ public:
 	void (*pFuncVoid)();
 	void (*pFuncInt)(int);
 	int *pInt;
+	int Int;
 };
 class CBoolean{
 public:
@@ -1398,6 +1404,7 @@ public:
 	void (*pFuncVoid)();
 	void (*pFuncInt)(int);
 	int *pInt;
+	int Int;
 	bool* pBool;
 };
 
@@ -1410,386 +1417,148 @@ public:
 
 	}
 
-	  static const int BACK = KEY_INPUT_BACK	;
-      static const int TAB = KEY_INPUT_TAB	;
-      static const int RETURN = KEY_INPUT_RETURN	;
+	static const int BACK = KEY_INPUT_BACK	;
+    static const int TAB = KEY_INPUT_TAB	;
+    static const int RETURN = KEY_INPUT_RETURN	;
 
-      static const int LSHIFT = KEY_INPUT_LSHIFT	;
-      static const int RSHIFT = KEY_INPUT_RSHIFT	; 
-      static const int LCONTROL = KEY_INPUT_LCONTROL	;
-      static const int RCONTROL = KEY_INPUT_RCONTROL	; 
-      static const int ESCAPE = KEY_INPUT_ESCAPE	; 
-      static const int SPACE = KEY_INPUT_SPACE	; 
-      static const int PGUP = KEY_INPUT_PGUP	; 
-      static const int PGDN = KEY_INPUT_PGDN	;
-      static const int END = KEY_INPUT_END	; 
-      static const int HOME = KEY_INPUT_HOME	;
-      static const int LEFT = KEY_INPUT_LEFT	; 
-      static const int UP = KEY_INPUT_UP	; 
-      static const int RIGHT = KEY_INPUT_RIGHT	; 
-      static const int DOWN = KEY_INPUT_DOWN	; 
-      static const int INSERT = KEY_INPUT_INSERT	; 
-      static const int _DELETE = KEY_INPUT_DELETE	;
+    static const int LSHIFT = KEY_INPUT_LSHIFT	;
+    static const int RSHIFT = KEY_INPUT_RSHIFT	; 
+    static const int LCONTROL = KEY_INPUT_LCONTROL	;
+    static const int RCONTROL = KEY_INPUT_RCONTROL	; 
+    static const int ESCAPE = KEY_INPUT_ESCAPE	; 
+    static const int SPACE = KEY_INPUT_SPACE	; 
+    static const int PGUP = KEY_INPUT_PGUP	; 
+    static const int PGDN = KEY_INPUT_PGDN	;
+    static const int END = KEY_INPUT_END	; 
+    static const int HOME = KEY_INPUT_HOME	;
+    static const int LEFT = KEY_INPUT_LEFT	; 
+    static const int UP = KEY_INPUT_UP	; 
+    static const int RIGHT = KEY_INPUT_RIGHT	; 
+    static const int DOWN = KEY_INPUT_DOWN	; 
+    static const int INSERT = KEY_INPUT_INSERT	; 
+    static const int _DELETE = KEY_INPUT_DELETE	;
 
-      static const int MINUS = KEY_INPUT_MINUS	; 
-      static const int YEN = KEY_INPUT_YEN	; 
-      static const int PREVTRACK = KEY_INPUT_PREVTRACK	; 
-      static const int PERIOD = KEY_INPUT_PERIOD	;
-      static const int SLASH = KEY_INPUT_SLASH	;
-      static const int LALT = KEY_INPUT_LALT	;
-      static const int RALT = KEY_INPUT_RALT	; 
-      static const int SCROLL = KEY_INPUT_SCROLL	; 
-      static const int SEMICOLON = KEY_INPUT_SEMICOLON	;
-      static const int COLON = KEY_INPUT_COLON	; 
-      static const int LBRACKET = KEY_INPUT_LBRACKET	;
-      static const int RBRACKET = KEY_INPUT_RBRACKET	; 
-      static const int AT = KEY_INPUT_AT	; 
-      static const int BACKSLASH = KEY_INPUT_BACKSLASH	; 
-      static const int COMMA = KEY_INPUT_COMMA	; 
-      static const int CAPSLOCK = KEY_INPUT_CAPSLOCK	;
-      static const int PAUSE = KEY_INPUT_PAUSE	; 
+    static const int MINUS = KEY_INPUT_MINUS	; 
+    static const int YEN = KEY_INPUT_YEN	; 
+    static const int PREVTRACK = KEY_INPUT_PREVTRACK	; 
+    static const int PERIOD = KEY_INPUT_PERIOD	;
+    static const int SLASH = KEY_INPUT_SLASH	;
+    static const int LALT = KEY_INPUT_LALT	;
+    static const int RALT = KEY_INPUT_RALT	; 
+    static const int SCROLL = KEY_INPUT_SCROLL	; 
+    static const int SEMICOLON = KEY_INPUT_SEMICOLON	;
+    static const int COLON = KEY_INPUT_COLON	; 
+    static const int LBRACKET = KEY_INPUT_LBRACKET	;
+    static const int RBRACKET = KEY_INPUT_RBRACKET	; 
+    static const int AT = KEY_INPUT_AT	; 
+    static const int BACKSLASH = KEY_INPUT_BACKSLASH	; 
+    static const int COMMA = KEY_INPUT_COMMA	; 
+    static const int CAPSLOCK = KEY_INPUT_CAPSLOCK	;
+    static const int PAUSE = KEY_INPUT_PAUSE	; 
 
-      static const int NUMPAD0 = KEY_INPUT_NUMPAD0	;
-      static const int NUMPAD1 = KEY_INPUT_NUMPAD1	; 
-      static const int NUMPAD2 = KEY_INPUT_NUMPAD2	; 
-      static const int NUMPAD3 = KEY_INPUT_NUMPAD3	; 
-      static const int NUMPAD4 = KEY_INPUT_NUMPAD4	; 
-      static const int NUMPAD5 = KEY_INPUT_NUMPAD5	; 
-      static const int NUMPAD6 = KEY_INPUT_NUMPAD6	; 
-      static const int NUMPAD7 = KEY_INPUT_NUMPAD7	; 
-      static const int NUMPAD8 = KEY_INPUT_NUMPAD8	; 
-      static const int NUMPAD9 = KEY_INPUT_NUMPAD9	; 
-      static const int MULTIPLY = KEY_INPUT_MULTIPLY	; 
-      static const int ADD = KEY_INPUT_ADD	; 
-      static const int SUBTRACT = KEY_INPUT_SUBTRACT	;
-      static const int DECIMAL = KEY_INPUT_DECIMAL	; 
-      static const int DIVIDE = KEY_INPUT_DIVIDE	; 
-      static const int NUMPADENTER = KEY_INPUT_NUMPADENTER	; 
+    static const int NUMPAD0 = KEY_INPUT_NUMPAD0	;
+    static const int NUMPAD1 = KEY_INPUT_NUMPAD1	; 
+    static const int NUMPAD2 = KEY_INPUT_NUMPAD2	; 
+    static const int NUMPAD3 = KEY_INPUT_NUMPAD3	; 
+    static const int NUMPAD4 = KEY_INPUT_NUMPAD4	; 
+    static const int NUMPAD5 = KEY_INPUT_NUMPAD5	; 
+    static const int NUMPAD6 = KEY_INPUT_NUMPAD6	; 
+    static const int NUMPAD7 = KEY_INPUT_NUMPAD7	; 
+    static const int NUMPAD8 = KEY_INPUT_NUMPAD8	; 
+    static const int NUMPAD9 = KEY_INPUT_NUMPAD9	; 
+    static const int MULTIPLY = KEY_INPUT_MULTIPLY	; 
+    static const int ADD = KEY_INPUT_ADD	; 
+    static const int SUBTRACT = KEY_INPUT_SUBTRACT	;
+    static const int DECIMAL = KEY_INPUT_DECIMAL	; 
+    static const int DIVIDE = KEY_INPUT_DIVIDE	; 
+    static const int NUMPADENTER = KEY_INPUT_NUMPADENTER	; 
 
-      static const int F1 = KEY_INPUT_F1	; 
-      static const int F2 = KEY_INPUT_F2	;
-      static const int F3 = KEY_INPUT_F3	; 
-      static const int F4 = KEY_INPUT_F4	; 
-      static const int F5 = KEY_INPUT_F5	; 
-      static const int F6 = KEY_INPUT_F6	; 
-      static const int F7 = KEY_INPUT_F7	;
-      static const int F8 = KEY_INPUT_F8	; 
-      static const int F9 = KEY_INPUT_F9	; 
-      static const int F10 = KEY_INPUT_F10	; 
-      static const int F11 = KEY_INPUT_F11	; 
-      static const int F12 = KEY_INPUT_F12	; 
+    static const int F1 = KEY_INPUT_F1	; 
+    static const int F2 = KEY_INPUT_F2	;
+    static const int F3 = KEY_INPUT_F3	; 
+    static const int F4 = KEY_INPUT_F4	; 
+    static const int F5 = KEY_INPUT_F5	; 
+    static const int F6 = KEY_INPUT_F6	; 
+    static const int F7 = KEY_INPUT_F7	;
+    static const int F8 = KEY_INPUT_F8	; 
+    static const int F9 = KEY_INPUT_F9	; 
+    static const int F10 = KEY_INPUT_F10	; 
+    static const int F11 = KEY_INPUT_F11	; 
+    static const int F12 = KEY_INPUT_F12	; 
 
-      static const int A = KEY_INPUT_A	;  
-      static const int B = KEY_INPUT_B	;  
-      static const int C = KEY_INPUT_C	;  
-      static const int D = KEY_INPUT_D	;  
-      static const int E = KEY_INPUT_E	;  
-      static const int F = KEY_INPUT_F	;  
-      static const int G = KEY_INPUT_G	;  
-      static const int H = KEY_INPUT_H	;  
-      static const int I = KEY_INPUT_I	;  
-      static const int J = KEY_INPUT_J	;  
-      static const int K = KEY_INPUT_K	;  
-      static const int L = KEY_INPUT_L	;  
-      static const int M = KEY_INPUT_M	; 
-      static const int N = KEY_INPUT_N	;  
-      static const int O = KEY_INPUT_O	;  
-      static const int P = KEY_INPUT_P	; 
-      static const int Q = KEY_INPUT_Q	;  
-      static const int R = KEY_INPUT_R	;  
-      static const int S = KEY_INPUT_S	;  
-      static const int T = KEY_INPUT_T	;  
-      static const int U = KEY_INPUT_U	;  
-      static const int V = KEY_INPUT_V	;  
-      static const int W = KEY_INPUT_W	;  
-      static const int X = KEY_INPUT_X	;  
-      static const int Y = KEY_INPUT_Y	;  
-      static const int Z = KEY_INPUT_Z	;  
-      static const int NUM0 = KEY_INPUT_0	;  
-      static const int NUM1 = KEY_INPUT_1	;  
-      static const int NUM2 = KEY_INPUT_2	;  
-      static const int NUM3 = KEY_INPUT_3	;  
-      static const int NUM4 = KEY_INPUT_4	;  
-      static const int NUM5 = KEY_INPUT_5	;  
-      static const int NUM6 = KEY_INPUT_6	;  
-      static const int NUM7 = KEY_INPUT_7	;  
-      static const int NUM8 = KEY_INPUT_8	;  
-      static const int NUM9 = KEY_INPUT_9	; 
+    static const int A = KEY_INPUT_A	;  
+    static const int B = KEY_INPUT_B	;  
+    static const int C = KEY_INPUT_C	;  
+    static const int D = KEY_INPUT_D	;  
+    static const int E = KEY_INPUT_E	;  
+    static const int F = KEY_INPUT_F	;  
+    static const int G = KEY_INPUT_G	;  
+    static const int H = KEY_INPUT_H	;  
+    static const int I = KEY_INPUT_I	;  
+    static const int J = KEY_INPUT_J	;  
+    static const int K = KEY_INPUT_K	;  
+    static const int L = KEY_INPUT_L	;  
+    static const int M = KEY_INPUT_M	; 
+    static const int N = KEY_INPUT_N	;  
+    static const int O = KEY_INPUT_O	;  
+    static const int P = KEY_INPUT_P	; 
+    static const int Q = KEY_INPUT_Q	;  
+    static const int R = KEY_INPUT_R	;  
+    static const int S = KEY_INPUT_S	;  
+    static const int T = KEY_INPUT_T	;  
+    static const int U = KEY_INPUT_U	;  
+    static const int V = KEY_INPUT_V	;  
+    static const int W = KEY_INPUT_W	;  
+    static const int X = KEY_INPUT_X	;  
+    static const int Y = KEY_INPUT_Y	;  
+    static const int Z = KEY_INPUT_Z	;  
+    static const int NUM0 = KEY_INPUT_0	;  
+    static const int NUM1 = KEY_INPUT_1	;  
+    static const int NUM2 = KEY_INPUT_2	;  
+    static const int NUM3 = KEY_INPUT_3	;  
+    static const int NUM4 = KEY_INPUT_4	;  
+    static const int NUM5 = KEY_INPUT_5	;  
+    static const int NUM6 = KEY_INPUT_6	;  
+    static const int NUM7 = KEY_INPUT_7	;  
+    static const int NUM8 = KEY_INPUT_8	;  
+    static const int NUM9 = KEY_INPUT_9	; 
 
 
-	  void Loop(){
-			 //全てのキーの押下状態を取得
-			char buf[256];
-			GetHitKeyStateAll( buf ) ;
-			for(int i=0;i<256;i++){
-				if( buf[i] == 0 ){
-					count[i] += 1.0f;
-				}else if( buf[i] == 1 ){
-					if(count[i] < 1.0f){
-						count[i] = 0.5f;
-					}else{
-						count[i] = 0.0f;
-					}
-				}
-			}
-	  }
-	  bool GetPush(int keyCode){
-			 //キーコードチェック
-			 if( keyCode < 256 && keyCode >= 0 ){
-				if( count[keyCode] < 1.0f ){
-					return true;
-				}else{
-					return false;
-				}
-			 }else{
-				WarningSK("CKey::GetPushの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
-				return false;
-			 }
-		 }
-		 bool GetDown(int keyCode){
-			 //キーコードチェック
-			 if( keyCode < 256 && keyCode >= 0 ){
-				if( count[keyCode] == 0.0f ){
-					return true;
-				}else{
-					return false;
-				}
-			 }else{
-				WarningSK("CKey::GetDownの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
-				return false;
-			 }
-		 }
-		 bool GetUp(int keyCode){
-			 //キーコードチェック
-			 if( keyCode < 256 && keyCode >= 0 ){
-				if( count[keyCode] == 1.5f ){
-					return true;
-				}else{
-					return false;
-				}
-			 }else{
-				WarningSK("CKey::GetUpの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
-				return false;
-			 }
-		 }
-		 int GetCount(int keyCode){
-			//キーコードチェック
-			 if( keyCode < 256 && keyCode >= 0 ){
-				return (int)(count[keyCode]);
-			 }else{
-				WarningSK("CKey::GetCountの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
-				return -1;
-			 }
-		 }
-	private:
-		 float count[256];
+	void Loop();
+	bool GetPush(int keyCode);
+	bool GetDown(int keyCode);
+	bool GetUp(int keyCode);
+	int GetCount(int keyCode);
+private:
+	float count[256];
 };
 //マウス定義クラス
 class CMouse{
 public:
-	CMouseIn Off( int _x1 , int _y1 , int _x2 , int _y2 ){
-
-		CMouseIn temp;
-
-		temp.x1 = _x1;
-		temp.x2 = _x2;
-		temp.y1 = _y1;
-		temp.y2 = _y2;
-
-		temp.type = MOUSE_OFF;
-
-		return temp;
-	}
-	bool GetOff( int _x1 , int _y1 , int _x2 , int _y2 ){
-		if(_x1>mouseX && _x2<mouseX ){
-			if(_y1>mouseY && _y2<mouseY){
-				return true;
-			}
-		}
-		return false;
-	}
-	CpMouseIn Off( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
-
-		CpMouseIn temp;
-
-		temp.x1 = _x1;
-		temp.x2 = _x2;
-		temp.y1 = _y1;
-		temp.y2 = _y2;
-
-		temp.type = MOUSE_OFF;
-
-		return temp;
-	}
-	bool GetOff( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
-		if(*_x1>mouseX && *_x2<mouseX ){
-			if(*_y1>mouseY && *_y2<mouseY){
-				return true;
-			}
-		}
-		return false;
-	}
-	CMouseIn On( int _x1 , int _y1 , int _x2 , int _y2 ){
-	
-		CMouseIn temp;
-
-		temp.x1 = _x1;
-		temp.x2 = _x2;
-		temp.y1 = _y1;
-		temp.y2 = _y2;
-
-		temp.type = MOUSE_ON;
-
-		return temp;
-
-	}
-	bool GetOn( int _x1 , int _y1 , int _x2 , int _y2 ){
-		if(_x1<mouseX && _x2>mouseX ){
-			if(_y1<mouseY && _y2>mouseY){
-				return true;
-			}
-		}
-		return false;
-	}
-	CpMouseIn On( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
-	
-		CpMouseIn temp;
-
-		temp.x1 = _x1;
-		temp.x2 = _x2;
-		temp.y1 = _y1;
-		temp.y2 = _y2;
-
-		temp.type = MOUSE_ON;
-
-		return temp;
-
-	}
-	bool GetOn( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
-		if(*_x1<mouseX && *_x2>mouseX ){
-			if(*_y1<mouseY && *_y2>mouseY){
-				return true;
-			}
-		}
-		return false;
-	}
-	CMouseIn Click( int _x1 , int _y1 , int _x2 , int _y2 ){
-		
-		CMouseIn temp;
-
-		temp.x1 = _x1;
-		temp.x2 = _x2;
-		temp.y1 = _y1;
-		temp.y2 = _y2;
-
-		temp.type = MOUSE_CLICK;
-
-		return temp;
-
-	}
-	bool GetClick( int _x1 , int _y1 , int _x2 , int _y2 ){
-		if(_x1<mouseX && _x2>mouseX ){
-			if(_y1<mouseY && _y2>mouseY){
-				if(mouseInput && !preMouseInput ){
-					return true;			
-				} 
-			}
-		}
-		return false;
-	}
-	CpMouseIn Click( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
-		
-		CpMouseIn temp;
-
-		temp.x1 = _x1;
-		temp.x2 = _x2;
-		temp.y1 = _y1;
-		temp.y2 = _y2;
-
-		temp.type = MOUSE_CLICK;
-
-		return temp;
-
-	}
-	bool GetClick( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
-		if(*_x1<mouseX && *_x2>mouseX ){
-			if(*_y1<mouseY && *_y2>mouseY){
-				if(mouseInput && !preMouseInput ){
-					return true;			
-				} 
-			}
-		}
-		return false;
-	}
-	CMouseIn Release( int _x1 , int _y1 , int _x2 , int _y2 ){
-		
-		CMouseIn temp;
-
-		temp.x1 = _x1;
-		temp.x2 = _x2;
-		temp.y1 = _y1;
-		temp.y2 = _y2;
-
-		temp.type = MOUSE_RELEASE;
-
-		return temp;
-	}
-	bool GetRelease( int _x1 , int _y1 , int _x2 , int _y2 ){
-		if(_x1<mouseX && _x2>mouseX ){
-			if(_y1<mouseY && _y2>mouseY){
-				if( !mouseInput && preMouseInput ){
-					return true;
-				} 
-			}	
-		}
-		return false;
-	}
-	CpMouseIn Release( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
-		
-		CpMouseIn temp;
-
-		temp.x1 = _x1;
-		temp.x2 = _x2;
-		temp.y1 = _y1;
-		temp.y2 = _y2;
-
-		temp.type = MOUSE_RELEASE;
-
-		return temp;
-	}
-	bool GetRelease( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
-		if(*_x1<mouseX && *_x2>mouseX ){
-			if(*_y1<mouseY && *_y2>mouseY){
-				if( !mouseInput && preMouseInput ){
-					return true;
-				} 
-			}	
-		}
-		return false;
-	}
-	void Loop(){
-		GetMousePoint( &mouseX, &mouseY );
-			preMouseInput = mouseInput;
-			if(IsLeft){
-				mouseInput = (bool)( GetMouseInput() & MOUSE_INPUT_LEFT );
-			}else{
-				mouseInput = (bool)( GetMouseInput() & MOUSE_INPUT_RIGHT );
-			}
-	}
-
+	CMouseIn Off( int _x1 , int _y1 , int _x2 , int _y2 );
+	bool GetOff( int _x1 , int _y1 , int _x2 , int _y2 );
+	CpMouseIn Off( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
+	bool GetOff( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
+	CMouseIn On( int _x1 , int _y1 , int _x2 , int _y2 );
+	bool GetOn( int _x1 , int _y1 , int _x2 , int _y2 );
+	CpMouseIn On( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
+	bool GetOn( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
+	CMouseIn Click( int _x1 , int _y1 , int _x2 , int _y2 );
+	bool GetClick( int _x1 , int _y1 , int _x2 , int _y2 );
+	CpMouseIn Click( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
+	bool GetClick( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
+	CMouseIn Release( int _x1 , int _y1 , int _x2 , int _y2 );
+	bool GetRelease( int _x1 , int _y1 , int _x2 , int _y2 );
+	CpMouseIn Release( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
+	bool GetRelease( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
+	void Loop();
+	void SetLeft();
+	void SetRight();
 	int mouseX,mouseY;
 	bool mouseInput,preMouseInput;
-	void SetLeft(){
-		IsLeft = true;
-	}
-	void SetRight(){
-		IsLeft = false;
-	}
-	private:
-		bool IsLeft;
-		/*bool CheckScene(){
-		
-		}*/
+	
+private:
+	bool IsLeft;
 };
 //入力イベント定義クラス
 class CEvent{
@@ -1798,17 +1567,28 @@ public:
 		EVERY_FRAME=FRAME_EVENT;
 		LMouse.SetLeft();
 		RMouse.SetRight();
+		IsActivated = true;
 	}
 	void Loop(){
 		key.Loop();
 		LMouse.Loop();
 		RMouse.Loop();
 	}
+	void Activate(){
+		IsActivated = true;
+	}
+	void Deactivate(){
+		IsActivated = false;
+	}
+	bool GetValid(){
+		return IsActivated;
+	}
 	char EVERY_FRAME;
 	CKey key;
 	CMouse LMouse;
 	CMouse RMouse;
 private:
+	bool IsActivated;
 };
 extern CEvent Event;
 //入力イベント管理クラス
@@ -1834,6 +1614,14 @@ public:
 				keyTask.push_back(keyTemp);
 
 	}
+	void AddEventListener( int inputCode , void func(int) , int Argument ){
+				
+				keyTemp.keyCode=inputCode;
+				keyTemp.pFuncInt=func;
+				keyTemp.Int = Argument;
+				keyTask.push_back(keyTemp);
+
+	}
 	void RemoveEventListener( int inputCode , void func()  ){
 
 		vector< CKeyIn >::iterator it = keyTask.begin();
@@ -1855,7 +1643,22 @@ public:
 
 		while( ( it != keyTask.end() ) ){
 
-			if( it->keyCode == inputCode && it->pFuncInt == func  ){
+			if( it->keyCode == inputCode && it->pFuncInt == func && it->pInt == pArgument ){
+
+				keyTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	void RemoveEventListener( int inputCode , void func(int) , int Argument  ){
+
+		vector< CKeyIn >::iterator it = keyTask.begin();
+
+		while( ( it != keyTask.end() ) ){
+
+			if( it->keyCode == inputCode && it->pFuncInt == func  && it->Int == Argument ){
 
 				keyTask.erase( it );
 				break;
@@ -1876,6 +1679,14 @@ public:
 				mouseTemp=input;
 				mouseTemp.pFuncInt=func;
 				mouseTemp.pInt = pArgument;
+				mouseTask.push_back(mouseTemp);
+				
+	}
+	void AddEventListener( CMouseIn input , void func(int) , int Argument  ){
+
+				mouseTemp=input;
+				mouseTemp.pFuncInt=func;
+				mouseTemp.Int = Argument;
 				mouseTask.push_back(mouseTemp);
 				
 	}
@@ -1900,7 +1711,22 @@ public:
 
 		while( ( it != mouseTask.end() ) ){
 
-			if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
+			if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2 && it->pInt == pArgument ){
+
+				mouseTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	bool RemoveEventListener( CMouseIn input , void func(int) , int Argument  ){
+
+		vector< CMouseIn >::iterator it = mouseTask.begin();
+
+		while( ( it != mouseTask.end() ) ){
+
+			if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  && it->Int == Argument ){
 
 				mouseTask.erase( it );
 				break;
@@ -1924,6 +1750,14 @@ public:
 				pMouseTask.push_back(pMouseTemp);
 				
 	}
+	void AddEventListener( CpMouseIn input , void func(int) , int Argument  ){
+
+				pMouseTemp=input;
+				pMouseTemp.pFuncInt=func;
+				pMouseTemp.Int = Argument;
+				pMouseTask.push_back(pMouseTemp);
+				
+	}
 	void RemoveEventListener( CpMouseIn input , void func()  ){
 
 		vector< CpMouseIn >::iterator it = pMouseTask.begin();
@@ -1944,7 +1778,21 @@ public:
 
 		while( ( it != pMouseTask.end() ) ){
 
-			if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
+			if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  && it->pInt == pArgument ){
+
+				pMouseTask.erase( it );
+				break;
+			}
+			it++;
+		}
+	}
+	void RemoveEventListener( CpMouseIn input , void func(int) , int Argument  ){
+
+		vector< CpMouseIn >::iterator it = pMouseTask.begin();
+
+		while( ( it != pMouseTask.end() ) ){
+
+			if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  && it->Int == Argument ){
 
 				pMouseTask.erase( it );
 				break;
@@ -1960,6 +1808,12 @@ public:
 	void AddEventListener( char input , void func(int) , int *pArgument  ){
 			frameTemp.pFuncInt=func;
 			frameTemp.pInt = pArgument;
+			frameTask.push_back(frameTemp);
+			
+	}
+	void AddEventListener( char input , void func(int) , int Argument  ){
+			frameTemp.pFuncInt=func;
+			frameTemp.Int = Argument;
 			frameTask.push_back(frameTemp);
 			
 	}
@@ -1984,7 +1838,22 @@ public:
 
 		while( ( it != frameTask.end() ) ){
 
-			if( it->pFuncInt ==  func  ){
+			if( it->pFuncInt ==  func  && it->pInt == pArgument ){
+
+				frameTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	void RemoveEventListener( char input , void func(int) , int Argument  ){
+
+		vector< CFrame >::iterator it = frameTask.begin();
+
+		while( ( it != frameTask.end() ) ){
+
+			if( it->pFuncInt ==  func  && it->Int == Argument ){
 
 				frameTask.erase( it );
 				break;
@@ -2002,6 +1871,13 @@ public:
 	void AddEventListener( bool* input , void func(int) , int *pArgument  ){
 			boolTemp.pFuncInt=func;
 			boolTemp.pInt = pArgument;
+			boolTemp.pBool=input;
+			boolTask.push_back(boolTemp);
+			
+	}
+	void AddEventListener( bool* input , void func(int) , int Argument  ){
+			boolTemp.pFuncInt=func;
+			boolTemp.Int = Argument;
 			boolTemp.pBool=input;
 			boolTask.push_back(boolTemp);
 			
@@ -2027,7 +1903,22 @@ public:
 
 		while( ( it != boolTask.end() ) ){
 
-			if( it->pBool == input && it->pFuncInt == func  ){
+			if( it->pBool == input && it->pFuncInt == func  && it->pInt == pArgument ){
+
+				boolTask.erase( it );
+				break;
+			}
+			it++;
+		}
+	
+	}
+	void RemoveEventListener( bool* input , void func(int) , int Argument  ){
+
+		vector< CBoolean >::iterator it = boolTask.begin();
+
+		while( ( it != boolTask.end() ) ){
+
+			if( it->pBool == input && it->pFuncInt == func  && it->Int == Argument ){
 
 				boolTask.erase( it );
 				break;
@@ -2047,13 +1938,17 @@ public:
 			vector<CKeyIn>::iterator it=keyTask.begin();
 
 			while( it != keyTask.end() ) {
-				if(CheckHitKey(it->keyCode)){
-
+				if(Event.key.GetPush(it->keyCode)){
+					
 					CKeyIn temp=*it;
 					if(temp.pFuncVoid != NULL){
 						temp.pFuncVoid();
 					}else{
-						temp.pFuncInt(*temp.pInt);
+						if(temp.pInt == NULL){
+							temp.pFuncInt(temp.Int);
+						}else{
+							temp.pFuncInt(*temp.pInt);
+						}
 					}
 					
 
@@ -2088,7 +1983,11 @@ public:
 							if(temp.pFuncVoid != NULL){
 								temp.pFuncVoid();
 							}else{
-								temp.pFuncInt(*temp.pInt);
+								if(temp.pInt == NULL){
+									temp.pFuncInt(temp.Int);
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 							}
 							
 						}
@@ -2101,7 +2000,11 @@ public:
 							if(temp.pFuncVoid != NULL){
 								temp.pFuncVoid();
 							}else{
-								temp.pFuncInt(*temp.pInt);
+								if(temp.pInt == NULL){
+									temp.pFuncInt(temp.Int);
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 							}
 							
 						}
@@ -2116,7 +2019,11 @@ public:
 								if(temp.pFuncVoid != NULL){
 									temp.pFuncVoid();
 								}else{
-									temp.pFuncInt(*temp.pInt);
+									if(temp.pInt == NULL){
+										temp.pFuncInt(temp.Int);
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 								}
 								
 							}
@@ -2131,7 +2038,11 @@ public:
 								if(temp.pFuncVoid != NULL){
 									temp.pFuncVoid();
 								}else{
-									temp.pFuncInt(*temp.pInt);
+									if(temp.pInt == NULL){
+										temp.pFuncInt(temp.Int);
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 								}
 								
 							} 
@@ -2146,7 +2057,11 @@ public:
 								if(temp.pFuncVoid != NULL){
 									temp.pFuncVoid();
 								}else{
-									temp.pFuncInt(*temp.pInt);
+									if(temp.pInt == NULL){
+										temp.pFuncInt(temp.Int);
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 								}
 								
 							} 
@@ -2176,7 +2091,11 @@ public:
 								if(temp.pFuncVoid != NULL){
 									temp.pFuncVoid();
 								}else{
-									temp.pFuncInt(*temp.pInt);
+									if(temp.pInt == NULL){
+										temp.pFuncInt(temp.Int);
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 								}
 								
 							}
@@ -2189,7 +2108,11 @@ public:
 								if(temp.pFuncVoid != NULL){
 									temp.pFuncVoid();
 								}else{
-									temp.pFuncInt(*temp.pInt);
+									if(temp.pInt == NULL){
+										temp.pFuncInt(temp.Int);
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 								}
 								
 							} 
@@ -2204,7 +2127,11 @@ public:
 									if(temp.pFuncVoid != NULL){
 										temp.pFuncVoid();
 									}else{
-										temp.pFuncInt(*temp.pInt);
+										if(temp.pInt == NULL){
+											temp.pFuncInt(temp.Int);
+										}else{
+											temp.pFuncInt(*temp.pInt);
+										}
 									}
 									
 								} 
@@ -2219,7 +2146,11 @@ public:
 									if(temp.pFuncVoid != NULL){
 										temp.pFuncVoid();
 									}else{
-										temp.pFuncInt(*temp.pInt);
+										if(temp.pInt == NULL){
+											temp.pFuncInt(temp.Int);
+										}else{
+											temp.pFuncInt(*temp.pInt);
+										}
 									}
 									
 								} 
@@ -2234,7 +2165,11 @@ public:
 									if(temp.pFuncVoid != NULL){
 										temp.pFuncVoid();
 									}else{
-										temp.pFuncInt(*temp.pInt);
+										if(temp.pInt == NULL){
+											temp.pFuncInt(temp.Int);
+										}else{
+											temp.pFuncInt(*temp.pInt);
+										}
 									}
 									
 								}	
@@ -2257,7 +2192,11 @@ public:
 			if(temp.pFuncVoid != NULL){
 				temp.pFuncVoid();
 			}else{
-				temp.pFuncInt(*temp.pInt);
+				if(temp.pInt == NULL){
+					temp.pFuncInt(temp.Int);
+				}else{
+					temp.pFuncInt(*temp.pInt);
+				}
 			}
 			it2++;
 		}
@@ -2273,7 +2212,11 @@ public:
 				if(temp.pFuncVoid != NULL){
 					temp.pFuncVoid();
 				}else{
-					temp.pFuncInt(*temp.pInt);
+					if(temp.pInt == NULL){
+						temp.pFuncInt(temp.Int);
+					}else{
+						temp.pFuncInt(*temp.pInt);
+					}
 				}
 
 			}
@@ -2591,22 +2534,26 @@ public:
 		if(!focus){
 			input.useKey = false;
 			input.useMouse = false;
+			Event.Deactivate();
 		}
+		
+
 		input.Loop();
+		ButtonLoop();
 		input.DrawLoop();
 
 		collision.Loop();
 		collision.DrawLoop();
 
-		ButtonLoop();
-
 		if( sceneChild != NULL ){
 			sceneChild->Loop();
 		}
+
 		if(focus){
 			input.useKey = true;
 			input.useMouse = true;
 		}
+		Event.Activate();
 	}
 	void ButtonLoop(){
 		
@@ -2722,6 +2669,21 @@ public:
 		
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 	}
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) , int Int ){
+		CButton temp;
+		temp.IsUseGraph = false;
+		temp.title = title;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.backColor = backColor;
+		temp.stringColor = stringColor;
+
+		buttonChild.push_back( temp );
+		
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
+	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)() ){
 		CButton temp;
 		
@@ -2749,6 +2711,20 @@ public:
 		buttonChild.push_back( temp );
 		
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
+	}
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int Int ){
+		CButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle = graph;
+
+		buttonChild.push_back( temp );
+		
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)() ){
 		CButton temp;
@@ -2783,6 +2759,23 @@ public:
 		buttonChild.push_back( temp );
 		
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
+	}
+	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)(int) , int Int ){
+		CButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle = LoadGraph(graphPath);
+		if( temp.graphHandle == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+
+		buttonChild.push_back( temp );
+		
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() ){
 		CButton temp;
@@ -2828,6 +2821,28 @@ public:
 
 		buttonChild.push_back( temp );
 	}
+	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int Int ){
+		CButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.IsReact = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle_off = LoadGraph(Off_graphPath);
+		temp.graphHandle_on = LoadGraph(On_graphPath);
+		if( temp.graphHandle_off == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+		if( temp.graphHandle_on == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
+
+		buttonChild.push_back( temp );
+	}
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)() ){
 		CpButton temp;
 		temp.IsUseGraph = false;
@@ -2858,6 +2873,21 @@ public:
 
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
 	}
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) ,int Int ){
+		CpButton temp;
+		temp.IsUseGraph = false;
+		temp.title = title;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.backColor = backColor;
+		temp.stringColor = stringColor;
+
+		pButtonChild.push_back( temp );
+
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,Int );
+	}
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)() ){
 		CpButton temp;
 		temp.IsUseGraph = true;
@@ -2887,6 +2917,21 @@ public:
 		pButtonChild.push_back( temp );
 
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
+	}
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int Int ){
+		CpButton temp;
+		temp.IsUseGraph = true;
+		
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		
+		temp.graphHandle = graph;
+
+		pButtonChild.push_back( temp );
+
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 	}
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)() ){
 		CpButton temp;
@@ -2921,6 +2966,23 @@ public:
 		pButtonChild.push_back( temp );
 		
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
+	}
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)(int) , int Int ){
+		CpButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle = LoadGraph(graphPath);
+		if( temp.graphHandle == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+
+		pButtonChild.push_back( temp );
+		
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,Int );
 	}
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() ){
 		CpButton temp;
@@ -2963,6 +3025,28 @@ public:
 		}
 
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
+
+		pButtonChild.push_back( temp );
+	}
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int Int ){
+		CpButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.IsReact = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle_off = LoadGraph(Off_graphPath);
+		temp.graphHandle_on = LoadGraph(On_graphPath);
+		if( temp.graphHandle_off == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+		if( temp.graphHandle_on == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 
 		pButtonChild.push_back( temp );
 	}
