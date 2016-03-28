@@ -4,6 +4,8 @@
 
 int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	//処理設定　ここから//////////////////////////////////////////////
+	
+	DxLib::SetWindowStyleMode(0) ;/*０：今までどおりの普通のウインドウ １：タイトルバーなし、縁あり ２：タイトルバーも縁もなし*/
 	DxLib::SetMainWindowText("SukenLib");
 	System.SetTargetFps(60.0);				//目標のフレームレートを設定
 	System.SetLoadingGraph("LOGO.png");	//ローディング画面に表示する画像のアドレスを指定
