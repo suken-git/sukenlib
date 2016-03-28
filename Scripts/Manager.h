@@ -1,6 +1,6 @@
 #pragma once
 
-#define DEBUG
+//#define DEBUG
 #define DEBUG_DRAW
 //#define USE_LUA  //Luaスクリプトを使うならコメントアウトを解除する
 //そしてプロジェクト直下にlua5.1.dllを配置
@@ -39,7 +39,7 @@ using namespace std;
 //#define USE_GRAVITY
 const int INF		= 10000000;
 
-const float AIR_REGISTANCE= 3.0f;			//空気抵抗（減速のしやすさ）
+const float AIR_REGISTANCE= 30.0f;			//空気抵抗（減速のしやすさ）
 
 
 
@@ -60,7 +60,6 @@ const int MOUSE_CLICK	=	13;
 const int MOUSE_RELEASE =	14;
 
 const char FRAME_EVENT	=	'E';
-
 
 void Awake();
 void GameLoopEnter();

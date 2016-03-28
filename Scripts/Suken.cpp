@@ -715,3 +715,289 @@ void DrawBezier( BEZIER &data ,  int color ){
 
 //
 unsigned int CScene::sceneNum;
+
+
+void CKey::Loop(){
+	 //全てのキーの押下状態を取得
+	char buf[256];
+	GetHitKeyStateAll( buf ) ;
+	for(int i=0;i<256;i++){
+		if( buf[i] == 0 ){
+			count[i] += 1.0f;
+		}else if( buf[i] == 1 ){
+			if(count[i] < 1.0f){
+				count[i] = 0.5f;
+			}else{
+				count[i] = 0.0f;
+			}
+		}
+	}
+}
+bool CKey::GetPush(int keyCode){
+	 //キーコードチェック
+		if( keyCode < 256 && keyCode >= 0 ){
+		if( count[keyCode] < 1.0f ){
+			if(Event.GetValid()){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	 }else{
+		WarningSK("CKey::GetPushの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+		return false;
+	 }
+ }
+ bool CKey::GetDown(int keyCode){
+	 //キーコードチェック
+	 if( keyCode < 256 && keyCode >= 0 ){
+		if( count[keyCode] == 0.0f ){
+			if(Event.GetValid()){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	 }else{
+		WarningSK("CKey::GetDownの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+		return false;
+	 }
+}
+ bool CKey::GetUp(int keyCode){
+	//キーコードチェック
+	if( keyCode < 256 && keyCode >= 0 ){
+		if( count[keyCode] == 1.5f ){
+			if(Event.GetValid()){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;			
+		}
+	}else{
+		WarningSK("CKey::GetUpの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+		return false;
+	}
+}
+int CKey::GetCount(int keyCode){
+	//キーコードチェック
+		if( keyCode < 256 && keyCode >= 0 ){
+		return (int)(count[keyCode]);
+	}else{
+		WarningSK("CKey::GetCountの引数に不正なキーコードが入力されました\nキーコード　：　%d",keyCode);
+		return -1;
+	}
+}
+
+CMouseIn CMouse::Off( int _x1 , int _y1 , int _x2 , int _y2 ){
+
+	CMouseIn temp;
+
+	temp.x1 = _x1;
+	temp.x2 = _x2;
+	temp.y1 = _y1;
+	temp.y2 = _y2;
+
+	temp.type = MOUSE_OFF;
+
+	return temp;
+}
+bool CMouse::GetOff( int _x1 , int _y1 , int _x2 , int _y2 ){
+	if(_x1>mouseX && _x2<mouseX ){
+		if(_y1>mouseY && _y2<mouseY){
+			return true;
+		}
+	}
+	return false;
+}
+CpMouseIn CMouse::Off( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+
+	CpMouseIn temp;
+
+	temp.x1 = _x1;
+	temp.x2 = _x2;
+	temp.y1 = _y1;
+	temp.y2 = _y2;
+
+	temp.type = MOUSE_OFF;
+
+	return temp;
+}
+bool CMouse::GetOff( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+	if(*_x1>mouseX && *_x2<mouseX ){
+		if(*_y1>mouseY && *_y2<mouseY){
+			return true;
+		}
+	}
+	return false;
+}
+CMouseIn CMouse::On( int _x1 , int _y1 , int _x2 , int _y2 ){
+	
+	CMouseIn temp;
+
+	temp.x1 = _x1;
+	temp.x2 = _x2;
+	temp.y1 = _y1;
+	temp.y2 = _y2;
+
+	temp.type = MOUSE_ON;
+
+	return temp;
+
+}
+bool CMouse::GetOn( int _x1 , int _y1 , int _x2 , int _y2 ){
+	if(_x1<mouseX && _x2>mouseX ){
+		if(_y1<mouseY && _y2>mouseY){
+			if(Event.GetValid()){
+				return true;
+			}
+		}
+	}
+	return false;
+}
+CpMouseIn CMouse::On( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+	
+	CpMouseIn temp;
+
+	temp.x1 = _x1;
+	temp.x2 = _x2;
+	temp.y1 = _y1;
+	temp.y2 = _y2;
+
+	temp.type = MOUSE_ON;
+
+	return temp;
+
+}
+bool CMouse::GetOn( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+	if(*_x1<mouseX && *_x2>mouseX ){
+		if(*_y1<mouseY && *_y2>mouseY){
+			if(Event.GetValid()){
+				return true;
+			}
+		}
+	}
+	return false;
+}
+CMouseIn CMouse::Click( int _x1 , int _y1 , int _x2 , int _y2 ){
+		
+	CMouseIn temp;
+
+	temp.x1 = _x1;
+	temp.x2 = _x2;
+	temp.y1 = _y1;
+	temp.y2 = _y2;
+
+	temp.type = MOUSE_CLICK;
+
+	return temp;
+
+}
+bool CMouse::GetClick( int _x1 , int _y1 , int _x2 , int _y2 ){
+	if(_x1<mouseX && _x2>mouseX ){
+		if(_y1<mouseY && _y2>mouseY){
+			if(mouseInput && !preMouseInput ){
+				if(Event.GetValid()){
+					return true;		
+				}
+			} 
+		}
+	}
+	return false;
+}
+CpMouseIn CMouse::Click( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+		
+	CpMouseIn temp;
+
+	temp.x1 = _x1;
+	temp.x2 = _x2;
+	temp.y1 = _y1;
+	temp.y2 = _y2;
+
+	temp.type = MOUSE_CLICK;
+
+	return temp;
+
+}
+bool CMouse::GetClick( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+	if(*_x1<mouseX && *_x2>mouseX ){
+		if(*_y1<mouseY && *_y2>mouseY){
+			if(mouseInput && !preMouseInput ){
+				if(Event.GetValid()){
+					return true;	
+				}
+			} 
+		}
+	}
+	return false;
+}
+CMouseIn CMouse::Release( int _x1 , int _y1 , int _x2 , int _y2 ){
+		
+	CMouseIn temp;
+
+	temp.x1 = _x1;
+	temp.x2 = _x2;
+	temp.y1 = _y1;
+	temp.y2 = _y2;
+
+	temp.type = MOUSE_RELEASE;
+
+	return temp;
+}
+bool CMouse::GetRelease( int _x1 , int _y1 , int _x2 , int _y2 ){
+	if(_x1<mouseX && _x2>mouseX ){
+		if(_y1<mouseY && _y2>mouseY){
+			if( !mouseInput && preMouseInput ){
+				if(Event.GetValid()){
+					return true;
+				}
+			} 
+		}	
+	}
+	return false;
+}
+CpMouseIn CMouse::Release( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+		
+	CpMouseIn temp;
+
+	temp.x1 = _x1;
+	temp.x2 = _x2;
+	temp.y1 = _y1;
+	temp.y2 = _y2;
+
+	temp.type = MOUSE_RELEASE;
+
+	return temp;
+}
+bool CMouse::GetRelease( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+	if(*_x1<mouseX && *_x2>mouseX ){
+		if(*_y1<mouseY && *_y2>mouseY){
+			if( !mouseInput && preMouseInput ){
+				if(Event.GetValid()){
+					return true;
+				}
+			} 
+		}	
+	}
+	return false;
+}
+void CMouse::Loop(){
+	GetMousePoint( &mouseX, &mouseY );
+	preMouseInput = mouseInput;
+	if(IsLeft){
+		mouseInput = (bool)( GetMouseInput() & MOUSE_INPUT_LEFT );
+	}else{
+		mouseInput = (bool)( GetMouseInput() & MOUSE_INPUT_RIGHT );
+	}
+}
+void CMouse::SetLeft(){
+	IsLeft = true;
+}
+void CMouse::SetRight(){
+	IsLeft = false;
+}
