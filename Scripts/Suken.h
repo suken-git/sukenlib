@@ -849,7 +849,7 @@ class CTransform{
 public:
 	CTransform(){
 		//prePosition = position = velocity = acceralate = VGet(0,0);
-		rotation = 0;
+		rotation = 0.0f;
 		gravity = GRAVITY;
 		airResistance = 0 ;
 	}
@@ -874,10 +874,15 @@ public:
 		
 		///速度
 		velocity += (acceralate + gravity ) / System.GetFps();
-		//velocity *= ( 1 - ( airResistance / System.GetFps() ));
+		velocity *= ( 1 - ( airResistance / System.GetFps() ));
 		///位置
 		prePosition = position;
 		position += velocity / System.GetFps();
+		if( velocity.y > 0.0f ){
+			rotation = acos(VNorm(velocity).x);
+		}else{
+			rotation = -acos(VNorm(velocity).x);
+		}
 	}
 };
 class CSuperGameObject{
@@ -1023,8 +1028,40 @@ public:
 
 		}
 	}
+	void AddCollisionFalse(CCircle *c){
+		noCollision.push_back(c);
+	}
+	void RemoveCollisionFalse(CCircle *c){
+		if(!noCollision.empty()){
+			vector<CCircle*>::iterator it = noCollision.begin();
+			while( ( it != noCollision.end() ) ){
+
+				if( *it ==  c  ){
+
+					noCollision.erase( it );
+					break;
+				}
+				it++;
+			}
+		}
+	}
+	bool GetIsNoCollision(CCircle *c){
+		if(!noCollision.empty()){
+			vector<CCircle*>::iterator it = noCollision.begin();
+			while( ( it != noCollision.end() ) ){
+
+				if( *it ==  c  ){
+
+					return true;
+				}
+				it++;
+			}
+		}
+		return false;
+	}
 private:
 	vector<void(*)()> onCollisionTask;
+	vector<CCircle*> noCollision;
 };
 
 class CCollisionManager{
@@ -1044,14 +1081,22 @@ public:
 		
 		for(unsigned int i=0;i<physicsCircle.size();i++){
 			physicsCircle[i]->onCollision = false;
+			physicsCircle[i]->Loop();
+		}
+		for(unsigned int i=0;i<fixedCircle.size();i++){
+			fixedCircle[i]->onCollision = false;
+			fixedCircle[i]->Loop();
 		}
 		for(unsigned int i=0;i<physicsCircle.size();i++){
-			physicsCircle[i]->Loop();
 			for(unsigned int j=i+1;j<physicsCircle.size();j++){
-				CollisionCircle(*physicsCircle[i],*physicsCircle[j]);
+				if( !physicsCircle[i]->GetIsNoCollision(physicsCircle[j]) && !physicsCircle[j]->GetIsNoCollision(physicsCircle[i])){
+					CollisionCircle(*physicsCircle[i],*physicsCircle[j]);
+				}
 			}
 			for(unsigned int j=0;j<fixedCircle.size();j++){
-				CollisionCircle(*physicsCircle[i],*fixedCircle[j]);
+				if( !physicsCircle[i]->GetIsNoCollision(fixedCircle[j]) && !fixedCircle[j]->GetIsNoCollision(physicsCircle[i])){
+					CollisionCircle(*physicsCircle[i],*fixedCircle[j]);
+				}
 			}
 		}
 		for(unsigned int i=0;i<physicsRect.size();i++){
@@ -1100,17 +1145,19 @@ public:
 		CVector constVec = C * ( reflectionRate * dot / totalWeight ); // 定数ベクトル
 
 		//速度書き換え
-		
-		//if(!A.IsKinematic){
-			A.center.velocity += constVec * (-B.mass);
-		//}
-		//if(!B.IsKinematic){
-			B.center.velocity += constVec  * A.mass ;
-		//}
-
 		// 衝突後位置の算出
-		A.center.position += (A.center.velocity) * 0.1f;
-		B.center.position += (B.center.velocity) * 0.1f;
+		if(!A.IsKinematic){
+			A.center.velocity += constVec * (-B.mass);
+			A.center.position += (A.center.velocity) * 0.05f;
+		}
+		if(!B.IsKinematic){
+			B.center.velocity += constVec  * A.mass ;
+			B.center.position += (B.center.velocity) * 0.05f;
+		}
+
+		
+		
+		
 
 	}
 	bool CollisionCircle(CCircle &A , CCircle &B){
@@ -1169,7 +1216,7 @@ public:
    DxLib::DrawCircle((int)(A.center.position.x +0.5), (int)(A.center.position.y+0.5) , (int)(A.radius+0.5) ,GREEN ,true );
    DxLib::DrawCircle((int)(B.center.position.x +0.5), (int)(B.center.position.y+0.5) , (int)(B.radius+0.5) ,GREEN ,true );
 #endif
-   CollisionCircleCalc(A ,B ,pOut_t0);
+   CollisionCircleCalc(A ,B ,( 1.0f - abs(pOut_t0) ) / 60.0f );
    return true; // 衝突報告
 
 	}
@@ -1272,26 +1319,41 @@ public:
 //入力用データクラス
 class CKeyIn{
 public:
+	CKeyIn(){
+		pFuncVoid = NULL;
+		pFuncInt = NULL;
+		pInt = NULL;
+	}
 	int keyCode;
-	void (*pFunc)();
+	void (*pFuncVoid)();
+	void (*pFuncInt)(int);
+	int *pInt;
 };
 class CMouseIn{
 public:
 	CMouseIn(){
-		
+		pFuncVoid = NULL;
+		pFuncInt = NULL;
+		pInt = NULL;
 	}
 	int x1,x2,y1,y2;
-	void (*pFunc)();
+	void (*pFuncVoid)();
+	void (*pFuncInt)(int);
+	int *pInt;
 	int type;
 	
 };
 class CpMouseIn{
 public:
 	CpMouseIn(){
-		
+		pFuncVoid = NULL;
+		pFuncInt = NULL;
+		pInt = NULL;
 	}
 	int *x1,*x2,*y1,*y2;
-	void (*pFunc)();
+	void (*pFuncVoid)();
+	void (*pFuncInt)(int);
+	int *pInt;
 	int type;
 	
 };
@@ -1317,11 +1379,25 @@ public:
 };
 class CFrame{
 public:
-	void (*pFunc)();
+	CFrame(){
+		pFuncVoid = NULL;
+		pFuncInt = NULL;
+		pInt = NULL;
+	}
+	void (*pFuncVoid)();
+	void (*pFuncInt)(int);
+	int *pInt;
 };
 class CBoolean{
 public:
-	void (*pFunc)();
+	CBoolean(){
+		pFuncVoid = NULL;
+		pFuncInt = NULL;
+		pInt = NULL;
+	}
+	void (*pFuncVoid)();
+	void (*pFuncInt)(int);
+	int *pInt;
 	bool* pBool;
 };
 
@@ -1621,7 +1697,6 @@ public:
 		}
 		return false;
 	}
-
 	CpMouseIn Click( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 		
 		CpMouseIn temp;
@@ -1747,7 +1822,15 @@ public:
 	void AddEventListener( int inputCode , void func() ){
 				
 				keyTemp.keyCode=inputCode;
-				keyTemp.pFunc=func;
+				keyTemp.pFuncVoid=func;
+				keyTask.push_back(keyTemp);
+
+	}
+	void AddEventListener( int inputCode , void func(int) , int *pArgument ){
+				
+				keyTemp.keyCode=inputCode;
+				keyTemp.pFuncInt=func;
+				keyTemp.pInt = pArgument;
 				keyTask.push_back(keyTemp);
 
 	}
@@ -1757,7 +1840,22 @@ public:
 
 		while( ( it != keyTask.end() ) ){
 
-			if( it->keyCode == inputCode && it->pFunc == func  ){
+			if( it->keyCode == inputCode && it->pFuncVoid == func  ){
+
+				keyTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	void RemoveEventListener( int inputCode , void func(int) , int *pArgument  ){
+
+		vector< CKeyIn >::iterator it = keyTask.begin();
+
+		while( ( it != keyTask.end() ) ){
+
+			if( it->keyCode == inputCode && it->pFuncInt == func  ){
 
 				keyTask.erase( it );
 				break;
@@ -1769,7 +1867,15 @@ public:
 	void AddEventListener( CMouseIn input , void func()  ){
 
 				mouseTemp=input;
-				mouseTemp.pFunc=func;
+				mouseTemp.pFuncVoid=func;
+				mouseTask.push_back(mouseTemp);
+				
+	}
+	void AddEventListener( CMouseIn input , void func(int) , int *pArgument  ){
+
+				mouseTemp=input;
+				mouseTemp.pFuncInt=func;
+				mouseTemp.pInt = pArgument;
 				mouseTask.push_back(mouseTemp);
 				
 	}
@@ -1779,7 +1885,22 @@ public:
 
 		while( ( it != mouseTask.end() ) ){
 
-			if( it->pFunc == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
+			if( it->pFuncVoid == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
+
+				mouseTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	bool RemoveEventListener( CMouseIn input , void func(int) , int *pArgument  ){
+
+		vector< CMouseIn >::iterator it = mouseTask.begin();
+
+		while( ( it != mouseTask.end() ) ){
+
+			if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
 
 				mouseTask.erase( it );
 				break;
@@ -1791,7 +1912,15 @@ public:
 	void AddEventListener( CpMouseIn input , void func()  ){
 
 				pMouseTemp=input;
-				pMouseTemp.pFunc=func;
+				pMouseTemp.pFuncVoid=func;
+				pMouseTask.push_back(pMouseTemp);
+				
+	}
+	void AddEventListener( CpMouseIn input , void func(int) , int *pArgument  ){
+
+				pMouseTemp=input;
+				pMouseTemp.pFuncInt=func;
+				pMouseTemp.pInt = pArgument;
 				pMouseTask.push_back(pMouseTemp);
 				
 	}
@@ -1801,7 +1930,21 @@ public:
 
 		while( ( it != pMouseTask.end() ) ){
 
-			if( it->pFunc == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
+			if( it->pFuncVoid == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
+
+				pMouseTask.erase( it );
+				break;
+			}
+			it++;
+		}
+	}
+	void RemoveEventListener( CpMouseIn input , void func(int) , int *pArgument  ){
+
+		vector< CpMouseIn >::iterator it = pMouseTask.begin();
+
+		while( ( it != pMouseTask.end() ) ){
+
+			if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
 
 				pMouseTask.erase( it );
 				break;
@@ -1810,7 +1953,13 @@ public:
 		}
 	}
 	void AddEventListener( char input , void func()  ){
-			frameTemp.pFunc=func;
+			frameTemp.pFuncVoid=func;
+			frameTask.push_back(frameTemp);
+			
+	}
+	void AddEventListener( char input , void func(int) , int *pArgument  ){
+			frameTemp.pFuncInt=func;
+			frameTemp.pInt = pArgument;
 			frameTask.push_back(frameTemp);
 			
 	}
@@ -1820,7 +1969,22 @@ public:
 
 		while( ( it != frameTask.end() ) ){
 
-			if( it->pFunc ==  func  ){
+			if( it->pFuncVoid ==  func  ){
+
+				frameTask.erase( it );
+				break;
+			}
+			it++;
+		}
+		
+	}
+	void RemoveEventListener( char input , void func(int) , int *pArgument  ){
+
+		vector< CFrame >::iterator it = frameTask.begin();
+
+		while( ( it != frameTask.end() ) ){
+
+			if( it->pFuncInt ==  func  ){
 
 				frameTask.erase( it );
 				break;
@@ -1830,7 +1994,14 @@ public:
 		
 	}
 	void AddEventListener( bool* input , void func()  ){
-			boolTemp.pFunc=func;
+			boolTemp.pFuncVoid=func;
+			boolTemp.pBool=input;
+			boolTask.push_back(boolTemp);
+			
+	}
+	void AddEventListener( bool* input , void func(int) , int *pArgument  ){
+			boolTemp.pFuncInt=func;
+			boolTemp.pInt = pArgument;
 			boolTemp.pBool=input;
 			boolTask.push_back(boolTemp);
 			
@@ -1841,7 +2012,7 @@ public:
 
 		while( ( it != boolTask.end() ) ){
 
-			if( it->pBool == input && it->pFunc == func  ){
+			if( it->pBool == input && it->pFuncVoid == func  ){
 
 				boolTask.erase( it );
 				break;
@@ -1850,6 +2021,21 @@ public:
 		}
 	
 	}	
+	void RemoveEventListener( bool* input , void func(int) , int *pArgument  ){
+
+		vector< CBoolean >::iterator it = boolTask.begin();
+
+		while( ( it != boolTask.end() ) ){
+
+			if( it->pBool == input && it->pFuncInt == func  ){
+
+				boolTask.erase( it );
+				break;
+			}
+			it++;
+		}
+	
+	}
 
 	void Loop(){
 
@@ -1864,7 +2050,12 @@ public:
 				if(CheckHitKey(it->keyCode)){
 
 					CKeyIn temp=*it;
-					temp.pFunc();
+					if(temp.pFuncVoid != NULL){
+						temp.pFuncVoid();
+					}else{
+						temp.pFuncInt(*temp.pInt);
+					}
+					
 
 				}
 				it++;
@@ -1894,7 +2085,11 @@ public:
 					if(temp.x1>mouseX && temp.x2<mouseX ){
 						if(temp.y1>mouseY && temp.y2<mouseY){
 							
-								temp.pFunc();
+							if(temp.pFuncVoid != NULL){
+								temp.pFuncVoid();
+							}else{
+								temp.pFuncInt(*temp.pInt);
+							}
 							
 						}
 					}
@@ -1903,7 +2098,11 @@ public:
 					if(temp.x1<mouseX && temp.x2>mouseX ){
 						if(temp.y1<mouseY && temp.y2>mouseY){
 							
-								temp.pFunc();
+							if(temp.pFuncVoid != NULL){
+								temp.pFuncVoid();
+							}else{
+								temp.pFuncInt(*temp.pInt);
+							}
 							
 						}
 					}
@@ -1914,7 +2113,11 @@ public:
 						if(temp.y1<mouseY && temp.y2>mouseY){
 							if(mouseInput){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							}
 						}
@@ -1925,7 +2128,11 @@ public:
 						if(temp.y1<mouseY && temp.y2>mouseY){
 							if(mouseInput && !preMouseInput ){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							} 
 						}
@@ -1936,7 +2143,11 @@ public:
 						if(temp.y1<mouseY && temp.y2>mouseY){
 							if( !mouseInput && preMouseInput ){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							} 
 						}	
@@ -1962,7 +2173,11 @@ public:
 						if( *(temp.x1) > mouseX && *(temp.x2) < mouseX ){
 							if( *(temp.y1) > mouseY && *(temp.y2) < mouseY ){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							}
 						}
@@ -1971,7 +2186,11 @@ public:
 						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
 							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							} 
 						} 
@@ -1982,7 +2201,11 @@ public:
 							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 								if( mouseInput ){
 									
-										temp.pFunc();
+									if(temp.pFuncVoid != NULL){
+										temp.pFuncVoid();
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 									
 								} 
 							}
@@ -1993,7 +2216,11 @@ public:
 							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 								if( mouseInput && !preMouseInput ){
 									
-										temp.pFunc();
+									if(temp.pFuncVoid != NULL){
+										temp.pFuncVoid();
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 									
 								} 
 							} 
@@ -2004,7 +2231,11 @@ public:
 							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 								if( !mouseInput && preMouseInput ){
 									
-										temp.pFunc();
+									if(temp.pFuncVoid != NULL){
+										temp.pFuncVoid();
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 									
 								}	
 							} 
@@ -2022,7 +2253,12 @@ public:
 
 		while( it2 != frameTask.end() ) {
 			CFrame temp=*it2;
-			temp.pFunc();
+
+			if(temp.pFuncVoid != NULL){
+				temp.pFuncVoid();
+			}else{
+				temp.pFuncInt(*temp.pInt);
+			}
 			it2++;
 		}
 
@@ -2034,7 +2270,11 @@ public:
 
 			if(*(temp.pBool)){
 			
-				temp.pFunc();
+				if(temp.pFuncVoid != NULL){
+					temp.pFuncVoid();
+				}else{
+					temp.pFuncInt(*temp.pInt);
+				}
 
 			}
 
@@ -2053,7 +2293,11 @@ public:
 				if(CheckHitKey(it->keyCode)){
 
 					CKeyIn temp=*it;
-					temp.pFunc();
+					if(temp.pFuncVoid != NULL){
+						temp.pFuncVoid();
+					}else{
+						temp.pFuncInt(*temp.pInt);
+					}
 
 				}
 				it++;
@@ -2077,7 +2321,11 @@ public:
 					if(temp.x1>mouseX && temp.x2<mouseX ){
 						if(temp.y1>mouseY && temp.y2<mouseY){
 							
-								temp.pFunc();
+							if(temp.pFuncVoid != NULL){
+								temp.pFuncVoid();
+							}else{
+								temp.pFuncInt(*temp.pInt);
+							}
 							
 						}
 					}
@@ -2086,7 +2334,11 @@ public:
 					if(temp.x1<mouseX && temp.x2>mouseX ){
 						if(temp.y1<mouseY && temp.y2>mouseY){
 							
-								temp.pFunc();
+							if(temp.pFuncVoid != NULL){
+								temp.pFuncVoid();
+							}else{
+								temp.pFuncInt(*temp.pInt);
+							}
 							
 						}
 					}
@@ -2097,7 +2349,11 @@ public:
 						if(temp.y1<mouseY && temp.y2>mouseY){
 							if(mouseInput){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							}
 						}
@@ -2108,7 +2364,11 @@ public:
 						if(temp.y1<mouseY && temp.y2>mouseY){
 							if(mouseInput && !preMouseInput ){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							} 
 						}
@@ -2119,7 +2379,11 @@ public:
 						if(temp.y1<mouseY && temp.y2>mouseY){
 							if( !mouseInput && preMouseInput ){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							} 
 						}	
@@ -2144,7 +2408,11 @@ public:
 						if( *(temp.x1) > mouseX && *(temp.x2) < mouseX ){
 							if( *(temp.y1) > mouseY && *(temp.y2) < mouseY ){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							}
 						}
@@ -2153,7 +2421,11 @@ public:
 						if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
 							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY){
 								
-									temp.pFunc();
+								if(temp.pFuncVoid != NULL){
+									temp.pFuncVoid();
+								}else{
+									temp.pFuncInt(*temp.pInt);
+								}
 								
 							} 
 						} 
@@ -2164,7 +2436,11 @@ public:
 							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 								if( mouseInput ){
 									
-										temp.pFunc();
+									if(temp.pFuncVoid != NULL){
+										temp.pFuncVoid();
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 									
 								} 
 							}
@@ -2175,7 +2451,11 @@ public:
 							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 								if( mouseInput && !preMouseInput ){
 									
-										temp.pFunc();
+									if(temp.pFuncVoid != NULL){
+										temp.pFuncVoid();
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 									
 								} 
 							} 
@@ -2186,7 +2466,11 @@ public:
 							if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 								if( !mouseInput && preMouseInput ){
 									
-										temp.pFunc();
+									if(temp.pFuncVoid != NULL){
+										temp.pFuncVoid();
+									}else{
+										temp.pFuncInt(*temp.pInt);
+									}
 									
 								}	
 							} 
@@ -2205,7 +2489,12 @@ public:
 
 		while( it2 != frameTask_Draw.end() ) {
 			CFrame temp=*it2;
-			temp.pFunc();
+
+			if(temp.pFuncVoid != NULL){
+				temp.pFuncVoid();
+			}else{
+				temp.pFuncInt(*temp.pInt);
+			}
 			it2++;
 		}
 		
@@ -2219,7 +2508,11 @@ public:
 
 			if(*(temp.pBool)){
 			
-				temp.pFunc();
+				if(temp.pFuncVoid != NULL){
+					temp.pFuncVoid();
+				}else{
+					temp.pFuncInt(*temp.pInt);
+				}
 
 			}
 
@@ -2414,6 +2707,21 @@ public:
 		
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 	}
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) , int *pInt ){
+		CButton temp;
+		temp.IsUseGraph = false;
+		temp.title = title;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.backColor = backColor;
+		temp.stringColor = stringColor;
+
+		buttonChild.push_back( temp );
+		
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
+	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)() ){
 		CButton temp;
 		
@@ -2427,6 +2735,20 @@ public:
 		buttonChild.push_back( temp );
 		
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
+	}
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int *pInt ){
+		CButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle = graph;
+
+		buttonChild.push_back( temp );
+		
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)() ){
 		CButton temp;
@@ -2444,6 +2766,23 @@ public:
 		buttonChild.push_back( temp );
 		
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
+	}
+	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)(int) , int *pInt ){
+		CButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle = LoadGraph(graphPath);
+		if( temp.graphHandle == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+
+		buttonChild.push_back( temp );
+		
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 	}
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() ){
 		CButton temp;
@@ -2467,6 +2806,28 @@ public:
 
 		buttonChild.push_back( temp );
 	}
+	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int *pInt ){
+		CButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.IsReact = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle_off = LoadGraph(Off_graphPath);
+		temp.graphHandle_on = LoadGraph(On_graphPath);
+		if( temp.graphHandle_off == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+		if( temp.graphHandle_on == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
+
+		buttonChild.push_back( temp );
+	}
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)() ){
 		CpButton temp;
 		temp.IsUseGraph = false;
@@ -2482,6 +2843,21 @@ public:
 
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 	}
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) ,int *pInt ){
+		CpButton temp;
+		temp.IsUseGraph = false;
+		temp.title = title;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.backColor = backColor;
+		temp.stringColor = stringColor;
+
+		pButtonChild.push_back( temp );
+
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
+	}
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)() ){
 		CpButton temp;
 		temp.IsUseGraph = true;
@@ -2496,6 +2872,21 @@ public:
 		pButtonChild.push_back( temp );
 
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
+	}
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int *pInt ){
+		CpButton temp;
+		temp.IsUseGraph = true;
+		
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		
+		temp.graphHandle = graph;
+
+		pButtonChild.push_back( temp );
+
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
 	}
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)() ){
 		CpButton temp;
@@ -2513,6 +2904,23 @@ public:
 		pButtonChild.push_back( temp );
 		
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
+	}
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)(int) , int *pInt ){
+		CpButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle = LoadGraph(graphPath);
+		if( temp.graphHandle == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+
+		pButtonChild.push_back( temp );
+		
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
 	}
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() ){
 		CpButton temp;
@@ -2533,6 +2941,28 @@ public:
 		}
 
 		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
+
+		pButtonChild.push_back( temp );
+	}
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int *pInt ){
+		CpButton temp;
+		
+		temp.IsUseGraph = true;
+		temp.IsReact = true;
+		temp.x1 = x1;
+		temp.x2 = x2;
+		temp.y1 = y1;
+		temp.y2 = y2;
+		temp.graphHandle_off = LoadGraph(Off_graphPath);
+		temp.graphHandle_on = LoadGraph(On_graphPath);
+		if( temp.graphHandle_off == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+		if( temp.graphHandle_on == -1 ){
+			MessageBox(NULL,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		}
+
+		this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 
 		pButtonChild.push_back( temp );
 	}
