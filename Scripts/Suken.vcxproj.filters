@@ -27,13 +27,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SukenLib\Suken.cpp">
-      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SukenLib\System.cpp">
       <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="SukenLib\Vector2D.cpp">
@@ -54,8 +48,11 @@
     <ClCompile Include="SukenLib\Game.cpp">
       <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SukenLib\Entity.cpp">
+    <ClCompile Include="SukenLib\System.cpp">
       <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,9 +60,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\Manager.h">
-      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SukenLib\System.h">
       <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\Debug.h">
@@ -87,6 +81,9 @@
       <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\Game.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\System.h">
       <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
     </ClInclude>
   </ItemGroup>

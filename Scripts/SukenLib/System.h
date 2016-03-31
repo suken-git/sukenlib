@@ -59,6 +59,8 @@ private:
 #endif
 };
 
-extern CSystem System;
+
 
 }
+
+extern suken::CSystem System;

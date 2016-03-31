@@ -262,9 +262,12 @@ private:
 	bool IsActivated;
 };
 
-extern CEvent Event;
+}
+
+extern suken::CEvent Event;
 
 
+namespace suken{
 //入力イベント管理クラス
 class CInput{
 public:

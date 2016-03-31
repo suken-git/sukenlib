@@ -1,7 +1,7 @@
 #include"Suken.h"
 using namespace suken;
 CSystem System;
-CGame game;
+CGame Game;
 CEvent Event;
 
 int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 		ClearDrawScreen();
 		System.Update();
 		GameLoopEnter();
-		game.Loop();
+		Game.Loop();
 		GameLoopExit();
 		System.Wait();
 	}

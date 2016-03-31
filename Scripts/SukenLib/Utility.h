@@ -1,7 +1,7 @@
 #pragma once
 #include"Manager.h"
 #include"Vector2D.h"
-
+#include "wininet.h"
 
 
 //セーフカラーについて
@@ -41,9 +41,10 @@ extern bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.
 * @return true
 */
 extern bool SaveFile(char *filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
-
+/*
+原因不明エラーのためコメントアウト
 void GetHttpFile(char *&Buf,char *Http,unsigned long ReadSize = 65536);
-
+*/
 class CMidi{
 	
 private:

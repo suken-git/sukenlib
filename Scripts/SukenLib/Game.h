@@ -26,7 +26,7 @@ private:
 };
 
 
-extern CGame game;
-
-
 }
+
+
+extern suken::CGame Game;

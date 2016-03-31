@@ -58,17 +58,17 @@ void SukenExecute(char *URL){
 		}
 }
 
-
+/*
 
 void GetHttpFile(char *&Buf, char *Http,DWORD ReadSize){
 	HINTERNET hInternet;HINTERNET hFile;
 	BOOL bResult;
 	DWORD RealRead = ReadSize;
 	// WININET初期化 
-	hInternet = InternetOpen("WININET Sample Program",INTERNET_OPEN_TYPE_PRECONFIG,	NULL,NULL,0);
+	hInternet = InternetOpenA("WININET Sample Program",INTERNET_OPEN_TYPE_PRECONFIG,	NULL,NULL,0);
 	if(!hInternet)return;
 	// URLのオープン 
-	hFile = InternetOpenUrl(hInternet,Http,	NULL,0,	INTERNET_FLAG_RELOAD,0);
+	hFile = InternetOpenUrlA(hInternet,Http,	NULL,0,	INTERNET_FLAG_RELOAD,0);
 	if(!hFile){if(hInternet)InternetCloseHandle(hInternet);return;}
 	bResult = InternetReadFile(hFile,Buf,RealRead,&ReadSize);
 	if(!bResult) {return;if(hFile)InternetCloseHandle(hFile);if(hInternet)InternetCloseHandle(hInternet);}
@@ -76,6 +76,14 @@ void GetHttpFile(char *&Buf, char *Http,DWORD ReadSize){
 	if(hFile)InternetCloseHandle(hFile);
 	if(hInternet)InternetCloseHandle(hInternet);
 }
+
+原因不明エラーのためコメントアウト
+1>Utility.obj : error LNK2019: 未解決の外部シンボル __imp__InternetReadFile@16 が関数 "void __cdecl GetHttpFile(char * &,char *,unsigned long)" (?GetHttpFile@@YAXAAPADPADK@Z) で参照されました。
+1>Utility.obj : error LNK2019: 未解決の外部シンボル __imp__InternetCloseHandle@4 が関数 "void __cdecl GetHttpFile(char * &,char *,unsigned long)" (?GetHttpFile@@YAXAAPADPADK@Z) で参照されました。
+1>Utility.obj : error LNK2019: 未解決の外部シンボル __imp__InternetOpenUrlA@24 が関数 "void __cdecl GetHttpFile(char * &,char *,unsigned long)" (?GetHttpFile@@YAXAAPADPADK@Z) で参照されました。
+1>Utility.obj : error LNK2019: 未解決の外部シンボル __imp__InternetOpenA@20 が関数 "void __cdecl GetHttpFile(char * &,char *,unsigned long)" (?GetHttpFile@@YAXAAPADPADK@Z) で参照されました。
+
+*/
 
 CMidi::CMidi(){
 	//Midiを開く
