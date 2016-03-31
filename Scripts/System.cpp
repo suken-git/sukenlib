@@ -36,5 +36,3 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	System.End();
 	return 0;
 } 
-
-

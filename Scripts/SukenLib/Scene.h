@@ -1,3 +1,4 @@
+#pragma once
 #include"Manager.h"
 #include"Event.h"
 #include"Physics.h"

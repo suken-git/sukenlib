@@ -1,3 +1,4 @@
+#pragma once
 #include"Manager.h"
 #include"Vector2D.h"
 
