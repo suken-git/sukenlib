@@ -59,5 +59,6 @@ private:
 #endif
 };
 
+extern CSystem System;
 
 }

@@ -25,4 +25,8 @@ private:
 	
 };
 
+
+extern CGame game;
+
+
 }

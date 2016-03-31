@@ -74,16 +74,14 @@ void GameLoopExit();
 const int SHAPE_RECT	= 1;
 const int SHAPE_CIRCLE	= 2;
 
-class CSystem;
-extern CSystem System;
-
-class CGame;
-extern CGame game;
 
 
 
-class CEvent;
-extern CEvent Event;
+
+
+
+
+
 
 class CMidi;
 extern CMidi MD;

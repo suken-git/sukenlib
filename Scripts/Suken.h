@@ -14,5 +14,7 @@
 
 
 
-using namespace suken;
+
+
+
 //最終更新　20160331.2309

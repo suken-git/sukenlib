@@ -261,7 +261,10 @@ public:
 private:
 	bool IsActivated;
 };
+
 extern CEvent Event;
+
+
 //入力イベント管理クラス
 class CInput{
 public:
@@ -326,6 +329,7 @@ private:
 
 	bool mouseInput,preMouseInput;
 };
+
 
 
 }
