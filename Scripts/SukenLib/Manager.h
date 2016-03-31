@@ -31,6 +31,7 @@ using namespace std;
 #ifdef USE_LUA
 #include "lua.hpp"
 #endif
+#include <wininet.h>
 //for MIDI
 #include <windows.h>
 #include <mmsystem.h>

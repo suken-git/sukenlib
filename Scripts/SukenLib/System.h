@@ -1,5 +1,6 @@
 #pragma once
 #include"Manager.h"
+#include"Utility.h"
 
 namespace suken{
 

@@ -1,7 +1,7 @@
 #include"Event.h"
 
 
-void CKey::Loop(){
+void suken::CKey::Loop(){
 	 //全てのキーの押下状態を取得
 	char buf[256];
 	GetHitKeyStateAll( buf ) ;
@@ -17,7 +17,7 @@ void CKey::Loop(){
 		}
 	}
 }
-bool CKey::GetPush(int keyCode){
+bool suken::CKey::GetPush(int keyCode){
 	 //キーコードチェック
 		if( keyCode < 256 && keyCode >= 0 ){
 		if( count[keyCode] < 1.0f ){
@@ -34,7 +34,7 @@ bool CKey::GetPush(int keyCode){
 		return false;
 	 }
  }
- bool CKey::GetDown(int keyCode){
+ bool suken::CKey::GetDown(int keyCode){
 	 //キーコードチェック
 	 if( keyCode < 256 && keyCode >= 0 ){
 		if( count[keyCode] == 0.0f ){
@@ -51,7 +51,7 @@ bool CKey::GetPush(int keyCode){
 		return false;
 	 }
 }
- bool CKey::GetUp(int keyCode){
+ bool suken::CKey::GetUp(int keyCode){
 	//キーコードチェック
 	if( keyCode < 256 && keyCode >= 0 ){
 		if( count[keyCode] == 1.5f ){
@@ -68,7 +68,7 @@ bool CKey::GetPush(int keyCode){
 		return false;
 	}
 }
-int CKey::GetCount(int keyCode){
+int suken::CKey::GetCount(int keyCode){
 	//キーコードチェック
 		if( keyCode < 256 && keyCode >= 0 ){
 		return (int)(count[keyCode]);
@@ -78,7 +78,7 @@ int CKey::GetCount(int keyCode){
 	}
 }
 
-CMouseIn CMouse::Off( int _x1 , int _y1 , int _x2 , int _y2 ){
+suken::CMouseIn suken::CMouse::Off( int _x1 , int _y1 , int _x2 , int _y2 ){
 
 	CMouseIn temp;
 
@@ -91,7 +91,7 @@ CMouseIn CMouse::Off( int _x1 , int _y1 , int _x2 , int _y2 ){
 
 	return temp;
 }
-bool CMouse::GetOff( int _x1 , int _y1 , int _x2 , int _y2 ){
+bool suken::CMouse::GetOff( int _x1 , int _y1 , int _x2 , int _y2 ){
 	if(_x1>mouseX && _x2<mouseX ){
 		if(_y1>mouseY && _y2<mouseY){
 			return true;
@@ -99,7 +99,7 @@ bool CMouse::GetOff( int _x1 , int _y1 , int _x2 , int _y2 ){
 	}
 	return false;
 }
-CpMouseIn CMouse::Off( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+suken::CpMouseIn suken::CMouse::Off( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 
 	CpMouseIn temp;
 
@@ -112,7 +112,7 @@ CpMouseIn CMouse::Off( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 
 	return temp;
 }
-bool CMouse::GetOff( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+bool suken::CMouse::GetOff( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	if(*_x1>mouseX && *_x2<mouseX ){
 		if(*_y1>mouseY && *_y2<mouseY){
 			return true;
@@ -120,7 +120,7 @@ bool CMouse::GetOff( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	}
 	return false;
 }
-CMouseIn CMouse::On( int _x1 , int _y1 , int _x2 , int _y2 ){
+suken::CMouseIn suken::CMouse::On( int _x1 , int _y1 , int _x2 , int _y2 ){
 	
 	CMouseIn temp;
 
@@ -134,7 +134,7 @@ CMouseIn CMouse::On( int _x1 , int _y1 , int _x2 , int _y2 ){
 	return temp;
 
 }
-bool CMouse::GetOn( int _x1 , int _y1 , int _x2 , int _y2 ){
+bool suken::CMouse::GetOn( int _x1 , int _y1 , int _x2 , int _y2 ){
 	if(_x1<mouseX && _x2>mouseX ){
 		if(_y1<mouseY && _y2>mouseY){
 			if(Event.GetValid()){
@@ -144,7 +144,7 @@ bool CMouse::GetOn( int _x1 , int _y1 , int _x2 , int _y2 ){
 	}
 	return false;
 }
-CpMouseIn CMouse::On( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+suken::CpMouseIn suken::CMouse::On( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	
 	CpMouseIn temp;
 
@@ -158,7 +158,7 @@ CpMouseIn CMouse::On( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	return temp;
 
 }
-bool CMouse::GetOn( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+bool suken::CMouse::GetOn( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	if(*_x1<mouseX && *_x2>mouseX ){
 		if(*_y1<mouseY && *_y2>mouseY){
 			if(Event.GetValid()){
@@ -168,7 +168,7 @@ bool CMouse::GetOn( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	}
 	return false;
 }
-CMouseIn CMouse::Click( int _x1 , int _y1 , int _x2 , int _y2 ){
+suken::CMouseIn suken::CMouse::Click( int _x1 , int _y1 , int _x2 , int _y2 ){
 		
 	CMouseIn temp;
 
@@ -182,7 +182,7 @@ CMouseIn CMouse::Click( int _x1 , int _y1 , int _x2 , int _y2 ){
 	return temp;
 
 }
-bool CMouse::GetClick( int _x1 , int _y1 , int _x2 , int _y2 ){
+bool suken::CMouse::GetClick( int _x1 , int _y1 , int _x2 , int _y2 ){
 	if(_x1<mouseX && _x2>mouseX ){
 		if(_y1<mouseY && _y2>mouseY){
 			if(mouseInput && !preMouseInput ){
@@ -194,7 +194,7 @@ bool CMouse::GetClick( int _x1 , int _y1 , int _x2 , int _y2 ){
 	}
 	return false;
 }
-CpMouseIn CMouse::Click( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+suken::CpMouseIn suken::CMouse::Click( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 		
 	CpMouseIn temp;
 
@@ -208,7 +208,7 @@ CpMouseIn CMouse::Click( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	return temp;
 
 }
-bool CMouse::GetClick( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+bool suken::CMouse::GetClick( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	if(*_x1<mouseX && *_x2>mouseX ){
 		if(*_y1<mouseY && *_y2>mouseY){
 			if(mouseInput && !preMouseInput ){
@@ -220,7 +220,7 @@ bool CMouse::GetClick( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	}
 	return false;
 }
-CMouseIn CMouse::Release( int _x1 , int _y1 , int _x2 , int _y2 ){
+suken::CMouseIn suken::CMouse::Release( int _x1 , int _y1 , int _x2 , int _y2 ){
 		
 	CMouseIn temp;
 
@@ -233,7 +233,7 @@ CMouseIn CMouse::Release( int _x1 , int _y1 , int _x2 , int _y2 ){
 
 	return temp;
 }
-bool CMouse::GetRelease( int _x1 , int _y1 , int _x2 , int _y2 ){
+bool suken::CMouse::GetRelease( int _x1 , int _y1 , int _x2 , int _y2 ){
 	if(_x1<mouseX && _x2>mouseX ){
 		if(_y1<mouseY && _y2>mouseY){
 			if( !mouseInput && preMouseInput ){
@@ -245,7 +245,7 @@ bool CMouse::GetRelease( int _x1 , int _y1 , int _x2 , int _y2 ){
 	}
 	return false;
 }
-CpMouseIn CMouse::Release( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+suken::CpMouseIn suken::CMouse::Release( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 		
 	CpMouseIn temp;
 
@@ -258,7 +258,7 @@ CpMouseIn CMouse::Release( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 
 	return temp;
 }
-bool CMouse::GetRelease( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
+bool suken::CMouse::GetRelease( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	if(*_x1<mouseX && *_x2>mouseX ){
 		if(*_y1<mouseY && *_y2>mouseY){
 			if( !mouseInput && preMouseInput ){
@@ -270,7 +270,7 @@ bool CMouse::GetRelease( int *_x1 , int *_y1 , int *_x2 , int *_y2 ){
 	}
 	return false;
 }
-void CMouse::Loop(){
+void suken::CMouse::Loop(){
 	GetMousePoint( &mouseX, &mouseY );
 	preMouseInput = mouseInput;
 	if(IsLeft){
@@ -279,47 +279,47 @@ void CMouse::Loop(){
 		mouseInput = (bool)( GetMouseInput() & MOUSE_INPUT_RIGHT );
 	}
 }
-void CMouse::SetLeft(){
+void suken::CMouse::SetLeft(){
 	IsLeft = true;
 }
-void CMouse::SetRight(){
+void suken::CMouse::SetRight(){
 	IsLeft = false;
 }
 
-CEvent::CEvent(){
+suken::CEvent::CEvent(){
 	EVERY_FRAME=FRAME_EVENT;
 	LMouse.SetLeft();
 	RMouse.SetRight();
 	IsActivated = true;
 }
-void CEvent::Loop(){
+void suken::CEvent::Loop(){
 	key.Loop();
 	LMouse.Loop();
 	RMouse.Loop();
 }
-void CEvent::Activate(){
+void suken::CEvent::Activate(){
 	IsActivated = true;
 }
-void CEvent::Deactivate(){
+void suken::CEvent::Deactivate(){
 	IsActivated = false;
 }
-bool CEvent::GetValid(){
+bool suken::CEvent::GetValid(){
 	return IsActivated;
 }
 
 
-CInput::CInput(){
+suken::CInput::CInput(){
 	useMouse = true;
 	useKey = true;
 }	
-void CInput::AddEventListener( int inputCode , void func() ){
+void suken::CInput::AddEventListener( int inputCode , void func() ){
 				
 	keyTemp.keyCode=inputCode;
 	keyTemp.pFuncVoid=func;
 	keyTask.push_back(keyTemp);
 
 }
-void CInput::AddEventListener( int inputCode , void func(int) , int *pArgument ){
+void suken::CInput::AddEventListener( int inputCode , void func(int) , int *pArgument ){
 				
 	keyTemp.keyCode=inputCode;
 	keyTemp.pFuncInt=func;
@@ -327,7 +327,7 @@ void CInput::AddEventListener( int inputCode , void func(int) , int *pArgument )
 	keyTask.push_back(keyTemp);
 
 }
-void CInput::AddEventListener( int inputCode , void func(int) , int Argument ){
+void suken::CInput::AddEventListener( int inputCode , void func(int) , int Argument ){
 				
 	keyTemp.keyCode=inputCode;
 	keyTemp.pFuncInt=func;
@@ -335,7 +335,7 @@ void CInput::AddEventListener( int inputCode , void func(int) , int Argument ){
 	keyTask.push_back(keyTemp);
 
 }
-void CInput::RemoveEventListener( int inputCode , void func()  ){
+void suken::CInput::RemoveEventListener( int inputCode , void func()  ){
 
 	vector< CKeyIn >::iterator it = keyTask.begin();
 
@@ -350,7 +350,7 @@ void CInput::RemoveEventListener( int inputCode , void func()  ){
 	}
 		
 }
-void CInput::RemoveEventListener( int inputCode , void func(int) , int *pArgument  ){
+void suken::CInput::RemoveEventListener( int inputCode , void func(int) , int *pArgument  ){
 
 	vector< CKeyIn >::iterator it = keyTask.begin();
 
@@ -365,7 +365,7 @@ void CInput::RemoveEventListener( int inputCode , void func(int) , int *pArgumen
 	}
 		
 }
-void CInput::RemoveEventListener( int inputCode , void func(int) , int Argument  ){
+void suken::CInput::RemoveEventListener( int inputCode , void func(int) , int Argument  ){
 
 	vector< CKeyIn >::iterator it = keyTask.begin();
 
@@ -380,14 +380,14 @@ void CInput::RemoveEventListener( int inputCode , void func(int) , int Argument 
 	}
 		
 }
-void CInput::AddEventListener( CMouseIn input , void func()  ){
+void suken::CInput::AddEventListener( CMouseIn input , void func()  ){
 
 	mouseTemp=input;
 	mouseTemp.pFuncVoid=func;
 	mouseTask.push_back(mouseTemp);
 				
 }
-void CInput::AddEventListener( CMouseIn input , void func(int) , int *pArgument  ){
+void suken::CInput::AddEventListener( CMouseIn input , void func(int) , int *pArgument  ){
 
 	mouseTemp=input;
 	mouseTemp.pFuncInt=func;
@@ -395,7 +395,7 @@ void CInput::AddEventListener( CMouseIn input , void func(int) , int *pArgument 
 	mouseTask.push_back(mouseTemp);
 				
 }
-void CInput::AddEventListener( CMouseIn input , void func(int) , int Argument  ){
+void suken::CInput::AddEventListener( CMouseIn input , void func(int) , int Argument  ){
 
 	mouseTemp=input;
 	mouseTemp.pFuncInt=func;
@@ -403,7 +403,7 @@ void CInput::AddEventListener( CMouseIn input , void func(int) , int Argument  )
 	mouseTask.push_back(mouseTemp);
 				
 }
-void CInput::RemoveEventListener( CMouseIn input , void func()  ){
+void suken::CInput::RemoveEventListener( CMouseIn input , void func()  ){
 
 	vector< CMouseIn >::iterator it = mouseTask.begin();
 
@@ -418,7 +418,7 @@ void CInput::RemoveEventListener( CMouseIn input , void func()  ){
 	}
 		
 }
-void CInput::RemoveEventListener( CMouseIn input , void func(int) , int *pArgument  ){
+void suken::CInput::RemoveEventListener( CMouseIn input , void func(int) , int *pArgument  ){
 
 	vector< CMouseIn >::iterator it = mouseTask.begin();
 
@@ -433,7 +433,7 @@ void CInput::RemoveEventListener( CMouseIn input , void func(int) , int *pArgume
 	}
 		
 }
-void CInput::RemoveEventListener( CMouseIn input , void func(int) , int Argument  ){
+void suken::CInput::RemoveEventListener( CMouseIn input , void func(int) , int Argument  ){
 
 	vector< CMouseIn >::iterator it = mouseTask.begin();
 
@@ -448,14 +448,14 @@ void CInput::RemoveEventListener( CMouseIn input , void func(int) , int Argument
 	}
 		
 }
-void CInput::AddEventListener( CpMouseIn input , void func()  ){
+void suken::CInput::AddEventListener( CpMouseIn input , void func()  ){
 
 	pMouseTemp=input;
 	pMouseTemp.pFuncVoid=func;
 	pMouseTask.push_back(pMouseTemp);
 				
 }
-void CInput::AddEventListener( CpMouseIn input , void func(int) , int *pArgument  ){
+void suken::CInput::AddEventListener( CpMouseIn input , void func(int) , int *pArgument  ){
 
 	pMouseTemp=input;
 	pMouseTemp.pFuncInt=func;
@@ -463,7 +463,7 @@ void CInput::AddEventListener( CpMouseIn input , void func(int) , int *pArgument
 	pMouseTask.push_back(pMouseTemp);
 				
 }
-void CInput::AddEventListener( CpMouseIn input , void func(int) , int Argument  ){
+void suken::CInput::AddEventListener( CpMouseIn input , void func(int) , int Argument  ){
 
 	pMouseTemp=input;
 	pMouseTemp.pFuncInt=func;
@@ -471,7 +471,7 @@ void CInput::AddEventListener( CpMouseIn input , void func(int) , int Argument  
 	pMouseTask.push_back(pMouseTemp);
 				
 }
-void CInput::RemoveEventListener( CpMouseIn input , void func()  ){
+void suken::CInput::RemoveEventListener( CpMouseIn input , void func()  ){
 
 	vector< CpMouseIn >::iterator it = pMouseTask.begin();
 
@@ -485,7 +485,7 @@ void CInput::RemoveEventListener( CpMouseIn input , void func()  ){
 		it++;
 	}
 }
-void CInput::RemoveEventListener( CpMouseIn input , void func(int) , int *pArgument  ){
+void suken::CInput::RemoveEventListener( CpMouseIn input , void func(int) , int *pArgument  ){
 
 	vector< CpMouseIn >::iterator it = pMouseTask.begin();
 
@@ -499,7 +499,7 @@ void CInput::RemoveEventListener( CpMouseIn input , void func(int) , int *pArgum
 		it++;
 	}
 }
-void CInput::RemoveEventListener( CpMouseIn input , void func(int) , int Argument  ){
+void suken::CInput::RemoveEventListener( CpMouseIn input , void func(int) , int Argument  ){
 
 	vector< CpMouseIn >::iterator it = pMouseTask.begin();
 
@@ -513,24 +513,24 @@ void CInput::RemoveEventListener( CpMouseIn input , void func(int) , int Argumen
 		it++;
 	}
 }
-void CInput::AddEventListener( char input , void func()  ){
+void suken::CInput::AddEventListener( char input , void func()  ){
 	frameTemp.pFuncVoid=func;
 	frameTask.push_back(frameTemp);
 			
 }
-void CInput::AddEventListener( char input , void func(int) , int *pArgument  ){
+void suken::CInput::AddEventListener( char input , void func(int) , int *pArgument  ){
 	frameTemp.pFuncInt=func;
 	frameTemp.pInt = pArgument;
 	frameTask.push_back(frameTemp);
 			
 }
-void CInput::AddEventListener( char input , void func(int) , int Argument  ){
+void suken::CInput::AddEventListener( char input , void func(int) , int Argument  ){
 	frameTemp.pFuncInt=func;
 	frameTemp.Int = Argument;
 	frameTask.push_back(frameTemp);
 			
 }
-void CInput::RemoveEventListener( char input , void func()  ){
+void suken::CInput::RemoveEventListener( char input , void func()  ){
 
 	vector< CFrame >::iterator it = frameTask.begin();
 
@@ -545,7 +545,7 @@ void CInput::RemoveEventListener( char input , void func()  ){
 	}
 		
 }
-void CInput::RemoveEventListener( char input , void func(int) , int *pArgument  ){
+void suken::CInput::RemoveEventListener( char input , void func(int) , int *pArgument  ){
 
 	vector< CFrame >::iterator it = frameTask.begin();
 
@@ -560,7 +560,7 @@ void CInput::RemoveEventListener( char input , void func(int) , int *pArgument  
 	}
 		
 }
-void CInput::RemoveEventListener( char input , void func(int) , int Argument  ){
+void suken::CInput::RemoveEventListener( char input , void func(int) , int Argument  ){
 
 	vector< CFrame >::iterator it = frameTask.begin();
 
@@ -575,27 +575,27 @@ void CInput::RemoveEventListener( char input , void func(int) , int Argument  ){
 	}
 		
 }
-void CInput::AddEventListener( bool* input , void func()  ){
+void suken::CInput::AddEventListener( bool* input , void func()  ){
 	boolTemp.pFuncVoid=func;
 	boolTemp.pBool=input;
 	boolTask.push_back(boolTemp);
 			
 }
-void CInput::AddEventListener( bool* input , void func(int) , int *pArgument  ){
+void suken::CInput::AddEventListener( bool* input , void func(int) , int *pArgument  ){
 	boolTemp.pFuncInt=func;
 	boolTemp.pInt = pArgument;
 	boolTemp.pBool=input;
 	boolTask.push_back(boolTemp);
 			
 }
-void CInput::AddEventListener( bool* input , void func(int) , int Argument  ){
+void suken::CInput::AddEventListener( bool* input , void func(int) , int Argument  ){
 	boolTemp.pFuncInt=func;
 	boolTemp.Int = Argument;
 	boolTemp.pBool=input;
 	boolTask.push_back(boolTemp);
 			
 }
-void CInput::RemoveEventListener( bool* input , void func()  ){
+void suken::CInput::RemoveEventListener( bool* input , void func()  ){
 
 	vector< CBoolean >::iterator it = boolTask.begin();
 
@@ -610,7 +610,7 @@ void CInput::RemoveEventListener( bool* input , void func()  ){
 	}
 	
 }	
-void CInput::RemoveEventListener( bool* input , void func(int) , int *pArgument  ){
+void suken::CInput::RemoveEventListener( bool* input , void func(int) , int *pArgument  ){
 
 	vector< CBoolean >::iterator it = boolTask.begin();
 
@@ -625,7 +625,7 @@ void CInput::RemoveEventListener( bool* input , void func(int) , int *pArgument 
 	}
 	
 }
-void CInput::RemoveEventListener( bool* input , void func(int) , int Argument  ){
+void suken::CInput::RemoveEventListener( bool* input , void func(int) , int Argument  ){
 
 	vector< CBoolean >::iterator it = boolTask.begin();
 
@@ -640,7 +640,7 @@ void CInput::RemoveEventListener( bool* input , void func(int) , int Argument  )
 	}
 	
 }
-void CInput::Loop(){
+void suken::CInput::Loop(){
 
 		
 	//KEY
@@ -921,7 +921,7 @@ void CInput::Loop(){
 	}
 
 }//end of void Loop()
-void CInput::DrawLoop(){
+void suken::CInput::DrawLoop(){
 	//KEY
 	if(useKey){
 

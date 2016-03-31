@@ -1,16 +1,19 @@
 #include"Physics.h"
+#include"System.h"
+#include"Utility.h"
 
 
-CTransform::CTransform(){
+
+suken::CTransform::CTransform(){
 	//prePosition = position = velocity = acceralate = VGet(0,0);
 	rotation = 0.0f;
 	gravity = GRAVITY;
 	airResistance = 0 ;
 }
-void CTransform::TransLate(suken::Vector2D _v){
+void suken::CTransform::TransLate(suken::Vector2D _v){
 	position += _v;
 }
-void CTransform::Loop(){
+void suken::CTransform::Loop(){
 		
 	//prePosition = position;
 		
@@ -30,43 +33,43 @@ void CTransform::Loop(){
 	}
 }
 
-CRect::CRect(){
+suken::CRect::CRect(){
 	direction=0.0f;
 	Set(1,1);
 }
-void CRect::Set(int sizeX,int sizeY){
+void suken::CRect::Set(int sizeX,int sizeY){
 	size = VGet((float)sizeX,(float)sizeY);
 	rad = atan2(size.y,size.x);
 	radius = ( size.GetLength() / 2.0f );
 }
-suken::Vector2D CRect::GetCenterPos(){
+suken::Vector2D suken::CRect::GetCenterPos(){
 	return center.position;						
 }
-suken::Vector2D CRect::GetSize(){			
+suken::Vector2D suken::CRect::GetSize(){			
 	return size;								
 }
-float CRect::GetArea(){			
+float suken::CRect::GetArea(){			
 	return ( size.x * size.y );					
 }
-suken::Vector2D CRect::GetRightTop(){				
+suken::Vector2D suken::CRect::GetRightTop(){				
 	return ( center.position + VScale(VGet((float)cos(direction+rad),(float)sin(direction+rad)),radius) );	
 }
-suken::Vector2D CRect::GetLeftTop(){				
+suken::Vector2D suken::CRect::GetLeftTop(){				
 	return ( center.position + VScale(VGet((float)cos(direction-rad),(float)sin(direction-rad)),radius) );	
 }
-suken::Vector2D CRect::GetLeftBottom(){		
+suken::Vector2D suken::CRect::GetLeftBottom(){		
 	return ( center.position + VScale(VGet((float)cos(direction-M_PI+rad),(float)sin(direction-M_PI+rad)),radius) );	
 }
-suken::Vector2D CRect::GetRightBottom(){			
+suken::Vector2D suken::CRect::GetRightBottom(){			
 	return ( center.position + VScale(VGet((float)cos(direction+M_PI-rad),(float)sin(direction+M_PI-rad)),radius) );	
 }
-void CRect::Draw(int color){
+void suken::CRect::Draw(int color){
 	DrawLine(GetLeftTop(),GetRightTop(),RED);
 	DrawLine(GetRightTop(),GetRightBottom(),BLUE);
 	DrawLine(GetRightBottom(),GetLeftBottom(),GREEN);
 	DrawLine(GetLeftBottom(),GetLeftTop(),WHITE);
 }
-void CRect::Loop(){
+void suken::CRect::Loop(){
 
 	center.Loop();
 #ifdef DEBUG_DRAW
@@ -74,13 +77,13 @@ void CRect::Loop(){
 		
 #endif
 }
-float CRect::GetRadius(){
+float suken::CRect::GetRadius(){
 	return radius;
 }
-void CRect::AddEventLisnerOnCollision(void (*pFunc)()){
+void suken::CRect::AddEventLisnerOnCollision(void (*pFunc)()){
 	onCollisionTaskVoid.push_back(pFunc);
 }
-void CRect::RemoveEventLisnerOnCollision(void (*pFunc)()){
+void suken::CRect::RemoveEventLisnerOnCollision(void (*pFunc)()){
 
 	if(!onCollisionTaskVoid.empty()){
 		vector<void(*)()>::iterator it = onCollisionTaskVoid.begin();
@@ -95,7 +98,7 @@ void CRect::RemoveEventLisnerOnCollision(void (*pFunc)()){
 		}
 	}	
 }
-void CRect::OnCollision(){
+void suken::CRect::OnCollision(){
 	if(!onCollisionTaskVoid.empty()){
 		vector<void(*)()>::iterator it=onCollisionTaskVoid.begin();
 
@@ -110,28 +113,28 @@ void CRect::OnCollision(){
 
 
 
-CCircle::CCircle(){
+suken::CCircle::CCircle(){
 	mass = 1.0f;
 	radius = 1.0f;
 	bound = 1.0f;
 	IsKinematic = false;
 }
-suken::Vector2D CCircle::GetCenterPos(){		
+suken::Vector2D suken::CCircle::GetCenterPos(){		
 	return center.position;					
 }
-float CCircle::GetArea(){			
+float suken::CCircle::GetArea(){			
 	return (float)( M_PI * radius * radius );		
 }
-void CCircle::Loop(){
+void suken::CCircle::Loop(){
 	center.Loop();
 #ifdef DEBUG_DRAW
 	DxLib::DrawCircle((int)(center.position.x +0.5), (int)(center.position.y+0.5) , (int)(radius+0.5) ,WHITE ,false );
 #endif
 }
-void CCircle::AddEventLisnerOnCollision(void (*pFunc)()){
+void suken::CCircle::AddEventLisnerOnCollision(void (*pFunc)()){
 	onCollisionTaskVoid.push_back(pFunc);
 }
-void CCircle::RemoveEventLisnerOnCollision(void (*pFunc)()){
+void suken::CCircle::RemoveEventLisnerOnCollision(void (*pFunc)()){
 
 	if(!onCollisionTaskVoid.empty()){
 		vector<void(*)()>::iterator it = onCollisionTaskVoid.begin();
@@ -145,7 +148,7 @@ void CCircle::RemoveEventLisnerOnCollision(void (*pFunc)()){
 		}
 	}	
 }
-void CCircle::OnCollisionFunc(){
+void suken::CCircle::OnCollisionFunc(){
 	if(!onCollisionTaskVoid.empty()){
 		vector<void(*)()>::iterator it=onCollisionTaskVoid.begin();
 
@@ -157,10 +160,10 @@ void CCircle::OnCollisionFunc(){
 
 	}
 }
-void CCircle::AddCollisionFalse(CCircle *c){
+void suken::CCircle::AddCollisionFalse(CCircle *c){
 	noCollision.push_back(c);
 }
-void CCircle::RemoveCollisionFalse(CCircle *c){
+void suken::CCircle::RemoveCollisionFalse(CCircle *c){
 	if(!noCollision.empty()){
 		vector<CCircle*>::iterator it = noCollision.begin();
 		while( ( it != noCollision.end() ) ){
@@ -174,7 +177,7 @@ void CCircle::RemoveCollisionFalse(CCircle *c){
 		}
 	}
 }
-bool CCircle::GetIsNoCollision(CCircle *c){
+bool suken::CCircle::GetIsNoCollision(CCircle *c){
 	if(!noCollision.empty()){
 		vector<CCircle*>::iterator it = noCollision.begin();
 		while( ( it != noCollision.end() ) ){
@@ -188,16 +191,16 @@ bool CCircle::GetIsNoCollision(CCircle *c){
 	}
 	return false;
 }
-CCollisionManager::CCollisionManager(){
+suken::CCollisionManager::CCollisionManager(){
 	
 }
-CCollisionManager::~CCollisionManager(){
+suken::CCollisionManager::~CCollisionManager(){
 	
 }
-void CCollisionManager::Awake(){
+void suken::CCollisionManager::Awake(){
 	
 }
-void CCollisionManager::Loop(){
+void suken::CCollisionManager::Loop(){
 		
 	for(unsigned int i=0;i<physicsCircle.size();i++){
 		physicsCircle[i]->onCollision = false;
@@ -252,10 +255,10 @@ void CCollisionManager::Loop(){
 	}*/
 		
 }
-void CCollisionManager::DrawLoop(){
+void suken::CCollisionManager::DrawLoop(){
 	
 }
-void CCollisionManager::CollisionCircleCalc(CCircle &A , CCircle &B ,float time){
+void suken::CCollisionManager::CollisionCircleCalc(CCircle &A , CCircle &B ,float time){
 		
 	float totalWeight = A.mass + B.mass;				//質量和
 	float reflectionRate = (1 + A.bound * B.bound );	// 反発率
@@ -275,7 +278,7 @@ void CCollisionManager::CollisionCircleCalc(CCircle &A , CCircle &B ,float time)
 	}
 
 }
-bool CCollisionManager::CollisionCircle(CCircle &A , CCircle &B){
+bool suken::CCollisionManager::CollisionCircle(CCircle &A , CCircle &B){
 	// 前位置及び到達位置におけるパーティクル間のベクトルを算出
 	suken::Vector2D C0 = B.center.prePosition - A.center.prePosition;
 	suken::Vector2D C1 = B.center.position - A.center.position;
@@ -334,7 +337,7 @@ bool CCollisionManager::CollisionCircle(CCircle &A , CCircle &B){
    return true; // 衝突報告
 
 }
-bool CCollisionManager::CollisionRect(CRect &A , CRect &B){
+bool suken::CCollisionManager::CollisionRect(CRect &A , CRect &B){
 	if(pow((A.GetRadius()+B.GetRadius()),2.0f) > GetSquareDistance(A.center.position,B.center.position)){
 	suken::Vector2D v[4]={VSub(A.GetRightTop(),A.GetLeftTop()),VSub(A.GetRightBottom(),A.GetRightTop()),VSub(A.GetLeftBottom(),A.GetRightBottom()),VSub(A.GetLeftTop(),A.GetLeftBottom())};
 	suken::Vector2D s[4]={A.GetLeftTop(),A.GetRightTop(),A.GetRightBottom(),A.GetLeftBottom()};
@@ -365,7 +368,7 @@ bool CCollisionManager::CollisionRect(CRect &A , CRect &B){
 	}
 	return false;
 }
-void CCollisionManager::AddChild(CCircle *_circle , bool moveFlag){
+void suken::CCollisionManager::AddChild(CCircle *_circle , bool moveFlag){
 	if(moveFlag){
 		physicsCircle.push_back(_circle);
 	}else{
@@ -373,7 +376,7 @@ void CCollisionManager::AddChild(CCircle *_circle , bool moveFlag){
 		_circle->mass = INF ;
 	}
 }
-bool CCollisionManager::RemoveChild(CCircle *_circle){
+bool suken::CCollisionManager::RemoveChild(CCircle *_circle){
 
 	vector<CCircle*>::iterator it_p = physicsCircle.begin();
 	for(unsigned int i=0;i<physicsCircle.size();i++){
@@ -395,14 +398,14 @@ bool CCollisionManager::RemoveChild(CCircle *_circle){
 
 	return false;
 }
-void CCollisionManager::AddChild(CRect *_rect , bool moveFlag){
+void suken::CCollisionManager::AddChild(CRect *_rect , bool moveFlag){
 	if(moveFlag){
 		physicsRect.push_back(_rect);
 	}else{
 		fixedRect.push_back(_rect);
 	}
 }
-bool CCollisionManager::RemoveChild(CRect *_rect){
+bool suken::CCollisionManager::RemoveChild(CRect *_rect){
 
 	vector<CRect*>::iterator it_p = physicsRect.begin();
 	for(unsigned int i=0;i<physicsRect.size();i++){

@@ -1,6 +1,7 @@
-#include"../Suken.h"
+#include"System.h"
 
-CSystem::CSystem(){
+
+suken::CSystem::CSystem(){
 	startTime = 0;
 	count = 0;
 	fps = 60.0;		//0除算を防ぐため
@@ -10,10 +11,10 @@ CSystem::CSystem(){
 	screenShotGrHandleAdress = NULL;
 	loadingImgPath[0] = NULL;
 }
-CSystem::~CSystem(){
+suken::CSystem::~CSystem(){
 	
 }
-void CSystem::Awake(){
+void suken::CSystem::Awake(){
 	//ゲームの超基本設定、普通何もいじらない
 	SetWindowIconID( 101 ) ;//アイコンのやつ
 	SetGraphMode( WINDOW_WIDTH ,  WINDOW_HEIGHT , 32 ) ;//SetWindowSize(WINDOW_WIDTH , WINDOW_HEIGHT );
@@ -46,28 +47,28 @@ void CSystem::Awake(){
 	localStandardTime = now;
 
 }
-int  CSystem::GetLocalStandardTime(){
+int  suken::CSystem::GetLocalStandardTime(){
 	return localStandardTime;
 }
-void CSystem::SetUseThread_Awake(bool flag){
+void suken::CSystem::SetUseThread_Awake(bool flag){
 	useThread_AwakeFlag = flag;
 }
-bool CSystem::GetUseThread_Awake(){
+bool suken::CSystem::GetUseThread_Awake(){
 	return useThread_AwakeFlag;
 }
-void CSystem::SetLoadingGraph(const char *path){
+void suken::CSystem::SetLoadingGraph(const char *path){
 	strcpy(loadingImgPath,path);
 }
-void CSystem::SetLoadingMinimalTime(int time){
+void suken::CSystem::SetLoadingMinimalTime(int time){
 	loadingMinimalTime = time;
 }
-void CSystem::Wait_Loading(){
+void suken::CSystem::Wait_Loading(){
 	int restTime = loadingMinimalTime - (GetNowCount()-localStandardTime);
 	if(restTime > 0){
 		WaitTimer(restTime);
 	}
 }
-void CSystem::Update(){
+void suken::CSystem::Update(){
 	//臨時
 	//N = (int)(GetFps()+0.5);
 	//
@@ -86,7 +87,7 @@ void CSystem::Update(){
 	count++;
 	frame++;
 }
-void CSystem::Wait(){
+void suken::CSystem::Wait(){
 		
 #ifdef DEBUG_DRAW
 	DrawFormatString(0, 5, WHITE, "%.1f", fps);
@@ -101,11 +102,11 @@ void CSystem::Wait(){
 		Sleep(0);	//余ったタイムスライスを破棄
 	}	
 }
-void CSystem::End(){
+void suken::CSystem::End(){
 	DxLib_End();	
 	ShellExecute(GetMainWindowHandle() , "open" , "Launcher.exe" , NULL , NULL , SW_SHOW);
 }
-void CSystem::TakeScreenShot(){
+void suken::CSystem::TakeScreenShot(){
 	if(screenShotFlag){
 		screenShotFlag = false;
 		if(screenShotGrHandleAdress != NULL){
@@ -114,36 +115,36 @@ void CSystem::TakeScreenShot(){
 		screenShotGrHandleAdress = NULL;
 	}
 }
-void CSystem::GetScreenShot(int *GrHandleAdress){
+void suken::CSystem::GetScreenShot(int *GrHandleAdress){
 	screenShotFlag = true;
 	screenShotGrHandleAdress = GrHandleAdress;
 }
-void CSystem::Escape(){
+void suken::CSystem::Escape(){
 	escapeFlag = true;
 }
-bool CSystem::GetEscapeFlag(){	
+bool suken::CSystem::GetEscapeFlag(){	
 	return escapeFlag;
 }
-int CSystem::GetFrame(){
+int suken::CSystem::GetFrame(){
 	return frame;
 }
-int CSystem::GetNow(){
+int suken::CSystem::GetNow(){
 	return now;
 }
-float CSystem::GetFps(){
+float suken::CSystem::GetFps(){
 	return fps;
 }
-int CSystem::GetRefreshRate(){
+int suken::CSystem::GetRefreshRate(){
 	return refreshRate;
 }
-void CSystem::SetTargetFps(float _fps){
+void suken::CSystem::SetTargetFps(float _fps){
 	targetFps = _fps;
 }
-float CSystem::GetTargetFps(){
+float suken::CSystem::GetTargetFps(){
 	return targetFps;
 }
 //新しいスレッドを作る。
-void CSystem::CreateNewThread( void(*pFunc)() ){
+void suken::CSystem::CreateNewThread( void(*pFunc)() ){
 	if(handleChild.empty()){				
 		DxLib::SetMultiThreadFlag( true );			//そのままではDxLibはDirectXの関係でマルチスレッドにできないので設定してやる必要がある
 	}
@@ -152,7 +153,7 @@ void CSystem::CreateNewThread( void(*pFunc)() ){
 
 	handleChild.push_back(handle);
 }
-HDC CSystem::GetDisplayDC(){
+HDC suken::CSystem::GetDisplayDC(){
 	return display;
 }
 #ifdef USE_LUA

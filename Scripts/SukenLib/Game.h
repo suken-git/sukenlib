@@ -2,6 +2,7 @@
 #include"Manager.h"
 #include"Scene.h"
 
+namespace suken{
 
 //ゲームシステム総括クラス
 class CGame{
@@ -23,3 +24,5 @@ private:
 	
 	
 };
+
+}

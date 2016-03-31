@@ -54,7 +54,7 @@ void suken::CScene::ButtonLoop(){
 				}
 			}else{
 					
-				DrawBox(it->x1,it->y1,it->x2,it->y2,it->backColor,TRUE);
+				DxLib::DrawBox(it->x1,it->y1,it->x2,it->y2,it->backColor,TRUE);
 				DrawCenterString((it->x1+it->x2)/2,(it->y1+it->y2)/2-10,it->stringColor,it->title);
 			}
 			it++;
@@ -74,7 +74,7 @@ void suken::CScene::ButtonLoop(){
 					DrawExtendGraph( *(it1->x1) , *(it1->y1) , *(it1->x2) , *(it1->y2) , (it1->graphHandle) , true );
 				}
 			}else{
-				DrawBox( *(it1->x1) , *(it1->y1) , *(it1->x2) , *(it1->y2) , it1->backColor , TRUE );
+				DxLib::DrawBox( *(it1->x1) , *(it1->y1) , *(it1->x2) , *(it1->y2) , it1->backColor , TRUE );
 				DrawCenterString( (*(it1->x1) + *(it1->x2) ) / 2 , ( *(it1->y1) + *(it1->y2) ) / 2 - 10 , it1->stringColor , it1->title );
 			}
 			it1++;
