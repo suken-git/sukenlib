@@ -85,13 +85,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Suken.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SukenLib\Entity.cpp" />
+    <ClCompile Include="SukenLib\Event.cpp" />
+    <ClCompile Include="SukenLib\Game.cpp" />
+    <ClCompile Include="SukenLib\Physics.cpp" />
+    <ClCompile Include="SukenLib\Scene.cpp" />
+    <ClCompile Include="SukenLib\Suken.cpp" />
+    <ClCompile Include="SukenLib\System.cpp" />
+    <ClCompile Include="SukenLib\Utility.cpp" />
+    <ClCompile Include="SukenLib\Vector2D.cpp" />
     <ClCompile Include="System.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Manager.h" />
     <ClInclude Include="Suken.h" />
+    <ClInclude Include="SukenLib\Debug.h" />
+    <ClInclude Include="SukenLib\Event.h" />
+    <ClInclude Include="SukenLib\Game.h" />
+    <ClInclude Include="SukenLib\Utility.h" />
+    <ClInclude Include="SukenLib\Manager.h" />
+    <ClInclude Include="SukenLib\Physics.h" />
+    <ClInclude Include="SukenLib\Scene.h" />
+    <ClInclude Include="SukenLib\System.h" />
+    <ClInclude Include="SukenLib\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="stage\stage.vcxproj">

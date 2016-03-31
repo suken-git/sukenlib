@@ -47,7 +47,10 @@ const float AIR_REGISTANCE= 30.0f;			//空気抵抗（減速のしやすさ）
 ///グローバル宣言
 
 /////Suken.h用
-void null();
+
+namespace suken{};
+
+
 const int DIALOG_MAX_CHAR = 100;
 const int MAX_CHAR = 100;
 
@@ -83,3 +86,5 @@ extern CEvent Event;
 
 class CMidi;
 extern CMidi MD;
+
+

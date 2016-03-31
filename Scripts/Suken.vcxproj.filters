@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル\SukenLib">
+      <UniqueIdentifier>{934455b5-5924-439d-ba40-a073ce716699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\SukenLib\ヘッダファイル">
+      <UniqueIdentifier>{b15c664c-08f0-45c8-96ab-81c52b3ee7c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\SukenLib\ソースファイル">
+      <UniqueIdentifier>{49aa2629-5d2d-4aac-80fb-4b463f86e6f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -21,16 +30,64 @@
     <ClCompile Include="System.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Suken.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="SukenLib\Suken.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\System.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Vector2D.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Physics.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Event.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Scene.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Utility.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Game.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Entity.cpp">
+      <Filter>ヘッダー ファイル\SukenLib\ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Suken.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="SukenLib\Manager.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\System.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Debug.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Vector2D.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Physics.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Event.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Scene.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Utility.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Game.h">
+      <Filter>ヘッダー ファイル\SukenLib\ヘッダファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

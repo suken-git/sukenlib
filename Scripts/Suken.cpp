@@ -1,20 +1,11 @@
-#include "Suken.h"
-#include "DxLib.h"
+#include "../Suken.h"
 #define _CRT_SECURE_NO_WARNINGS
-#include <cstring>
-#include <stdio.h>
-#include <stdlib.h>
-#include "windows.h"//execute—p
-#include <wininet.h>
-#pragma comment(lib, "wininet.lib")
+
 
 CSystem System;
 CGame game;
 CEvent Event;
 
-void null(){
-
-}
 
 bool SelectOpenFile(  char *filename , char *filetype)
 {
