@@ -1,9 +1,0 @@
-[2016/03/11 17:33:49 779]:PRINT: Error->CMenu::Clear
-->c:\users\yoshimoto\documents\git\sukenlib\scripts\main.cpp(16)
-
-[2016/03/11 17:33:53 935]:PRINT: Error->CMenu::Clear
-->c:\users\yoshimoto\documents\git\sukenlib\scripts\main.cpp(16)
-
-[2016/03/11 17:34:13 106]:PRINT: Error->CMenu::Clear
-->c:\users\yoshimoto\documents\git\sukenlib\scripts\main.cpp(16)
-
