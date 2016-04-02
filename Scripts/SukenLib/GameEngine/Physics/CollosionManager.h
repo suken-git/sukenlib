@@ -1,7 +1,5 @@
 #pragma once
-//for CCircle
 #include"Primitive\Circle.h"
-//for CRect
 #include"Primitive\Rect.h"
 
 ///////////////////////////////////////////////////////////////////////
@@ -15,7 +13,7 @@
 ///////////////////////////////////////////////////////////////////////
 
 namespace suken{
-
+const int INF		= 10000000;
 class CCollisionManager{
 public:
 	CCollisionManager();
@@ -30,10 +28,10 @@ public:
 	bool RemoveChild(CCircle *_circle);
 	void AddChild(suken::CRect *_rect , bool moveFlag);
 	bool RemoveChild(suken::CRect *_rect);
-	vector<CCircle*> physicsCircle;
-	vector<CCircle*> fixedCircle;
-	vector<CRect*> fixedRect;
-	vector<CRect*> physicsRect;
+	std::vector<CCircle*> physicsCircle;
+	std::vector<CCircle*> fixedCircle;
+	std::vector<CRect*> fixedRect;
+	std::vector<CRect*> physicsRect;
 };
 
 

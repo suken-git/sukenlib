@@ -2,7 +2,6 @@
 
 
 
-
 bool SelectOpenFile(  char *filename , char *filetype)
 {
     OPENFILENAME ofn;
@@ -85,34 +84,6 @@ void GetHttpFile(char *&Buf, char *Http,DWORD ReadSize){
 
 */
 
-CMidi::CMidi(){
-	//Midiを開く
-	midiOutOpen(&hMidiOut, MIDI_MAPPER, 0, 0, 0);
-}
-CMidi::~CMidi(){
-	//Midiを閉じる
-	midiOutReset(hMidiOut);                 //全チャンネルをノートオフ											
-	midiOutClose(hMidiOut);                 // MIDI出力デバイスを閉じる
-}
-//この関数を呼び出すと鳴らすことが出来る
-//BYTE は整数で0~127を受け付けると考えるといい。
-//_Heightは音の高さ(0~127)
-//_Velocityは音の強さ(0~127)
-//_channel は鳴らすチャンネル、複数の楽器パートを使いたいときに使う
-void CMidi::Lang(BYTE _Height, BYTE _Velocity, BYTE _channnel = 0x0){
-	if (_Height < 0)_Height = 0; if (_Height > 0x7f)_Height = 0x7f;
-	if (_Velocity < 0)_Velocity = 0; if (_Velocity > 0x7f)_Velocity = 0x7f;
-	midiOutShortMsg(hMidiOut, MIDIMSG(0x9, _channnel, _Height, _Velocity)); //0x3c(C3ド) 0x3D(ド#)
-}
-//その高さの音の再生を止める
-void CMidi::Stop(BYTE _Height, BYTE _channnel = 0x0){
-	midiOutShortMsg(hMidiOut, MIDIMSG(0x9, _channnel, _Height, 0));
-}
-//楽器を変える
-void CMidi::ChangeTimble(BYTE _Timble, BYTE _channnel = 0x0){
-	if (_Timble < 0)_Timble = 0; if (_Timble > 0x7f)_Timble = 0x7f;
-	midiOutShortMsg(hMidiOut, MIDIMSG(0xc, _channnel, _Timble, 0));
-}
 
 
 /// FROM NUNULIB
@@ -206,49 +177,5 @@ unsigned int fanctorial(unsigned int num){
 //組み合わせ（nとrはそれぞれ「nCr」のnとr）
 unsigned int combination(unsigned int n , unsigned int r){
 	return ( fanctorial( n ) / ( fanctorial( n-r ) * fanctorial( r ) ) );
-}
-
-//ベジェ曲線
-
-//ベジェ曲線頂点データの作成
-////ベジェ曲線の計算をマイフレームするのは無駄なので計算済みのデータを作成する
-//引数
-// In　　　　: 制御点（Vector2D型）を指定する（2つ以上）
-// vertexNum : 作成するデータの細かさを指定（ベジェ曲線の構成頂点の数）
-BEZIER GetBezier(vector<suken::Vector2D> &In , unsigned int vertexNum ){
-	
-	const int N = In.size();
-	BEZIER vertexes;
-	vertexes.push_back(In[0]);
-	float t = 0.0f;
-
-	for(unsigned int j = 0; j < vertexNum; j++){
-
-		 t += ( 1.0f / (float)vertexNum ) ;
-
-		suken::Vector2D vertex ;
-		
-		for( int i = 0; i < N; i++ ){
-			
-			float temp = (float)( combination( N-1 , i ) * pow( 1-t , N-i-1  ) * pow( t , i ) );
-
-			vertex += In[i] * temp;
-
-		}
-
-		vertexes.push_back(vertex);
-	}
-	
-	return vertexes;
-}
-//ベジェ曲線の描画（ GetBezier関数で作成したデータが必要　）
-////GetBezier関数で作成したデータを用いてベジェ曲線を描画する
-//引数
-// data  : GetBezier関数で作成したベジェ曲線データ
-// color : 描画色を指定
-void DrawBezier( BEZIER &data ,  int color ){
-	for(unsigned int i = 0; i < data.size() - 1; i++){
-		DrawLine( (int)data[ i ].x ,(int)data[ i ].y , (int)data[ i+1 ].x , (int)data[ i+1 ].y , color );
-	}
 }
 

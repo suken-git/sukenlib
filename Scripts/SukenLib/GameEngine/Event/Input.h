@@ -1,9 +1,10 @@
 #pragma once
-//for CMouseIn,CpMouseIn,CKeyIn,CFrame,CBoolean
 #include"EventData.h"
+#include <vector>
 
 namespace suken{
-//入力イベント管理クラス
+
+	//入力イベント管理クラス
 class CInput{
 public:
 	CInput();
@@ -45,25 +46,25 @@ public:
 	int mouseX,mouseY;
 private:
 	CKeyIn keyTemp;
-	vector<CKeyIn> keyTask;
+	std::vector<CKeyIn> keyTask;
 
 	CMouseIn mouseTemp;
-	vector<CMouseIn> mouseTask;
+	std::vector<CMouseIn> mouseTask;
 
 	CpMouseIn pMouseTemp;
-	vector<CpMouseIn> pMouseTask;
+	std::vector<CpMouseIn> pMouseTask;
 
 	CFrame frameTemp;
-	vector<CFrame> frameTask;
+	std::vector<CFrame> frameTask;
 
 	CBoolean boolTemp;
-	vector<CBoolean> boolTask;
+	std::vector<CBoolean> boolTask;
 
-	vector<CKeyIn> keyTask_Draw;
-	vector<CMouseIn> mouseTask_Draw;
-	vector<CpMouseIn> pMouseTask_Draw;
-	vector<CFrame> frameTask_Draw;
-	vector<CBoolean> boolTask_Draw;
+	std::vector<CKeyIn> keyTask_Draw;
+	std::vector<CMouseIn> mouseTask_Draw;
+	std::vector<CpMouseIn> pMouseTask_Draw;
+	std::vector<CFrame> frameTask_Draw;
+	std::vector<CBoolean> boolTask_Draw;
 
 	bool mouseInput,preMouseInput;
 };

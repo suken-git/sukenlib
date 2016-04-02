@@ -1,6 +1,8 @@
+#include "DxLib.h"
 #include"Input.h"
-//for Event
 #include"Event.h"
+
+extern suken::CEvent Event;
 
 suken::CInput::CInput(){
 	useMouse = true;
@@ -31,7 +33,7 @@ void suken::CInput::AddEventListener( int inputCode , void func(int) , int Argum
 }
 void suken::CInput::RemoveEventListener( int inputCode , void func()  ){
 
-	vector< CKeyIn >::iterator it = keyTask.begin();
+	std::vector< CKeyIn >::iterator it = keyTask.begin();
 
 	while( ( it != keyTask.end() ) ){
 
@@ -46,7 +48,7 @@ void suken::CInput::RemoveEventListener( int inputCode , void func()  ){
 }
 void suken::CInput::RemoveEventListener( int inputCode , void func(int) , int *pArgument  ){
 
-	vector< CKeyIn >::iterator it = keyTask.begin();
+	std::vector< CKeyIn >::iterator it = keyTask.begin();
 
 	while( ( it != keyTask.end() ) ){
 
@@ -61,7 +63,7 @@ void suken::CInput::RemoveEventListener( int inputCode , void func(int) , int *p
 }
 void suken::CInput::RemoveEventListener( int inputCode , void func(int) , int Argument  ){
 
-	vector< CKeyIn >::iterator it = keyTask.begin();
+	std::vector< CKeyIn >::iterator it = keyTask.begin();
 
 	while( ( it != keyTask.end() ) ){
 
@@ -99,7 +101,7 @@ void suken::CInput::AddEventListener( CMouseIn input , void func(int) , int Argu
 }
 void suken::CInput::RemoveEventListener( CMouseIn input , void func()  ){
 
-	vector< CMouseIn >::iterator it = mouseTask.begin();
+	std::vector< CMouseIn >::iterator it = mouseTask.begin();
 
 	while( ( it != mouseTask.end() ) ){
 
@@ -114,7 +116,7 @@ void suken::CInput::RemoveEventListener( CMouseIn input , void func()  ){
 }
 void suken::CInput::RemoveEventListener( CMouseIn input , void func(int) , int *pArgument  ){
 
-	vector< CMouseIn >::iterator it = mouseTask.begin();
+	std::vector< CMouseIn >::iterator it = mouseTask.begin();
 
 	while( ( it != mouseTask.end() ) ){
 
@@ -129,7 +131,7 @@ void suken::CInput::RemoveEventListener( CMouseIn input , void func(int) , int *
 }
 void suken::CInput::RemoveEventListener( CMouseIn input , void func(int) , int Argument  ){
 
-	vector< CMouseIn >::iterator it = mouseTask.begin();
+	std::vector< CMouseIn >::iterator it = mouseTask.begin();
 
 	while( ( it != mouseTask.end() ) ){
 
@@ -167,7 +169,7 @@ void suken::CInput::AddEventListener( CpMouseIn input , void func(int) , int Arg
 }
 void suken::CInput::RemoveEventListener( CpMouseIn input , void func()  ){
 
-	vector< CpMouseIn >::iterator it = pMouseTask.begin();
+	std::vector< CpMouseIn >::iterator it = pMouseTask.begin();
 
 	while( ( it != pMouseTask.end() ) ){
 
@@ -181,7 +183,7 @@ void suken::CInput::RemoveEventListener( CpMouseIn input , void func()  ){
 }
 void suken::CInput::RemoveEventListener( CpMouseIn input , void func(int) , int *pArgument  ){
 
-	vector< CpMouseIn >::iterator it = pMouseTask.begin();
+	std::vector< CpMouseIn >::iterator it = pMouseTask.begin();
 
 	while( ( it != pMouseTask.end() ) ){
 
@@ -195,7 +197,7 @@ void suken::CInput::RemoveEventListener( CpMouseIn input , void func(int) , int 
 }
 void suken::CInput::RemoveEventListener( CpMouseIn input , void func(int) , int Argument  ){
 
-	vector< CpMouseIn >::iterator it = pMouseTask.begin();
+	std::vector< CpMouseIn >::iterator it = pMouseTask.begin();
 
 	while( ( it != pMouseTask.end() ) ){
 
@@ -226,7 +228,7 @@ void suken::CInput::AddEventListener( char input , void func(int) , int Argument
 }
 void suken::CInput::RemoveEventListener( char input , void func()  ){
 
-	vector< CFrame >::iterator it = frameTask.begin();
+	std::vector< CFrame >::iterator it = frameTask.begin();
 
 	while( ( it != frameTask.end() ) ){
 
@@ -241,7 +243,7 @@ void suken::CInput::RemoveEventListener( char input , void func()  ){
 }
 void suken::CInput::RemoveEventListener( char input , void func(int) , int *pArgument  ){
 
-	vector< CFrame >::iterator it = frameTask.begin();
+	std::vector< CFrame >::iterator it = frameTask.begin();
 
 	while( ( it != frameTask.end() ) ){
 
@@ -256,7 +258,7 @@ void suken::CInput::RemoveEventListener( char input , void func(int) , int *pArg
 }
 void suken::CInput::RemoveEventListener( char input , void func(int) , int Argument  ){
 
-	vector< CFrame >::iterator it = frameTask.begin();
+	std::vector< CFrame >::iterator it = frameTask.begin();
 
 	while( ( it != frameTask.end() ) ){
 
@@ -291,7 +293,7 @@ void suken::CInput::AddEventListener( bool* input , void func(int) , int Argumen
 }
 void suken::CInput::RemoveEventListener( bool* input , void func()  ){
 
-	vector< CBoolean >::iterator it = boolTask.begin();
+	std::vector< CBoolean >::iterator it = boolTask.begin();
 
 	while( ( it != boolTask.end() ) ){
 
@@ -306,7 +308,7 @@ void suken::CInput::RemoveEventListener( bool* input , void func()  ){
 }	
 void suken::CInput::RemoveEventListener( bool* input , void func(int) , int *pArgument  ){
 
-	vector< CBoolean >::iterator it = boolTask.begin();
+	std::vector< CBoolean >::iterator it = boolTask.begin();
 
 	while( ( it != boolTask.end() ) ){
 
@@ -321,7 +323,7 @@ void suken::CInput::RemoveEventListener( bool* input , void func(int) , int *pAr
 }
 void suken::CInput::RemoveEventListener( bool* input , void func(int) , int Argument  ){
 
-	vector< CBoolean >::iterator it = boolTask.begin();
+	std::vector< CBoolean >::iterator it = boolTask.begin();
 
 	while( ( it != boolTask.end() ) ){
 
@@ -341,7 +343,7 @@ void suken::CInput::Loop(){
 	if(useKey){
 
 
-		vector<CKeyIn>::iterator it=keyTask.begin();
+		std::vector<CKeyIn>::iterator it=keyTask.begin();
 
 		while( it != keyTask.end() ) {
 			if(Event.key.GetPush(it->keyCode)){
@@ -368,7 +370,7 @@ void suken::CInput::Loop(){
 		preMouseInput = mouseInput;
 		mouseInput = (bool)( GetMouseInput() & MOUSE_INPUT_LEFT );
 
-		vector<CMouseIn>::iterator it1=mouseTask.begin();
+		std::vector<CMouseIn>::iterator it1=mouseTask.begin();
 
 		while( it1 != mouseTask.end() ) {
 
@@ -471,7 +473,7 @@ void suken::CInput::Loop(){
 			it1++;
 		}
 
-		vector<CpMouseIn>::iterator it11 =pMouseTask.begin();
+		std::vector<CpMouseIn>::iterator it11 =pMouseTask.begin();
 
 			while( it11 != pMouseTask.end() ) {
 
@@ -574,7 +576,7 @@ void suken::CInput::Loop(){
 		}
 
 
-	vector<CFrame>::iterator it2 = frameTask.begin();
+	std::vector<CFrame>::iterator it2 = frameTask.begin();
 
 	while( it2 != frameTask.end() ) {
 		CFrame temp=*it2;
@@ -591,7 +593,7 @@ void suken::CInput::Loop(){
 		it2++;
 	}
 
-	vector<CBoolean>::iterator it3=boolTask.begin();
+	std::vector<CBoolean>::iterator it3=boolTask.begin();
 
 	while( it3 != boolTask.end() ) {
 			
@@ -619,7 +621,7 @@ void suken::CInput::DrawLoop(){
 	//KEY
 	if(useKey){
 
-		vector<CKeyIn>::iterator it=keyTask_Draw.begin();
+		std::vector<CKeyIn>::iterator it=keyTask_Draw.begin();
 
 		while( it != keyTask_Draw.end() ) {
 			if(CheckHitKey(it->keyCode)){
@@ -638,7 +640,7 @@ void suken::CInput::DrawLoop(){
 	//MOUSE
 	if(useMouse){
 
-		vector<CMouseIn>::iterator it1=mouseTask_Draw.begin();
+		std::vector<CMouseIn>::iterator it1=mouseTask_Draw.begin();
 
 		while( it1 != mouseTask_Draw.end() ) {
 
@@ -718,7 +720,7 @@ void suken::CInput::DrawLoop(){
 			it1++;
 		}
 
-		vector<CpMouseIn>::iterator it11 =pMouseTask_Draw.begin();
+		std::vector<CpMouseIn>::iterator it11 =pMouseTask_Draw.begin();
 
 		while( it11 != pMouseTask_Draw.end() ) {
 
@@ -799,7 +801,7 @@ void suken::CInput::DrawLoop(){
 		}
 	}
 	//ÉãÅ[Év
-	vector<CFrame>::iterator it2=frameTask_Draw.begin();
+	std::vector<CFrame>::iterator it2=frameTask_Draw.begin();
 
 	while( it2 != frameTask_Draw.end() ) {
 		CFrame temp=*it2;
@@ -812,7 +814,7 @@ void suken::CInput::DrawLoop(){
 	}
 		
 	//bool
-	vector<CBoolean>::iterator it3=boolTask_Draw.begin();
+	std::vector<CBoolean>::iterator it3=boolTask_Draw.begin();
 
 	while( it3 != boolTask_Draw.end() ) {
 		CBoolean temp=*it3;

@@ -9,7 +9,7 @@ void suken::CPrimitive::AddEventLisnerOnCollision(void (*pFunc)()){
 }
 void suken::CPrimitive::RemoveEventLisnerOnCollision(void (*pFunc)()){
 	if(!onCollisionTaskVoid.empty()){
-		vector<void(*)()>::iterator it = onCollisionTaskVoid.begin();
+		std::vector<void(*)()>::iterator it = onCollisionTaskVoid.begin();
 		while( ( it != onCollisionTaskVoid.end() ) ){
 
 			if( *it ==  pFunc  ){
@@ -22,7 +22,7 @@ void suken::CPrimitive::RemoveEventLisnerOnCollision(void (*pFunc)()){
 }
 void suken::CPrimitive::OnCollisionFunc(){
 	if(!onCollisionTaskVoid.empty()){
-		vector<void(*)()>::iterator it=onCollisionTaskVoid.begin();
+		std::vector<void(*)()>::iterator it=onCollisionTaskVoid.begin();
 
 		while( it != onCollisionTaskVoid.end() ) {
 

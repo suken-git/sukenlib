@@ -1,12 +1,5 @@
 #pragma once
-//for CTransform
-#include"../Transform.h"
-//for Vector2D
-#include"../Vector2D.h"
-//for std::vector 
-#include"Manager.h"
-//for CPrimitive
-#include"Primitive.h"
+#include "Primitive.h"
 
 namespace suken{
 

@@ -1,6 +1,6 @@
 #include"CollosionManager.h"
-//for COLOR
-#include"../../Utility/Utility.h"
+#include <Utility/Utility.h>
+using namespace suken;
 
 suken::CCollisionManager::CCollisionManager(){
 	
@@ -189,7 +189,7 @@ void suken::CCollisionManager::AddChild(CCircle *_circle , bool moveFlag){
 }
 bool suken::CCollisionManager::RemoveChild(CCircle *_circle){
 
-	vector<CCircle*>::iterator it_p = physicsCircle.begin();
+	std::vector<CCircle*>::iterator it_p = physicsCircle.begin();
 	for(unsigned int i=0;i<physicsCircle.size();i++){
 		if( physicsCircle[i] == _circle ){
 			physicsCircle.erase(it_p);
@@ -198,7 +198,7 @@ bool suken::CCollisionManager::RemoveChild(CCircle *_circle){
 		it_p++;
 	}
 
-	vector<CCircle*>::iterator it_f = fixedCircle.begin();
+	std::vector<CCircle*>::iterator it_f = fixedCircle.begin();
 	for(unsigned int i=0;i<fixedCircle.size();i++){
 		if( fixedCircle[i] == _circle ){
 			fixedCircle.erase(it_f);
@@ -218,7 +218,7 @@ void suken::CCollisionManager::AddChild(CRect *_rect , bool moveFlag){
 }
 bool suken::CCollisionManager::RemoveChild(CRect *_rect){
 
-	vector<CRect*>::iterator it_p = physicsRect.begin();
+	std::vector<CRect*>::iterator it_p = physicsRect.begin();
 	for(unsigned int i=0;i<physicsRect.size();i++){
 		if( physicsRect[i] == _rect ){
 			physicsRect.erase(it_p);
@@ -227,7 +227,7 @@ bool suken::CCollisionManager::RemoveChild(CRect *_rect){
 		it_p++;
 	}
 
-	vector<CRect*>::iterator it_f = fixedRect.begin();
+	std::vector<CRect*>::iterator it_f = fixedRect.begin();
 	for(unsigned int i=0;i<fixedRect.size();i++){
 		if( fixedRect[i] == _rect ){
 			fixedRect.erase(it_f);

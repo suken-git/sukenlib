@@ -1,8 +1,12 @@
 #pragma once
-//for CMouseIn,CpMouseIn
 #include"EventData.h"
 
 namespace suken{
+const int MOUSE_OFF		=	10;
+const int MOUSE_ON		=	11;
+const int MOUSE_PUSH	=	12;
+const int MOUSE_CLICK	=	13;
+const int MOUSE_RELEASE =	14;
 
 
 //マウス定義クラス

@@ -1,6 +1,6 @@
 #pragma once
-#include"Manager.h"
-#include"Utility.h"
+#include "DxLib.h"
+#include "Utility.h"
 
 namespace suken{
 

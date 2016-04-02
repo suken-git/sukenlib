@@ -1,7 +1,7 @@
 #pragma once
-//for std::vector
-#include"Manager.h"
-//#include"Utility.h"
+#include <vector>
+#include "DxLib.h"
+#include <Manager.h>
 
 namespace suken{
 
@@ -46,7 +46,7 @@ private:
 	float targetFps;
 	int now;
 	int refreshRate;
-	vector<HANDLE> handleChild;
+	std::vector<HANDLE> handleChild;
 	bool escapeFlag;
 	int screenShot;
 	bool screenShotFlag;
@@ -59,9 +59,6 @@ private:
 	lua_State *Lua;
 #endif
 };
-
-
-
 }
 
 extern suken::CSystem System;

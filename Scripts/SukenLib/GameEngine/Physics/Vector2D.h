@@ -1,7 +1,6 @@
 #pragma once
-#include"../../Manager.h"
-
-
+#include <vector>
+#include "DxLib.h"
 
 namespace suken{
 
@@ -134,6 +133,20 @@ _inline int DrawPixel(suken::Vector2D &v,int color){
 }
 
 
+
+typedef std::vector<suken::Vector2D> BEZIER ;
+//ベジェ曲線の描画（ GetBezier関数で作成したデータが必要　）
+////GetBezier関数で作成したデータを用いてベジェ曲線を描画する
+//引数
+// data  : GetBezier関数で作成したベジェ曲線データ
+// color : 描画色を指定
+void DrawBezier( BEZIER &data ,  int color );
+	//ベジェ曲線頂点データの作成
+////ベジェ曲線の計算をマイフレームするのは無駄なので計算済みのデータを作成する
+//引数
+// In　　　　: 制御点（suken::Vector2D型）を指定する（2つ以上）
+// vertexNum : 作成するデータの細かさを指定（ベジェ曲線の構成頂点の数）
+BEZIER GetBezier(std::vector<suken::Vector2D> &In , unsigned int vertexNum );
+
 }//namespace suken end
 
-using namespace suken;

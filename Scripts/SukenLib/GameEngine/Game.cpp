@@ -1,4 +1,5 @@
 #include"Game.h"
+extern suken::CEvent Event;
 
 
 
@@ -29,7 +30,7 @@ void suken::CGame::AddChild(CScene* _scene){
 }
 void suken::CGame::RemoveChild(CScene* _scene){
 	_scene->SetFocus(false);
-	vector<CScene*>::iterator it=sceneChild.begin();
+	std::vector<CScene*>::iterator it=sceneChild.begin();
 
 	while( it != sceneChild.end() ) {
 		if(*it==_scene){

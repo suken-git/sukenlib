@@ -1,6 +1,5 @@
 #pragma once
 #include"Primitive.h"
-#include"../Transform.h"
 
 
 namespace suken{
@@ -21,7 +20,7 @@ public:
 	void RemoveCollisionFalse(CCircle *c);
 	bool GetIsNoCollision(CCircle *c);
 private:
-	vector<CCircle*> noCollision;
+	std::vector<CCircle*> noCollision;
 };
 
 }

@@ -1,10 +1,9 @@
 #pragma once
-//for CKey
 #include"Key.h"
-//for CMouse
 #include"Mouse.h"
 
 namespace suken{
+const char FRAME_EVENT	=	'E';
 
 
 //入力イベント定義クラス
@@ -24,5 +23,3 @@ private:
 };
 
 }
-
-extern suken::CEvent Event;

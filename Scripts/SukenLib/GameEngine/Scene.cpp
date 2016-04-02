@@ -1,6 +1,7 @@
 #include"Scene.h"
-#include"../Utility/Debug.h"
+#include <Utility/Debug.h>
 
+extern suken::CEvent Event;
 
 //Ã“Iƒƒ“ƒo•Ï”
 unsigned int suken::CScene::sceneNum;
@@ -39,7 +40,7 @@ void suken::CScene::Loop(){
 void suken::CScene::ButtonLoop(){
 		
 
-	vector<CButton>::iterator it = buttonChild.begin();
+	std::vector<CButton>::iterator it = buttonChild.begin();
 	if( buttonChild.size() != 0 ){
 		while( it != buttonChild.end() ) {
 			if(it->IsUseGraph){
@@ -60,7 +61,7 @@ void suken::CScene::ButtonLoop(){
 			it++;
 		}
 	}
-	vector<CpButton>::iterator it1 = pButtonChild.begin();
+	std::vector<CpButton>::iterator it1 = pButtonChild.begin();
 	if( pButtonChild.size() != 0 ){
 		while( it1 != pButtonChild.end() ) {
 			if(it1->IsUseGraph){

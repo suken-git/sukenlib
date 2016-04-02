@@ -1,16 +1,10 @@
 #pragma once
-//for KEY_INPUT_~
-#include"Manager.h"
-
+#include "DxLib.h"
 namespace suken{
 
 class CKey{
 public:
-	CKey(){
-
-      
-
-	}
+	CKey(){}
 
 	static const int BACK = KEY_INPUT_BACK	;
     static const int TAB = KEY_INPUT_TAB	;

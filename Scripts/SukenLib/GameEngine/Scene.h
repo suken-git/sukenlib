@@ -1,14 +1,8 @@
 #pragma once
-//for std::vector
-#include"Manager.h"
-//for CCollisionManager
-#include"Physics\CollosionManager.h"
-//for CInput
-#include"Event\Input.h"
-//for CEvent
-#include"Event\Event.h"
-
-
+#include <vector>
+#include "Physics\CollosionManager.h"
+#include "Event\Input.h"
+#include "Event\Event.h"
 
 namespace suken{
 
@@ -53,8 +47,8 @@ public:
 	void ButtonLoop();
 	suken::CCollisionManager collision;
 	CInput input;
-	vector<CButton> buttonChild;
-	vector<CpButton> pButtonChild;
+	std::vector<CButton> buttonChild;
+	std::vector<CpButton> pButtonChild;
 	CScene *sceneChild;
 	
 	void SetFocus(bool _focus);

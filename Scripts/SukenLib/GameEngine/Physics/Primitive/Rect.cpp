@@ -1,6 +1,7 @@
 #include"Rect.h"
-#include"../../../Utility/Utility.h"
-
+#include <Utility\Utility.h>
+#define _USE_MATH_DEFINES
+#include "math.h"
 
 suken::CRect::CRect(){
 	direction=0.0f;
@@ -29,7 +30,7 @@ suken::Vector2D suken::CRect::GetLeftTop(){
 suken::Vector2D suken::CRect::GetLeftBottom(){		
 	return ( center.position + VScale(VGet((float)cos(direction-M_PI+rad),(float)sin(direction-M_PI+rad)),radius) );	
 }
-suken::Vector2D suken::CRect::GetRightBottom(){			
+suken::Vector2D suken::CRect::GetRightBottom(){				
 	return ( center.position + VScale(VGet((float)cos(direction+M_PI-rad),(float)sin(direction+M_PI-rad)),radius) );	
 }
 void suken::CRect::Draw(int color){

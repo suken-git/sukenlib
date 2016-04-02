@@ -26,6 +26,9 @@
     <Filter Include="SukenLib\System">
       <UniqueIdentifier>{3379862b-317f-41a6-8a30-1a25f03d83e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SukenLib\Windows">
+      <UniqueIdentifier>{feaaf5be-fcee-42ba-a7ce-2045c2af79a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SukenLib\GameEngine\Physics\Vector2D.cpp">
@@ -75,6 +78,9 @@
     <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Primitive.cpp">
       <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
     </ClCompile>
+    <ClCompile Include="Midi.cpp">
+      <Filter>SukenLib\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h">
@@ -98,9 +104,6 @@
     </ClInclude>
     <ClInclude Include="SukenLib\Manager.h">
       <Filter>SukenLib</Filter>
-    </ClInclude>
-    <ClInclude Include="SukenLib\GameEngine\Physics\Rect.h">
-      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\GameEngine\Physics\CollosionManager.h">
       <Filter>SukenLib\GameEngine\Physics</Filter>
@@ -131,6 +134,12 @@
     </ClInclude>
     <ClInclude Include="SukenLib\Utility\Data.h">
       <Filter>SukenLib\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Midi.h">
+      <Filter>SukenLib\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Rect.h">
+      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

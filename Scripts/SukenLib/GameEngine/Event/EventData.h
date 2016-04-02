@@ -1,6 +1,4 @@
 #pragma once
-//for NULL
-#include"Manager.h"
 
 namespace suken{
 
@@ -9,9 +7,9 @@ namespace suken{
 class CKeyIn{
 public:
 	CKeyIn(){
-		pFuncVoid = NULL;
-		pFuncInt = NULL;
-		pInt = NULL;
+		pFuncVoid = nullptr;
+		pFuncInt = nullptr;
+		pInt = nullptr;
 	}
 	int keyCode;
 	void (*pFuncVoid)();
@@ -22,9 +20,9 @@ public:
 class CMouseIn{
 public:
 	CMouseIn(){
-		pFuncVoid = NULL;
-		pFuncInt = NULL;
-		pInt = NULL;
+		pFuncVoid = nullptr;
+		pFuncInt = nullptr;
+		pInt = nullptr;
 	}
 	int x1,x2,y1,y2;
 	void (*pFuncVoid)();
@@ -37,9 +35,9 @@ public:
 class CpMouseIn{
 public:
 	CpMouseIn(){
-		pFuncVoid = NULL;
-		pFuncInt = NULL;
-		pInt = NULL;
+		pFuncVoid = nullptr;
+		pFuncInt = nullptr;
+		pInt = nullptr;
 	}
 	int *x1,*x2,*y1,*y2;
 	void (*pFuncVoid)();
@@ -72,9 +70,9 @@ public:
 class CFrame{
 public:
 	CFrame(){
-		pFuncVoid = NULL;
-		pFuncInt = NULL;
-		pInt = NULL;
+		pFuncVoid = nullptr;
+		pFuncInt = nullptr;
+		pInt = nullptr;
 	}
 	void (*pFuncVoid)();
 	void (*pFuncInt)(int);
@@ -84,9 +82,9 @@ public:
 class CBoolean{
 public:
 	CBoolean(){
-		pFuncVoid = NULL;
-		pFuncInt = NULL;
-		pInt = NULL;
+		pFuncVoid = nullptr;
+		pFuncInt = nullptr;
+		pInt = nullptr;
 	}
 	void (*pFuncVoid)();
 	void (*pFuncInt)(int);

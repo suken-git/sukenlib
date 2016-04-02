@@ -1,8 +1,7 @@
 #include"Key.h"
-//for WarningSK
-
-#include"../../Utility/Debug.h"
-#include"../Event/Event.h"
+#include "Event.h"
+#include <Utility\Debug.h>
+extern suken::CEvent Event;
 
 
 void suken::CKey::Loop(){
@@ -23,13 +22,9 @@ void suken::CKey::Loop(){
 }
 bool suken::CKey::GetPush(int keyCode){
 	 //キーコードチェック
-		if( keyCode < 256 && keyCode >= 0 ){
+	if( keyCode < 256 && keyCode >= 0 ){
 		if( count[keyCode] < 1.0f ){
-			if(Event.GetValid()){
-				return true;
-			}else{
-				return false;
-			}
+			return Event.GetValid(); 
 		}else{
 			return false;
 		}
@@ -42,11 +37,7 @@ bool suken::CKey::GetPush(int keyCode){
 	 //キーコードチェック
 	 if( keyCode < 256 && keyCode >= 0 ){
 		if( count[keyCode] == 0.0f ){
-			if(Event.GetValid()){
-				return true;
-			}else{
-				return false;
-			}
+			return Event.GetValid(); 
 		}else{
 			return false;
 		}
@@ -59,11 +50,7 @@ bool suken::CKey::GetPush(int keyCode){
 	//キーコードチェック
 	if( keyCode < 256 && keyCode >= 0 ){
 		if( count[keyCode] == 1.5f ){
-			if(Event.GetValid()){
-				return true;
-			}else{
-				return false;
-			}
+			return Event.GetValid(); 
 		}else{
 			return false;			
 		}

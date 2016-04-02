@@ -1,7 +1,7 @@
 #include"Circle.h"
-//for COLOR
-#include"../../../Utility/Utility.h"
-
+#include <Utility/Utility.h>
+#define _USE_MATH_DEFINES
+#include "math.h"
 
 suken::CCircle::CCircle(){
 	mass = 1.0f;
@@ -12,7 +12,7 @@ suken::CCircle::CCircle(){
 suken::Vector2D suken::CCircle::GetCenterPos(){		
 	return center.position;					
 }
-float suken::CCircle::GetArea(){			
+float suken::CCircle::GetArea(){ 			
 	return (float)( M_PI * radius * radius );		
 }
 void suken::CCircle::Loop(){
@@ -29,7 +29,7 @@ void suken::CCircle::AddCollisionFalse(CCircle *c){
 }
 void suken::CCircle::RemoveCollisionFalse(CCircle *c){
 	if(!noCollision.empty()){
-		vector<CCircle*>::iterator it = noCollision.begin();
+		std::vector<CCircle*>::iterator it = noCollision.begin();
 		while( ( it != noCollision.end() ) ){
 
 			if( *it ==  c  ){
@@ -43,7 +43,7 @@ void suken::CCircle::RemoveCollisionFalse(CCircle *c){
 }
 bool suken::CCircle::GetIsNoCollision(CCircle *c){
 	if(!noCollision.empty()){
-		vector<CCircle*>::iterator it = noCollision.begin();
+		std::vector<CCircle*>::iterator it = noCollision.begin();
 		while( ( it != noCollision.end() ) ){
 
 			if( *it ==  c  ){

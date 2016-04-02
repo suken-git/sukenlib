@@ -1,9 +1,6 @@
 #pragma once
-//for std::vector
-#include"Manager.h"
-//for CScene
 #include"Scene.h"
-
+#include <vector>
 namespace suken{
 
 //ゲームシステム総括クラス
@@ -19,7 +16,7 @@ public:
 
 	void SetUseDrawLoop(bool flag);
 	bool GetUseDrawLoop();
-	vector<CScene*> sceneChild;
+	std::vector<CScene*> sceneChild;
 	CScene rootScene;
 private:
 	bool useDrawLoopFlag;

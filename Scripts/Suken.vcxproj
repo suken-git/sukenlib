@@ -86,6 +86,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Midi.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Input.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Key.cpp" />
@@ -104,6 +105,7 @@
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Midi.h" />
     <ClInclude Include="Suken.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\Event.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\EventData.h" />
@@ -114,7 +116,7 @@
     <ClInclude Include="SukenLib\GameEngine\Physics\CollosionManager.h" />
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h" />
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Primitive.h" />
-    <ClInclude Include="SukenLib\GameEngine\Physics\Rect.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Rect.h" />
     <ClInclude Include="SukenLib\GameEngine\Physics\Transform.h" />
     <ClInclude Include="SukenLib\GameEngine\Physics\Vector2D.h" />
     <ClInclude Include="SukenLib\GameEngine\Scene.h" />
