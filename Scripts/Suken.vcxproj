@@ -98,6 +98,7 @@
     <ClCompile Include="SukenLib\GameEngine\Physics\Vector2D.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Scene.cpp" />
     <ClCompile Include="SukenLib\System\System.cpp" />
+    <ClCompile Include="SukenLib\Utility\Data.cpp" />
     <ClCompile Include="SukenLib\Utility\Utility.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -118,6 +119,7 @@
     <ClInclude Include="SukenLib\GameEngine\Scene.h" />
     <ClInclude Include="SukenLib\Manager.h" />
     <ClInclude Include="SukenLib\System\System.h" />
+    <ClInclude Include="SukenLib\Utility\Data.h" />
     <ClInclude Include="SukenLib\Utility\Debug.h" />
     <ClInclude Include="SukenLib\Utility\Utility.h" />
   </ItemGroup>
@@ -125,9 +127,6 @@
     <ProjectReference Include="stage\stage.vcxproj">
       <Project>{a74596ab-8b6a-452f-9e7d-0c5b2110821e}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
