@@ -10,8 +10,8 @@ suken::CSystem::CSystem(){
 	frame = 0;
 	escapeFlag = false;
 	targetFps = 0.0f;
-	screenShotGrHandleAdress = NULL;
-	loadingImgPath[0] = NULL;
+	screenShotGrHandleAdress = nullptr;
+	loadingImgPath = "";
 }
 suken::CSystem::~CSystem(){
 	
@@ -26,8 +26,8 @@ void suken::CSystem::Awake(){
 	DxLib_Init(); 
 	SetDrawScreen( DX_SCREEN_BACK );
 	SetTransColor( 255 , 0 , 255 );	//マゼンタ透過
-	if(loadingImgPath[0] != NULL){
-		loadingImg = LoadGraph(loadingImgPath);
+	if(loadingImgPath != ""){
+		loadingImg = LoadGraph(loadingImgPath.c_str());
 	}
 	DrawExtendGraph(0,0,WINDOW_WIDTH,WINDOW_HEIGHT,loadingImg,true);
 	//リフレッシュレートの取得
@@ -36,7 +36,7 @@ void suken::CSystem::Awake(){
 	refreshRate = GetDeviceCaps( hdc , VREFRESH );//リフレッシュレートの取得
 	ReleaseDC( GetMainWindowHandle() , hdc );//デバイスコンテクストの解放
 
-	display = CreateDC(TEXT("DISPLAY") , NULL , NULL , NULL);
+	display = CreateDC(TEXT("DISPLAY") , nullptr , nullptr , nullptr);
 
 #ifdef USE_LUA
 	Lua = luaL_newstate();
@@ -59,7 +59,7 @@ bool suken::CSystem::GetUseThread_Awake(){
 	return useThread_AwakeFlag;
 }
 void suken::CSystem::SetLoadingGraph(const char *path){
-	strcpy(loadingImgPath,path);
+	loadingImgPath = path;
 }
 void suken::CSystem::SetLoadingMinimalTime(int time){
 	loadingMinimalTime = time;
@@ -106,15 +106,15 @@ void suken::CSystem::Wait(){
 }
 void suken::CSystem::End(){
 	DxLib_End();	
-	ShellExecute(GetMainWindowHandle() , "open" , "Launcher.exe" , NULL , NULL , SW_SHOW);
+	ShellExecute(GetMainWindowHandle() , "open" , "Launcher.exe" , nullptr , nullptr , SW_SHOW);
 }
 void suken::CSystem::TakeScreenShot(){
 	if(screenShotFlag){
 		screenShotFlag = false;
-		if(screenShotGrHandleAdress != NULL){
+		if(screenShotGrHandleAdress != nullptr){
 			*screenShotGrHandleAdress = GetDrawScreen();
 		}
-		screenShotGrHandleAdress = NULL;
+		screenShotGrHandleAdress = nullptr;
 	}
 }
 void suken::CSystem::GetScreenShot(int *GrHandleAdress){
@@ -151,7 +151,7 @@ void suken::CSystem::CreateNewThread( void(*pFunc)() ){
 		DxLib::SetMultiThreadFlag( true );			//そのままではDxLibはDirectXの関係でマルチスレッドにできないので設定してやる必要がある
 	}
 	//新しいスレッドを作成（型「HANDLE」はポインタなのでSystem::CreateNewThreadメソッドが終了しても自動的に破棄されない）
-	HANDLE handle = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)pFunc, NULL, 0, LPDWORD());
+	HANDLE handle = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)pFunc, nullptr, 0, LPDWORD());
 
 	handleChild.push_back(handle);
 }

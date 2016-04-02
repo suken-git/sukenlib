@@ -11,7 +11,7 @@ suken::CGame::~CGame(){
 	if(memoryLeakChecker!=0){
 		char info[256];
 		sprintf(info,"error : %dŒ‚Ìƒƒ‚ƒŠƒŠ[ƒN‚ª”­¶‚µ‚Ä‚¢‚Ü‚·",memoryLeakChecker);
-		MessageBox(NULL,info,"MemoryLeakChecher",MB_OK);
+		MessageBox(nullptr,info,"MemoryLeakChecher",MB_OK);
 	}
 	*/
 	rootScene.SetFocus(true);

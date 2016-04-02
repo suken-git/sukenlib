@@ -10,7 +10,7 @@ namespace suken{
 *	何かしらの操作をすることで復旧可能。
 *	@param format 出力する警告文の書式付き文字列のアドレス
 */
-inline void WarningSK(const char* format, ...){
+inline void WarningSK(const const std::string & format, ...){
 #ifdef DEBUG
 	 char tmpchar[256];
     sprintf_s(tmpchar, "警告 : \n\n%s\n\n", format);
@@ -83,10 +83,10 @@ inline void myLogf(const char* filename, const char* format, ...){
 *	@brief 説明
 *	@param value 引数
 */
-inline void myprintfDx(const char* format, va_list args, const char* filename=NULL, int line=0){
+inline void myprintfDx(const char* format, va_list args, const char* filename=nullptr, int line=0){
     char string[1024];
     vsprintf_s(string, format, args);   //va_startとva_endは呼び出し元でする
-    if (filename!=NULL) sprintf_s(string, "%s\n->%s(%d)\n", string, filename, line);
+    if (filename!=nullptr) sprintf_s(string, "%s\n->%s(%d)\n", string, filename, line);
  
     myLogf("MyLog_Printed", "PRINT: %s", string);
     printfDx(string);

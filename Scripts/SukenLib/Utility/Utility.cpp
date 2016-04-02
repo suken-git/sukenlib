@@ -50,9 +50,9 @@ void suken::SukenExecute(char *URL){
 		OSver.dwOSVersionInfoSize =sizeof(OSVERSIONINFO);
 		GetVersionEx(&OSver);
 		if(OSver.dwMajorVersion < 6 ){//XP以下
-			ShellExecute( NULL, "open", "IExplore",URL, NULL,SW_SHOWNORMAL );
+			ShellExecute( nullptr, "open", "IExplore",URL, nullptr,SW_SHOWNORMAL );
 		}else{//Vista以上
-			ShellExecute( NULL, "open",URL, NULL, NULL,SW_SHOWNORMAL );
+			ShellExecute( nullptr, "open",URL, nullptr, nullptr,SW_SHOWNORMAL );
 		}
 }
 
@@ -127,11 +127,11 @@ int suken::DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR*
 void suken::AddFontFromPath(char *path){
 
 	LPCSTR font_path = path; // 読み込むフォントファイルのパス
-		if (AddFontResourceEx(font_path, FR_PRIVATE, NULL) > 0) {
+		if (AddFontResourceEx(font_path, FR_PRIVATE, nullptr) > 0) {
 		
 		} else {
 			// フォント読込エラー処理
-			MessageBox(NULL,"フォント読込失敗","",MB_OK);
+			MessageBox(nullptr,"フォント読込失敗","",MB_OK);
 		}
 }
 

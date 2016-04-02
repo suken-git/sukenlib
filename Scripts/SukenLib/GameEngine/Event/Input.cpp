@@ -347,10 +347,10 @@ void suken::CInput::Loop(){
 			if(Event.key.GetPush(it->keyCode)){
 					
 				CKeyIn temp=*it;
-				if(temp.pFuncVoid != NULL){
+				if(temp.pFuncVoid != nullptr){
 					temp.pFuncVoid();
 				}else{
-					if(temp.pInt == NULL){
+					if(temp.pInt == nullptr){
 						temp.pFuncInt(temp.Int);
 					}else{
 						temp.pFuncInt(*temp.pInt);
@@ -380,10 +380,10 @@ void suken::CInput::Loop(){
 				if(temp.x1>mouseX && temp.x2<mouseX ){
 					if(temp.y1>mouseY && temp.y2<mouseY){
 						
-						if(temp.pFuncVoid != NULL){
+						if(temp.pFuncVoid != nullptr){
 							temp.pFuncVoid();
 						}else{
-							if(temp.pInt == NULL){
+							if(temp.pInt == nullptr){
 								temp.pFuncInt(temp.Int);
 							}else{
 								temp.pFuncInt(*temp.pInt);
@@ -397,10 +397,10 @@ void suken::CInput::Loop(){
 				if(temp.x1<mouseX && temp.x2>mouseX ){
 					if(temp.y1<mouseY && temp.y2>mouseY){
 						
-						if(temp.pFuncVoid != NULL){
+						if(temp.pFuncVoid != nullptr){
 							temp.pFuncVoid();
 						}else{
-							if(temp.pInt == NULL){
+							if(temp.pInt == nullptr){
 								temp.pFuncInt(temp.Int);
 							}else{
 								temp.pFuncInt(*temp.pInt);
@@ -416,10 +416,10 @@ void suken::CInput::Loop(){
 					if(temp.y1<mouseY && temp.y2>mouseY){
 						if(mouseInput){
 							
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
-								if(temp.pInt == NULL){
+								if(temp.pInt == nullptr){
 									temp.pFuncInt(temp.Int);
 								}else{
 									temp.pFuncInt(*temp.pInt);
@@ -434,10 +434,10 @@ void suken::CInput::Loop(){
 					if(temp.y1<mouseY && temp.y2>mouseY){
 						if(mouseInput && !preMouseInput ){
 							
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
-								if(temp.pInt == NULL){
+								if(temp.pInt == nullptr){
 									temp.pFuncInt(temp.Int);
 								}else{
 									temp.pFuncInt(*temp.pInt);
@@ -452,10 +452,10 @@ void suken::CInput::Loop(){
 					if(temp.y1<mouseY && temp.y2>mouseY){
 						if( !mouseInput && preMouseInput ){
 								
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
-								if(temp.pInt == NULL){
+								if(temp.pInt == nullptr){
 									temp.pFuncInt(temp.Int);
 								}else{
 									temp.pFuncInt(*temp.pInt);
@@ -484,10 +484,10 @@ void suken::CInput::Loop(){
 					if( *(temp.x1) > mouseX && *(temp.x2) < mouseX ){
 						if( *(temp.y1) > mouseY && *(temp.y2) < mouseY ){
 								
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
-								if(temp.pInt == NULL){
+								if(temp.pInt == nullptr){
 									temp.pFuncInt(temp.Int);
 								}else{
 									temp.pFuncInt(*temp.pInt);
@@ -500,10 +500,10 @@ void suken::CInput::Loop(){
 					if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
 						if( *(temp.y1) < mouseY && *(temp.y2) > mouseY){
 								
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
-								if(temp.pInt == NULL){
+								if(temp.pInt == nullptr){
 									temp.pFuncInt(temp.Int);
 								}else{
 									temp.pFuncInt(*temp.pInt);
@@ -517,10 +517,10 @@ void suken::CInput::Loop(){
 						if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 							if( mouseInput ){
 									
-								if(temp.pFuncVoid != NULL){
+								if(temp.pFuncVoid != nullptr){
 									temp.pFuncVoid();
 								}else{
-									if(temp.pInt == NULL){
+									if(temp.pInt == nullptr){
 										temp.pFuncInt(temp.Int);
 									}else{
 										temp.pFuncInt(*temp.pInt);
@@ -535,10 +535,10 @@ void suken::CInput::Loop(){
 						if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 							if( mouseInput && !preMouseInput ){
 									
-								if(temp.pFuncVoid != NULL){
+								if(temp.pFuncVoid != nullptr){
 									temp.pFuncVoid();
 								}else{
-									if(temp.pInt == NULL){
+									if(temp.pInt == nullptr){
 										temp.pFuncInt(temp.Int);
 									}else{
 										temp.pFuncInt(*temp.pInt);
@@ -553,10 +553,10 @@ void suken::CInput::Loop(){
 						if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 							if( !mouseInput && preMouseInput ){
 									
-								if(temp.pFuncVoid != NULL){
+								if(temp.pFuncVoid != nullptr){
 									temp.pFuncVoid();
 								}else{
-									if(temp.pInt == NULL){
+									if(temp.pInt == nullptr){
 										temp.pFuncInt(temp.Int);
 									}else{
 										temp.pFuncInt(*temp.pInt);
@@ -579,10 +579,10 @@ void suken::CInput::Loop(){
 	while( it2 != frameTask.end() ) {
 		CFrame temp=*it2;
 
-		if(temp.pFuncVoid != NULL){
+		if(temp.pFuncVoid != nullptr){
 			temp.pFuncVoid();
 		}else{
-			if(temp.pInt == NULL){
+			if(temp.pInt == nullptr){
 				temp.pFuncInt(temp.Int);
 			}else{
 				temp.pFuncInt(*temp.pInt);
@@ -599,10 +599,10 @@ void suken::CInput::Loop(){
 
 		if(*(temp.pBool)){
 			
-			if(temp.pFuncVoid != NULL){
+			if(temp.pFuncVoid != nullptr){
 				temp.pFuncVoid();
 			}else{
-				if(temp.pInt == NULL){
+				if(temp.pInt == nullptr){
 					temp.pFuncInt(temp.Int);
 				}else{
 					temp.pFuncInt(*temp.pInt);
@@ -625,7 +625,7 @@ void suken::CInput::DrawLoop(){
 			if(CheckHitKey(it->keyCode)){
 
 				CKeyIn temp=*it;
-				if(temp.pFuncVoid != NULL){
+				if(temp.pFuncVoid != nullptr){
 					temp.pFuncVoid();
 				}else{
 					temp.pFuncInt(*temp.pInt);
@@ -650,7 +650,7 @@ void suken::CInput::DrawLoop(){
 				if(temp.x1>mouseX && temp.x2<mouseX ){
 					if(temp.y1>mouseY && temp.y2<mouseY){
 							
-						if(temp.pFuncVoid != NULL){
+						if(temp.pFuncVoid != nullptr){
 							temp.pFuncVoid();
 						}else{
 							temp.pFuncInt(*temp.pInt);
@@ -662,7 +662,7 @@ void suken::CInput::DrawLoop(){
 				if(temp.x1<mouseX && temp.x2>mouseX ){
 					if(temp.y1<mouseY && temp.y2>mouseY){
 							
-						if(temp.pFuncVoid != NULL){
+						if(temp.pFuncVoid != nullptr){
 							temp.pFuncVoid();
 						}else{
 							temp.pFuncInt(*temp.pInt);
@@ -675,7 +675,7 @@ void suken::CInput::DrawLoop(){
 					if(temp.y1<mouseY && temp.y2>mouseY){
 						if(mouseInput){
 								
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
 								temp.pFuncInt(*temp.pInt);
@@ -689,7 +689,7 @@ void suken::CInput::DrawLoop(){
 					if(temp.y1<mouseY && temp.y2>mouseY){
 						if(mouseInput && !preMouseInput ){
 								
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
 								temp.pFuncInt(*temp.pInt);
@@ -703,7 +703,7 @@ void suken::CInput::DrawLoop(){
 					if(temp.y1<mouseY && temp.y2>mouseY){
 						if( !mouseInput && preMouseInput ){
 								
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
 								temp.pFuncInt(*temp.pInt);
@@ -731,7 +731,7 @@ void suken::CInput::DrawLoop(){
 				if( *(temp.x1) > mouseX && *(temp.x2) < mouseX ){
 					if( *(temp.y1) > mouseY && *(temp.y2) < mouseY ){
 								
-						if(temp.pFuncVoid != NULL){
+						if(temp.pFuncVoid != nullptr){
 							temp.pFuncVoid();
 						}else{
 							temp.pFuncInt(*temp.pInt);
@@ -743,7 +743,7 @@ void suken::CInput::DrawLoop(){
 				if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
 					if( *(temp.y1) < mouseY && *(temp.y2) > mouseY){
 								
-						if(temp.pFuncVoid != NULL){
+						if(temp.pFuncVoid != nullptr){
 							temp.pFuncVoid();
 						}else{
 							temp.pFuncInt(*temp.pInt);
@@ -755,7 +755,7 @@ void suken::CInput::DrawLoop(){
 				if( *(temp.x1) < mouseX && *(temp.x2) > mouseX ){
 					if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 						if( mouseInput ){									
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
 								temp.pFuncInt(*temp.pInt);
@@ -769,7 +769,7 @@ void suken::CInput::DrawLoop(){
 					if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 						if( mouseInput && !preMouseInput ){
 								
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
 								temp.pFuncInt(*temp.pInt);
@@ -783,7 +783,7 @@ void suken::CInput::DrawLoop(){
 					if( *(temp.y1) < mouseY && *(temp.y2) > mouseY ){
 						if( !mouseInput && preMouseInput ){
 								
-							if(temp.pFuncVoid != NULL){
+							if(temp.pFuncVoid != nullptr){
 								temp.pFuncVoid();
 							}else{
 								temp.pFuncInt(*temp.pInt);
@@ -803,7 +803,7 @@ void suken::CInput::DrawLoop(){
 
 	while( it2 != frameTask_Draw.end() ) {
 		CFrame temp=*it2;
-		if(temp.pFuncVoid != NULL){
+		if(temp.pFuncVoid != nullptr){
 			temp.pFuncVoid();
 		}else{
 			temp.pFuncInt(*temp.pInt);
@@ -819,7 +819,7 @@ void suken::CInput::DrawLoop(){
 
 		if(*(temp.pBool)){
 			
-			if(temp.pFuncVoid != NULL){
+			if(temp.pFuncVoid != nullptr){
 				temp.pFuncVoid();
 			}else{
 				temp.pFuncInt(*temp.pInt);

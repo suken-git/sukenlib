@@ -142,7 +142,7 @@ private:
 	int screenShot;///<  @brief à–¾
 	bool screenShotFlag;///<  @brief à–¾
 	int *screenShotGrHandleAdress;///<  @brief à–¾
-	char loadingImgPath[256];///<  @brief à–¾
+	std::string loadingImgPath;///<  @brief à–¾
 	int loadingImg;///<  @brief à–¾
 	bool useThread_AwakeFlag;///<  @brief à–¾
 	int loadingMinimalTime;///<  @brief à–¾
