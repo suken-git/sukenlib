@@ -58,7 +58,7 @@ void suken::CSystem::SetUseThread_Awake(bool flag){
 bool suken::CSystem::GetUseThread_Awake(){
 	return useThread_AwakeFlag;
 }
-void suken::CSystem::SetLoadingGraph(const char *path){
+void suken::CSystem::SetLoadingGraph(const std::string path){
 	loadingImgPath = path;
 }
 void suken::CSystem::SetLoadingMinimalTime(int time){

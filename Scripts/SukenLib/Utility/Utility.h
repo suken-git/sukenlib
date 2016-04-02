@@ -28,7 +28,7 @@ const int YELLOW = GetColor( 255 , 255 , 0);///<  @brief 説明
 *	@param filetype 現在無効
 * @return true
 */
-bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0");
+bool SelectOpenFile(  char* filename ,  char* filetype = "all file(*.*)\0*.*\0\0");
 /**
 *	@brief ダイアログを開いて、ファイルを保存する。
 *	マップエディタなどを作るときに便利かも
@@ -36,10 +36,10 @@ bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0")
 *	@param filetype 現在無効
 * @return true
 */
-bool SaveFile(char *filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
+bool SaveFile( char* filename , char* filetype =  "all file(*.*)\0*.*\0\0");
 /*
 原因不明エラーのためコメントアウト
-void GetHttpFile(char *&Buf,char *Http,unsigned long ReadSize = 65536);
+void GetHttpFile(std::string &Buf,std::string Http,unsigned long ReadSize = 65536);
 */
 
 
@@ -94,13 +94,13 @@ int DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format
 *	@brief 説明
 *	@param value 引数
 */
-void AddFontFromPath(char *path);
+void AddFontFromPath(std::string path);
 
 /**
 *	@brief 説明
 *	@param value 引数
 */
-void SukenExecute(char *URL);
+void SukenExecute(std::string URL);
 
 
 /**

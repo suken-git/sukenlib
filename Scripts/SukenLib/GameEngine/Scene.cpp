@@ -55,7 +55,7 @@ void suken::CScene::ButtonLoop(){
 			}else{
 					
 				DxLib::DrawBox(it->x1,it->y1,it->x2,it->y2,it->backColor,TRUE);
-				suken::DrawCenterString((it->x1+it->x2)/2,(it->y1+it->y2)/2-10,it->stringColor,it->title);
+				suken::DrawCenterString((it->x1+it->x2)/2,(it->y1+it->y2)/2-10,it->stringColor,it->title.c_str());
 			}
 			it++;
 		}
@@ -75,7 +75,7 @@ void suken::CScene::ButtonLoop(){
 				}
 			}else{
 				DxLib::DrawBox( *(it1->x1) , *(it1->y1) , *(it1->x2) , *(it1->y2) , it1->backColor , TRUE );
-				suken::DrawCenterString( (*(it1->x1) + *(it1->x2) ) / 2 , ( *(it1->y1) + *(it1->y2) ) / 2 - 10 , it1->stringColor , it1->title );
+				suken::DrawCenterString( (*(it1->x1) + *(it1->x2) ) / 2 , ( *(it1->y1) + *(it1->y2) ) / 2 - 10 , it1->stringColor , it1->title.c_str() );
 			}
 			it1++;
 		}
@@ -112,7 +112,7 @@ void suken::CScene::RemoveChild(){
 		WarningSK("CScene::RemoveChildが呼び出されましたがCScene::sceneChildにシーンがありません");
 	}
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)() ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)() ){
 	CButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -127,7 +127,7 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) , int *pInt ){
 	CButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -142,7 +142,7 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) , int Int ){
 	CButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -199,7 +199,7 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, vo
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)() ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)() ){
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -207,16 +207,16 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPa
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle = LoadGraph(graphPath);
+	temp.graphHandle = LoadGraph(graphPath.c_str());
 	if( temp.graphHandle == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	buttonChild.push_back( temp );
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)(int) , int *pInt ){
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -224,16 +224,16 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPa
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle = LoadGraph(graphPath);
+	temp.graphHandle = LoadGraph(graphPath.c_str());
 	if( temp.graphHandle == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	buttonChild.push_back( temp );
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)(int) , int Int ){
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -241,16 +241,16 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPa
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle = LoadGraph(graphPath);
+	temp.graphHandle = LoadGraph(graphPath.c_str());
 	if( temp.graphHandle == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	buttonChild.push_back( temp );
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() ){
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -259,20 +259,20 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_gra
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle_off = LoadGraph(Off_graphPath);
-	temp.graphHandle_on = LoadGraph(On_graphPath);
+	temp.graphHandle_off = LoadGraph(Off_graphPath.c_str());
+	temp.graphHandle_on = LoadGraph(On_graphPath.c_str());
 	if( temp.graphHandle_off == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 	if( temp.graphHandle_on == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 
 	buttonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int *pInt ){
 	CButton temp;
 	
 	temp.IsUseGraph = true;
@@ -281,20 +281,20 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_gra
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle_off = LoadGraph(Off_graphPath);
-	temp.graphHandle_on = LoadGraph(On_graphPath);
+	temp.graphHandle_off = LoadGraph(Off_graphPath.c_str());
+	temp.graphHandle_on = LoadGraph(On_graphPath.c_str());
 	if( temp.graphHandle_off == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 	if( temp.graphHandle_on == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 
 	buttonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int ){
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -303,20 +303,20 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_gra
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle_off = LoadGraph(Off_graphPath);
-	temp.graphHandle_on = LoadGraph(On_graphPath);
+	temp.graphHandle_off = LoadGraph(Off_graphPath.c_str());
+	temp.graphHandle_on = LoadGraph(On_graphPath.c_str());
 	if( temp.graphHandle_off == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 	if( temp.graphHandle_on == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 
 	buttonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)() ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)() ){
 	CpButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -331,7 +331,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backC
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) ,int *pInt ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) ,int *pInt ){
 	CpButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -346,7 +346,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backC
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) ,int Int ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) ,int Int ){
 	CpButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -406,7 +406,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)() ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)() ){
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -414,7 +414,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* gra
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle = LoadGraph(graphPath);
+	temp.graphHandle = LoadGraph(graphPath.c_str());
 	if( temp.graphHandle == -1 ){
 		MessageBox(nullptr,"error : SetButtonメソッドのchar graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
@@ -423,7 +423,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* gra
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)(int) , int *pInt ){
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -431,7 +431,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* gra
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle = LoadGraph(graphPath);
+	temp.graphHandle = LoadGraph(graphPath.c_str());
 	if( temp.graphHandle == -1 ){
 		MessageBox(nullptr,"error : SetButtonメソッドのchar graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
@@ -440,7 +440,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* gra
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)(int) , int Int ){
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -448,7 +448,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* gra
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle = LoadGraph(graphPath);
+	temp.graphHandle = LoadGraph(graphPath.c_str());
 	if( temp.graphHandle == -1 ){
 		MessageBox(nullptr,"error : SetButtonメソッドのchar graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
@@ -457,7 +457,7 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* gra
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,Int );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() ){
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -466,20 +466,20 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle_off = LoadGraph(Off_graphPath);
-	temp.graphHandle_on = LoadGraph(On_graphPath);
+	temp.graphHandle_off = LoadGraph(Off_graphPath.c_str());
+	temp.graphHandle_on = LoadGraph(On_graphPath.c_str());
 	if( temp.graphHandle_off == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 	if( temp.graphHandle_on == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 
 	pButtonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int *pInt ){
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -488,20 +488,20 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle_off = LoadGraph(Off_graphPath);
-	temp.graphHandle_on = LoadGraph(On_graphPath);
+	temp.graphHandle_off = LoadGraph(Off_graphPath.c_str());
+	temp.graphHandle_on = LoadGraph(On_graphPath.c_str());
 	if( temp.graphHandle_off == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 	if( temp.graphHandle_on == -1 ){	
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 
 	pButtonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int ){
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -510,13 +510,13 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off
 	temp.x2 = x2;
 	temp.y1 = y1;
 	temp.y2 = y2;
-	temp.graphHandle_off = LoadGraph(Off_graphPath);
-	temp.graphHandle_on = LoadGraph(On_graphPath);
+	temp.graphHandle_off = LoadGraph(Off_graphPath.c_str());
+	temp.graphHandle_on = LoadGraph(On_graphPath.c_str());
 	if( temp.graphHandle_off == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string Off_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 	if( temp.graphHandle_on == -1 ){
-		MessageBox(nullptr,"error : SetButtonメソッドのchar *On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
+		MessageBox(nullptr,"error : SetButtonメソッドのstd::string On_graphPathのグラフィックのパスに無効な値が入力されました","数研ライブラリ",MB_OK);
 	}
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );

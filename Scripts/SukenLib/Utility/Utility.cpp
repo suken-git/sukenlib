@@ -1,7 +1,7 @@
 #include"Utility.h"
 
 
-bool suken::SelectOpenFile(  char *filename , char *filetype)
+bool suken::SelectOpenFile( char* filename ,  char* filetype)
 {
     OPENFILENAME ofn;
 
@@ -18,7 +18,7 @@ bool suken::SelectOpenFile(  char *filename , char *filetype)
 
     return TRUE;
 }
-bool suken::SaveFile(char *filename ,char *filetype){
+bool suken::SaveFile( char* filename , char* filetype){
 	static OPENFILENAME     ofn;
     static TCHAR            szPath[ MAX_PATH ];
     static TCHAR            szFile[ MAX_PATH ];
@@ -45,14 +45,14 @@ bool suken::SaveFile(char *filename ,char *filetype){
 }
 
 
-void suken::SukenExecute(char *URL){
+void suken::SukenExecute(std::string URL){
 		OSVERSIONINFO OSver;
 		OSver.dwOSVersionInfoSize =sizeof(OSVERSIONINFO);
 		GetVersionEx(&OSver);
 		if(OSver.dwMajorVersion < 6 ){//XP以下
-			ShellExecute( nullptr, "open", "IExplore",URL, nullptr,SW_SHOWNORMAL );
+			ShellExecute( nullptr, "open", "IExplore",URL.c_str(), nullptr,SW_SHOWNORMAL );
 		}else{//Vista以上
-			ShellExecute( nullptr, "open",URL, nullptr, nullptr,SW_SHOWNORMAL );
+			ShellExecute( nullptr, "open",URL.c_str(), nullptr, nullptr,SW_SHOWNORMAL );
 		}
 }
 
@@ -124,9 +124,9 @@ int suken::DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR*
 }
 
 //フォント追加（パス入力必須）
-void suken::AddFontFromPath(char *path){
+void suken::AddFontFromPath(std::string path){
 
-	LPCSTR font_path = path; // 読み込むフォントファイルのパス
+	LPCSTR font_path = path.c_str(); // 読み込むフォントファイルのパス
 		if (AddFontResourceEx(font_path, FR_PRIVATE, nullptr) > 0) {
 		
 		} else {

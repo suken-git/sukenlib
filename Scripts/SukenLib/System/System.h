@@ -38,7 +38,7 @@ public:
 *	@brief à–¾
 *	@param value ˆø”
 */
-	void SetLoadingGraph(const char *path);
+	void SetLoadingGraph(const std::string path);
 /**
 *	@brief à–¾
 *	@param value ˆø”

@@ -15,7 +15,7 @@ public:
 		IsUseGraph = false;
 		IsReact = false;
 	}
-	char *title;///<  @brief 説明
+	std::string title;///<  @brief 説明
 	int x1,x2,y1,y2;///<  @brief 説明
 	int backColor,stringColor;///<  @brief 説明
 	int graphHandle;///<  @brief 説明
@@ -33,7 +33,7 @@ public:
 		IsUseGraph = false;
 		IsReact =false;
 	}
-	char *title;///<  @brief 説明
+	std::string title;///<  @brief 説明
 	int *x1,*x2,*y1,*y2;///<  @brief 説明
 	int backColor,stringColor;///<  @brief 説明
 	int graphHandle;///<  @brief 説明
@@ -88,17 +88,17 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)() );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)() );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) , int *pInt );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) , int *pInt );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) , int Int );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) , int Int );
 /**
 *	@brief 説明
 *	@param value 引数
@@ -118,47 +118,47 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)() );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)() );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)(int) , int *pInt );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)(int) , int *pInt );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)(int) , int Int );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)(int) , int Int );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int *pInt );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int *pInt );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int Int );
+	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)() );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)() );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) ,int *pInt );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) ,int *pInt );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) ,int Int );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) ,int Int );
 /**
 *	@brief 説明
 *	@param value 引数
@@ -178,32 +178,32 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)() );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)() );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)(int) , int *pInt );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)(int) , int *pInt );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)(int) , int Int );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)(int) , int Int );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int *pInt );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int *pInt );
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int Int );
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int );
 /**
 *	@brief 説明  //数研ライブラリ内部関数（使用禁止）
 */
