@@ -25,4 +25,4 @@ private:
 
 }
 
-extern CEvent Event;
+extern suken::CEvent Event;

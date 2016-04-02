@@ -1,5 +1,6 @@
 #include"CollosionManager.h"
-
+//for COLOR
+#include"../../Utility/Utility.h"
 
 suken::CCollisionManager::CCollisionManager(){
 	

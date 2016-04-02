@@ -1,5 +1,7 @@
 #pragma once
+//for std::vector
 #include"Manager.h"
+//for CScene
 #include"Scene.h"
 
 namespace suken{

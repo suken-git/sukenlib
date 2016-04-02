@@ -1,5 +1,6 @@
 #include"Input.h"
-
+//for Event
+#include"Event.h"
 
 suken::CInput::CInput(){
 	useMouse = true;

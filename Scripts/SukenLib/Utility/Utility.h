@@ -1,6 +1,7 @@
 #pragma once
 #include"Manager.h"
-#include"Vector2D.h"
+#include"../Utility/Utility.h"
+#include"../GameEngine/Physics/Vector2D.h"
 #include "wininet.h"
 
 
@@ -20,7 +21,7 @@
 
 
 
-void Awake();
+
 
 
 

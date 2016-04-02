@@ -1,6 +1,7 @@
 #pragma once
-#include"../../Manager.h"
-#include"../../Utility/Utility.h"
+//for std::vector
+#include"Manager.h"
+//#include"Utility.h"
 
 namespace suken{
 

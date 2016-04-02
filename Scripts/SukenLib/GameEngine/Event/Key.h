@@ -1,4 +1,6 @@
 #pragma once
+//for KEY_INPUT_~
+#include"Manager.h"
 
 namespace suken{
 

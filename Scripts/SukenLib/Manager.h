@@ -50,7 +50,7 @@ const float AIR_REGISTANCE= 30.0f;			//空気抵抗（減速のしやすさ）
 /////Suken.h用
 
 namespace suken{};
-
+void Awake();
 
 const int DIALOG_MAX_CHAR = 100;
 const int MAX_CHAR = 100;

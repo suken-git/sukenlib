@@ -1,7 +1,13 @@
 #pragma once
+//for std::vector
 #include"Manager.h"
-#include"Event.h"
-#include"Physics.h"
+//for CCollisionManager
+#include"Physics\CollosionManager.h"
+//for CInput
+#include"Event\Input.h"
+//for CEvent
+#include"Event\Event.h"
+
 
 
 namespace suken{

@@ -1,4 +1,8 @@
 #include"Key.h"
+//for WarningSK
+
+#include"../../Utility/Debug.h"
+#include"../Event/Event.h"
 
 
 void suken::CKey::Loop(){

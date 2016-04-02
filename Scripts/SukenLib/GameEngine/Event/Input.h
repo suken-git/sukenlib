@@ -1,5 +1,6 @@
 #pragma once
-
+//for CMouseIn,CpMouseIn,CKeyIn,CFrame,CBoolean
+#include"EventData.h"
 
 namespace suken{
 //入力イベント管理クラス

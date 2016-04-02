@@ -1,5 +1,6 @@
 #include"System.h"
-
+//for COLOR
+#include"../Utility/Utility.h"
 
 suken::CSystem::CSystem(){
 	startTime = 0;

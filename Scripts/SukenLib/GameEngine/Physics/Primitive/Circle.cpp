@@ -1,5 +1,6 @@
 #include"Circle.h"
-
+//for COLOR
+#include"../../../Utility/Utility.h"
 
 
 suken::CCircle::CCircle(){

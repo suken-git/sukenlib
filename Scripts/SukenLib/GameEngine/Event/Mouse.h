@@ -37,4 +37,3 @@ private:
 
 }
 
-extern suken::CEvent Event;
