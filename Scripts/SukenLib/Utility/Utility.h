@@ -2,18 +2,17 @@
 #include "DxLib.h"
 #include <string>
 
-
-#define RED GetColor( 255 , 0 , 0 )
-#define GREEN GetColor( 0 , 255 , 0 )
-#define BLUE GetColor( 0 , 0 , 255 )
-#define BLACK GetColor( 0 , 0 , 0 )
-#define WHITE GetColor( 255 , 255 , 255 )
-#define GRAY GetColor( 128 , 128 , 128 )
-#define LIGHTBLUE GetColor( 128 , 128 , 255 )
-#define LIGHTGREEN GetColor( 128 , 255 , 128 )
-#define M_PINK GetColor( 255 , 128 , 128 )
-#define YELLOW GetColor( 255 , 255 , 0)
-
+namespace suken{
+const int RED = GetColor( 255 , 0 , 0 );
+const int GREEN = GetColor( 0 , 255 , 0 );
+const int BLUE = GetColor( 0 , 0 , 255 );
+const int BLACK = GetColor( 0 , 0 , 0 );
+const int WHITE = GetColor( 255 , 255 , 255 );
+const int GRAY = GetColor( 128 , 128 , 128 );
+const int LIGHTBLUE = GetColor( 128 , 128 , 255 );
+const int LIGHTGREEN = GetColor( 128 , 255 , 128 );
+const int M_PINK = GetColor( 255 , 128 , 128 );
+const int YELLOW = GetColor( 255 , 255 , 0);
 
 
 
@@ -117,3 +116,5 @@ unsigned int fanctorial(unsigned int num);			//
 */
 unsigned int combination(unsigned int n , unsigned int r);					//nCrÇ∆Ç©Ç‚ÇÈÇ†ÇÍÅBëgÇ›çáÇÌÇπ
 
+
+}
