@@ -1,6 +1,6 @@
 #pragma once
-#include"Manager.h"
-#include"Utility.h"
+#include"../../Manager.h"
+#include"../../Utility/Utility.h"
 
 namespace suken{
 

@@ -1,5 +1,5 @@
 #pragma once
-#include"Manager.h"
+#include"../../Manager.h"
 
 
 
@@ -135,3 +135,5 @@ _inline int DrawPixel(suken::Vector2D &v,int color){
 
 
 }//namespace suken end
+
+using namespace suken;

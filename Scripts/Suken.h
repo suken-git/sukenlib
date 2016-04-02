@@ -1,16 +1,14 @@
 #pragma once
 #include"SukenLib\Manager.h"
-#include"SukenLib\Debug.h"
-#pragma once
-#include"SukenLib\Debug.h"
-#include"SukenLib\Event.h"
-#include"SukenLib\Game.h"
-#include"SukenLib\Manager.h"
-#include"SukenLib\Physics.h"
-#include"SukenLib\Vector2D.h"
-#include"SukenLib\Scene.h"
-#include"SukenLib\System.h"
-#include"SukenLib\Utility.h"
+#include"SukenLib\System\System.h"
+#include"SukenLib\Utility\Debug.h"
+#include"SukenLib\Utility\Utility.h"
+#include"SukenLib\GameEngine\Event\Event.h"
+#include"SukenLib\GameEngine\Game.h"
+#include"SukenLib\GameEngine\Physics\CollisionManager.h"
+#include"SukenLib\GameEngine\Physics\Vector2D.h"
+#include"SukenLib\GameEngine\Scene.h"
+
 
 
 

@@ -1,9 +1,4 @@
-#include"Physics.h"
-#include"System.h"
-#include"Utility.h"
-
-
-
+#include"CollosionManager.h"
 
 
 suken::CCollisionManager::CCollisionManager(){
