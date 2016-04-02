@@ -1,8 +1,7 @@
 #include"Utility.h"
 
 
-
-bool SelectOpenFile(  char *filename , char *filetype)
+bool suken::SelectOpenFile(  char *filename , char *filetype)
 {
     OPENFILENAME ofn;
 
@@ -19,7 +18,7 @@ bool SelectOpenFile(  char *filename , char *filetype)
 
     return TRUE;
 }
-bool SaveFile(char *filename ,char *filetype){
+bool suken::SaveFile(char *filename ,char *filetype){
 	static OPENFILENAME     ofn;
     static TCHAR            szPath[ MAX_PATH ];
     static TCHAR            szFile[ MAX_PATH ];
@@ -46,7 +45,7 @@ bool SaveFile(char *filename ,char *filetype){
 }
 
 
-void SukenExecute(char *URL){
+void suken::SukenExecute(char *URL){
 		OSVERSIONINFO OSver;
 		OSver.dwOSVersionInfoSize =sizeof(OSVERSIONINFO);
 		GetVersionEx(&OSver);
@@ -57,38 +56,9 @@ void SukenExecute(char *URL){
 		}
 }
 
-/*
-
-void GetHttpFile(char *&Buf, char *Http,DWORD ReadSize){
-	HINTERNET hInternet;HINTERNET hFile;
-	BOOL bResult;
-	DWORD RealRead = ReadSize;
-	// WININET初期化 
-	hInternet = InternetOpenA("WININET Sample Program",INTERNET_OPEN_TYPE_PRECONFIG,	NULL,NULL,0);
-	if(!hInternet)return;
-	// URLのオープン 
-	hFile = InternetOpenUrlA(hInternet,Http,	NULL,0,	INTERNET_FLAG_RELOAD,0);
-	if(!hFile){if(hInternet)InternetCloseHandle(hInternet);return;}
-	bResult = InternetReadFile(hFile,Buf,RealRead,&ReadSize);
-	if(!bResult) {return;if(hFile)InternetCloseHandle(hFile);if(hInternet)InternetCloseHandle(hInternet);}
-	Buf[ReadSize] = '\0';
-	if(hFile)InternetCloseHandle(hFile);
-	if(hInternet)InternetCloseHandle(hInternet);
-}
-
-原因不明エラーのためコメントアウト
-1>Utility.obj : error LNK2019: 未解決の外部シンボル __imp__InternetReadFile@16 が関数 "void __cdecl GetHttpFile(char * &,char *,unsigned long)" (?GetHttpFile@@YAXAAPADPADK@Z) で参照されました。
-1>Utility.obj : error LNK2019: 未解決の外部シンボル __imp__InternetCloseHandle@4 が関数 "void __cdecl GetHttpFile(char * &,char *,unsigned long)" (?GetHttpFile@@YAXAAPADPADK@Z) で参照されました。
-1>Utility.obj : error LNK2019: 未解決の外部シンボル __imp__InternetOpenUrlA@24 が関数 "void __cdecl GetHttpFile(char * &,char *,unsigned long)" (?GetHttpFile@@YAXAAPADPADK@Z) で参照されました。
-1>Utility.obj : error LNK2019: 未解決の外部シンボル __imp__InternetOpenA@20 が関数 "void __cdecl GetHttpFile(char * &,char *,unsigned long)" (?GetHttpFile@@YAXAAPADPADK@Z) で参照されました。
-
-*/
-
-
-
 /// FROM NUNULIB
 //現在時刻取得関数///////////////////////////////////////////
-SYSTEMTIME GetNowSystemTime(){
+SYSTEMTIME suken::GetNowSystemTime(){
     SYSTEMTIME st;
     GetSystemTime(&st);
      
@@ -108,9 +78,9 @@ SYSTEMTIME GetNowSystemTime(){
     FileTimeToSystemTime(&ft2, &st);
     return st;
 }
-std::string GetNowSystemTimeString(){
+std::string suken::GetNowSystemTimeString(){
     char currentTime[25] = { 0 };
-    SYSTEMTIME st = GetNowSystemTime();
+    SYSTEMTIME st = suken::GetNowSystemTime();
     wsprintf(currentTime, "%04d/%02d/%02d %02d:%02d:%02d %03d",
         st.wYear, st.wMonth, st.wDay,
         st.wHour, st.wMinute, st.wSecond, st.wMilliseconds); 
@@ -118,7 +88,7 @@ std::string GetNowSystemTimeString(){
     return tmp;
 }
 //DrawCenterString Notフォーマット版
-int DrawCenterString(int cx, int y, int color, const TCHAR* format, ...){
+int suken::DrawCenterString(int cx, int y, int color, const TCHAR* format, ...){
     va_list args;
     char string[1024];
     int for_return;
@@ -135,7 +105,7 @@ int DrawCenterString(int cx, int y, int color, const TCHAR* format, ...){
  
     return for_return;  
 }
-int DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format, ...){ //フォーマット版
+int suken::DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format, ...){ //フォーマット版
     va_list args;
     char string[1024];
     int for_return;
@@ -154,7 +124,7 @@ int DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format
 }
 
 //フォント追加（パス入力必須）
-void AddFontFromPath(char *path){
+void suken::AddFontFromPath(char *path){
 
 	LPCSTR font_path = path; // 読み込むフォントファイルのパス
 		if (AddFontResourceEx(font_path, FR_PRIVATE, NULL) > 0) {
@@ -167,15 +137,15 @@ void AddFontFromPath(char *path){
 
 
 //階乗
-unsigned int fanctorial(unsigned int num){
+unsigned int suken::fanctorial(unsigned int num){
 	if(num <= 1){
 		return 1;
 	}else{
-		return ( num * fanctorial( num - 1 ) );
+		return ( num * suken::fanctorial( num - 1 ) );
 	}
 }
 //組み合わせ（nとrはそれぞれ「nCr」のnとr）
-unsigned int combination(unsigned int n , unsigned int r){
-	return ( fanctorial( n ) / ( fanctorial( n-r ) * fanctorial( r ) ) );
+unsigned int suken::combination(unsigned int n , unsigned int r){
+	return ( suken::fanctorial( n ) / ( suken::fanctorial( n-r ) * suken::fanctorial( r ) ) );
 }
 
