@@ -15,14 +15,14 @@ public:
 		IsUseGraph = false;
 		IsReact = false;
 	}
-	char *title;
-	int x1,x2,y1,y2;
-	int backColor,stringColor;
-	int graphHandle;
-	bool IsUseGraph;
-	int graphHandle_on;
-	int graphHandle_off;
-	bool IsReact;			//マウスに反応するか否か
+	char *title;///<　@brief 説明
+	int x1,x2,y1,y2;///<　@brief 説明
+	int backColor,stringColor;///<　@brief 説明
+	int graphHandle;///<　@brief 説明
+	bool IsUseGraph;///<　@brief 説明
+	int graphHandle_on;///<　@brief 説明
+	int graphHandle_off;///<　@brief 説明
+	bool IsReact;			///<　@brief 説明//マウスに反応するか否か
 };
 class CpButton{
 public:
@@ -33,14 +33,14 @@ public:
 		IsUseGraph = false;
 		IsReact =false;
 	}
-	char *title;
-	int *x1,*x2,*y1,*y2;
-	int backColor,stringColor;
-	int graphHandle;
-	bool IsUseGraph;
-	int graphHandle_on;
-	int graphHandle_off;
-	bool IsReact;			//マウスに反応するか否か
+	char *title;///<　@brief 説明
+	int *x1,*x2,*y1,*y2;///<　@brief 説明
+	int backColor,stringColor;///<　@brief 説明
+	int graphHandle;///<　@brief 説明
+	bool IsUseGraph;///<　@brief 説明
+	int graphHandle_on;///<　@brief 説明
+	int graphHandle_off;///<　@brief 説明
+	bool IsReact;			///<　@brief 説明//マウスに反応するか否か
 };
 
 
@@ -60,11 +60,11 @@ public:
 *	@brief 説明
 */
 	void ButtonLoop();
-	suken::CCollisionManager collision;
-	CInput input;
-	std::vector<CButton> buttonChild;
-	std::vector<CpButton> pButtonChild;
-	CScene *sceneChild;
+	suken::CCollisionManager collision;///<　@brief 説明
+	CInput input;///<　@brief 説明
+	std::vector<CButton> buttonChild;///<　@brief 説明
+	std::vector<CpButton> pButtonChild;///<　@brief 説明
+	CScene *sceneChild;///<　@brief 説明
 /**
 *	@brief 説明
 *	@param value 引数
@@ -214,9 +214,9 @@ public:
 */
 	unsigned int GetSerialNum();
 private:
-	bool focus;
-	static unsigned int sceneNum;
-	unsigned int serialNum;
+	bool focus;///<　@brief 説明
+	static unsigned int sceneNum;///<　@brief 説明
+	unsigned int serialNum;///<　@brief 説明
 };
 
 

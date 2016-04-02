@@ -127,29 +127,29 @@ public:
 	lua_State* GetLua();
 #endif
 private:
-	HDC display ;//ディスプレイドライバ
-	int frame;
-	int count;
-	int startTime;
-	int localStandardTime;
-	int N;			//Nフレームに一回fpsを算出する
-	float fps;
-	float targetFps;
-	int now;
-	int refreshRate;
-	std::vector<HANDLE> handleChild;
-	bool escapeFlag;
-	int screenShot;
-	bool screenShotFlag;
-	int *screenShotGrHandleAdress;
-	char loadingImgPath[256];
-	int loadingImg;
-	bool useThread_AwakeFlag;
-	int loadingMinimalTime;
+	HDC display ;///<　@brief 説明//ディスプレイドライバ
+	int frame;///<　@brief 説明
+	int count;///<　@brief 説明
+	int startTime;///<　@brief 説明
+	int localStandardTime;///<　@brief 説明
+	int N;		///<　@brief 説明	//Nフレームに一回fpsを算出する
+	float fps;///<　@brief 説明
+	float targetFps;///<　@brief 説明
+	int now;///<　@brief 説明
+	int refreshRate;///<　@brief 説明
+	std::vector<HANDLE> handleChild;///<　@brief 説明
+	bool escapeFlag;///<　@brief 説明
+	int screenShot;///<　@brief 説明
+	bool screenShotFlag;///<　@brief 説明
+	int *screenShotGrHandleAdress;///<　@brief 説明
+	char loadingImgPath[256];///<　@brief 説明
+	int loadingImg;///<　@brief 説明
+	bool useThread_AwakeFlag;///<　@brief 説明
+	int loadingMinimalTime;///<　@brief 説明
 #ifdef USE_LUA
-	lua_State *Lua;
+	lua_State *Lua;///<　@brief 説明
 #endif
 };
 }
 //Singleton
-extern suken::CSystem System;
+extern suken::CSystem System;///<　@brief 説明

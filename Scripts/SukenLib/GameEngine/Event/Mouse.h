@@ -2,11 +2,11 @@
 #include"EventData.h"
 
 namespace suken{
-const int MOUSE_OFF		=	10;
-const int MOUSE_ON		=	11;
-const int MOUSE_PUSH	=	12;
-const int MOUSE_CLICK	=	13;
-const int MOUSE_RELEASE =	14;
+const int MOUSE_OFF		=	10;///<　@brief 説明
+const int MOUSE_ON		=	11;///<　@brief 説明
+const int MOUSE_PUSH	=	12;///<　@brief 説明
+const int MOUSE_CLICK	=	13;///<　@brief 説明
+const int MOUSE_RELEASE =	14;///<　@brief 説明
 
 
 //マウス定義クラス
@@ -123,11 +123,13 @@ public:
 */
 	void SetRight();
 
-	int mouseX,mouseY;
-	bool mouseInput,preMouseInput;
+	int mouseX;///<　@brief 説明
+	int mouseY;///<　@brief 説明
+	bool mouseInput;///<　@brief 説明
+	bool preMouseInput;///<　@brief 説明
 	
 private:
-	bool IsLeft;
+	bool IsLeft;///<　@brief 説明
 };
 
 

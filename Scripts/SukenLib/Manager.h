@@ -21,10 +21,8 @@ const int WINDOW_HEIGHT= 600;
 
 /////Suken.hóp
 
-/**
-*	@brief ê‡ñæ
-*/
-#define GRAVITY VGet( 0.0f , 0.0f )
+
+#define GRAVITY VGet( 0.0f , 0.0f )///<Å@@brief ê‡ñæ
 
 
 /**

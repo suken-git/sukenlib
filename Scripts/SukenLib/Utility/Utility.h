@@ -3,16 +3,17 @@
 #include <string>
 
 namespace suken{
-const int RED = GetColor( 255 , 0 , 0 );
-const int GREEN = GetColor( 0 , 255 , 0 );
-const int BLUE = GetColor( 0 , 0 , 255 );
-const int BLACK = GetColor( 0 , 0 , 0 );
-const int WHITE = GetColor( 255 , 255 , 255 );
-const int GRAY = GetColor( 128 , 128 , 128 );
-const int LIGHTBLUE = GetColor( 128 , 128 , 255 );
-const int LIGHTGREEN = GetColor( 128 , 255 , 128 );
-const int M_PINK = GetColor( 255 , 128 , 128 );
-const int YELLOW = GetColor( 255 , 255 , 0);
+
+const int RED = GetColor( 255 , 0 , 0 );///<　@brief 説明
+const int GREEN = GetColor( 0 , 255 , 0 );///<　@brief 説明
+const int BLUE = GetColor( 0 , 0 , 255 );///<　@brief 説明
+const int BLACK = GetColor( 0 , 0 , 0 );///<　@brief 説明
+const int WHITE = GetColor( 255 , 255 , 255 );///<　@brief 説明
+const int GRAY = GetColor( 128 , 128 , 128 );///<　@brief 説明
+const int LIGHTBLUE = GetColor( 128 , 128 , 255 );///<　@brief 説明
+const int LIGHTGREEN = GetColor( 128 , 255 , 128 );///<　@brief 説明
+const int M_PINK = GetColor( 255 , 128 , 128 );///<　@brief 説明
+const int YELLOW = GetColor( 255 , 255 , 0);///<　@brief 説明
 
 
 

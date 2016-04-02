@@ -170,31 +170,34 @@ public:
 */
 	void DrawLoop();
 
-	bool useKey,useMouse;
-	int mouseX,mouseY;
+	bool useKey;///<　@brief 説明
+	bool useMouse;///<　@brief 説明
+	int mouseX;///<　@brief 説明
+	int mouseY;///<　@brief 説明
 private:
-	CKeyIn keyTemp;
-	std::vector<CKeyIn> keyTask;
+	CKeyIn keyTemp;///<　@brief 説明
+	std::vector<CKeyIn> keyTask;///<　@brief 説明
 
-	CMouseIn mouseTemp;
-	std::vector<CMouseIn> mouseTask;
+	CMouseIn mouseTemp;///<　@brief 説明
+	std::vector<CMouseIn> mouseTask;///<　@brief 説明
 
-	CpMouseIn pMouseTemp;
-	std::vector<CpMouseIn> pMouseTask;
+	CpMouseIn pMouseTemp;///<　@brief 説明
+	std::vector<CpMouseIn> pMouseTask;///<　@brief 説明
 
-	CFrame frameTemp;
-	std::vector<CFrame> frameTask;
+	CFrame frameTemp;///<　@brief 説明
+	std::vector<CFrame> frameTask;///<　@brief 説明
 
-	CBoolean boolTemp;
-	std::vector<CBoolean> boolTask;
+	CBoolean boolTemp;///<　@brief 説明
+	std::vector<CBoolean> boolTask;///<　@brief 説明
 
-	std::vector<CKeyIn> keyTask_Draw;
-	std::vector<CMouseIn> mouseTask_Draw;
-	std::vector<CpMouseIn> pMouseTask_Draw;
-	std::vector<CFrame> frameTask_Draw;
-	std::vector<CBoolean> boolTask_Draw;
+	std::vector<CKeyIn> keyTask_Draw;///<　@brief 説明
+	std::vector<CMouseIn> mouseTask_Draw;///<　@brief 説明
+	std::vector<CpMouseIn> pMouseTask_Draw;///<　@brief 説明
+	std::vector<CFrame> frameTask_Draw;///<　@brief 説明
+	std::vector<CBoolean> boolTask_Draw;///<　@brief 説明
 
-	bool mouseInput,preMouseInput;
+	bool mouseInput;///<　@brief 説明
+	bool preMouseInput;///<　@brief 説明
 };
 
 
