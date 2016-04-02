@@ -2,6 +2,7 @@
 #include <vector>
 #include "DxLib.h"
 #include <Manager.h>
+extern suken::CSystem System;
 
 namespace suken{
 
@@ -61,4 +62,3 @@ private:
 };
 }
 
-extern suken::CSystem System;

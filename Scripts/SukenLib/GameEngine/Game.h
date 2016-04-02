@@ -1,6 +1,8 @@
 #pragma once
 #include"Scene.h"
 #include <vector>
+extern suken::CGame Game;
+
 namespace suken{
 
 //ゲームシステム総括クラス
@@ -28,4 +30,3 @@ private:
 }
 
 
-extern suken::CGame Game;

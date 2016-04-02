@@ -28,7 +28,7 @@
 *	@param filetype 現在無効
 * @return true
 */
-extern bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0");
+bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.*\0\0");
 /**
 *	@brief ダイアログを開いて、ファイルを保存する。
 *	マップエディタなどを作るときに便利かも
@@ -36,7 +36,7 @@ extern bool SelectOpenFile( char *filename , char *filetype = "all file(*.*)\0*.
 *	@param filetype 現在無効
 * @return true
 */
-extern bool SaveFile(char *filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
+bool SaveFile(char *filename ,char *filetype =  "all file(*.*)\0*.*\0\0");
 /*
 原因不明エラーのためコメントアウト
 void GetHttpFile(char *&Buf,char *Http,unsigned long ReadSize = 65536);
