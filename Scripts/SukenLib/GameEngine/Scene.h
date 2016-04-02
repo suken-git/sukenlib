@@ -8,6 +8,9 @@ namespace suken{
 
 class CButton{
 public:
+	/**
+*	@brief 説明
+*/
 	CButton(){
 		IsUseGraph = false;
 		IsReact = false;
@@ -23,6 +26,9 @@ public:
 };
 class CpButton{
 public:
+/**
+*	@brief 説明
+*/
 	CpButton(){
 		IsUseGraph = false;
 		IsReact =false;
@@ -42,45 +48,170 @@ public:
 //シーンクラス
 class CScene{
 public:
+/**
+*	@brief 説明
+*/
 	CScene();
+/**
+*	@brief 説明
+*/
 	void Loop();
+/**
+*	@brief 説明
+*/
 	void ButtonLoop();
 	suken::CCollisionManager collision;
 	CInput input;
 	std::vector<CButton> buttonChild;
 	std::vector<CpButton> pButtonChild;
 	CScene *sceneChild;
-	
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetFocus(bool _focus);
+/**
+*	@brief 説明
+* @return 戻り値
+*/
 	bool GetFocus();
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void AddChild(CScene *_scene);
+/**
+*	@brief 説明
+*/
 	void RemoveChild();
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)() );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) , int *pInt );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) , int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)() );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int *pInt );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)() );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)(int) , int *pInt );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* graphPath, void (*pFunc)(int) , int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int *pInt );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)() );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) ,int *pInt );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , char *title , int stringColor , void (*pFunc)(int) ,int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)() );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int *pInt );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)() );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)(int) , int *pInt );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* graphPath , void (*pFunc)(int) , int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)() );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int *pInt );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , char* Off_graphPath , char* On_graphPath , void (*pFunc)(int) , int Int );
-	//数研ライブラリ内部関数（使用禁止）
+/**
+*	@brief 説明  //数研ライブラリ内部関数（使用禁止）
+*/
 	void ResetSceneNum();
+/**
+*	@brief 説明
+* @return 戻り値
+*/
 	unsigned int GetSerialNum();
 private:
 	bool focus;

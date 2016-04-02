@@ -46,9 +46,24 @@ void GetHttpFile(char *&Buf,char *Http,unsigned long ReadSize = 65536);
 
 /////FROM NUNULIB
 //現在時刻取得関数///////////////////////////////////////////
+
+/**
+*	@brief 説明
+* @return 戻り値
+*/
 SYSTEMTIME GetNowSystemTime();  //SYSTEMTIME型で日本時刻を取得
+
+/**
+*	@brief 説明
+* @return 戻り値
+*/
 std::string GetNowSystemTimeString();  //string型(00/00/00 00:00:00 000)で現在日本時刻を取得
 
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 inline int DrawCenterString(int cx, int y, const TCHAR *String, int color, bool centerY=false){ //xを左右の中心にしてDrawStringで文字描画（※yは上下中心ではなく上辺）
     if (centerY){
         return DxLib::DrawString(cx-GetDrawStringWidth(String, strlen(String))/2, y-GetFontSize()/2, String, color);    //あくまで目安 
@@ -56,18 +71,49 @@ inline int DrawCenterString(int cx, int y, const TCHAR *String, int color, bool 
         return DxLib::DrawString(cx-GetDrawStringWidth(String, strlen(String))/2, y, String, color); 
     }
 }
+
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 int DrawCenterString(int cx, int y, int color, const TCHAR* format, ...);
+
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 int DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format, ...);
 
 /////////////////////////////////////////////////////////////
 
 //////////////////////////////////////
 
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 void AddFontFromPath(char *path);
 
-
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 void SukenExecute(char *URL);
 
+
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 unsigned int fanctorial(unsigned int num);			//
+
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 unsigned int combination(unsigned int n , unsigned int r);					//nCrとかやるあれ。組み合わせ
 

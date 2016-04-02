@@ -21,10 +21,21 @@ const int WINDOW_HEIGHT= 600;
 
 /////Suken.hóp
 
+/**
+*	@brief ê‡ñæ
+*/
 #define GRAVITY VGet( 0.0f , 0.0f )
 
 
-
+/**
+*	@brief ê‡ñæ
+*/
 void Awake();
+/**
+*	@brief ê‡ñæ
+*/
 void GameLoopEnter();
+/**
+*	@brief ê‡ñæ
+*/
 void GameLoopExit();

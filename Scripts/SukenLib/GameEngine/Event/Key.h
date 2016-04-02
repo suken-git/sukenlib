@@ -4,6 +4,9 @@ namespace suken{
 
 class CKey{
 public:
+/**
+*	@brief 説明
+*/
 	CKey(){}
 
 	static const int BACK = KEY_INPUT_BACK	;
@@ -112,11 +115,33 @@ public:
     static const int NUM8 = KEY_INPUT_8	;  
     static const int NUM9 = KEY_INPUT_9	; 
 
-
+/**
+*	@brief 説明
+*/
 	void Loop();
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 	bool GetPush(int keyCode);
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 	bool GetDown(int keyCode);
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 	bool GetUp(int keyCode);
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 	int GetCount(int keyCode);
 private:
 	float count[256];
