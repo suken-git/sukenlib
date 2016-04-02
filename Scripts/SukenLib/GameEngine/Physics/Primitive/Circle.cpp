@@ -21,35 +21,9 @@ void suken::CCircle::Loop(){
 	DxLib::DrawCircle((int)(center.position.x +0.5), (int)(center.position.y+0.5) , (int)(radius+0.5) ,WHITE ,false );
 #endif
 }
-void suken::CCircle::AddEventLisnerOnCollision(void (*pFunc)()){
-	onCollisionTaskVoid.push_back(pFunc);
-}
-void suken::CCircle::RemoveEventLisnerOnCollision(void (*pFunc)()){
 
-	if(!onCollisionTaskVoid.empty()){
-		vector<void(*)()>::iterator it = onCollisionTaskVoid.begin();
-		while( ( it != onCollisionTaskVoid.end() ) ){
 
-			if( *it ==  pFunc  ){
-				onCollisionTaskVoid.erase( it );
-				break;
-			}
-			it++;
-		}
-	}	
-}
-void suken::CCircle::OnCollisionFunc(){
-	if(!onCollisionTaskVoid.empty()){
-		vector<void(*)()>::iterator it=onCollisionTaskVoid.begin();
 
-		while( it != onCollisionTaskVoid.end() ) {
-
-			(*it)();					
-			it++;
-		}
-
-	}
-}
 void suken::CCircle::AddCollisionFalse(CCircle *c){
 	noCollision.push_back(c);
 }

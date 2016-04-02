@@ -93,6 +93,7 @@
     <ClCompile Include="SukenLib\GameEngine\Game.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Physics\CollisionManager.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Circle.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Primitive.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Rect.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Physics\Transform.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Physics\Vector2D.cpp" />

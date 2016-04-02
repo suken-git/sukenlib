@@ -72,6 +72,9 @@
     <ClCompile Include="SukenLib\Utility\Data.cpp">
       <Filter>SukenLib\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Primitive.cpp">
+      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h">

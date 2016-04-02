@@ -49,33 +49,5 @@ void suken::CRect::Loop(){
 float suken::CRect::GetRadius(){
 	return radius;
 }
-void suken::CRect::AddEventLisnerOnCollision(void (*pFunc)()){
-	onCollisionTaskVoid.push_back(pFunc);
-}
-void suken::CRect::RemoveEventLisnerOnCollision(void (*pFunc)()){
 
-	if(!onCollisionTaskVoid.empty()){
-		vector<void(*)()>::iterator it = onCollisionTaskVoid.begin();
-		while( ( it != onCollisionTaskVoid.end() ) ){
 
-			if( *it ==  pFunc  ){
-
-				onCollisionTaskVoid.erase( it );
-				break;
-			}
-			it++;
-		}
-	}	
-}
-void suken::CRect::OnCollision(){
-	if(!onCollisionTaskVoid.empty()){
-		vector<void(*)()>::iterator it=onCollisionTaskVoid.begin();
-
-		while( it != onCollisionTaskVoid.end() ) {
-
-			(*it)();					
-				it++;
-		}
-
-	}
-}

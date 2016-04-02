@@ -5,13 +5,15 @@
 #include"../Vector2D.h"
 //for std::vector 
 #include"Manager.h"
+//for CPrimitive
+#include"Primitive.h"
 
 namespace suken{
 
-class CRect{
+class CRect :public suken::CPrimitive{
 public:
 	CRect();
-	suken::CTransform center;
+	//suken::CTransform center;
 	float direction;
 	static const int figureType = SHAPE_RECT; 
 	void Set(int sizeX,int sizeY);
@@ -25,11 +27,11 @@ public:
 	void Draw(int color);
 	void Loop();
 	float GetRadius();
-	void AddEventLisnerOnCollision(void (*pFunc)());
-	void RemoveEventLisnerOnCollision(void (*pFunc)());
-	void OnCollision();
+	//void AddEventLisnerOnCollision(void (*pFunc)());
+	//void RemoveEventLisnerOnCollision(void (*pFunc)());
+	//void OnCollision();
 private:
-	vector<void(*)()> onCollisionTaskVoid;
+	//vector<void(*)()> onCollisionTaskVoid;
 	float rad;
 	float radius;
 	suken::Vector2D size;

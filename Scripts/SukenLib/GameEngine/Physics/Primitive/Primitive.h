@@ -1,18 +1,21 @@
 #pragma once
 #include"../Transform.h"
+namespace suken{
 class CPrimitive{
 public:
-CPrimitive(){
-
-}
+CPrimitive();
 void AddEventLisnerOnCollision(void (*pFunc)());
 void RemoveEventLisnerOnCollision(void (*pFunc)());
 void OnCollisionFunc();
-bool GetOnCollision();
-
+bool GetCollisionState();
+void SetCollisionState(bool flag);
+virtual void Loop();
 suken::CTransform center;
-private:
+protected:
+	vector<void(*)()> onCollisionTaskVoid;
 	bool onCollision;
 	int figureType;
 
 };
+
+}

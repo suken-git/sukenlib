@@ -14,11 +14,11 @@ void suken::CCollisionManager::Awake(){
 void suken::CCollisionManager::Loop(){
 		
 	for(unsigned int i=0;i<physicsCircle.size();i++){
-		physicsCircle[i]->onCollision = false;
+		physicsCircle[i]->SetCollisionState( false );
 		physicsCircle[i]->Loop();
 	}
 	for(unsigned int i=0;i<fixedCircle.size();i++){
-		fixedCircle[i]->onCollision = false;
+		fixedCircle[i]->SetCollisionState( false );
 		fixedCircle[i]->Loop();
 	}
 	for(unsigned int i=0;i<physicsCircle.size();i++){
@@ -135,8 +135,8 @@ bool suken::CCollisionManager::CollisionCircle(CCircle &A , CCircle &B){
    }
 
    //Õ“Ëˆ—
-   A.onCollision=true;
-   B.onCollision=true;
+   A.SetCollisionState(true);
+   B.SetCollisionState(true);
 
    A.OnCollisionFunc();
    B.OnCollisionFunc();
@@ -161,8 +161,8 @@ bool suken::CCollisionManager::CollisionRect(CRect &A , CRect &B){
 			}
 		}
 		if(IsCollision[i]){
-			A.OnCollision();
-			B.OnCollision();
+			A.OnCollisionFunc();
+			B.OnCollisionFunc();
 #ifdef DEBUG_DRAW
 			A.Draw(GREEN);
 			B.Draw(GREEN);
