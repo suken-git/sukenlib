@@ -31,46 +31,29 @@ void suken::CInput::AddEventListener( int inputCode , void func(int) , int Argum
 }
 void suken::CInput::RemoveEventListener( int inputCode , void func()  ){
 
-	std::vector< CKeyIn >::iterator it = keyTask.begin();
-
-	while( ( it != keyTask.end() ) ){
-
+	for (auto it = keyTask.begin(); it != keyTask.end();it ++ ){
 		if( it->keyCode == inputCode && it->pFuncVoid == func  ){
-
 			keyTask.erase( it );
 			break;
-		}
-		it++;
-	}
-		
+		}	
+	}	
 }
 void suken::CInput::RemoveEventListener( int inputCode , void func(int) , int *pArgument  ){
-
-	std::vector< CKeyIn >::iterator it = keyTask.begin();
-
-	while( ( it != keyTask.end() ) ){
-
+	for(auto it = keyTask.begin(); it != keyTask.end(); it++){
 		if( it->keyCode == inputCode && it->pFuncInt == func && it->pInt == pArgument ){
-
 			keyTask.erase( it );
 			break;
 		}
-		it++;
 	}
 		
 }
 void suken::CInput::RemoveEventListener( int inputCode , void func(int) , int Argument  ){
 
-	std::vector< CKeyIn >::iterator it = keyTask.begin();
-
-	while( ( it != keyTask.end() ) ){
-
+	for(auto it = keyTask.begin(); it != keyTask.end(); it++){
 		if( it->keyCode == inputCode && it->pFuncInt == func  && it->Int == Argument ){
-
 			keyTask.erase( it );
 			break;
 		}
-		it++;
 	}
 		
 }
@@ -99,46 +82,31 @@ void suken::CInput::AddEventListener( CMouseIn input , void func(int) , int Argu
 }
 void suken::CInput::RemoveEventListener( CMouseIn input , void func()  ){
 
-	std::vector< CMouseIn >::iterator it = mouseTask.begin();
-
-	while( ( it != mouseTask.end() ) ){
-
+	for(auto it = mouseTask.begin(); it != mouseTask.end(); it++){
 		if( it->pFuncVoid == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
-
 			mouseTask.erase( it );
 			break;
 		}
-		it++;
 	}
 		
 }
 void suken::CInput::RemoveEventListener( CMouseIn input , void func(int) , int *pArgument  ){
 
-	std::vector< CMouseIn >::iterator it = mouseTask.begin();
-
-	while( ( it != mouseTask.end() ) ){
-
+	for(auto it = mouseTask.begin(); it != mouseTask.end(); it++){
 		if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2 && it->pInt == pArgument ){
-
 			mouseTask.erase( it );
 			break;
 		}
-		it++;
 	}
 		
 }
 void suken::CInput::RemoveEventListener( CMouseIn input , void func(int) , int Argument  ){
 
-	std::vector< CMouseIn >::iterator it = mouseTask.begin();
-
-	while( ( it != mouseTask.end() ) ){
-
+	for(auto it = mouseTask.begin(); it != mouseTask.end(); it++){
 		if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  && it->Int == Argument ){
-
 			mouseTask.erase( it );
 			break;
 		}
-		it++;
 	}
 		
 }
@@ -167,44 +135,29 @@ void suken::CInput::AddEventListener( CpMouseIn input , void func(int) , int Arg
 }
 void suken::CInput::RemoveEventListener( CpMouseIn input , void func()  ){
 
-	std::vector< CpMouseIn >::iterator it = pMouseTask.begin();
-
-	while( ( it != pMouseTask.end() ) ){
-
+	for(auto it = pMouseTask.begin(); it != pMouseTask.end(); it++){
 		if( it->pFuncVoid == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  ){
-
 			pMouseTask.erase( it );
 			break;
 		}
-		it++;
 	}
 }
 void suken::CInput::RemoveEventListener( CpMouseIn input , void func(int) , int *pArgument  ){
 
-	std::vector< CpMouseIn >::iterator it = pMouseTask.begin();
-
-	while( ( it != pMouseTask.end() ) ){
-
+	for(auto it = pMouseTask.begin(); it != pMouseTask.end(); it++){
 		if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  && it->pInt == pArgument ){
-
 			pMouseTask.erase( it );
 			break;
 		}
-		it++;
 	}
 }
 void suken::CInput::RemoveEventListener( CpMouseIn input , void func(int) , int Argument  ){
 
-	std::vector< CpMouseIn >::iterator it = pMouseTask.begin();
-
-	while( ( it != pMouseTask.end() ) ){
-
+	for(auto it = pMouseTask.begin(); it != pMouseTask.end(); it++){
 		if( it->pFuncInt == func && it->type == input.type && it->x1 == input.x1 && it->x2 == input.x2 && it->y1 == input.y1 && it->y2 == input.y2  && it->Int == Argument ){
-
 			pMouseTask.erase( it );
 			break;
 		}
-		it++;
 	}
 }
 void suken::CInput::AddEventListener( char input , void func()  ){
@@ -225,49 +178,30 @@ void suken::CInput::AddEventListener( char input , void func(int) , int Argument
 			
 }
 void suken::CInput::RemoveEventListener( char input , void func()  ){
-
-	std::vector< CFrame >::iterator it = frameTask.begin();
-
-	while( ( it != frameTask.end() ) ){
-
+	for(auto it = frameTask.begin(); it != frameTask.end(); it++){
 		if( it->pFuncVoid ==  func  ){
-
 			frameTask.erase( it );
 			break;
 		}
-		it++;
-	}
-		
+	}		
 }
 void suken::CInput::RemoveEventListener( char input , void func(int) , int *pArgument  ){
-
-	std::vector< CFrame >::iterator it = frameTask.begin();
-
-	while( ( it != frameTask.end() ) ){
-
+	for(auto it = frameTask.begin(); it != frameTask.end(); it++){
 		if( it->pFuncInt ==  func  && it->pInt == pArgument ){
-
 			frameTask.erase( it );
 			break;
 		}
-		it++;
 	}
 		
 }
 void suken::CInput::RemoveEventListener( char input , void func(int) , int Argument  ){
 
-	std::vector< CFrame >::iterator it = frameTask.begin();
-
-	while( ( it != frameTask.end() ) ){
-
+	for(auto it = frameTask.begin(); it != frameTask.end(); it++){
 		if( it->pFuncInt ==  func  && it->Int == Argument ){
-
 			frameTask.erase( it );
 			break;
 		}
-		it++;
-	}
-		
+	}		
 }
 void suken::CInput::AddEventListener( bool* input , void func()  ){
 	boolTemp.pFuncVoid=func;
@@ -290,47 +224,29 @@ void suken::CInput::AddEventListener( bool* input , void func(int) , int Argumen
 			
 }
 void suken::CInput::RemoveEventListener( bool* input , void func()  ){
-
-	std::vector< CBoolean >::iterator it = boolTask.begin();
-
-	while( ( it != boolTask.end() ) ){
-
+	for(auto it = boolTask.begin(); it != boolTask.end(); it++){
 		if( it->pBool == input && it->pFuncVoid == func  ){
-
 			boolTask.erase( it );
 			break;
 		}
-		it++;
-	}
-	
+	}	
 }	
 void suken::CInput::RemoveEventListener( bool* input , void func(int) , int *pArgument  ){
 
-	std::vector< CBoolean >::iterator it = boolTask.begin();
-
-	while( ( it != boolTask.end() ) ){
-
+	for(auto it = boolTask.begin(); it != boolTask.end(); it++){	
 		if( it->pBool == input && it->pFuncInt == func  && it->pInt == pArgument ){
-
 			boolTask.erase( it );
 			break;
 		}
-		it++;
-	}
-	
+	}	
 }
 void suken::CInput::RemoveEventListener( bool* input , void func(int) , int Argument  ){
 
-	std::vector< CBoolean >::iterator it = boolTask.begin();
-
-	while( ( it != boolTask.end() ) ){
-
+	for(auto it = boolTask.begin(); it != boolTask.end(); it++){
 		if( it->pBool == input && it->pFuncInt == func  && it->Int == Argument ){
-
 			boolTask.erase( it );
 			break;
 		}
-		it++;
 	}
 	
 }

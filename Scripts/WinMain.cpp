@@ -20,8 +20,6 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	}
 	System.Wait_Loading();
 
-
-
 	while(!ProcessMessage()&&!System.GetEscapeFlag()){
 		ScreenFlip();
 		ClearDrawScreen();
