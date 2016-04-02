@@ -23,3 +23,5 @@ private:
 };
 
 }
+//Singleton
+extern suken::CEvent Event;

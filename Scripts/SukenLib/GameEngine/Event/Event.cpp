@@ -1,5 +1,6 @@
 #include"Event.h"
-
+//Singleton
+suken::CEvent Event;
 
 
 

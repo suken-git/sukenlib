@@ -1,7 +1,6 @@
 #pragma once
 #include"Scene.h"
 #include <vector>
-extern suken::CGame Game;
 
 namespace suken{
 
@@ -28,5 +27,8 @@ private:
 
 
 }
+//Singleton
+extern suken::CGame Game;
+
 
 

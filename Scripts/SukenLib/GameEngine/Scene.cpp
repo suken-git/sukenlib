@@ -1,7 +1,6 @@
 #include"Scene.h"
 #include <Utility/Debug.h>
 
-extern suken::CEvent Event;
 
 //Ã“Iƒƒ“ƒo•Ï”
 unsigned int suken::CScene::sceneNum;

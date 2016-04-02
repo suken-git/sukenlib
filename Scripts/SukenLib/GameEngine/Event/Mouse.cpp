@@ -1,7 +1,6 @@
 #include "DxLib.h"
 #include"Mouse.h"
 #include"Event.h"
-extern suken::CEvent Event;
 
 suken::CMouseIn suken::CMouse::Off( int _x1 , int _y1 , int _x2 , int _y2 ){
 

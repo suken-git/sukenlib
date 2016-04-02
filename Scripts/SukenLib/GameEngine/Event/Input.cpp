@@ -2,8 +2,6 @@
 #include"Input.h"
 #include"Event.h"
 
-extern suken::CEvent Event;
-
 suken::CInput::CInput(){
 	useMouse = true;
 	useKey = true;

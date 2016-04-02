@@ -1,7 +1,6 @@
 #include"Key.h"
 #include "Event.h"
 #include <Utility\Debug.h>
-extern suken::CEvent Event;
 
 
 void suken::CKey::Loop(){

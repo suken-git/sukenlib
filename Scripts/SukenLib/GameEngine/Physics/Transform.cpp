@@ -1,6 +1,5 @@
 #include"Transform.h"
-#include"../../System/System.h"
-
+#include <System/System.h>
 
 suken::CTransform::CTransform(){
 	//prePosition = position = velocity = acceralate = VGet(0,0);

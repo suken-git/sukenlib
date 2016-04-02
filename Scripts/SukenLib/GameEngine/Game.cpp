@@ -1,7 +1,6 @@
 #include"Game.h"
-extern suken::CEvent Event;
-
-
+//Singleton
+suken::CGame Game;
 
 suken::CGame::CGame(){
 	useDrawLoopFlag =true;

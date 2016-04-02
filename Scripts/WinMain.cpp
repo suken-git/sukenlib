@@ -1,8 +1,5 @@
 #include"Suken.h"
 using namespace suken;
-CSystem System;
-CGame Game;
-CEvent Event;
 
 int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	//ˆ—İ’è@‚±‚±‚©‚ç//////////////////////////////////////////////

@@ -1,5 +1,7 @@
 #include"System.h"
 #include <Utility/Utility.h>
+//Singleton
+suken::CSystem System;
 
 suken::CSystem::CSystem(){
 	startTime = 0;
