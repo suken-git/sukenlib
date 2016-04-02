@@ -2,8 +2,8 @@
 #include"../Transform.h"
 namespace suken{	
 ///FIGURE TYPE
-const int SHAPE_RECT	= 1;///<　@brief 説明
-const int SHAPE_CIRCLE	= 2;///<　@brief 説明
+const int SHAPE_RECT	= 1;///<  @brief 説明
+const int SHAPE_CIRCLE	= 2;///<  @brief 説明
 class CPrimitive{
 public:
 /**
@@ -41,11 +41,11 @@ public:
 *	@brief 説明
 */
 	virtual void Loop();
-	suken::CTransform center;///<　@brief 説明
+	suken::CTransform center;///<  @brief 説明
 protected:
-	std::vector<void(*)()> onCollisionTaskVoid;///<　@brief 説明
-	bool onCollision;///<　@brief 説明
-	int figureType;///<　@brief 説明
+	std::vector<void(*)()> onCollisionTaskVoid;///<  @brief 説明
+	bool onCollision;///<  @brief 説明
+	int figureType;///<  @brief 説明
 };
 
 }

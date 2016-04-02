@@ -29,15 +29,15 @@ public:
 *	@brief 説明
 * @return 戻り値
 */
-	bool GetValid();///<　@brief 説明
-	char EVERY_FRAME;///<　@brief 説明
-	CKey key;///<　@brief 説明
-	CMouse LMouse;///<　@brief 説明
-	CMouse RMouse;///<　@brief 説明
+	bool GetValid();///<  @brief 説明
+	char EVERY_FRAME;///<  @brief 説明
+	CKey key;///<  @brief 説明
+	CMouse LMouse;///<  @brief 説明
+	CMouse RMouse;///<  @brief 説明
 private:
-	bool IsActivated;///<　@brief 説明
+	bool IsActivated;///<  @brief 説明
 };
 
 }
 //Singleton
-extern suken::CEvent Event;///<　@brief 説明
+extern suken::CEvent Event;///<  @brief 説明

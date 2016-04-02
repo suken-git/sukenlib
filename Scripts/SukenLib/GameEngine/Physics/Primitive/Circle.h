@@ -11,11 +11,11 @@ public:
 */
 	CCircle();
 //独自
-	float radius;///<　@brief 説明
-	float mass;///<　@brief 説明
-	float bound;///<　@brief 説明
-	bool IsKinematic;///<　@brief 説明
-	static const int figureType = SHAPE_CIRCLE; ///<　@brief 説明
+	float radius;///<  @brief 説明
+	float mass;///<  @brief 説明
+	float bound;///<  @brief 説明
+	bool IsKinematic;///<  @brief 説明
+	static const int figureType = SHAPE_CIRCLE; ///<  @brief 説明
 /**
 *	@brief 説明
 * @return 戻り値
@@ -47,7 +47,7 @@ public:
 */
 	bool GetIsNoCollision(CCircle *c);
 private:
-	std::vector<CCircle*> noCollision;///<　@brief 説明
+	std::vector<CCircle*> noCollision;///<  @brief 説明
 };
 
 }

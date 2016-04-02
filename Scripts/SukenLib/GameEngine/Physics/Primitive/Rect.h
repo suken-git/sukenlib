@@ -9,8 +9,8 @@ public:
 *	@brief 説明
 */
 	CRect();
-	float direction;///<　@brief 説明
-	static const int figureType = SHAPE_RECT; ///<　@brief 説明
+	float direction;///<  @brief 説明
+	static const int figureType = SHAPE_RECT; ///<  @brief 説明
 /**
 *	@brief 説明
 *	@param value 引数
@@ -66,9 +66,9 @@ public:
 */
 	float GetRadius();
 private:
-	float rad;///<　@brief 説明
-	float radius;///<　@brief 説明
-	suken::Vector2D size;///<　@brief 説明
+	float rad;///<  @brief 説明
+	float radius;///<  @brief 説明
+	suken::Vector2D size;///<  @brief 説明
 };
 
 

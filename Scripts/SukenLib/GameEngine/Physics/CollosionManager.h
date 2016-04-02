@@ -13,7 +13,7 @@
 ///////////////////////////////////////////////////////////////////////
 
 namespace suken{
-const int INF		= 10000000;///<　@brief 説明
+const int INF		= 10000000;///<  @brief 説明
 class CCollisionManager{
 public:
 /**
@@ -76,10 +76,10 @@ public:
 */
 	bool RemoveChild(suken::CRect *_rect);
 
-	std::vector<CCircle*> physicsCircle;///<　@brief 説明
-	std::vector<CCircle*> fixedCircle;///<　@brief 説明
-	std::vector<CRect*> fixedRect;///<　@brief 説明
-	std::vector<CRect*> physicsRect;///<　@brief 説明
+	std::vector<CCircle*> physicsCircle;///<  @brief 説明
+	std::vector<CCircle*> fixedCircle;///<  @brief 説明
+	std::vector<CRect*> fixedRect;///<  @brief 説明
+	std::vector<CRect*> physicsRect;///<  @brief 説明
 };
 
 

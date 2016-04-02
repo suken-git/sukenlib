@@ -22,7 +22,7 @@ const int WINDOW_HEIGHT= 600;
 /////Suken.h—p
 
 
-#define GRAVITY VGet( 0.0f , 0.0f )///<@@brief à–¾
+#define GRAVITY VGet( 0.0f , 0.0f )///<  @brief à–¾
 
 
 /**

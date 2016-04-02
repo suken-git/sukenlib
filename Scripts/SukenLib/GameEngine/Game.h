@@ -47,10 +47,10 @@ public:
 * @return 戻り値
 */
 	bool GetUseDrawLoop();
-	std::vector<CScene*> sceneChild;///<　@brief 説明
-	CScene rootScene;///<　@brief 説明
+	std::vector<CScene*> sceneChild;///<  @brief 説明
+	CScene rootScene;///<  @brief 説明
 private:
-	bool useDrawLoopFlag;///<　@brief 説明
+	bool useDrawLoopFlag;///<  @brief 説明
 	
 	
 };
@@ -58,7 +58,7 @@ private:
 
 }
 //Singleton
-extern suken::CGame Game;///<　@brief 説明
+extern suken::CGame Game;///<  @brief 説明
 
 
 

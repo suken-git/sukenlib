@@ -22,8 +22,8 @@ public:
 */
     Vector2D();
 
-    float x;///<@@brief à–¾
-    float y;///<@@brief à–¾
+    float x;///<  @brief à–¾
+    float y;///<  @brief à–¾
  /**
 *	@brief à–¾
 *	@param value ˆø”
