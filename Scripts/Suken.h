@@ -25,10 +25,10 @@
 #include"SukenLib\GameEngine\Physics\Primitive\Circle.h"
 #include"SukenLib\GameEngine\Physics\Primitive\Rect.h"
 
+using namespace suken;
 
 
 
 
 
-
-//最終更新　20160402.1730
+//最終更新　20160403.1750

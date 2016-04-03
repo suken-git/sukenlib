@@ -1,4 +1,5 @@
 #include"Suken.h"
+
 void Awake(){
 
 }
