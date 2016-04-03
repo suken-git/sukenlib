@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>C:\プロジェクトに追加すべきファイル_VC用;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</IncludePath>
+    <IncludePath>SukenLib;C:\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -85,21 +85,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Suken.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="System.cpp" />
+    <ClCompile Include="Midi.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\Input.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\Key.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\Mouse.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Game.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\CollisionManager.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Circle.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Primitive.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Rect.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Transform.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Vector2D.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Scene.cpp" />
+    <ClCompile Include="SukenLib\System\System.cpp" />
+    <ClCompile Include="SukenLib\Utility\Data.cpp" />
+    <ClCompile Include="SukenLib\Utility\Utility.cpp" />
+    <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Manager.h" />
+    <ClInclude Include="Midi.h" />
     <ClInclude Include="Suken.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Event.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\EventData.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Input.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Key.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Mouse.h" />
+    <ClInclude Include="SukenLib\GameEngine\Game.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\CollosionManager.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Primitive.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Rect.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Transform.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Vector2D.h" />
+    <ClInclude Include="SukenLib\GameEngine\Scene.h" />
+    <ClInclude Include="SukenLib\Manager.h" />
+    <ClInclude Include="SukenLib\System\System.h" />
+    <ClInclude Include="SukenLib\Utility\Data.h" />
+    <ClInclude Include="SukenLib\Utility\Debug.h" />
+    <ClInclude Include="SukenLib\Utility\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="stage\stage.vcxproj">
       <Project>{a74596ab-8b6a-452f-9e7d-0c5b2110821e}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

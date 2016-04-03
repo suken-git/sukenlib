@@ -1,39 +1,145 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="SukenLib">
+      <UniqueIdentifier>{934455b5-5924-439d-ba40-a073ce716699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SukenLib\GameEngine">
+      <UniqueIdentifier>{c9fda4df-60c0-40c3-a5fd-9393a29a8244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SukenLib\GameEngine\Physics">
+      <UniqueIdentifier>{5f5e83fe-d7b8-4fe6-8826-0b08b99ab4c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SukenLib\GameEngine\Physics\Primitive">
+      <UniqueIdentifier>{b121fc62-963e-46bb-a53b-665bedb11315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SukenLib\GameEngine\Event">
+      <UniqueIdentifier>{f2e491a2-479c-4ed1-bd19-5fbe4cb6cd06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SukenLib\Utility">
+      <UniqueIdentifier>{d9719951-fa45-4a7a-a5b0-3a4f1899c2ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SukenLib\System">
+      <UniqueIdentifier>{3379862b-317f-41a6-8a30-1a25f03d83e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SukenLib\Windows">
+      <UniqueIdentifier>{feaaf5be-fcee-42ba-a7ce-2045c2af79a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="SukenLib\GameEngine\Physics\Vector2D.cpp">
+      <Filter>SukenLib\GameEngine\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="SukenLib\GameEngine\Physics\Transform.cpp">
+      <Filter>SukenLib\GameEngine\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Suken.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="SukenLib\System\System.cpp">
+      <Filter>SukenLib\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Circle.cpp">
+      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Rect.cpp">
+      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Utility\Utility.cpp">
+      <Filter>SukenLib\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Game.cpp">
+      <Filter>SukenLib\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Scene.cpp">
+      <Filter>SukenLib\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Physics\CollisionManager.cpp">
+      <Filter>SukenLib\GameEngine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Event\Input.cpp">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Event\Key.cpp">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Event\Mouse.cpp">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\Utility\Data.cpp">
+      <Filter>SukenLib\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Primitive.cpp">
+      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Midi.cpp">
+      <Filter>SukenLib\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Suken.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h">
+      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
     </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Primitive.h">
+      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="readme.txt" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Transform.h">
+      <Filter>SukenLib\GameEngine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Physics\Vector2D.h">
+      <Filter>SukenLib\GameEngine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\System\System.h">
+      <Filter>SukenLib\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Suken.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Event.h">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Manager.h">
+      <Filter>SukenLib</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Physics\CollosionManager.h">
+      <Filter>SukenLib\GameEngine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Utility\Debug.h">
+      <Filter>SukenLib\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Utility\Utility.h">
+      <Filter>SukenLib\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Game.h">
+      <Filter>SukenLib\GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Scene.h">
+      <Filter>SukenLib\GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Event\Input.h">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Event\Key.h">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Event\Mouse.h">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Event\EventData.h">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Utility\Data.h">
+      <Filter>SukenLib\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Midi.h">
+      <Filter>SukenLib\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Rect.h">
+      <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

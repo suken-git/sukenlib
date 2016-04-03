@@ -1,6 +1,5 @@
 #include"Suken.h"
-
-
+using namespace suken;
 
 int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	//èàóùê›íËÅ@Ç±Ç±Ç©ÇÁ//////////////////////////////////////////////
@@ -21,14 +20,12 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	}
 	System.Wait_Loading();
 
-
-
 	while(!ProcessMessage()&&!System.GetEscapeFlag()){
 		ScreenFlip();
 		ClearDrawScreen();
 		System.Update();
 		GameLoopEnter();
-		game.Loop();
+		Game.Loop();
 		GameLoopExit();
 		System.Wait();
 	}
@@ -36,5 +33,3 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	System.End();
 	return 0;
 } 
-
-
