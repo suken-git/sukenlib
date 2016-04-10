@@ -1,6 +1,6 @@
 #pragma once
 
-//#define DEBUG
+#define DEBUG
 #define DEBUG_DRAW
 //#define USE_LUA  //Luaスクリプトを使うならコメントアウトを解除する
 //そしてプロジェクト直下にlua5.1.dllを配置
