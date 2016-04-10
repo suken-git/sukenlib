@@ -1,5 +1,19 @@
 #pragma once
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #define DEBUG
 #define DEBUG_DRAW
 //#define USE_LUA  //Luaスクリプトを使うならコメントアウトを解除する
