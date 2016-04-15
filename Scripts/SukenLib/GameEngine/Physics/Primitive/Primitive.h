@@ -1,4 +1,5 @@
 #pragma once
+#include"Manager.h"
 #include"../Transform.h"
 namespace suken{	
 ///FIGURE TYPE
