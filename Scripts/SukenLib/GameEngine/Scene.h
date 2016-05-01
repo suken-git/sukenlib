@@ -11,7 +11,8 @@ public:
 	/**
 *	@brief ê‡ñæ
 */
-	CButton(){
+	CButton()
+{
 		IsUseGraph = false;
 		IsReact = false;
 	}
@@ -29,7 +30,8 @@ public:
 /**
 *	@brief ê‡ñæ
 */
-	CpButton(){
+	CpButton()
+{
 		IsUseGraph = false;
 		IsReact =false;
 	}

@@ -2,11 +2,13 @@
 //Singleton
 suken::CGame Game;
 
-suken::CGame::CGame(){
+suken::CGame::CGame()
+{
 	useDrawLoopFlag =true;
 	rootScene.ResetSceneNum();
 }
-suken::CGame::~CGame(){
+suken::CGame::~CGame()
+{
 /*
 	if(memoryLeakChecker!=0){
 		char info[256];
@@ -16,10 +18,12 @@ suken::CGame::~CGame(){
 	*/
 	rootScene.SetFocus(true);
 }
-void awake(){
+void awake()
+{
 
 }
-void suken::CGame::AddChild(CScene* _scene){
+void suken::CGame::AddChild(CScene* _scene)
+{
 		
 	rootScene.SetFocus(false);
 
@@ -27,7 +31,8 @@ void suken::CGame::AddChild(CScene* _scene){
 	sceneChild.push_back(_scene);
 
 }
-void suken::CGame::RemoveChild(CScene* _scene){
+void suken::CGame::RemoveChild(CScene* _scene)
+{
 	_scene->SetFocus(false);
 	std::vector<CScene*>::iterator it=sceneChild.begin();
 
@@ -44,7 +49,8 @@ void suken::CGame::RemoveChild(CScene* _scene){
 		rootScene.SetFocus(true);
 	}
 }
-void suken::CGame::RemoveChild(){
+void suken::CGame::RemoveChild()
+{
 	sceneChild.front()->SetFocus(false);
 	sceneChild.pop_back();
 		
@@ -52,7 +58,8 @@ void suken::CGame::RemoveChild(){
 		rootScene.SetFocus(true);
 	}
 }
-void suken::CGame::Loop(){
+void suken::CGame::Loop()
+{
 	
 		Event.Loop();
 	
@@ -68,9 +75,11 @@ void suken::CGame::Loop(){
 }
 
 	
-void suken::CGame::SetUseDrawLoop(bool flag){
+void suken::CGame::SetUseDrawLoop(bool flag)
+{
 	useDrawLoopFlag = flag;
 }
-bool suken::CGame::GetUseDrawLoop(){
+bool suken::CGame::GetUseDrawLoop()
+{
 	return useDrawLoopFlag;
 }

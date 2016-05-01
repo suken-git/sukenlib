@@ -18,7 +18,8 @@ bool suken::SelectOpenFile( char* filename ,  char* filetype)
 
     return TRUE;
 }
-bool suken::SaveFile( char* filename , char* filetype){
+bool suken::SaveFile( char* filename , char* filetype)
+{
 	static OPENFILENAME     ofn;
     static TCHAR            szPath[ MAX_PATH ];
     static TCHAR            szFile[ MAX_PATH ];
@@ -45,7 +46,8 @@ bool suken::SaveFile( char* filename , char* filetype){
 }
 
 
-void suken::SukenExecute(std::string URL){
+void suken::SukenExecute(std::string URL)
+{
 		OSVERSIONINFO OSver;
 		OSver.dwOSVersionInfoSize =sizeof(OSVERSIONINFO);
 		GetVersionEx(&OSver);
@@ -58,7 +60,8 @@ void suken::SukenExecute(std::string URL){
 
 /// FROM NUNULIB
 //現在時刻取得関数///////////////////////////////////////////
-SYSTEMTIME suken::GetNowSystemTime(){
+SYSTEMTIME suken::GetNowSystemTime()
+{
     SYSTEMTIME st;
     GetSystemTime(&st);
      
@@ -78,7 +81,8 @@ SYSTEMTIME suken::GetNowSystemTime(){
     FileTimeToSystemTime(&ft2, &st);
     return st;
 }
-std::string suken::GetNowSystemTimeString(){
+std::string suken::GetNowSystemTimeString()
+{
     char currentTime[25] = { 0 };
     SYSTEMTIME st = suken::GetNowSystemTime();
     wsprintf(currentTime, "%04d/%02d/%02d %02d:%02d:%02d %03d",
@@ -88,7 +92,8 @@ std::string suken::GetNowSystemTimeString(){
     return tmp;
 }
 //DrawCenterString Notフォーマット版
-int suken::DrawCenterString(int cx, int y, int color, const TCHAR* format, ...){
+int suken::DrawCenterString(int cx, int y, int color, const TCHAR* format, ...)
+{
     va_list args;
     char string[1024];
     int for_return;
@@ -105,7 +110,8 @@ int suken::DrawCenterString(int cx, int y, int color, const TCHAR* format, ...){
  
     return for_return;  
 }
-int suken::DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format, ...){ //フォーマット版
+int suken::DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR* format, ...)
+{ //フォーマット版
     va_list args;
     char string[1024];
     int for_return;
@@ -124,7 +130,8 @@ int suken::DrawCenterString(int cx, int y, int color, bool centerY, const TCHAR*
 }
 
 //フォント追加（パス入力必須）
-void suken::AddFontFromPath(std::string path){
+void suken::AddFontFromPath(std::string path)
+{
 
 	LPCSTR font_path = path.c_str(); // 読み込むフォントファイルのパス
 		if (AddFontResourceEx(font_path, FR_PRIVATE, nullptr) > 0) {
@@ -137,7 +144,8 @@ void suken::AddFontFromPath(std::string path){
 
 
 //階乗
-unsigned int suken::fanctorial(unsigned int num){
+unsigned int suken::fanctorial(unsigned int num)
+{
 	if(num <= 1){
 		return 1;
 	}else{
@@ -145,7 +153,8 @@ unsigned int suken::fanctorial(unsigned int num){
 	}
 }
 //組み合わせ（nとrはそれぞれ「nCr」のnとr）
-unsigned int suken::combination(unsigned int n , unsigned int r){
+unsigned int suken::combination(unsigned int n , unsigned int r)
+{
 	return ( suken::fanctorial( n ) / ( suken::fanctorial( n-r ) * suken::fanctorial( r ) ) );
 }
 

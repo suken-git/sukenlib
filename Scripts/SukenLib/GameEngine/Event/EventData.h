@@ -9,7 +9,8 @@ public:
 /**
 *	@brief ê‡ñæ
 */
-	CKeyIn(){
+	CKeyIn()
+{
 		pFuncVoid = nullptr;
 		pFuncInt = nullptr;
 		pInt = nullptr;
@@ -25,7 +26,8 @@ public:
 /**
 *	@brief ê‡ñæ
 */
-	CMouseIn(){
+	CMouseIn()
+{
 		pFuncVoid = nullptr;
 		pFuncInt = nullptr;
 		pInt = nullptr;
@@ -43,7 +45,8 @@ public:
 /**
 *	@brief ê‡ñæ
 */
-	CpMouseIn(){
+	CpMouseIn()
+{
 		pFuncVoid = nullptr;
 		pFuncInt = nullptr;
 		pInt = nullptr;
@@ -81,7 +84,8 @@ public:
 /**
 *	@brief ê‡ñæ
 */
-	CFrame(){
+	CFrame()
+{
 		pFuncVoid = nullptr;
 		pFuncInt = nullptr;
 		pInt = nullptr;
@@ -96,7 +100,8 @@ public:
 /**
 *	@brief ê‡ñæ
 */
-	CBoolean(){
+	CBoolean()
+{
 		pFuncVoid = nullptr;
 		pFuncInt = nullptr;
 		pInt = nullptr;

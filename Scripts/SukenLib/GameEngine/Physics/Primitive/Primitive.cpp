@@ -1,13 +1,16 @@
 #include"Primitive.h"
 
 
-suken::CPrimitive::CPrimitive(){
+suken::CPrimitive::CPrimitive()
+{
 
 }
-void suken::CPrimitive::AddEventLisnerOnCollision(void (*pFunc)()){
+void suken::CPrimitive::AddEventLisnerOnCollision(void (*pFunc)())
+{
 	onCollisionTaskVoid.push_back(pFunc);
 }
-void suken::CPrimitive::RemoveEventLisnerOnCollision(void (*pFunc)()){
+void suken::CPrimitive::RemoveEventLisnerOnCollision(void (*pFunc)())
+{
 	if(!onCollisionTaskVoid.empty()){
 		std::vector<void(*)()>::iterator it = onCollisionTaskVoid.begin();
 		while( ( it != onCollisionTaskVoid.end() ) ){
@@ -20,7 +23,8 @@ void suken::CPrimitive::RemoveEventLisnerOnCollision(void (*pFunc)()){
 		}
 	}
 }
-void suken::CPrimitive::OnCollisionFunc(){
+void suken::CPrimitive::OnCollisionFunc()
+{
 	if(!onCollisionTaskVoid.empty()){
 		std::vector<void(*)()>::iterator it=onCollisionTaskVoid.begin();
 
@@ -32,12 +36,15 @@ void suken::CPrimitive::OnCollisionFunc(){
 
 	}
 }
-bool suken::CPrimitive::GetCollisionState(){
+bool suken::CPrimitive::GetCollisionState()
+{
 	return onCollision;
 }
-void suken::CPrimitive::SetCollisionState(bool flag){
+void suken::CPrimitive::SetCollisionState(bool flag)
+{
 	onCollision = flag;
 }
-void suken::CPrimitive::Loop(){
+void suken::CPrimitive::Loop()
+{
 	center.Loop();
 }

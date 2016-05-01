@@ -6,13 +6,15 @@
 unsigned int suken::CScene::sceneNum;
 
 
-suken::CScene::CScene(){
+suken::CScene::CScene()
+{
 	serialNum = sceneNum;
 	sceneNum++;
 	focus = false;
 	sceneChild = nullptr;
 }
-void suken::CScene::Loop(){
+void suken::CScene::Loop()
+{
 	if(!focus){
 		input.useKey = false;
 		input.useMouse = false;
@@ -36,7 +38,8 @@ void suken::CScene::Loop(){
 	}
 	Event.Activate();
 }
-void suken::CScene::ButtonLoop(){
+void suken::CScene::ButtonLoop()
+{
 		
 
 	std::vector<CButton>::iterator it = buttonChild.begin();
@@ -81,13 +84,16 @@ void suken::CScene::ButtonLoop(){
 		}
 	}		
 }
-void suken::CScene::SetFocus(bool _focus){
+void suken::CScene::SetFocus(bool _focus)
+{
 	focus = _focus;
 }
-bool suken::CScene::GetFocus(){
+bool suken::CScene::GetFocus()
+{
 	return focus;
 }
-void suken::CScene::AddChild(CScene *_scene){
+void suken::CScene::AddChild(CScene *_scene)
+{
 	if(focus){
 		if( sceneChild != nullptr ){
 			RemoveChild();
@@ -101,7 +107,8 @@ void suken::CScene::AddChild(CScene *_scene){
 		WarningSK("現在有効ではないシーンに入れ子のシーンを追加することはできません(CScene::AddChild)");
 	}
 }
-void suken::CScene::RemoveChild(){
+void suken::CScene::RemoveChild()
+{
 	if( sceneChild != nullptr ){
 		//フォーカスの移行
 		sceneChild->SetFocus(false);
@@ -112,7 +119,8 @@ void suken::CScene::RemoveChild(){
 		WarningSK("CScene::RemoveChildが呼び出されましたがCScene::sceneChildにシーンがありません");
 	}
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)() ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)() )
+{
 	CButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -127,7 +135,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) , int *pInt )
+{
 	CButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -142,7 +151,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) , int Int )
+{
 	CButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -157,7 +167,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int backColor
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)() ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)() )
+{
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -171,7 +182,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, vo
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int *pInt )
+{
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -185,7 +197,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, vo
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int Int )
+{
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -199,7 +212,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , int graph, vo
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)() ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)() )
+{
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -216,7 +230,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string g
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)(int) , int *pInt )
+{
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -233,7 +248,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string g
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , pInt );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, void (*pFunc)(int) , int Int )
+{
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -250,7 +266,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string g
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() )
+{
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -272,7 +289,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string O
 
 	buttonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int *pInt )
+{
 	CButton temp;
 	
 	temp.IsUseGraph = true;
@@ -294,7 +312,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string O
 
 	buttonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int )
+{
 	CButton temp;
 		
 	temp.IsUseGraph = true;
@@ -316,7 +335,8 @@ void suken::CScene::SetButton( int x1 , int y1 , int x2 , int y2 , std::string O
 
 	buttonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)() ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)() )
+{
 	CpButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -331,7 +351,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backC
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) ,int *pInt ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) ,int *pInt )
+{
 	CpButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -346,7 +367,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backC
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) ,int Int ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , void (*pFunc)(int) ,int Int )
+{
 	CpButton temp;
 	temp.IsUseGraph = false;
 	temp.title = title;
@@ -361,7 +383,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backC
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,Int );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)() ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)() )
+{
 	CpButton temp;
 	temp.IsUseGraph = true;
 		
@@ -376,7 +399,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int *pInt ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int *pInt )
+{
 	CpButton temp;
 	temp.IsUseGraph = true;
 		
@@ -391,7 +415,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int Int ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int Int )
+{
 	CpButton temp;
 	temp.IsUseGraph = true;
 		
@@ -406,7 +431,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph
 
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc , Int );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)() ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)() )
+{
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -423,7 +449,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::stri
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)(int) , int *pInt )
+{
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -440,7 +467,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::stri
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,pInt );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , void (*pFunc)(int) , int Int )
+{
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -457,7 +485,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::stri
 		
 	this->input.AddEventListener( Event.LMouse.Click( x1 , y1 , x2 , y2 ) , pFunc ,Int );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() )
+{
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -479,7 +508,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::stri
 
 	pButtonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int *pInt ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int *pInt )
+{
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -501,7 +531,8 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::stri
 
 	pButtonChild.push_back( temp );
 }
-void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int ){
+void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int )
+{
 	CpButton temp;
 		
 	temp.IsUseGraph = true;
@@ -524,9 +555,11 @@ void suken::CScene::SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::stri
 	pButtonChild.push_back( temp );
 }
 //数研ライブラリ内部関数（使用禁止）
-void suken::CScene::ResetSceneNum(){
+void suken::CScene::ResetSceneNum()
+{
 	sceneNum = 1;
 }
-unsigned int suken::CScene::GetSerialNum(){
+unsigned int suken::CScene::GetSerialNum()
+{
 	return serialNum;
 }

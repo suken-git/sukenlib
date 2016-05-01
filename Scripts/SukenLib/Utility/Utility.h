@@ -64,7 +64,8 @@ std::string GetNowSystemTimeString();  //string型(00/00/00 00:00:00 000)で現在日
 *	@param value 引数
 * @return 戻り値
 */
-inline int DrawCenterString(int cx, int y, const TCHAR *String, int color, bool centerY=false){ //xを左右の中心にしてDrawStringで文字描画（※yは上下中心ではなく上辺）
+inline int DrawCenterString(int cx, int y, const TCHAR *String, int color, bool centerY=false)
+{ //xを左右の中心にしてDrawStringで文字描画（※yは上下中心ではなく上辺）
     if (centerY){
         return DxLib::DrawString(cx-GetDrawStringWidth(String, strlen(String))/2, y-GetFontSize()/2, String, color);    //あくまで目安 
     }else{

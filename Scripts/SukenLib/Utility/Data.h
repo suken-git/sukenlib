@@ -16,7 +16,8 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
-	CData(std::string fileName){
+	CData(std::string fileName)
+{
 		this->fileName = fileName;
 	}
 /**
@@ -24,7 +25,8 @@ public:
 *	@param value 引数
 * @return 戻り値
 */
-	int GetInt(int index){
+	int GetInt(int index)
+{
 		if (index >= vectorIntData.size())
 			vectorIntData.resize(index+1);
 		return vectorIntData[index];
@@ -34,7 +36,8 @@ public:
 *	@param value 引数
 * @return 戻り値
 */
-	std::string GetString(int index){
+	std::string GetString(int index)
+{
 		if (index >= vectorStringData.size())
 			vectorStringData.resize(index+1);
 		return vectorStringData[index];	
@@ -44,7 +47,8 @@ public:
 *	@param value 引数
 * @return 戻り値
 */
-	int GetInt(const std::string &key){
+	int GetInt(const std::string &key)
+{
 		auto itr = hashIntData.find(key);
         if( itr == hashIntData.end() ) return 0;
 		return hashIntData[key];
@@ -54,7 +58,8 @@ public:
 *	@param value 引数
 * @return 戻り値
 */
-	std::string GetString(const std::string &key){
+	std::string GetString(const std::string &key)
+{
 		auto itr = hashStringData.find(key);
         if( itr == hashStringData.end() ) return "";
 		return hashStringData[key];	
@@ -63,7 +68,8 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
-	void Set(int index,int value){
+	void Set(int index,int value)
+{
 		if (index >= vectorIntData.size())
 			vectorIntData.resize(index+1);
 		vectorIntData[index] = value;
@@ -72,7 +78,8 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
-	void Set(int index,std::string value){
+	void Set(int index,std::string value)
+{
 		if (index >= vectorStringData.size())
 			vectorStringData.resize(index+1);
 		vectorStringData[index] = value;
@@ -81,12 +88,14 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
-	void Set(std::string key,int value){hashIntData[key] = value;}
+	void Set(std::string key,int value)
+{hashIntData[key] = value;}
 /**
 *	@brief 説明
 *	@param value 引数
 */
-	void Set(std::string key,std::string value){hashStringData[key] = value;}
+	void Set(std::string key,std::string value)
+{hashStringData[key] = value;}
 /**
 *	@brief 説明
 * @return 戻り値

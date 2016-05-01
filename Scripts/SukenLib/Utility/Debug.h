@@ -10,7 +10,8 @@ namespace suken{
 *	何かしらの操作をすることで復旧可能。
 *	@param format 出力する警告文の書式付き文字列のアドレス
 */
-inline void WarningSK(const char* format, ...){
+inline void WarningSK(const char* format, ...)
+{
 #ifdef DEBUG
 	 char tmpchar[256];
     sprintf_s(tmpchar, "警告 : \n\n%s\n\n", format);
@@ -40,7 +41,8 @@ inline void WarningSK(const char* format, ...){
 /**
 *	@brief 説明
 */
-inline void myprintLog(const char* filename, const char* format, va_list args){
+inline void myprintLog(const char* filename, const char* format, va_list args)
+{
     #ifndef MYLOG_DISABLE
         FILE *fp;
         errno_t error;
@@ -61,7 +63,8 @@ inline void myprintLog(const char* filename, const char* format, va_list args){
 *	@brief 説明
 *	@param value 引数
 */
-inline void myLog(const char* format, ...){
+inline void myLog(const char* format, ...)
+{
     va_list args;
     va_start(args, format);
     myprintLog("MyLog", format, args);
@@ -72,7 +75,8 @@ inline void myLog(const char* format, ...){
 *	@brief 説明
 *	@param value 引数
 */
-inline void myLogf(const char* filename, const char* format, ...){
+inline void myLogf(const char* filename, const char* format, ...)
+{
     va_list args;
     va_start(args, format);
     myprintLog(filename, format, args);
@@ -83,7 +87,8 @@ inline void myLogf(const char* filename, const char* format, ...){
 *	@brief 説明
 *	@param value 引数
 */
-inline void myprintfDx(const char*format, va_list args, const char* filename=nullptr, int line=0){
+inline void myprintfDx(const char*format, va_list args, const char* filename=nullptr, int line=0)
+{
     char string[1024];
     vsprintf_s(string, format, args);   //va_startとva_endは呼び出し元でする
     if (filename!=nullptr) sprintf_s(string, "%s\n->%s(%d)\n", string, filename, line);
@@ -100,7 +105,8 @@ inline void myprintfDx(const char*format, va_list args, const char* filename=nul
 *	@brief 説明
 *	@param value 引数
 */
-inline void ErrorDx(int line, const char* func, const char* filename, const char* format, ...){
+inline void ErrorDx(int line, const char* func, const char* filename, const char* format, ...)
+{
     char tmpchar[256];
     va_list args;   va_start(args, format);
     sprintf_s(tmpchar, "Error->%s\n->%s", format, func);
@@ -112,7 +118,8 @@ inline void ErrorDx(int line, const char* func, const char* filename, const char
 *	@brief 説明
 *	@param value 引数
 */
-inline void ErrorDx(const char* format, char* filename, int line, ...){
+inline void ErrorDx(const char* format, char* filename, int line, ...)
+{
     va_list args;
     va_start(args, line);
     myprintfDx(format, args, filename, line);
@@ -123,7 +130,8 @@ inline void ErrorDx(const char* format, char* filename, int line, ...){
 *	@brief 説明
 *	@param value 引数
 */
-inline void ErrorDx(const char* format, ...){
+inline void ErrorDx(const char* format, ...)
+{
     va_list args;
     va_start(args, format);
     myprintfDx(format, args);
@@ -134,7 +142,8 @@ inline void ErrorDx(const char* format, ...){
 *	@brief 説明
 *	@param value 引数
 */
-inline void WarningDx(int line, const char* func, const char* filename, const std::string format, ...){
+inline void WarningDx(int line, const char* func, const char* filename, const std::string format, ...)
+{
     #ifndef WARNINGDX_DISABLE 
         char tmpchar[256];
         va_list args;   va_start(args, format);
@@ -148,7 +157,8 @@ inline void WarningDx(int line, const char* func, const char* filename, const st
 *	@brief 説明
 *	@param value 引数
 */
-inline void WarningDx(const char* format, char* filename, int line, ...){
+inline void WarningDx(const char* format, char* filename, int line, ...)
+{
     #ifndef WARNINGDX_DISABLE 
         va_list args;
         va_start(args, line);
@@ -161,7 +171,8 @@ inline void WarningDx(const char* format, char* filename, int line, ...){
 *	@brief 説明
 *	@param value 引数
 */
-inline void WarningDx(const char* format, ...){
+inline void WarningDx(const char* format, ...)
+{
     #ifndef WARNINGDX_DISABLE 
         va_list args;
         va_start(args, format);
@@ -174,7 +185,8 @@ inline void WarningDx(const char* format, ...){
 *	@brief 説明
 *	@param value 引数
 */
-inline void DebugDx(int line, const char* func, const char* filename, const char* format, ...){
+inline void DebugDx(int line, const char* func, const char* filename, const char* format, ...)
+{
     #ifndef DEBUGDX_DISABLE 
         char tmpchar[256];
         va_list args;   va_start(args, format);
@@ -188,7 +200,8 @@ inline void DebugDx(int line, const char* func, const char* filename, const char
 *	@brief 説明
 *	@param value 引数
 */
-inline void DebugDx(const char* format, const char* filename, int line, ...){
+inline void DebugDx(const char* format, const char* filename, int line, ...)
+{
     #ifndef DEBUGDX_DISABLE 
         va_list args;
         va_start(args, line);
@@ -201,7 +214,8 @@ inline void DebugDx(const char* format, const char* filename, int line, ...){
 *	@brief 説明
 *	@param value 引数
 */
-inline void DebugDx(const char* format, ...){
+inline void DebugDx(const char* format, ...)
+{
     #ifndef DEBUGDX_DISABLE 
         va_list args;
         va_start(args, format);

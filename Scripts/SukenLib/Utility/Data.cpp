@@ -5,7 +5,8 @@
 #define REP(i,n) for(int i = 0;i<(int)(n);i++)
 #define FOREACH(it,container) for(auto it = (container).begin();it != (container).end();it++)
 
-std::string suken::CData::Normalize(std::string Str){		
+std::string suken::CData::Normalize(std::string Str)
+{		
 	for(auto found =  Str.find( "\n" ) ;
 			found != std::string::npos ;
 			found = Str.find( "\n", found + 1 )){
@@ -13,7 +14,8 @@ std::string suken::CData::Normalize(std::string Str){
 	}
 	return Str;
 }
-bool suken::CData::ReadAll(){	
+bool suken::CData::ReadAll()
+{	
 	struct stat s;
 	if(stat(fileName.c_str(),&s)) return WriteAll();		
 	std::ifstream ifs(fileName);		
@@ -42,7 +44,8 @@ bool suken::CData::ReadAll(){
 	return true;
 }
 
-bool suken::CData::WriteAll(){
+bool suken::CData::WriteAll()
+{
 	std::ofstream ofs(fileName);
 	if(ofs.fail()) return false;
 	REP(i,vectorIntData.size()){

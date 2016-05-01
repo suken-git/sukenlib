@@ -3,19 +3,23 @@
 #define _USE_MATH_DEFINES
 #include "math.h"
 
-suken::CCircle::CCircle(){
+suken::CCircle::CCircle()
+{
 	mass = 1.0f;
 	radius = 1.0f;
 	bound = 1.0f;
 	IsKinematic = false;
 }
-suken::Vector2D suken::CCircle::GetCenterPos(){		
+suken::Vector2D suken::CCircle::GetCenterPos()
+{		
 	return center.position;					
 }
-float suken::CCircle::GetArea(){ 			
+float suken::CCircle::GetArea()
+{ 			
 	return (float)( M_PI * radius * radius );		
 }
-void suken::CCircle::Loop(){
+void suken::CCircle::Loop()
+{
 	center.Loop();
 #ifdef DEBUG_DRAW
 	DxLib::DrawCircle((int)(center.position.x +0.5), (int)(center.position.y+0.5) , (int)(radius+0.5) ,WHITE ,false );
@@ -24,10 +28,12 @@ void suken::CCircle::Loop(){
 
 
 
-void suken::CCircle::AddCollisionFalse(CCircle *c){
+void suken::CCircle::AddCollisionFalse(CCircle *c)
+{
 	noCollision.push_back(c);
 }
-void suken::CCircle::RemoveCollisionFalse(CCircle *c){
+void suken::CCircle::RemoveCollisionFalse(CCircle *c)
+{
 	if(!noCollision.empty()){
 		std::vector<CCircle*>::iterator it = noCollision.begin();
 		while( ( it != noCollision.end() ) ){
@@ -41,7 +47,8 @@ void suken::CCircle::RemoveCollisionFalse(CCircle *c){
 		}
 	}
 }
-bool suken::CCircle::GetIsNoCollision(CCircle *c){
+bool suken::CCircle::GetIsNoCollision(CCircle *c)
+{
 	if(!noCollision.empty()){
 		std::vector<CCircle*>::iterator it = noCollision.begin();
 		while( ( it != noCollision.end() ) ){
