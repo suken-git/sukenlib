@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Midi.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="Midi.h" />
     <ClInclude Include="Suken.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\Event.h" />
