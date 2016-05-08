@@ -1,5 +1,5 @@
 #pragma once
-#include"SukenLib\Utility\Debug.h"
+#include"Debug.h"
 template<typename T>
 class Array {
 public:

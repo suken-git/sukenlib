@@ -85,7 +85,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Array.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Midi.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp" />
@@ -101,12 +100,12 @@
     <ClCompile Include="SukenLib\GameEngine\Physics\Vector2D.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Scene.cpp" />
     <ClCompile Include="SukenLib\System\System.cpp" />
+    <ClCompile Include="SukenLib\Utility\Array.cpp" />
     <ClCompile Include="SukenLib\Utility\Data.cpp" />
     <ClCompile Include="SukenLib\Utility\Utility.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h" />
     <ClInclude Include="Midi.h" />
     <ClInclude Include="Suken.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\Event.h" />
@@ -124,6 +123,7 @@
     <ClInclude Include="SukenLib\GameEngine\Scene.h" />
     <ClInclude Include="SukenLib\Manager.h" />
     <ClInclude Include="SukenLib\System\System.h" />
+    <ClInclude Include="SukenLib\Utility\Array.h" />
     <ClInclude Include="SukenLib\Utility\Data.h" />
     <ClInclude Include="SukenLib\Utility\Debug.h" />
     <ClInclude Include="SukenLib\Utility\Utility.h" />

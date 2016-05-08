@@ -81,7 +81,7 @@
     <ClCompile Include="Midi.cpp">
       <Filter>SukenLib\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Array.cpp">
+    <ClCompile Include="SukenLib\Utility\Array.cpp">
       <Filter>SukenLib\Utility</Filter>
     </ClCompile>
   </ItemGroup>
@@ -144,7 +144,7 @@
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Rect.h">
       <Filter>SukenLib\GameEngine\Physics\Primitive</Filter>
     </ClInclude>
-    <ClInclude Include="Array.h">
+    <ClInclude Include="SukenLib\Utility\Array.h">
       <Filter>SukenLib\Utility</Filter>
     </ClInclude>
   </ItemGroup>
