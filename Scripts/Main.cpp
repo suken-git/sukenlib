@@ -1,6 +1,6 @@
 #include"Suken.h"
 #include"Array.h"
-Array<int> A(5);
+Array<int> A(0,5);
 void Awake(){
 	
 	for(int i=0;i<A.size();i++){
