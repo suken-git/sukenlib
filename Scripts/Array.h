@@ -12,6 +12,10 @@ public:
 		Fill(intial);
 	}
 
+	~Array() {
+		delete[] data;
+	}
+
 	T & operator [](unsigned int i) {
 		return at(i);
 	}
