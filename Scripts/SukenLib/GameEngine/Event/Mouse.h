@@ -12,8 +12,17 @@ const int MOUSE_RELEASE =	14;///<  @brief 説明
 //マウス定義クラス
 class CMouse{
 public:
-
+/**
+*	@brief 説明
+*	@param value 引数
+* @return 戻り値
+*/
 	CMouseIn Off( int _x1 , int _y1 , int _x2 , int _y2 );
+/**
+*	@brief 説明
+* @return 戻り値
+*/
+	bool GetOff();
 /**
 *	@brief 説明
 *	@param value 引数
@@ -40,6 +49,11 @@ public:
 	CMouseIn On( int _x1 , int _y1 , int _x2 , int _y2 );
 /**
 *	@brief 説明
+* @return 戻り値
+*/
+	bool GetOn();
+/**
+*	@brief 説明
 *	@param value 引数
 * @return 戻り値
 */
@@ -62,6 +76,11 @@ public:
 * @return 戻り値
 */
 	CMouseIn Click( int _x1 , int _y1 , int _x2 , int _y2 );
+/**
+*	@brief 説明
+* @return 戻り値
+*/
+	bool GetClick();
 /**
 *	@brief 説明
 *	@param value 引数
@@ -88,6 +107,11 @@ public:
 	CMouseIn Release( int _x1 , int _y1 , int _x2 , int _y2 );
 /**
 *	@brief 説明
+* @return 戻り値
+*/
+	bool GetRelease();
+/**
+*	@brief 説明
 *	@param value 引数
 * @return 戻り値
 */
@@ -106,30 +130,44 @@ public:
 	bool GetRelease( int *_x1 , int *_y1 , int *_x2 , int *_y2 );
 /**
 *	@brief 説明
-*	@param value 引数
-* @return 戻り値
 */
 	void Loop();
 /**
 *	@brief 説明
-*	@param value 引数
-* @return 戻り値
 */
 	void SetLeft();
 /**
 *	@brief 説明
-*	@param value 引数
-* @return 戻り値
 */
 	void SetRight();
-
-	int mouseX;///<  @brief 説明
-	int mouseY;///<  @brief 説明
-	bool mouseInput;///<  @brief 説明
-	bool preMouseInput;///<  @brief 説明
+/**
+*	@brief 説明
+* @return 戻り値
+*/
+	int GetX();
+/**
+*	@brief 説明
+* @return 戻り値
+*/
+	int GetY();
+/**
+*	@brief 説明
+* @return 戻り値
+*/
+	bool GetInput();
+/**
+*	@brief 説明
+* @return 戻り値
+*/
+	bool GetPreInput();
+	
 	
 private:
-	bool IsLeft;///<  @brief 説明
+	int mouseX;///<  @brief 現在のマウスのｘ座標
+	int mouseY;///<  @brief 現在のマウスのｙ座標
+	bool mouseInput;///<  @brief 現フレームのマウス入力の有無
+	bool preMouseInput;///<  @brief 前フレームのマウス入力の有無
+	bool IsLeft;///<  @brief 担当するマウスボタンが左かどうか true:左　false:右
 };
 
 
