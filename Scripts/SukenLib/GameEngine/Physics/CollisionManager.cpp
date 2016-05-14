@@ -55,17 +55,17 @@ void suken::CCollisionManager::Loop()
 			physicsCircle[i]->center.velocity.x = -(physicsCircle[i]->center.velocity.x);
 			physicsCircle[i]->center.position.x = 0;
 		}
-		if(physicsCircle[i]->center.position.x > WINDOW_WIDTH ){
+		if(physicsCircle[i]->center.position.x > System.GetWindowX() ){
 			physicsCircle[i]->center.velocity.x = -(physicsCircle[i]->center.velocity.x);
-			physicsCircle[i]->center.position.x = WINDOW_WIDTH ;
+			physicsCircle[i]->center.position.x = System.GetWindowX() ;
 		}
 		if(physicsCircle[i]->center.position.y < 0){
 			physicsCircle[i]->center.velocity.y = -(physicsCircle[i]->center.velocity.y);
 			physicsCircle[i]->center.position.y = 0;
 		}
-		if(physicsCircle[i]->center.position.y > WINDOW_HEIGHT ){
+		if(physicsCircle[i]->center.position.y > System.GetWindowY() ){
 			physicsCircle[i]->center.velocity.y = -(physicsCircle[i]->center.velocity.y);
-			physicsCircle[i]->center.position.y = WINDOW_HEIGHT;
+			physicsCircle[i]->center.position.y = System.GetWindowY();
 		}
 	}*/
 		

@@ -13,6 +13,8 @@ suken::CSystem::CSystem()
 	targetFps = 0.0f;
 	screenShotGrHandleAdress = nullptr;
 	loadingImgPath = "";
+	window_w = WINDOW_WIDTH;
+	window_h = WINDOW_HEIGHT;
 }
 suken::CSystem::~CSystem()
 {
@@ -22,7 +24,7 @@ void suken::CSystem::Awake()
 {
 	//ゲームの超基本設定、普通何もいじらない
 	SetWindowIconID( 101 ) ;//アイコンのやつ
-	SetGraphMode( WINDOW_WIDTH ,  WINDOW_HEIGHT , 32 ) ;//SetWindowSize(WINDOW_WIDTH , WINDOW_HEIGHT );
+	SetGraphMode( window_w ,  window_h , 32 ) ;//SetWindowSize(WINDOW_WIDTH , WINDOW_HEIGHT );
 	ChangeWindowMode(TRUE);
 	SetAlwaysRunFlag(TRUE);//常時起動するのでTRUE
 	SetOutApplicationLogValidFlag( FALSE );//ログ出力抑制するのでFALSE
@@ -32,7 +34,7 @@ void suken::CSystem::Awake()
 	if(loadingImgPath != ""){
 		loadingImg = LoadGraph(loadingImgPath.c_str());
 	}
-	DrawExtendGraph(0,0,WINDOW_WIDTH,WINDOW_HEIGHT,loadingImg,true);
+	DrawExtendGraph(0,0,System.GetWindowX(),System.GetWindowY(),loadingImg,true);
 	//リフレッシュレートの取得
 	HDC hdc;
 	hdc = GetDC( GetMainWindowHandle() );//デバイスコンテキストの取得
@@ -183,7 +185,23 @@ HDC suken::CSystem::GetDisplayDC()
 	return display;
 }
 #ifdef USE_LUA
-lua_State* CSystem::GetLua(){
+lua_State* CSystem::GetLua()
+{
 	return Lua;
 }
 #endif
+void suken::CSystem::SetWindowSize( int width , int height )
+{
+	window_w = width;
+	window_h = height;
+}
+
+int suken::CSystem::GetWindowX()
+{
+	return window_w; 
+}
+
+int suken::CSystem::GetWindowY()
+{
+	return window_h; 
+}

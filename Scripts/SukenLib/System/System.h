@@ -110,7 +110,7 @@ public:
 */
 	float GetTargetFps();
 /**
-*	@brief 説明 //新しいスレッドを作る（exe終了時に正常に解放されます）
+*	@brief 新しいスレッドを作る（exe終了時に正常に解放されます）
 *	@param pFunc 作成したスレッドで実行される関数のポインタ 
 */
 	void CreateNewThread( void(*pFunc)() );
@@ -126,7 +126,25 @@ public:
 */
 	lua_State* GetLua();
 #endif
+/**
+*	@brief ウインドウの大きさを設定（WinMain.hの処理設定欄で使用する）
+*	@param width ウインドウ幅
+*	@param height ウインドウ高さ
+*/
+	void SetWindowSize( int width , int height );
+/**
+*	@brief ウインドウの幅を得る
+*	@return ウインドウの幅
+*/
+	int GetWindowX();
+/**
+*	@brief ウインドウの高さを得る
+*	@return ウインドウの高さ
+*/
+	int GetWindowY();
 private:
+	int window_w;///<  @brief	ウインドウ幅
+	int window_h;///<  @brief	ウインドウ高さ
 	HDC display ;///<  @brief ディスプレイデバイスコンテクストを格納
 	int frame;///<  @brief exe開始時からのフレーム数を格納
 	int count;///<  @brief フレームレート算出用変数
