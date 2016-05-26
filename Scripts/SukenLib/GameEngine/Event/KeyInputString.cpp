@@ -31,7 +31,7 @@ void CKeyInputString::Draw(int x, int y, int _width, int _height) {
 		break;
 		case true:
 			DrawBox(x, y, x + width, y + height, GetColor(0,0,0), true);
-			DrawBox(x, y, x + width, y + height, GetColor(255,255,255), false);
+			DrawBox(x, y, x + width, y + height, GetColor(120,120,120), false);
 			DrawKeyInputString(x+1, y,data);
 			
 			
