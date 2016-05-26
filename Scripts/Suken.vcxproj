@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BB2C04CF-0208-4694-867C-E2F9AA8FCF10}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Suken</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\プロジェクトに追加すべきファイル_VC用;$(LibraryPath)</LibraryPath>
+    <IncludePath>SukenLib;C:\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>C:\プロジェクトに追加すべきファイル_VC用;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\プロジェクトに追加すべきファイル_VC用</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\プロジェクトに追加すべきファイル_VC用</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\プロジェクトに追加すべきファイル_VC用</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Midi.cpp" />
+>>>>>>> 03710db50ad91668ebf2b2cc260f224976e2c4b7
+    <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\Input.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\Key.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\Mouse.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Game.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\CollisionManager.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Circle.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Primitive.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Primitive\Rect.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Transform.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Physics\Vector2D.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Scene.cpp" />
+    <ClCompile Include="SukenLib\System\System.cpp" />
+    <ClCompile Include="SukenLib\Utility\Array.cpp" />
+    <ClCompile Include="SukenLib\Utility\Data.cpp" />
+    <ClCompile Include="SukenLib\Utility\Utility.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="SukenLib\Windows\Midi.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+=======
+    <ClCompile Include="WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Midi.h" />
+>>>>>>> 03710db50ad91668ebf2b2cc260f224976e2c4b7
+    <ClInclude Include="Suken.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Event.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\EventData.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Input.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Key.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\Mouse.h" />
+    <ClInclude Include="SukenLib\GameEngine\Game.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\CollosionManager.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Primitive.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Rect.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Transform.h" />
+    <ClInclude Include="SukenLib\GameEngine\Physics\Vector2D.h" />
+    <ClInclude Include="SukenLib\GameEngine\Scene.h" />
+    <ClInclude Include="SukenLib\Manager.h" />
+    <ClInclude Include="SukenLib\System\System.h" />
+    <ClInclude Include="SukenLib\Utility\Array.h" />
+    <ClInclude Include="SukenLib\Utility\Data.h" />
+    <ClInclude Include="SukenLib\Utility\Debug.h" />
+    <ClInclude Include="SukenLib\Utility\Utility.h" />
+<<<<<<< HEAD
+    <ClInclude Include="SukenLib\Windows\Midi.h" />
+=======
+>>>>>>> 03710db50ad91668ebf2b2cc260f224976e2c4b7
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="stage\stage.vcxproj">
+      <Project>{a74596ab-8b6a-452f-9e7d-0c5b2110821e}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
