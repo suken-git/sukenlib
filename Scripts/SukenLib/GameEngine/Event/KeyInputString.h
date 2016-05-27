@@ -2,6 +2,11 @@
 #include <DxLib.h>
 #include <string>
 
+enum TYPE{
+	tInt,
+	tStr
+};
+
 class CKeyInputString {
 public:
 	//数字用
@@ -9,8 +14,8 @@ public:
 	//size  入力できる最大文字数
 	//cancelFlag  Ｅｓｃキーによるキャンセルの有無
 	CKeyInputString(int* _link,int size , bool cancelFlag = true):
-		data(MakeKeyInput( size > 9 ? 9 : size, cancelFlag, false, true)), intLink(_link), strLink(NULL), width(9*(size > 9 ? 9 : size)+3), height(16), link(0),writing(false){
-			mem = NULL;
+		data(MakeKeyInput( size > 9 ? 9 : size, cancelFlag, false, true)), intLink(_link), strLink(nullptr), width(9*(size > 9 ? 9 : size)+3), height(16), link(tInt),writing(false){
+			mem = nullptr;
 	}
 
 	//文字列用
@@ -20,39 +25,45 @@ public:
 	//singleOnly  半角に固定するかのフラグ
 	//doubleOnly  全角に固定するかのフラグ
 	CKeyInputString(std::string* _link, int size, bool cancelFlag = true , bool singleOnly = false, bool doubleOnly = false) :
-		data(MakeKeyInput(size, cancelFlag, singleOnly, false, doubleOnly)), intLink(NULL), strLink(_link),
-			width(doubleOnly ? (size % 2 ? (int)(17*(size-1)/2+3) : (int)(17*size/2+3)) : 9*size+3), height(16), link(1), writing(false) {
+		data(MakeKeyInput(size, cancelFlag, singleOnly, false, doubleOnly)), intLink(nullptr), strLink(_link),
+			width(doubleOnly ? (size % 2 ? (int)(17*(size-1)/2+3) : (int)(17*size/2+3)) : 9*size+3), height(16), link(tStr), writing(false) {
 				mem = new char [size];
 	}
 
 	~CKeyInputString() {
 		DeleteKeyInput(data);
-		if (intLink != NULL) {
+		if (intLink != nullptr) {
 			delete intLink;
-			intLink = NULL;
+			intLink = nullptr;
 		}
-		if (strLink != NULL) {
+		if (strLink != nullptr) {
 			delete strLink;
-			strLink = NULL;
+			strLink = nullptr;
 		}
-		if (mem != NULL) {
+		if (mem != nullptr) {
 			delete mem;
-			mem = NULL;
+			mem = nullptr;
 		}
 	}
 
 	void active() {
 		SetActiveKeyInput(data);
-		if (link == 0) {
+		if (link == tInt) {
 				SetKeyInputNumber(*intLink, data);
 			}
-			if (link == 1) {
-				SetKeyInputString(strLink->c_str(), data);
-			}
+		if (link == tStr) {
+			SetKeyInputString(strLink->c_str(), data);
+		}
 		writing = 1;
 	}
 
-	void Draw(int x, int y, int _width = 0, int _height = 0);
+	bool CheckActive(){
+		return writing;
+	}
+
+	//縦１６
+	//activeOnly 書いているときのみ文字を表示
+	void Draw(int x, int y, bool activeOnly = false);
 	
 private:
 	const int data;
@@ -60,9 +71,7 @@ private:
 	std::string *strLink;
 	const int width;
 	const int height;
-	// 0 ： int
-	// 1 ： string   わかりにくいのでどうにかしたい
-	const bool link;
+	const TYPE link;
 	bool writing;
 	char *mem;
 };

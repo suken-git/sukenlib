@@ -1,15 +1,13 @@
 #include "KeyInputString.h"
 #include "Event.h"
 
-void CKeyInputString::Draw(int x, int y, int _width, int _height) {
-	if(_width <= 0)_width = width;
-	if(_height <= 0)_height = height;
+void CKeyInputString::Draw(int x, int y, bool activeOnly) {
 		if (CheckKeyInput(data) == 1) {
 			writing = 0;
-			if (link == 0) {
+			if (link == tInt) {
 				*intLink = GetKeyInputNumber(data);
 			}
-			if (link == 1) {
+			if (link == tStr) {
 				GetKeyInputString(mem,data);
 				*strLink = mem;
 			}
@@ -17,24 +15,20 @@ void CKeyInputString::Draw(int x, int y, int _width, int _height) {
 		if(CheckKeyInput(data) == 2){
 			writing = 0;
 		}
-		switch (writing) {
-		case false:
-			if (link == 0) {
+		if (writing == 0 && activeOnly == true) {
+			if (link == tInt) {
 				DrawFormatString(x+1, y, GetColor(255,255,255), "%d",*intLink);
 			}
-			if (link == 1) {
+			if (link == tStr) {
 				DrawString(x+1, y, strLink->c_str(), GetColor(255,255,255));
 			}
-			if(Event.LMouse.GetClick(x, y, x + _width, y + _height)){
+			if(Event.LMouse.GetClick(x, y, x + width, y + height)){
 				active();
 			}
-		break;
-		case true:
+		}
+		if (writing == 1){
 			DrawBox(x, y, x + width, y + height, GetColor(0,0,0), true);
 			DrawBox(x, y, x + width, y + height, GetColor(120,120,120), false);
 			DrawKeyInputString(x+1, y,data);
-			
-			
-		break;
 		}
 	}
