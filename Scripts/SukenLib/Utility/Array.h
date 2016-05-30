@@ -3,7 +3,7 @@
 template<typename T>
 class Array {
 public:
-	Array(T intial, unsigned int _xSize, unsigned int _ySize = 1, unsigned int _zSize = 1) {
+	CArray(T intial, unsigned int _xSize, unsigned int _ySize = 1, unsigned int _zSize = 1) {
 		data = new T[_xSize * _ySize * _zSize];
 		arraySize = _xSize * _ySize * _zSize;
 		xSize = _xSize;
@@ -12,7 +12,7 @@ public:
 		Fill(intial);
 	}
 
-	~Array() {
+	~CArray() {
 		delete[] data;
 	}
 

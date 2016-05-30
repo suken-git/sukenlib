@@ -63,7 +63,7 @@ public:
 
 	//c‚P‚U
 	//activeOnly ‘‚¢‚Ä‚¢‚é‚Æ‚«‚Ì‚İ•¶š‚ğ•\¦
-	void Draw(int x, int y, bool activeOnly = false);
+	void Draw(int x, int y, bool activeOnly = false, int x2 = 0,int y2 = 0);
 	
 private:
 	const int data;

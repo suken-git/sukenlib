@@ -1,7 +1,7 @@
 #include "KeyInputString.h"
 #include "Event.h"
 
-void CKeyInputString::Draw(int x, int y, bool activeOnly) {
+void CKeyInputString::Draw(int x, int y, bool activeOnly, int x2, int y2) {
 		if (CheckKeyInput(data) == 1) {
 			writing = 0;
 			if (link == tInt) {
@@ -15,20 +15,20 @@ void CKeyInputString::Draw(int x, int y, bool activeOnly) {
 		if(CheckKeyInput(data) == 2){
 			writing = 0;
 		}
-		if (writing == 0 && activeOnly == true) {
+		if (writing == 0 && activeOnly == false) {
 			if (link == tInt) {
 				DrawFormatString(x+1, y, GetColor(255,255,255), "%d",*intLink);
 			}
 			if (link == tStr) {
 				DrawString(x+1, y, strLink->c_str(), GetColor(255,255,255));
 			}
-			if(Event.LMouse.GetClick(x, y, x + width, y + height)){
-				active();
-			}
 		}
 		if (writing == 1){
 			DrawBox(x, y, x + width, y + height, GetColor(0,0,0), true);
 			DrawBox(x, y, x + width, y + height, GetColor(120,120,120), false);
 			DrawKeyInputString(x+1, y,data);
+		}
+		if(Event.LMouse.GetClick(x, y,x2 == 0 ? x + width : x2,y2 == 0 ? y + height : y2)){
+				active();
 		}
 	}
