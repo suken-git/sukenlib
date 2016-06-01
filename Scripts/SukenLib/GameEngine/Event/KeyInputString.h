@@ -7,6 +7,8 @@ enum TYPE{
 	tStr
 };
 
+namespace suken{
+
 class CKeyInputString {
 public:
 	//”š—p
@@ -75,3 +77,7 @@ private:
 	bool writing;
 	char *mem;
 };
+
+void SetKeyInputStringColor(int NmlStr,int NmlCur,int _back,int _frame,int _font,int _fontColor);
+
+}

@@ -13,6 +13,9 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	System.SetLoadingMinimalTime(0);						//Loading‰æ–Ê‚ÌÅ’á•\¦ŠÔ‚ğƒ~ƒŠ•b‚Åİ’è
 	//ˆ—İ’è@‚±‚±‚Ü‚Å//////////////////////////////////////////////
 	System.Awake();
+
+	SetKeyInputStringColor(BLACK,RED,GetColor(50,50,50),RED,WHITE,GetColor(100,100,100),WHITE,BLACK,BLACK,BLACK
+		,GRAY,WHITE,GetColor(200,200,200),BLACK,BLACK,GetColor(254,254,254),BLACK);
 	
 	if(System.GetUseThread_Awake()){
 		System.CreateNewThread(Awake);
