@@ -214,6 +214,9 @@ public:
 *	@brief ê‡ñæ
 * @return ñﬂÇËíl
 */
+
+	CScene* GetFrontScene();
+
 	unsigned int GetSerialNum();
 private:
 	bool focus;///<  @brief ê‡ñæ

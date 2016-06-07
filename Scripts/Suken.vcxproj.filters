@@ -97,6 +97,9 @@
     <ClCompile Include="SukenLib\GameEngine\Event\KeyInputString.cpp">
       <Filter>SukenLib\GameEngine\Event</Filter>
     </ClCompile>
+    <ClCompile Include="SukenLib\GameEngine\Event\KeyInput.cpp">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h">
@@ -163,6 +166,9 @@
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\GameEngine\Event\KeyInputString.h">
+      <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\GameEngine\Event\KeyInput.h">
       <Filter>SukenLib\GameEngine\Event</Filter>
     </ClInclude>
   </ItemGroup>

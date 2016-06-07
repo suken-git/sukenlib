@@ -89,6 +89,7 @@
     <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Input.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Key.cpp" />
+    <ClCompile Include="SukenLib\GameEngine\Event\KeyInput.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\KeyInputString.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Mouse.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Game.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="SukenLib\GameEngine\Event\EventData.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\Input.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\Key.h" />
+    <ClInclude Include="SukenLib\GameEngine\Event\KeyInput.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\KeyInputString.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\Mouse.h" />
     <ClInclude Include="SukenLib\GameEngine\Game.h" />

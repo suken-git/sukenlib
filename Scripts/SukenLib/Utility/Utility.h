@@ -4,16 +4,16 @@
 
 namespace suken{
 
-const int RED = GetColor( 255 , 0 , 0 );///<  @brief à–¾
-const int GREEN = GetColor( 0 , 255 , 0 );///<  @brief à–¾
-const int BLUE = GetColor( 0 , 0 , 255 );///<  @brief à–¾
-const int BLACK = GetColor( 0 , 0 , 0 );///<  @brief à–¾
-const int WHITE = GetColor( 255 , 255 , 255 );///<  @brief à–¾
-const int GRAY = GetColor( 128 , 128 , 128 );///<  @brief à–¾
-const int LIGHTBLUE = GetColor( 128 , 128 , 255 );///<  @brief à–¾
-const int LIGHTGREEN = GetColor( 128 , 255 , 128 );///<  @brief à–¾
-const int M_PINK = GetColor( 255 , 128 , 128 );///<  @brief à–¾
-const int YELLOW = GetColor( 255 , 255 , 0);///<  @brief à–¾
+#define RED  GetColor( 255 , 0 , 0 )///<  @brief à–¾
+#define GREEN  GetColor( 0 , 255 , 0 )///<  @brief à–¾
+#define BLUE  GetColor( 0 , 0 , 255 )///<  @brief à–¾
+#define BLACK  GetColor( 0 , 0 , 0 )///<  @brief à–¾
+#define WHITE  GetColor( 255 , 255 , 255 )///<  @brief à–¾
+#define GRAY  GetColor( 128 , 128 , 128 )///<  @brief à–¾
+#define LIGHTBLUE  GetColor( 128 , 128 , 255 )///<  @brief à–¾
+#define LIGHTGREEN  GetColor( 128 , 255 , 128 )///<  @brief à–¾
+#define M_PINK  GetColor( 255 , 128 , 128 )///<  @brief à–¾
+#define YELLOW  GetColor( 255 , 255 , 0)///<  @brief à–¾
 
 
 

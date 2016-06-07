@@ -562,6 +562,8 @@ void suken::CInput::Loop()
 		it3++;
 	}
 
+	keyInput.Loop();
+
 }//end of void Loop()
 void suken::CInput::DrawLoop()
 {

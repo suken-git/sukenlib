@@ -1,4 +1,5 @@
 #include"Game.h"
+#include"Scene.h"
 //Singleton
 suken::CGame Game;
 
@@ -82,4 +83,15 @@ void suken::CGame::SetUseDrawLoop(bool flag)
 bool suken::CGame::GetUseDrawLoop()
 {
 	return useDrawLoopFlag;
+}
+
+suken::CScene* suken::CGame::GetFrontScene()
+{
+	if( sceneChild.empty() )
+	{
+		return &this->rootScene;
+	}else
+	{
+		return sceneChild.front()->GetFrontScene();
+	}
 }

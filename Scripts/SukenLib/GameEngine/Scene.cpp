@@ -559,6 +559,16 @@ void suken::CScene::ResetSceneNum()
 {
 	sceneNum = 1;
 }
+
+suken::CScene* suken::CScene::GetFrontScene()
+{
+	if( sceneChild == nullptr ){
+		return this;
+	}else
+	{
+		return (sceneChild->GetFrontScene());
+	}
+}
 unsigned int suken::CScene::GetSerialNum()
 {
 	return serialNum;

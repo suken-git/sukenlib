@@ -1,5 +1,6 @@
 #pragma once
 #include"EventData.h"
+#include"KeyInput.h"
 #include <vector>
 
 namespace suken{
@@ -174,6 +175,7 @@ public:
 	bool useMouse;///<  @brief à–¾
 	int mouseX;///<  @brief à–¾
 	int mouseY;///<  @brief à–¾
+	suken::CKeyInput keyInput;
 private:
 	CKeyIn keyTemp;///<  @brief à–¾
 	std::vector<CKeyIn> keyTask;///<  @brief à–¾
