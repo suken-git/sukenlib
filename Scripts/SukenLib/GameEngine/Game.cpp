@@ -83,3 +83,14 @@ bool suken::CGame::GetUseDrawLoop()
 {
 	return useDrawLoopFlag;
 }
+
+suken::CScene *suken::CGame::GetCurrentScene()
+{
+	if ( this->sceneChild.empty() ) 
+	{
+		return this->rootScene.GetCurrentScene();
+	}else
+	{
+		return this->sceneChild.front()->GetCurrentScene();
+	}
+}

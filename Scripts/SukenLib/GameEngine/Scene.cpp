@@ -563,3 +563,13 @@ unsigned int suken::CScene::GetSerialNum()
 {
 	return serialNum;
 }
+suken::CScene *suken::CScene::GetCurrentScene() 
+{
+	if( this->sceneChild != nullptr )
+	{
+		return sceneChild->GetCurrentScene();
+	}else 
+	{
+		return this;
+	}
+}

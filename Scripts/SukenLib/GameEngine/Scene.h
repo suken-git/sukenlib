@@ -215,6 +215,11 @@ public:
 * @return –ß‚è’l
 */
 	unsigned int GetSerialNum();
+/**
+*	@brief à–¾
+* @return –ß‚è’l
+*/
+	CScene *GetCurrentScene();
 private:
 	bool focus;///<  @brief à–¾
 	static unsigned int sceneNum;///<  @brief à–¾

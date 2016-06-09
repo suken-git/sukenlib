@@ -47,6 +47,11 @@ public:
 * @return –ß‚è’l
 */
 	bool GetUseDrawLoop();
+/**
+*	@brief à–¾
+* @return –ß‚è’l
+*/
+	CScene *GetCurrentScene();
 	std::vector<CScene*> sceneChild;///<  @brief à–¾
 	CScene rootScene;///<  @brief à–¾
 private:
