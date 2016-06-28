@@ -1,4 +1,5 @@
 #pragma once
+#include"../../Manager.h"
 #include <vector>
 #include "DxLib.h"
 

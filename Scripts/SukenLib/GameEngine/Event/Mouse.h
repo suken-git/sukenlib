@@ -1,4 +1,5 @@
 #pragma once
+#include"../../Manager.h"
 #include"EventData.h"
 
 namespace suken{

@@ -1,7 +1,5 @@
 #include"System.h"
-#include <Utility/Utility.h>
-//Singleton
-suken::CSystem System;
+#include "Utility/Utility.h"
 
 suken::CSystem::CSystem()
 {
@@ -127,7 +125,9 @@ void suken::CSystem::TakeScreenShot()
 	if(screenShotFlag){
 		screenShotFlag = false;
 		if(screenShotGrHandleAdress != nullptr){
-			*screenShotGrHandleAdress = GetDrawScreen();
+			int screenShot = MakeGraph(this->GetWindowX(),this->GetWindowY());
+			GetDrawScreenGraph(0,0,this->GetWindowX(), this->GetWindowY(),screenShot);
+			*screenShotGrHandleAdress = screenShot;
 		}
 		screenShotGrHandleAdress = nullptr;
 	}
@@ -205,3 +205,11 @@ int suken::CSystem::GetWindowY()
 {
 	return window_h; 
 }
+
+void suken::CSystem::ExitFrame()
+{
+	TakeScreenShot();
+}
+
+//Singleton
+suken::CSystem System;

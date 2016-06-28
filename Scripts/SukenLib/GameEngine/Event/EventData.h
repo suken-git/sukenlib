@@ -1,5 +1,5 @@
 #pragma once
-
+#include"../../Manager.h"
 namespace suken{
 
 
@@ -15,11 +15,14 @@ public:
 		pFuncInt = nullptr;
 		pInt = nullptr;
 	}
+	
 	int keyCode;///<  @brief à–¾
 	void (*pFuncVoid)();///<  @brief à–¾
 	void (*pFuncInt)(int);///<  @brief à–¾
 	int *pInt;///<  @brief à–¾
 	int Int;///<  @brief à–¾
+	CScene *pScene;///<  @brief à–¾
+	
 };
 class CMouseIn{
 public:
@@ -37,6 +40,7 @@ public:
 	void (*pFuncInt)(int);///<  @brief à–¾
 	int *pInt;///<  @brief à–¾
 	int Int;///<  @brief à–¾
+	CScene *pScene;///<  @brief à–¾
 	int type;///<  @brief à–¾
 	
 };
@@ -56,6 +60,7 @@ public:
 	void (*pFuncInt)(int);///<  @brief à–¾
 	int *pInt;///<  @brief à–¾
 	int Int;///<  @brief à–¾
+	CScene *pScene;///<  @brief à–¾
 	int type;///<  @brief à–¾
 	
 };
@@ -94,6 +99,7 @@ public:
 	void (*pFuncInt)(int);///<  @brief à–¾
 	int *pInt;///<  @brief à–¾
 	int Int;///<  @brief à–¾
+	CScene *pScene;///<  @brief à–¾
 };
 class CBoolean{
 public:
@@ -110,6 +116,7 @@ public:
 	void (*pFuncInt)(int);///<  @brief à–¾
 	int *pInt;///<  @brief à–¾
 	int Int;///<  @brief à–¾
+	CScene *pScene;///<  @brief à–¾
 	bool* pBool;///<  @brief à–¾
 };
 

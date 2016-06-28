@@ -1,4 +1,5 @@
 #pragma once
+#include"../../Manager.h"
 #include"Primitive\Circle.h"
 #include"Primitive\Rect.h"
 

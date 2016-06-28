@@ -1,4 +1,5 @@
 #pragma once
+#include"../../Manager.h"
 #include"Key.h"
 #include"Mouse.h"
 

@@ -1,7 +1,10 @@
 #pragma once
+#include"../Manager.h"
 #include"Debug.h"
 
 namespace suken{
+
+
 template<typename T>
 class CArray {
 public:

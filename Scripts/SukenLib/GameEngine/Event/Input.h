@@ -1,4 +1,5 @@
 #pragma once
+#include"../../Manager.h"
 #include"EventData.h"
 #include <vector>
 
@@ -11,6 +12,7 @@ public:
 *	@brief à–¾
 */
 	CInput();
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
 *	@brief à–¾
 *	@param value ˆø”
@@ -30,6 +32,12 @@ public:
 *	@brief à–¾
 *	@param value ˆø”
 */
+	void AddEventListener( int inputCode , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
 	void RemoveEventListener( int inputCode , void func()  );
 /**
 *	@brief à–¾
@@ -41,6 +49,12 @@ public:
 *	@param value ˆø”
 */
 	void RemoveEventListener( int inputCode , void func(int) , int Argument  );
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
+	void RemoveEventListener( int inputCode , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
 *	@brief à–¾
 *	@param value ˆø”
@@ -60,6 +74,12 @@ public:
 *	@brief à–¾
 *	@param value ˆø”
 */
+	void AddEventListener( CMouseIn input , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
 	void RemoveEventListener( CMouseIn input , void func()  );
 /**
 *	@brief à–¾
@@ -75,6 +95,12 @@ public:
 *	@brief à–¾
 *	@param value ˆø”
 */
+	void RemoveEventListener( CMouseIn input , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
 	void AddEventListener( CpMouseIn input , void func()  );
 /**
 *	@brief à–¾
@@ -86,6 +112,12 @@ public:
 *	@param value ˆø”
 */
 	void AddEventListener( CpMouseIn input , void func(int) , int Argument  );
+	/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
+	void AddEventListener( CpMouseIn input , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
 *	@brief à–¾
 *	@param value ˆø”
@@ -105,6 +137,12 @@ public:
 *	@brief à–¾
 *	@param value ˆø”
 */
+	void RemoveEventListener( CpMouseIn input , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
 	void AddEventListener( char input , void func()  );
 /**
 *	@brief à–¾
@@ -116,6 +154,12 @@ public:
 *	@param value ˆø”
 */
 	void AddEventListener( char input , void func(int) , int Argument  );
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
+	void AddEventListener( char input , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
 *	@brief à–¾
 *	@param value ˆø”
@@ -135,6 +179,12 @@ public:
 *	@brief à–¾
 *	@param value ˆø”
 */
+	void RemoveEventListener( char input , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
 	void AddEventListener( bool* input , void func()  );
 /**
 *	@brief à–¾
@@ -150,6 +200,12 @@ public:
 *	@brief à–¾
 *	@param value ˆø”
 */
+	void AddEventListener( bool* input , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
 	void RemoveEventListener( bool* input , void func()  );	
 /**
 *	@brief à–¾
@@ -161,6 +217,12 @@ public:
 *	@param value ˆø”
 */
 	void RemoveEventListener( bool* input , void func(int) , int Argument  );
+/**
+*	@brief à–¾
+*	@param value ˆø”
+*/
+	void RemoveEventListener( bool* input , CScene *_scene);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
 *	@brief à–¾
 */

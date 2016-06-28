@@ -1,11 +1,14 @@
-#include"Suken.h"
+#include "Suken.h"
 
-void Awake(){
-
-}
-void GameLoopEnter(){
+void suken::Awake(){
+	
 	
 }
-void GameLoopExit(){
+
+void suken::GameLoopEnter(){
 	
+}
+
+void suken::GameLoopExit(){
+
 }

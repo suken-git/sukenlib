@@ -31,6 +31,8 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 		GameLoopEnter();
 		Game.Loop();
 		GameLoopExit();
+		Game.ExecuteCommand();
+		System.ExitFrame();
 		System.Wait();
 	}
         

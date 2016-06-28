@@ -1,4 +1,5 @@
 #pragma once
+#include"../Manager.h"
 #include <vector>
 #include "Physics\CollosionManager.h"
 #include "Event\Input.h"
@@ -86,6 +87,9 @@ public:
 *	@brief 説明
 */
 	void RemoveChild();
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
 *	@brief 説明
 *	@param value 引数
@@ -105,6 +109,14 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int backColor , std::string title , int stringColor , CScene *_scene );
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)() );
 /**
 *	@brief 説明
@@ -116,6 +128,14 @@ public:
 *	@param value 引数
 */
 	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, void (*pFunc)(int) , int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
+	void SetButton( int x1 , int y1 , int x2 , int y2 , int graph, CScene *_scene );
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
 *	@brief 説明
 *	@param value 引数
@@ -135,6 +155,14 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
+	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string graphPath, CScene *_scene );
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() );
 /**
 *	@brief 説明
@@ -146,6 +174,14 @@ public:
 *	@param value 引数
 */
 	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
+	void SetButton( int x1 , int y1 , int x2 , int y2 , std::string Off_graphPath , std::string On_graphPath , CScene *_scene );
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
 *	@brief 説明
 *	@param value 引数
@@ -165,6 +201,14 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int backColor , std::string title , int stringColor , CScene *_scene );
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)() );
 /**
 *	@brief 説明
@@ -176,6 +220,14 @@ public:
 *	@param value 引数
 */
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , void (*pFunc)(int) ,int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , int graph , CScene *_scene);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
 *	@brief 説明
 *	@param value 引数
@@ -195,6 +247,14 @@ public:
 *	@brief 説明
 *	@param value 引数
 */
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string graphPath , CScene *_scene);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+*	@brief 説明
+*	@param value 引数
+*/
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)() );
 /**
 *	@brief 説明
@@ -206,6 +266,14 @@ public:
 *	@param value 引数
 */
 	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , void (*pFunc)(int) , int Int );
+/**
+*	@brief 説明
+*	@param value 引数
+*/
+	void SetButton( int *x1 , int *y1 , int *x2 , int *y2 , std::string Off_graphPath , std::string On_graphPath , CScene *_scene);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
 *	@brief 説明  //数研ライブラリ内部関数（使用禁止）
 */
@@ -220,10 +288,12 @@ public:
 * @return 戻り値
 */
 	CScene *GetCurrentScene();
+	int screenShot;
 private:
 	bool focus;///<  @brief 説明
 	static unsigned int sceneNum;///<  @brief 説明
 	unsigned int serialNum;///<  @brief 説明
+	
 };
 
 
