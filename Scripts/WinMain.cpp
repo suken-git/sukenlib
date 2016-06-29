@@ -1,7 +1,16 @@
 #include"Suken.h"
+#include<windows.h>
 using namespace suken;
 
-int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
+
+
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR lpszCmdLine, int nCmdShow){
+
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
+	
+
 	//処理設定　ここから//////////////////////////////////////////////
 	
 	DxLib::SetWindowStyleMode(0) ;/*０：今までどおりの普通のウインドウ １：タイトルバーなし、縁あり ２：タイトルバーも縁もなし*/
@@ -13,7 +22,11 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	System.SetLoadingMinimalTime(0);						//Loading画面の最低表示時間をミリ秒で設定
 	//処理設定　ここまで//////////////////////////////////////////////
 	System.Awake();
+	debug.Awake(hInstance,hPreInst,nCmdShow);
 
+
+	///////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////
 	SetKeyInputStringColor(BLACK,RED,GetColor(50,50,50),RED,WHITE,GetColor(100,100,100),WHITE,BLACK,BLACK,BLACK
 		,GRAY,WHITE,GetColor(200,200,200),BLACK,BLACK,GetColor(254,254,254),BLACK);
 	
@@ -24,7 +37,7 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 	}
 	System.Wait_Loading();
 
-	while(!ProcessMessage()&&!System.GetEscapeFlag()){
+	while(!ProcessMessage() &&!System.GetEscapeFlag()){
 		ScreenFlip();
 		ClearDrawScreen();
 		System.Update();
@@ -33,9 +46,13 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int){
 		GameLoopExit();
 		Game.ExecuteCommand();
 		System.ExitFrame();
+		debug.Loop();
 		System.Wait();
 	}
         
 	System.End();
 	return 0;
 } 
+
+
+

@@ -106,10 +106,14 @@ namespace suken {
 		//Data.h
 			class CData;
 		//Debug.h
+			class CDebugWndow;
 		//Utillity.h
 
 	//Windows
 
 		//Midi.h
 
+
+
 }
+

@@ -9,6 +9,8 @@ namespace suken {
 	private:
 		int window_w;///<  @brief	ウインドウ幅
 		int window_h;///<  @brief	ウインドウ高さ
+		int dispX;///<  @brief	ディスプレイ幅
+		int dispY;///<  @brief	ディスプレイ高さ
 		HDC display;///<  @brief ディスプレイデバイスコンテクストを格納
 		int frame;///<  @brief exe開始時からのフレーム数を格納
 		int count;///<  @brief フレームレート算出用変数
@@ -171,8 +173,16 @@ namespace suken {
 		*	@brief システムによるフレーム最後の処理を担当
 		*/
 		void ExitFrame();
-	
+		/**
+		*	@brief ディスプレイの幅を得る
+		*	@return ディスプレイの幅
+		*/
+		int GetDispX();
+		/**
+		*	@brief ディスプレイの高さを得る
+		*	@return ディスプレイの高さ
+		*/
+		int GetDispY();
 	};
 }
-//Singleton
-extern suken::CSystem System;///<  @brief 
+extern suken::CSystem System;

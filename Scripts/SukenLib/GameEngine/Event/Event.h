@@ -40,5 +40,6 @@ private:
 };
 
 }
-//Singleton
-extern suken::CEvent Event;///<  @brief à–¾
+
+extern suken::CEvent Event;
+

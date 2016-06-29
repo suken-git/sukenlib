@@ -33,6 +33,8 @@ void suken::CSystem::Awake()
 		loadingImg = LoadGraph(loadingImgPath.c_str());
 	}
 	DrawExtendGraph(0,0,System.GetWindowX(),System.GetWindowY(),loadingImg,true);
+	dispX = GetSystemMetrics(SM_CXSCREEN);
+	dispY = GetSystemMetrics(SM_CYSCREEN);
 	//リフレッシュレートの取得
 	HDC hdc;
 	hdc = GetDC( GetMainWindowHandle() );//デバイスコンテキストの取得
@@ -211,5 +213,14 @@ void suken::CSystem::ExitFrame()
 	TakeScreenShot();
 }
 
+int suken::CSystem::GetDispX() 
+{
+	return dispX;
+}
+
+int suken::CSystem::GetDispY() 
+{
+	return dispY;
+}
 //Singleton
 suken::CSystem System;

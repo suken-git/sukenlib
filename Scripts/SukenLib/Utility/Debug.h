@@ -2,7 +2,8 @@
 #include"../Manager.h"
 #include "DxLib.h"
 #include "Utility.h"
-
+#include<vector>
+#include<windows.h>
 namespace suken{
 
 /**
@@ -226,4 +227,28 @@ inline void DebugDx(const char* format, ...)
 }
 
 
+
+// メッセージ処理用関数
+LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+class CDebugWindow {
+public:
+	CDebugWindow();
+	~CDebugWindow();
+	void Awake(HINSTANCE hInstance, HINSTANCE hPreInst, int nCmdShow);
+	void Print(const char* format , ...);
+	void Loop();
+	
+
+private:
+	HDC device;
+	HWND hWnd;
+	MSG msg;
+	WNDCLASS myProg;
+	std::vector<std::string> message;
+};
+
+
 }
+
+extern suken::CDebugWindow debug;

@@ -102,6 +102,7 @@
     <ClCompile Include="SukenLib\System\System.cpp" />
     <ClCompile Include="SukenLib\Utility\Array.cpp" />
     <ClCompile Include="SukenLib\Utility\Data.cpp" />
+    <ClCompile Include="SukenLib\Utility\Debug.cpp" />
     <ClCompile Include="SukenLib\Utility\Utility.cpp" />
     <ClCompile Include="SukenLib\Windows\Midi.cpp" />
     <ClCompile Include="WinMain.cpp" />
