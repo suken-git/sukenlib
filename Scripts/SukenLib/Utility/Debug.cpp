@@ -74,20 +74,27 @@ void suken::CDebugWindow::Awake(HINSTANCE hInstance, HINSTANCE hPreInst, int nCm
 void suken::CDebugWindow::Loop()
 {
 #ifdef DEBUG
+
+	//メッセージ処理
+	if (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
 	if (!message.empty())
 	{
-		//メッセージ処理
-		if (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE))
+		
+		for (int i = 0; i < message.size(); i++)
 		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		for (int i = 0; i < message.size(); i++) {
 			TextOut(device, 0, 20 * i, message[i].c_str(), strlen(message[i].c_str()));
+			DrawString(100,20*i,message[i].c_str(),WHITE);
 		}
-		UpdateWindow(hWnd);
 		message.clear();
 	}
+
+	UpdateWindow(hWnd);
+	DxLib::DrawBox(10,10,110,100,GREEN,true);
 #endif // DEBUG
 }
 

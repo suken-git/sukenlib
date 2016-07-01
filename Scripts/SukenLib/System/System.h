@@ -2,6 +2,7 @@
 #include <vector>
 #include "DxLib.h"
 #include "Manager.h"
+#include"../GameEngine/Scene.h"
 
 namespace suken {
 
@@ -30,6 +31,7 @@ namespace suken {
 		int loadingImg;///<  @brief Loading画面に表示する画像ハンドルを格納
 		bool useThread_AwakeFlag;///<  @brief void Awake()をバックグラウンドで実行するかどうかのフラグ
 		int loadingMinimalTime;///<  @brief Loadingに費やす最低時間を格納（マイクロ秒）
+		suken::CScene settings;///<  @brief 数研ライブラリの設定に使用するシーン
 #ifdef USE_LUA
 		lua_State *Lua;///<  @brief 説明
 #endif
@@ -184,5 +186,6 @@ namespace suken {
 		*/
 		int GetDispY();
 	};
+	void SettingLoop();
 }
 extern suken::CSystem System;

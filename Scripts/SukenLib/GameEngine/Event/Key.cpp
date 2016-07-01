@@ -2,7 +2,11 @@
 #include "Event.h"
 #include <Utility\Debug.h>
 
-
+suken::CKey::CKey() {
+	for (int i = 0; i < 256;i++) {
+		count[i] = 1.0f;
+	}
+}
 void suken::CKey::Loop()
 {
 	 //‘S‚Ä‚ÌƒL[‚Ì‰Ÿ‰ºó‘Ô‚ðŽæ“¾

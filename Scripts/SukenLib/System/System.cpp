@@ -1,5 +1,6 @@
 #include"System.h"
 #include "Utility/Utility.h"
+#include"../GameEngine/Game.h"
 
 suken::CSystem::CSystem()
 {
@@ -83,6 +84,9 @@ void suken::CSystem::Wait_Loading()
 }
 void suken::CSystem::Update()
 {
+	if (Event.key.GetPush(Event.key.S) && Event.key.GetPush(Event.key.K) && (Event.key.GetPush(Event.key.RCONTROL)|| Event.key.GetPush(Event.key.LCONTROL))) {
+		Game.AddChild(&this->settings);
+	}
 	//—ÕŽž
 	//N = (int)(GetFps()+0.5);
 	//
@@ -224,3 +228,11 @@ int suken::CSystem::GetDispY()
 }
 //Singleton
 suken::CSystem System;
+
+
+void suken::SettingLoop()
+{
+	if (Event.key.GetPush(Event.key.ESCAPE)) {
+		Game.RemoveChild();
+	}
+}
