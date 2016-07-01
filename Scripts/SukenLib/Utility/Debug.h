@@ -237,6 +237,10 @@ public:
 	~CDebugWindow();
 	void Awake(HINSTANCE hInstance, HINSTANCE hPreInst, int nCmdShow);
 	void Print(const char* format , ...);
+	void PrintJudge(bool flag, const char* format);
+	void PrintKeyPush(int key, const char* format);
+	void PrintKeyUp(int key, const char* format);
+	void PrintKeyDown(int key, const char* format);
 	void Loop();
 	
 
@@ -246,6 +250,13 @@ private:
 	MSG msg;
 	WNDCLASS myProg;
 	std::vector<std::string> message;
+	struct JudgeIn{
+		std::string str;
+		bool flag;
+	};
+	std::vector<JudgeIn> judge;
+
+	int count;
 };
 
 

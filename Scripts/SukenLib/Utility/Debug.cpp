@@ -82,19 +82,35 @@ void suken::CDebugWindow::Loop()
 		DispatchMessage(&msg);
 	}
 
+	count = 0;
+
+	if(!judge.empty())
+	{
+		for (int i = count; i < judge.size() + count; i++) {
+			if(judge[i].flag == false){
+				TextOut(device, 0, 20 * i, judge[i].str.c_str(), strlen(judge[i].str.c_str()));
+			}else{
+				SetTextColor(device,RGB(255,0,0));
+				TextOut(device, 0, 20 * i, judge[i].str.c_str(), strlen(judge[i].str.c_str()));
+				SetTextColor(device,RGB(0,0,0));
+			}
+		}
+		count += judge.size();
+		judge.clear();
+	}
+
 	if (!message.empty())
 	{
 		
 		for (int i = 0; i < message.size(); i++)
 		{
-			TextOut(device, 0, 20 * i, message[i].c_str(), strlen(message[i].c_str()));
-			DrawString(100,20*i,message[i].c_str(),WHITE);
+			TextOut(device, 0, 20 * (i+ count), message[i].c_str(), strlen(message[i].c_str()));
 		}
+		count + message.size();
 		message.clear();
 	}
 
 	UpdateWindow(hWnd);
-	DxLib::DrawBox(10,10,110,100,GREEN,true);
 #endif // DEBUG
 }
 
@@ -109,6 +125,48 @@ void suken::CDebugWindow::Print(const char* format, ...)
 	va_end(args);
 	std::string str(temp);
 	message.push_back(str);
+#endif // DEBUG
+}
+
+void suken::CDebugWindow::PrintJudge(bool flag, const char* format)
+
+{
+#ifdef DEBUG
+	std::string str(format);
+	JudgeIn temp;
+	temp.str = str;
+	temp.flag = flag;
+	judge.push_back(temp);
+#endif // DEBUG
+}
+
+void suken::CDebugWindow::PrintKeyPush(int key, const char* format)
+
+{
+#ifdef DEBUG
+	std::string str = "PUSH / ";
+	str += format;
+	PrintJudge(Event.key.GetPush(key),str.c_str());
+#endif // DEBUG
+}
+
+void suken::CDebugWindow::PrintKeyUp(int key, const char* format)
+
+{
+#ifdef DEBUG
+	std::string str = "UP / ";
+	str += format;
+	PrintJudge(Event.key.GetUp(key),str.c_str());
+#endif // DEBUG
+}
+
+void suken::CDebugWindow::PrintKeyDown(int key, const char* format)
+
+{
+#ifdef DEBUG
+	std::string str = "DOWN / ";
+	str += format;
+	PrintJudge(Event.key.GetDown(key),str.c_str());
 #endif // DEBUG
 }
 

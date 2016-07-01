@@ -27,8 +27,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR lpszCmdLine, i
 
 	///////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////
-	SetKeyInputStringColor(BLACK,RED,GetColor(50,50,50),RED,WHITE,GetColor(100,100,100),WHITE,BLACK,BLACK,BLACK
-		,GRAY,WHITE,GetColor(200,200,200),BLACK,BLACK,GetColor(254,254,254),BLACK);
 	
 	if(System.GetUseThread_Awake()){
 		System.CreateNewThread(Awake);

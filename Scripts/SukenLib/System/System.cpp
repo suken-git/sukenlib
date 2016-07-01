@@ -44,6 +44,11 @@ void suken::CSystem::Awake()
 
 	display = CreateDC(TEXT("DISPLAY") , nullptr , nullptr , nullptr);
 
+	SetKeyInputStringColor(BLACK,RED,GetColor(50,50,50),RED,WHITE,GetColor(100,100,100),WHITE,BLACK,BLACK,BLACK
+		,GRAY,WHITE,GetColor(200,200,200),BLACK,BLACK,GetColor(254,254,254),BLACK);
+
+	settings.input.AddEventListener(Event.EVERY_FRAME,SettingLoop);
+
 #ifdef USE_LUA
 	Lua = luaL_newstate();
 #endif
@@ -109,7 +114,7 @@ void suken::CSystem::Wait()
 {
 		
 #ifdef DEBUG_DRAW
-	DrawFormatString(0, 5, WHITE, "%.1f", fps);
+	DrawFormatString(0, 0, WHITE, "%.1f", fps);
 #endif
 	if(targetFps != 0.0f){
 		int tookTime = now - startTime;	//‚©‚©‚Á‚½ŽžŠÔ
