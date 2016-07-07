@@ -128,6 +128,33 @@ void suken::CDebugWindow::Print(const char* format, ...)
 #endif // DEBUG
 }
 
+void suken::CDebugWindow::PrintValue(const char* format,int value)
+{
+#ifdef DEBUG
+	std::string str = format;
+	str += " : %d";
+	Print(str.c_str(),value);
+#endif // DEBUG
+}
+
+void suken::CDebugWindow::PrintValue(const char* format,float value)
+{
+#ifdef DEBUG
+	std::string str = format;
+	str += " : %f";
+	Print(str.c_str(),value);
+#endif // DEBUG
+}
+
+void suken::CDebugWindow::PrintValue(const char* format,double value)
+{
+#ifdef DEBUG
+	std::string str = format;
+	str += " : %f";
+	Print(str.c_str(),value);
+#endif // DEBUG
+}
+
 void suken::CDebugWindow::PrintJudge(bool flag, const char* format)
 
 {

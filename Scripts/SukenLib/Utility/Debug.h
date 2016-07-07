@@ -4,6 +4,9 @@
 #include "Utility.h"
 #include<vector>
 #include<windows.h>
+
+#define DEBUG_PRINT_VALUE(value) debug.PrintValue( #value ,value)
+
 namespace suken{
 
 /**
@@ -237,6 +240,9 @@ public:
 	~CDebugWindow();
 	void Awake(HINSTANCE hInstance, HINSTANCE hPreInst, int nCmdShow);
 	void Print(const char* format , ...);
+	void PrintValue(const char* format,int value);
+	void PrintValue(const char* format,float value);
+	void PrintValue(const char* format,double value);
 	void PrintJudge(bool flag, const char* format);
 	void PrintKeyPush(int key, const char* format);
 	void PrintKeyUp(int key, const char* format);
