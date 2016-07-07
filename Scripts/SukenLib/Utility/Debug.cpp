@@ -106,7 +106,7 @@ void suken::CDebugWindow::Loop()
 		{
 			TextOut(device, 0, 20 * (i+ count), message[i].c_str(), strlen(message[i].c_str()));
 		}
-		count + message.size();
+		count += message.size();
 		message.clear();
 	}
 
@@ -124,6 +124,7 @@ void suken::CDebugWindow::Print(const char* format, ...)
 	vsprintf(temp,format, args);
 	va_end(args);
 	std::string str(temp);
+	str += "                          ";
 	message.push_back(str);
 #endif // DEBUG
 }
