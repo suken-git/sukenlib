@@ -14,6 +14,15 @@ std::string suken::CData::Normalize(std::string Str)
 	}
 	return Str;
 }
+
+void suken::CData::Clear()
+{
+	hashIntData.clear();
+	hashStringData.clear();
+	vectorIntData.clear();
+	vectorStringData.clear();
+}
+
 bool suken::CData::ReadAll()
 {	
 	struct stat s;

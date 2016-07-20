@@ -88,9 +88,11 @@ void suken::CDebugWindow::Loop()
 	{
 		for (int i = count; i < judge.size() + count; i++) {
 			if(judge[i].flag == false){
+				TextOut(device, 0, 20 * i, "                    ",25);
 				TextOut(device, 0, 20 * i, judge[i].str.c_str(), strlen(judge[i].str.c_str()));
 			}else{
 				SetTextColor(device,RGB(255,0,0));
+				TextOut(device, 0, 20 * i, "                    ",25);
 				TextOut(device, 0, 20 * i, judge[i].str.c_str(), strlen(judge[i].str.c_str()));
 				SetTextColor(device,RGB(0,0,0));
 			}
@@ -104,6 +106,7 @@ void suken::CDebugWindow::Loop()
 		
 		for (int i = 0; i < message.size(); i++)
 		{
+			TextOut(device, 0, 20 * (i + count), "                    ",25);
 			TextOut(device, 0, 20 * (i+ count), message[i].c_str(), strlen(message[i].c_str()));
 		}
 		count += message.size();

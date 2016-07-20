@@ -99,6 +99,11 @@ public:
 {hashStringData[key] = value;}
 /**
 *	@brief à–¾
+*	@param value ˆø”
+*/
+	void Clear();
+/**
+*	@brief à–¾
 * @return –ß‚è’l
 */
 	bool ReadAll();
