@@ -1,5 +1,130 @@
 #include"Utility.h"
 
+#include "../System/System.h"
+# include <cmath>
+# include <algorithm>
+
+namespace megademo  // http://www.demoscene.jp/?p=1460
+{
+	float Fraction( float v )
+	{
+		return v - floor(v);
+	}
+
+	struct RGB
+	{
+	//	RGB(){}
+
+	//	RGB( float r_, float g_, float b_ ) : r(r_),g(g_),b(b_){}
+
+		float r,g,b;	// [0.0f, 1.0f]
+	};
+
+	struct HSV
+	{
+		HSV(){}
+
+		HSV( float h_, float s_, float v_ ) : h(h_),s(s_),v(v_){}
+
+		float h;	// ... 0Åã==0.0f, 360Åã==1.0f ...
+		
+		float s,v;	// [0.0f, 1.0f]
+	};
+
+	RGB HSVtoRGB( const HSV& hsv )
+	{
+		const float h = Fraction(hsv.h);
+		const float s = hsv.s;
+		const float v = hsv.v;
+		const float hueF = h * 6.0f;
+		const int hueI = static_cast<int>(hueF);
+		const float fr = hueF - hueI;
+		const float m = v * (1.0f-s);
+		const float n = v * (1.0f-s*fr);
+		const float p = v * (1.0f-s*(1.0f-fr));
+
+		RGB rgb;
+
+		switch(hueI)
+		{
+			case 0: rgb.r = v; rgb.g = p; rgb.b = m; break;
+			case 1: rgb.r = n; rgb.g = v; rgb.b = m; break;
+			case 2: rgb.r = m; rgb.g = v; rgb.b = p; break;
+			case 3: rgb.r = m; rgb.g = n; rgb.b = v; break;
+			case 4: rgb.r = p; rgb.g = m; rgb.b = v; break;
+			default: rgb.r = v; rgb.g = m; rgb.b = n; break;
+		}
+
+		return rgb;
+	}
+	
+	HSV RGBtoHSV( const RGB& rgb )
+	{
+		const float min = std::min<float>(std::min<float>(rgb.r,rgb.g),rgb.b);
+		const float max = std::max<float>(std::max<float>(rgb.r,rgb.g),rgb.b);
+
+		HSV hsv(0.0f,0.0f,max);	
+
+		const float delta = max - min;
+
+		if(delta!=0.0f)
+		{
+			hsv.s = delta / max;
+
+			if(rgb.r==max)
+			{
+				hsv.h = (rgb.g-rgb.b) / delta;
+			}
+			else if(rgb.g==max)
+			{
+				hsv.h = 2.0f + (rgb.b-rgb.r) / delta;
+			}
+			else
+			{
+				hsv.h = 4.0f + (rgb.r-rgb.g) / delta;
+			}
+		
+			hsv.h /= 6.0f;
+
+			if(hsv.h<0.0f)
+			{
+				hsv.h += 1.0f;
+			}
+		}
+
+		return hsv;
+	}
+
+}
+
+float rainbow = 0;
+
+int count;
+
+megademo::RGB rgb;
+
+megademo::HSV hsv;
+
+int suken::RainBow(){
+	hsv.h = rainbow;
+	hsv.s = 1;
+	hsv.v = 1;
+	rgb = megademo::HSVtoRGB(hsv);
+	if(count != System.GetFrame()){
+		rainbow += 0.01f;
+		if(rainbow > 1)rainbow = 0;
+		count = System.GetFrame();
+	}
+	return GetColor(rgb.r*255,rgb.g*255,rgb.b*255);
+}
+
+int suken::GetColorHSV(int h,int s,int v){
+	hsv.h = h / 255;
+	hsv.s = s / 255;
+	hsv.v = v / 255;
+	rgb = megademo::HSVtoRGB(hsv);
+	return GetColor(rgb.r*255,rgb.g*255,rgb.b*255);
+}
 
 bool suken::SelectOpenFile( char* filename ,  char* filetype)
 {

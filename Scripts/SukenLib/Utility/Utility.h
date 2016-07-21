@@ -16,7 +16,11 @@ const int LIGHTGREEN = GetColor( 128 , 255 , 128 );///<  @brief à–¾
 const int M_PINK = GetColor( 255 , 128 , 128 );///<  @brief à–¾
 const int YELLOW = GetColor( 255 , 255 , 0);///<  @brief à–¾
 
+int RainBow();
 
+#define RAINBOW RainBow()
+
+int GetColorHSV(int h,int s,int v);
 
 
 
