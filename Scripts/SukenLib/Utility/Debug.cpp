@@ -117,7 +117,6 @@ void suken::CDebugWindow::Loop()
 #endif // DEBUG
 }
 
-
 void suken::CDebugWindow::Print(const char* format, ...)
 {
 #ifdef DEBUG

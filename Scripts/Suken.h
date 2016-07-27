@@ -7,6 +7,7 @@
 #include"SukenLib\Utility\Debug.h"
 #include"SukenLib\Utility\Utility.h"
 #include"SukenLib\Utility\Array.h"
+#include"SukenLib\Utility\MCE.h"
 
 #include"SukenLib\GameEngine\Game.h"
 

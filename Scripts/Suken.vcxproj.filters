@@ -100,6 +100,9 @@
     <ClCompile Include="SukenLib\Utility\Debug.cpp">
       <Filter>SukenLib\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="SukenLib\Utility\MCE.cpp">
+      <Filter>SukenLib\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h">
@@ -167,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="SukenLib\GameEngine\Event\KeyInputString.h">
       <Filter>SukenLib\GameEngine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SukenLib\Utility\MCE.h">
+      <Filter>SukenLib\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

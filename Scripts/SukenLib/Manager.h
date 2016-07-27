@@ -109,6 +109,9 @@ namespace suken {
 			class CDebugWndow;
 		//Utillity.h
 
+		//MCE.h
+			class CMCE;
+
 	//Windows
 
 		//Midi.h

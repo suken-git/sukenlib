@@ -24,6 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreInst, LPSTR lpszCmdLine, i
 	System.Awake();
 	debug.Awake(hInstance,hPreInst,nCmdShow);
 
+	mce.Awake("MCE/");										//mceƒtƒ@ƒCƒ‹‚Ì‘¶İ‚·‚éêŠ‚ğ“o˜^
 
 	///////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////

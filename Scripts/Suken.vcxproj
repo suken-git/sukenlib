@@ -103,6 +103,7 @@
     <ClCompile Include="SukenLib\Utility\Array.cpp" />
     <ClCompile Include="SukenLib\Utility\Data.cpp" />
     <ClCompile Include="SukenLib\Utility\Debug.cpp" />
+    <ClCompile Include="SukenLib\Utility\MCE.cpp" />
     <ClCompile Include="SukenLib\Utility\Utility.cpp" />
     <ClCompile Include="SukenLib\Windows\Midi.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="SukenLib\Utility\Array.h" />
     <ClInclude Include="SukenLib\Utility\Data.h" />
     <ClInclude Include="SukenLib\Utility\Debug.h" />
+    <ClInclude Include="SukenLib\Utility\MCE.h" />
     <ClInclude Include="SukenLib\Utility\Utility.h" />
     <ClInclude Include="SukenLib\Windows\Midi.h" />
   </ItemGroup>
