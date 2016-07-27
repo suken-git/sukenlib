@@ -1,6 +1,6 @@
 #include"Key.h"
 #include "Event.h"
-#include <Utility\Debug.h>
+#include "../../Utility/Debug.h"
 
 suken::CKey::CKey() {
 	for (int i = 0; i < 256;i++) {

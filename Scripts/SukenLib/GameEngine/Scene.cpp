@@ -1,5 +1,5 @@
 #include"Scene.h"
-#include <Utility/Debug.h>
+#include"../Utility/Debug.h"
 
 
 //Ã“Iƒƒ“ƒo•Ï”

@@ -1,5 +1,5 @@
 #include"System.h"
-#include "Utility/Utility.h"
+#include"../Utility/Utility.h"
 #include"../GameEngine/Game.h"
 
 suken::CSystem::CSystem()
@@ -101,7 +101,7 @@ void suken::CSystem::Update()
 	}
 	if( count == N ){ //規定フレームに達したら平均を計算する
 		
-		fps = 1000/((now-startTime)/(double)N);
+		fps = (float)( 1000/((now-startTime)/(double)N) );
 		count = 0;
 		startTime = now;
 
@@ -118,7 +118,7 @@ void suken::CSystem::Wait()
 #endif
 	if(targetFps != 0.0f){
 		int tookTime = now - startTime;	//かかった時間
-		int waitTime = count*1000/targetFps - tookTime;	//待つべき時間
+		int waitTime = (int)( count*1000/targetFps - tookTime );	//待つべき時間
 		if( waitTime > 0 ){
 		Sleep(waitTime);	//待機
 		}

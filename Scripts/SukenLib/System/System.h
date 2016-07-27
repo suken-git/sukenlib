@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "DxLib.h"
-#include "Manager.h"
+#include "../Manager.h"
 #include"../GameEngine/Scene.h"
 
 namespace suken {

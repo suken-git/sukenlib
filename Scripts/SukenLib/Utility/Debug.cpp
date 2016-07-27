@@ -1,5 +1,5 @@
 #include"Debug.h"
-#include"Manager.h"
+#include"../Manager.h"
 #include"../System/System.h"
 
 suken::CDebugWindow debug;
@@ -86,7 +86,7 @@ void suken::CDebugWindow::Loop()
 
 	if(!judge.empty())
 	{
-		for (int i = count; i < judge.size() + count; i++) {
+		for (int i = count; i < (int)( judge.size() ) + count; i++) {
 			if(judge[i].flag == false){
 				TextOut(device, 0, 20 * i, "                    ",25);
 				TextOut(device, 0, 20 * i, judge[i].str.c_str(), strlen(judge[i].str.c_str()));
@@ -104,7 +104,7 @@ void suken::CDebugWindow::Loop()
 	if (!message.empty())
 	{
 		
-		for (int i = 0; i < message.size(); i++)
+		for (int i = 0; i < (int)( message.size() ); i++)
 		{
 			TextOut(device, 0, 20 * (i + count), "                    ",25);
 			TextOut(device, 0, 20 * (i+ count), message[i].c_str(), strlen(message[i].c_str()));
@@ -127,7 +127,6 @@ void suken::CDebugWindow::Print(const char* format, ...)
 	vsprintf(temp,format, args);
 	va_end(args);
 	std::string str(temp);
-	str += "                          ";
 	message.push_back(str);
 #endif // DEBUG
 }

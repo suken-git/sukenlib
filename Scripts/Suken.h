@@ -1,5 +1,5 @@
 #pragma once
-#include"Manager.h"
+#include"SukenLib\Manager.h"
 
 #include"SukenLib\System\System.h"
 
