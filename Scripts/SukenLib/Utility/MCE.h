@@ -34,18 +34,22 @@ public:
 
 	void Read(const char* _file);
 
-	void Delete(const char* _file);
+	int Get(char layer,int x,int y);
 
-	int Get(const char* _file,char layer,int x,int y);
+	int GetWidth(){
+		return file.width;
+	}
+
+	int GetHeight(){
+		return file.height;
+	}
 
 	const char layerA;
 	const char layerB;
 	const char layerC;
 private:
 	std::string folder;
-	std::map<std::string,CMCEData> file;
-
-	bool CheckFile(const char* _file);
+	CMCEData file;
 };
 
 }

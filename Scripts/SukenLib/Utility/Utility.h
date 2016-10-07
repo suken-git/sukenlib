@@ -3,6 +3,21 @@
 #include "DxLib.h"
 #include <string>
 
+namespace megademo  // http://www.demoscene.jp/?p=1460
+{
+	struct RGB
+	{
+	//	RGB(){}
+
+	//	RGB( float r_, float g_, float b_ ) : r(r_),g(g_),b(b_){}
+
+		float r,g,b;	// [0.0f, 1.0f]
+	};
+
+}
+
+extern megademo::RGB rgb;
+
 namespace suken{
 
 const int RED = GetColor( 255 , 0 , 0 );///<  @brief 説明
@@ -16,15 +31,35 @@ const int LIGHTGREEN = GetColor( 128 , 255 , 128 );///<  @brief 説明
 const int M_PINK = GetColor( 255 , 128 , 128 );///<  @brief 説明
 const int YELLOW = GetColor( 255 , 255 , 0);///<  @brief 説明
 
-int RainBow();
+const int SHUIRO = GetColor(221,72,39);
+const int ORANGE= GetColor(230,121,40);
+const int HIIRO= GetColor(199,60,46);
+const int KIMIDORI= GetColor(170,204,59);
+const int NAVY= GetColor(23,37,64);
+const int SCARLET= GetColor(223,84,69);
+const int WAKAKUSA= GetColor(187,211,71);
+const int KONNIRO= GetColor(29,49,86);
+const int KURENAI= GetColor(189,66,90);
+const int ROSE= GetColor(220,67,95);
+const int AOMIDORI= GetColor(0,163,136);
+const int SHIONIRO= GetColor(89,71,140);
+const int CYAN= GetColor(0,163,219);
+const int SKYBLUE= GetColor(142,209,224);
+const int MIIRO= GetColor(5,102,184);
+const int SAKURAIRO= GetColor(252,238,235);
+const int SAKURA= GetColor(255,234,250);
+
+int RainBow(int time=0);
 
 #define RAINBOW RainBow()
 
+#define RAINBOW_RGB (RainBow(),rgb.r*255),rgb.g*255,rgb.b*255
+
+#define RAINBOW_RGB_TIME(time) (RainBow( time ),rgb.r*255),rgb.g*255,rgb.b*255
+
 int GetColorHSV(int h,int s,int v);
 
-
-
-
+#define HSV_TO_RGB(h,s,v) (GetColorHSV( h , s , v ),rgb.r*255),rgb.g*255rgb.b*255
 
 /**
 *	@brief ダイアログを開いて、。

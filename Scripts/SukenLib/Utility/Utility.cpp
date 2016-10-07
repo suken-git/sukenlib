@@ -11,15 +11,6 @@ namespace megademo  // http://www.demoscene.jp/?p=1460
 		return v - floor(v);
 	}
 
-	struct RGB
-	{
-	//	RGB(){}
-
-	//	RGB( float r_, float g_, float b_ ) : r(r_),g(g_),b(b_){}
-
-		float r,g,b;	// [0.0f, 1.0f]
-	};
-
 	struct HSV
 	{
 		HSV(){}
@@ -105,8 +96,8 @@ megademo::RGB rgb;
 
 megademo::HSV hsv;
 
-int suken::RainBow(){
-	hsv.h = rainbow;
+int suken::RainBow(int time){
+	hsv.h = rainbow+(float)(time/100);
 	hsv.s = 1;
 	hsv.v = 1;
 	rgb = megademo::HSVtoRGB(hsv);

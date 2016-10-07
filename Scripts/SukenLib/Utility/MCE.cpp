@@ -49,28 +49,14 @@ void suken::CMCE::Read(const char* _file){
 	std::string str = folder;
 	str += _file;
 	FILE* a = fopen(str.c_str(),"r");
-	if(CheckFile(str.c_str()) == true && a != nullptr){
+	if(a != nullptr){
 		fclose(a);
-		file[str.c_str()].Awake(str.c_str());
+		file.Awake(str.c_str());
 	}
 }
 
-void suken::CMCE::Delete(const char* _file){
-	file.erase(_file);
-}
-
-int suken::CMCE::Get(const char* _file,char layer,int x,int y){
-	return file[_file].GetChip(layer,x,y);
-}
-
-bool suken::CMCE::CheckFile(const char* _file){
-	bool a = true;
-	for(auto itr = file.begin();itr != file.end();itr++){
-		if(itr->first == _file){
-			a = false;
-		}
-	}
-	return a;
+int suken::CMCE::Get(char layer,int x,int y){
+	return file.GetChip(layer,x,y);
 }
 
 suken::CMCE mce;
