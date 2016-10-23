@@ -18,6 +18,6 @@ Awake()は実行時のはじめに一度だけ実行され、GameLoopEnter()は�
 
 ## 参考
 - SukenLibリファレンス（未完成）
-- http://sukenlibrary.webcrow.jp/sukenlib_reference/index.html
+　 http://sukenlibrary.webcrow.jp/sukenlib_reference/index.html
 - Dxlibリファレンス
-- http://dxlib.o.oo7.jp/dxfunc.html
+　 http://dxlib.o.oo7.jp/dxfunc.html
