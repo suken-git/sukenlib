@@ -111,6 +111,12 @@ namespace suken {
 
 		//MCE.h
 			class CMCE;
+		//Dadian.h
+			double DegToRad(double deg);
+			float DegToRad(float deg);
+			float DegToRad(int deg);
+			class CRadian;
+			class CRadianF;
 
 	//Windows
 
