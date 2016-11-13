@@ -5,11 +5,11 @@ double suken::DegToRad(double deg) {
 }
 
 float suken::DegToRad(float deg) {
-	return deg / 180 * 3.14159265358979323846;
+	return deg / 180 * 3.14159265358979323846f;
 }
 
 float suken::DegToRad(int deg) {
-	return deg / 180 * 3.14159265358979323846;
+	return (float)deg / 180 * 3.14159265358979323846f;
 }
 
 suken::CRadian::CRadian() {
@@ -18,10 +18,12 @@ suken::CRadian::CRadian() {
 
 suken::CRadian::CRadian(int deg) {
 	value = DegToRad((float)deg);
+	this->Adjust();
 }
 
 suken::CRadian::CRadian(double rad) {
 	value = rad;
+	this->Adjust();
 }
 
 void suken::CRadian::Adjust() {
@@ -260,11 +262,13 @@ suken::CRadian suken::CRadian::operator /(CRadian rad) {
 
 suken::CRadian suken::CRadian::operator =(double rad) {
 	this->value = rad;
+	this->Adjust();
 	return *this;
 }
 
 suken::CRadian suken::CRadian::operator =(CRadian rad) {
 	this->value = rad.value;
+	this->Adjust();
 	return *this;
 }
 
@@ -274,10 +278,12 @@ suken::CRadianF::CRadianF() {
 
 suken::CRadianF::CRadianF(int deg) {
 	value = DegToRad((float)deg);
+	this->Adjust();
 }
 
 suken::CRadianF::CRadianF(float rad) {
 	value = rad;
+	this->Adjust();
 }
 
 void suken::CRadianF::Adjust() {
@@ -516,10 +522,12 @@ suken::CRadianF suken::CRadianF::operator /(CRadianF rad) {
 
 suken::CRadianF suken::CRadianF::operator =(float rad) {
 	this->value = rad;
+	this->Adjust();
 	return *this;
 }
 
 suken::CRadianF suken::CRadianF::operator =(CRadianF rad) {
 	this->value = rad.value;
+	this->Adjust();
 	return *this;
 }
