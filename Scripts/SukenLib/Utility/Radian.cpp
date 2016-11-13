@@ -41,38 +41,78 @@ void suken::CRadian::Reverse() {
 }
 
 bool suken::CRadian::Compare(double radA, double radB) {
-	if (radA < this->value && this->value < radB) {
-		return true;
+	if (radA < radB) {
+		if (radA < this->value && this->value < radB) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
-		return false;
+		if (radA < this->value || this->value < radB) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
 bool suken::CRadian::Compare(CRadian radA, CRadian radB) {
-	if (radA() < this->value && this->value < radB()) {
-		return true;
+	if (radA() < radB()) {
+		if (radA() < this->value && this->value < radB()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
-		return false;
+		if (radA() < this->value || this->value < radB()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
 bool suken::CRadian::CompareE(double radA, double radB) {
-	if (radA <= this->value && this->value <= radB) {
-		return true;
+	if (radA < radB) {
+		if (radA <= this->value && this->value <= radB) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
-		return false;
+		if (radA <= this->value || this->value <= radB) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
 bool suken::CRadian::CompareE(CRadian radA, CRadian radB) {
-	if (radA() <= this->value && this->value <= radB()) {
-		return true;
+	if (radA() < radB()) {
+		if (radA() <= this->value && this->value <= radB()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
-		return false;
+		if (radA() <= this->value || this->value <= radB()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -301,38 +341,78 @@ void suken::CRadianF::Reverse() {
 }
 
 bool suken::CRadianF::Compare(float radA, float radB) {
-	if (radA < this->value && this->value < radB) {
-		return true;
+	if (radA < radB) {
+		if (radA < this->value && this->value < radB) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
-		return false;
+		if (radA < this->value || this->value < radB) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
 bool suken::CRadianF::Compare(CRadianF radA, CRadianF radB) {
-	if (radA() < this->value && this->value < radB()) {
-		return true;
+	if (radA() < radB()) {
+		if (radA() < this->value && this->value < radB()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
-		return false;
+		if (radA() < this->value || this->value < radB()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
 bool suken::CRadianF::CompareE(float radA, float radB) {
-	if (radA <= this->value && this->value <= radB) {
-		return true;
+	if (radA < radB) {
+		if (radA <= this->value && this->value <= radB) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
-		return false;
+		if (radA <= this->value || this->value <= radB) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
 bool suken::CRadianF::CompareE(CRadianF radA, CRadianF radB) {
-	if (radA() <= this->value && this->value <= radB()) {
-		return true;
+	if (radA() < radB()) {
+		if (radA() <= this->value && this->value <= radB()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
-		return false;
+		if (radA() <= this->value || this->value <= radB()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
