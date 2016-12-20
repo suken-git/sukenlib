@@ -56,13 +56,3 @@ void suken::CKeyInputString::Draw(int x, int y, bool activeOnly, int x2, int y2)
 				active();
 		}
 	}
-
-void suken::SetKeyInputStringColor(int NmlStr,int NmlCur,int _back,int _frame,int _font,int _fontColor){
-	DxLib::SetKeyInputStringColor(NmlStr,NmlCur,GetColor(50,50,50),RED,WHITE,
-		GetColor(100,100,100),WHITE,BLACK,BLACK,BLACK,GRAY,WHITE,
-		GetColor(200,200,200),BLACK,BLACK,GetColor(254,254,254),BLACK);
-	back = _back;
-	frame = _frame;
-	font = _font;
-	fontColor = _fontColor;
-}

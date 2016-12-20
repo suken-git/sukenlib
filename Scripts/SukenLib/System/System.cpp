@@ -44,9 +44,6 @@ void suken::CSystem::Awake()
 
 	display = CreateDC(TEXT("DISPLAY") , nullptr , nullptr , nullptr);
 
-	SetKeyInputStringColor(BLACK,RED,GetColor(50,50,50),RED,WHITE,GetColor(100,100,100),WHITE,BLACK,BLACK,BLACK
-		,GRAY,WHITE,GetColor(200,200,200),BLACK,BLACK,GetColor(254,254,254),BLACK);
-
 	settings.input.AddEventListener(Event.EVERY_FRAME,SettingLoop);
 
 #ifdef USE_LUA
