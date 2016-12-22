@@ -56,3 +56,25 @@ void suken::CKeyInputString::Draw(int x, int y, bool activeOnly, int x2, int y2)
 				active();
 		}
 	}
+
+void suken::SetKeyInputStringColor(int NmlStr,int NmlCur,int _back,int _frame,int _font,int _fontColor){
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_NORMAL_STR, NmlStr);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_NORMAL_CURSOR, NmlCur);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_STR_BACK, GetColor(50, 50, 50));
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_CURSOR, RED);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_LINE, WHITE);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_SELECT_STR, GetColor(100, 100, 100));
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_MODE_STR, WHITE);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_NORMAL_STR_EDGE, BLACK);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_SELECT_STR_EDGE, BLACK);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_MODE_STR_EDGE, BLACK);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_SELECT_STR_BACK, GetColor(200, 200, 200));
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_SELECT_STR, BLACK);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_SELECT_STR_EDGE, BLACK);
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_STR, GetColor(254, 254, 254));
+	SetKeyInputStringColor2(DX_KEYINPSTRCOLOR_IME_STR_EDGE, BLACK);
+	back = _back;
+	frame = _frame;
+	font = _font;
+	fontColor = _fontColor;
+}

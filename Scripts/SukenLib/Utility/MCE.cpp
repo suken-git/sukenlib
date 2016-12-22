@@ -14,7 +14,7 @@ void suken::CMCEData::Awake(const char* _file){
 	data->ReadAll();
 	width = data->GetInt(sWidth);
 	height = data->GetInt(sHeight);
-	chip = new int (3*width*height);
+	chip = new int [3*width*height];
 	for(int i = 0; i < 3*width*height;i++){
 		chip[i] = data->GetInt(i);
 	}
