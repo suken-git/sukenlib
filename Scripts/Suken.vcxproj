@@ -86,7 +86,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Picture.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Event.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Input.cpp" />
     <ClCompile Include="SukenLib\GameEngine\Event\Key.cpp" />
@@ -105,13 +104,13 @@
     <ClCompile Include="SukenLib\Utility\Data.cpp" />
     <ClCompile Include="SukenLib\Utility\Debug.cpp" />
     <ClCompile Include="SukenLib\Utility\MCE.cpp" />
+    <ClCompile Include="SukenLib\Utility\Picture.cpp" />
     <ClCompile Include="SukenLib\Utility\Radian.cpp" />
     <ClCompile Include="SukenLib\Utility\Utility.cpp" />
     <ClCompile Include="SukenLib\Windows\Midi.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Picture.h" />
     <ClInclude Include="Suken.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\Event.h" />
     <ClInclude Include="SukenLib\GameEngine\Event\EventData.h" />
@@ -133,6 +132,7 @@
     <ClInclude Include="SukenLib\Utility\Data.h" />
     <ClInclude Include="SukenLib\Utility\Debug.h" />
     <ClInclude Include="SukenLib\Utility\MCE.h" />
+    <ClInclude Include="SukenLib\Utility\Picture.h" />
     <ClInclude Include="SukenLib\Utility\Radian.h" />
     <ClInclude Include="SukenLib\Utility\Utility.h" />
     <ClInclude Include="SukenLib\Windows\Midi.h" />

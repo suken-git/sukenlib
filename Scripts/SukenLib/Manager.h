@@ -117,6 +117,8 @@ namespace suken {
 			float DegToRad(int deg);
 			class CRadian;
 			class CRadianF;
+		//Picture.h
+			class CPicture;
 
 	//Windows
 

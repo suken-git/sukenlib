@@ -1,6 +1,6 @@
 #pragma once
 
-#include"Suken.h"
+#include"DxLib.h"
 
 class CPicture {
 public:
