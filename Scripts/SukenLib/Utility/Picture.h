@@ -1,20 +1,21 @@
 #pragma once
 
-#include"DxLib.h"
+#include<DxLib.h>
+#include <vector>
 
 class CPicture {
 public:
 	CPicture();
 
-	CPicture(char* File);
+	CPicture(const char* File);
 
-	CPicture(char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize);
+	CPicture(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize);
 
 	~CPicture();
 
-	void Set(char* File);
+	void Set(const char* File);
 
-	void Set(char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize);
+	void Set(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize);
 
 	void Draw();
 
@@ -39,7 +40,7 @@ public:
 	int GetHandle(int num = 0);
 
 private:
-	int *handle;
+	std::vector<int> handle;
 	int number;
 	int sizeX, sizeY;
 };

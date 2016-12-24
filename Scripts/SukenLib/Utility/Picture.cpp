@@ -4,39 +4,70 @@ CPicture::CPicture() {
 	number = 0;
 }
 
-CPicture::CPicture(char* File) {
-	handle = new int;
-	*handle = LoadGraph(File);
+CPicture::CPicture(const char* File) {
+	int buf;
+	buf = LoadGraph(File);
+	handle.push_back(buf);
 	number = 0;
 	GetGraphSize(handle[0], &sizeX, &sizeY);
 }
 
-CPicture::CPicture(char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize) {
+CPicture::CPicture(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize) {
 	number = num < 1 ? 1 : num;
-	handle = new int[number];
-	LoadDivGraph(File, num, Xnum, Ynum, Xsize, Ysize, handle);
+	int* buf = new int[number];
+	LoadDivGraph(File, num, Xnum, Ynum, Xsize, Ysize, buf);
+	for (int i = 0; i < number; i++) {
+		handle.push_back(buf[i]);
+	}
 	GetGraphSize(handle[0], &sizeX, &sizeY);
+	delete[] buf;
 }
 
 CPicture::~CPicture() {
-	delete[] handle;
 }
 
-void CPicture::Set(char* File) {
-	handle = new int;
-	*handle = LoadGraph(File);
-	GetGraphSize(handle[0], &sizeX, &sizeY);
+void CPicture::Set(const char* File) {
+	if (handle.empty()) {
+		int buf;
+		buf = LoadGraph(File);
+		handle.push_back(buf);
+		GetGraphSize(handle[0], &sizeX, &sizeY);
+	}
+	else {
+		handle.clear();
+		int buf;
+		buf = LoadGraph(File);
+		handle.push_back(buf);
+		GetGraphSize(handle[0], &sizeX, &sizeY);
+	}
 }
 
-void CPicture::Set(char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize) {
-	number = num < 1 ? 1 : num;
-	handle = new int[number];
-	LoadDivGraph(File, num, Xnum, Ynum, Xsize, Ysize, handle);
-	GetGraphSize(handle[0], &sizeX, &sizeY);
+void CPicture::Set(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize) {
+	if (handle.empty()) {
+		number = num < 1 ? 1 : num;
+		int* buf = new int[number];
+		LoadDivGraph(File, num, Xnum, Ynum, Xsize, Ysize, buf);
+		for (int i = 0; i < number; i++) {
+			handle.push_back(buf[i]);
+		}
+		GetGraphSize(handle[0], &sizeX, &sizeY);
+		delete[] buf;
+	}
+	else {
+		handle.clear();
+		number = num < 1 ? 1 : num;
+		int* buf = new int[number];
+		LoadDivGraph(File, num, Xnum, Ynum, Xsize, Ysize, buf);
+		for (int i = 0; i < number; i++) {
+			handle.push_back(buf[i]);
+		}
+		GetGraphSize(handle[0], &sizeX, &sizeY);
+		delete[] buf;
+	}
 }
 
 void CPicture::Draw() {
-	DrawGraph(0, 0, *handle, true);
+	DrawGraph(0, 0, handle[0], true);
 }
 void CPicture::Draw(int num) {
 	DrawGraph(0, 0, handle[num], true);
@@ -45,10 +76,10 @@ void CPicture::Draw(int num) {
 
 void CPicture::Draw(int x, int y, bool turnFlag) {
 	if (turnFlag == 0) {
-		DrawGraph(x, y, *handle, true);
+		DrawGraph(x, y, handle[0], true);
 	}
 	else {
-		DrawTurnGraph(x, y, *handle, true);
+		DrawTurnGraph(x, y, handle[0], true);
 	}
 }
 
@@ -62,7 +93,7 @@ void CPicture::Draw(int x, int y, int num, bool turnFlag) {
 }
 
 void CPicture::DrawRota(int x, int y, double angle, bool turnFlag) {
-	DrawRotaGraphF(x, y, 1, angle, *handle, true, turnFlag);
+	DrawRotaGraphF(x, y, 1, angle, handle[0], true, turnFlag);
 }
 
 void CPicture::DrawRota(int x, int y, double angle, int num, bool turnFlag) {
