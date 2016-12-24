@@ -106,6 +106,9 @@
     <ClCompile Include="SukenLib\Utility\Radian.cpp">
       <Filter>SukenLib\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Picture.cpp">
+      <Filter>SukenLib\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SukenLib\GameEngine\Physics\Primitive\Circle.h">
@@ -178,6 +181,9 @@
       <Filter>SukenLib\Utility</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\Utility\Radian.h">
+      <Filter>SukenLib\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Picture.h">
       <Filter>SukenLib\Utility</Filter>
     </ClInclude>
   </ItemGroup>
