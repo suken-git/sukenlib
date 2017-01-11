@@ -1,10 +1,10 @@
 #include"Picture.h"
 
-CPicture::CPicture() {
+suken::CPicture::CPicture() {
 	number = 0;
 }
 
-CPicture::CPicture(const char* File) {
+suken::CPicture::CPicture(const char* File) {
 	int buf;
 	buf = LoadGraph(File);
 	handle.push_back(buf);
@@ -12,7 +12,7 @@ CPicture::CPicture(const char* File) {
 	GetGraphSize(handle[0], &sizeX, &sizeY);
 }
 
-CPicture::CPicture(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize) {
+suken::CPicture::CPicture(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize) {
 	number = num < 1 ? 1 : num;
 	int* buf = new int[number];
 	LoadDivGraph(File, num, Xnum, Ynum, Xsize, Ysize, buf);
@@ -23,10 +23,10 @@ CPicture::CPicture(const char* File, int num, int Xnum, int Ynum, int Xsize, int
 	delete[] buf;
 }
 
-CPicture::~CPicture() {
+suken::CPicture::~CPicture() {
 }
 
-void CPicture::Set(const char* File) {
+void suken::CPicture::Set(const char* File) {
 	if (handle.empty()) {
 		int buf;
 		buf = LoadGraph(File);
@@ -42,7 +42,7 @@ void CPicture::Set(const char* File) {
 	}
 }
 
-void CPicture::Set(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize) {
+void suken::CPicture::Set(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize) {
 	if (handle.empty()) {
 		number = num < 1 ? 1 : num;
 		int* buf = new int[number];
@@ -66,15 +66,15 @@ void CPicture::Set(const char* File, int num, int Xnum, int Ynum, int Xsize, int
 	}
 }
 
-void CPicture::Draw() {
+void suken::CPicture::Draw() {
 	DrawGraph(0, 0, handle[0], true);
 }
-void CPicture::Draw(int num) {
+void suken::CPicture::Draw(int num) {
 	DrawGraph(0, 0, handle[num], true);
 }
 
 
-void CPicture::Draw(int x, int y, bool turnFlag) {
+void suken::CPicture::Draw(int x, int y, bool turnFlag) {
 	if (turnFlag == 0) {
 		DrawGraph(x, y, handle[0], true);
 	}
@@ -83,7 +83,16 @@ void CPicture::Draw(int x, int y, bool turnFlag) {
 	}
 }
 
-void CPicture::Draw(int x, int y, int num, bool turnFlag) {
+void suken::CPicture::Draw(Vector2D v, bool turnFlag) {
+	if (turnFlag == 0) {
+		DrawGraph(v.x, v.y, handle[0], true);
+	}
+	else {
+		DrawTurnGraph(v.x, v.y, handle[0], true);
+	}
+}
+
+void suken::CPicture::Draw(int x, int y, int num, bool turnFlag) {
 	if (turnFlag == 0) {
 		DrawGraph(x, y, handle[num], true);
 	}
@@ -92,30 +101,55 @@ void CPicture::Draw(int x, int y, int num, bool turnFlag) {
 	}
 }
 
-void CPicture::DrawRota(int x, int y, double angle, bool turnFlag) {
+void suken::CPicture::Draw(Vector2D v, int num, bool turnFlag) {
+	if (turnFlag == 0) {
+		DrawGraph(v.x, v.y, handle[num], true);
+	}
+	else {
+		DrawTurnGraph(v.x, v.y, handle[num], true);
+	}
+}
+
+void suken::CPicture::DrawRota(int x, int y, double angle, bool turnFlag) {
 	DrawRotaGraphF(x, y, 1, angle, handle[0], true, turnFlag);
 }
 
-void CPicture::DrawRota(int x, int y, double angle, int num, bool turnFlag) {
+void suken::CPicture::DrawRota(Vector2D v, double angle, bool turnFlag) {
+	DrawRotaGraphF(v.x, v.y, 1, angle, handle[0], true, turnFlag);
+}
+
+void suken::CPicture::DrawRota(int x, int y, double angle, int num, bool turnFlag) {
 	DrawRotaGraph(x, y, 1, angle, handle[num], true, turnFlag);
 }
 
-void CPicture::DrawExtend(int x1, int y1, int x2, int y2) {
+void suken::CPicture::DrawRota(Vector2D v, double angle, int num, bool turnFlag) {
+	DrawRotaGraph(v.x, v.y, 1, angle, handle[num], true, turnFlag);
+}
+
+void suken::CPicture::DrawExtend(int x1, int y1, int x2, int y2) {
 	DrawExtendGraph(x1, y1, x2, y2, handle[0], true);
 }
 
-void CPicture::DrawExtend(int x1, int y1, int x2, int y2, int num) {
+void suken::CPicture::DrawExtend(Vector2D v1, Vector2D v2) {
+	DrawExtendGraph(v1.x, v1.y, v2.x, v2.y, handle[0], true);
+}
+
+void suken::CPicture::DrawExtend(int x1, int y1, int x2, int y2, int num) {
 	DrawExtendGraph(x1, y1, x2, y2, handle[num], true);
 }
 
-int CPicture::GetSizeX() {
+void suken::CPicture::DrawExtend(Vector2D v1, Vector2D v2, int num) {
+	DrawExtendGraph(v1.x, v1.y, v2.x, v2.y, handle[num], true);
+}
+
+int suken::CPicture::GetSizeX() {
 	return sizeX;
 }
 
-int CPicture::GetSizeY() {
+int suken::CPicture::GetSizeY() {
 	return sizeY;
 }
 
-int CPicture::GetHandle(int num) {
+int suken::CPicture::GetHandle(int num) {
 	return handle[num];
 }

@@ -2,45 +2,56 @@
 
 #include<DxLib.h>
 #include <vector>
+#include "..\GameEngine\Physics\Vector2D.h"
 
-class CPicture {
-public:
-	CPicture();
+namespace suken {
 
-	CPicture(const char* File);
+	class CPicture {
+	public:
+		CPicture();
 
-	CPicture(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize);
+		CPicture(const char* File);
 
-	~CPicture();
+		CPicture(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize);
 
-	void Set(const char* File);
+		~CPicture();
 
-	void Set(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize);
+		void Set(const char* File);
 
-	void Draw();
+		void Set(const char* File, int num, int Xnum, int Ynum, int Xsize, int Ysize);
 
-	void Draw(int num);
+		void Draw();
 
-	void Draw(int x, int y, bool turnFlag = 0);
+		void Draw(int num);
 
-	void Draw(int x, int y, int num, bool turnFlag = 0);
+		void Draw(int x, int y, bool turnFlag = 0);
+		void Draw(Vector2D v, bool turnFlag = 0);
 
-	void DrawRota(int x, int y, double angle, bool turnFlag = 0);
+		void Draw(int x, int y, int num, bool turnFlag = 0);
+		void Draw(Vector2D v, int num, bool turnFlag = 0);
 
-	void DrawRota(int x, int y, double angle, int num, bool turnFlag = 0);
+		void DrawRota(int x, int y, double angle, bool turnFlag = 0);
+		void DrawRota(Vector2D v, double angle, bool turnFlag = 0);
 
-	void DrawExtend(int x1, int y1, int x2, int y2);
+		void DrawRota(int x, int y, double angle, int num, bool turnFlag = 0);
+		void DrawRota(Vector2D v, double angle, int num, bool turnFlag = 0);
 
-	void DrawExtend(int x1, int y1, int x2, int y2, int num);
+		void DrawExtend(int x1, int y1, int x2, int y2);
+		void DrawExtend(Vector2D v1, Vector2D v2);
 
-	int GetSizeX();
+		void DrawExtend(int x1, int y1, int x2, int y2, int num);
+		void DrawExtend(Vector2D v1, Vector2D v2, int num);
 
-	int GetSizeY();
+		int GetSizeX();
 
-	int GetHandle(int num = 0);
+		int GetSizeY();
 
-private:
-	std::vector<int> handle;
-	int number;
-	int sizeX, sizeY;
-};
+		int GetHandle(int num = 0);
+
+	private:
+		std::vector<int> handle;
+		int number;
+		int sizeX, sizeY;
+	};
+
+}
