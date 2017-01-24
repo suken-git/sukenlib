@@ -8,7 +8,6 @@
 #include"SukenLib\Utility\Utility.h"
 #include"SukenLib\Utility\Array.h"
 #include"SukenLib\Utility\MCE.h"
-#include"SukenLib\Utility\Radian.h"
 #include"SukenLib\Utility\Picture.h"
 
 #include"SukenLib\GameEngine\Game.h"

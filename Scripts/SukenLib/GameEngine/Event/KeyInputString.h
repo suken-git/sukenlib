@@ -3,82 +3,59 @@
 #include <DxLib.h>
 #include <string>
 
-enum TYPE{
-	tInt,
-	tStr
-};
+namespace suken {
 
-namespace suken{
+	class CKeyInputNum {
+	public:
+		CKeyInputNum();
+		CKeyInputNum(int* link, char size, int height,const char* font = nullptr);
 
-class CKeyInputString {
-public:
-	//数字用
-	//_link  入力情報を返すint型の変数
-	//size  入力できる最大文字数
-	//cancelFlag  Ｅｓｃキーによるキャンセルの有無
-	CKeyInputString(int* _link,int size , bool cancelFlag = true):
-		data(MakeKeyInput( size > 9 ? 9 : size, cancelFlag, false, true)), intLink(_link), strLink(nullptr), width(9*(size > 9 ? 9 : size)+3), height(16), link(tInt),writing(false){
-			mem = nullptr;
-	}
+		~CKeyInputNum();
 
-	//文字列用
-	//_link  入力情報を返すstring型の変数
-	//size  入力できる最大文字数、全角は2文字分
-	//cancelFlag  Ｅｓｃキーによるキャンセルの有無
-	//singleOnly  半角に固定するかのフラグ
-	//doubleOnly  全角に固定するかのフラグ
-	CKeyInputString(std::string* _link, int size, bool cancelFlag = true , bool singleOnly = false, bool doubleOnly = false) :
-		data(MakeKeyInput(size, cancelFlag, singleOnly, false, doubleOnly)), intLink(nullptr), strLink(_link),
-			width(doubleOnly ? (size % 2 ? (int)(17*(size-1)/2+3) : (int)(17*size/2+3)) : 9*size+3), height(16), link(tStr), writing(false) {
-				mem = new char [size];
-	}
+		void Draw(int x, int y, bool activeOnly = false);
 
-	~CKeyInputString() {
-		DeleteKeyInput(data);
-		if (intLink != nullptr) {
-			delete intLink;
-			intLink = nullptr;
-		}
-		if (strLink != nullptr) {
-			delete strLink;
-			strLink = nullptr;
-		}
-		if (mem != nullptr) {
-			delete mem;
-			mem = nullptr;
-		}
-	}
+		void Actve();
 
-	void active() {
-		SetActiveKeyInput(data);
-		if (link == tInt) {
-				SetKeyInputNumber(*intLink, data);
-			}
-		if (link == tStr) {
-			SetKeyInputString(strLink->c_str(), data);
-		}
-		writing = 1;
-	}
+		void SetFont(const char* font,int color, int thick, bool ItalicFlag = false, int fontType = -1, int edgeSize = -1, int edgeColor = 0);
 
-	bool CheckActive(){
-		return writing;
-	}
+	private:
+		std::string str;
+		int* link;
+		int size;
+		int width,height;
+		int font;
+		int num;
+		bool fActive;
+		int color,edgeColor;
 
-	//縦１６
-	//activeOnly 書いているときのみ文字を表示
-	void Draw(int x, int y, bool activeOnly = false, int x2 = 0,int y2 = 0);
-	
-private:
-	const int data;
-	int *intLink;
-	std::string *strLink;
-	const int width;
-	const int height;
-	const TYPE link;
-	bool writing;
-	char *mem;
-};
+		void KeyInput();
+		void Add(const char* c);
+	};
 
-void SetKeyInputStringColor(int NmlStr,int NmlCur,int _back,int _frame,int _font,int _fontColor);
+	class CKeyInputString {
+	public:
+		CKeyInputString();
+		CKeyInputString(std::string* link, char size, int height, const char* font = nullptr);
 
+		~CKeyInputString();
+
+		void Draw(int x, int y, bool activeOnly = false);
+
+		void Actve();
+
+		void SetFont(const char* font, int color, int thick, bool ItalicFlag = false, int fontType = -1, int edgeSize = -1, int edgeColor = 0);
+
+	private:
+		std::string str;
+		std::string* link;
+		int size;
+		int width, height;
+		int font;
+		int num;
+		bool fActive;
+		int color, edgeColor;
+
+		void KeyInput();
+		void Add(const char* c);
+	};
 }

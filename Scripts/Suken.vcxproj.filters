@@ -103,9 +103,6 @@
     <ClCompile Include="SukenLib\Utility\MCE.cpp">
       <Filter>SukenLib\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="SukenLib\Utility\Radian.cpp">
-      <Filter>SukenLib\Utility</Filter>
-    </ClCompile>
     <ClCompile Include="SukenLib\Utility\Picture.cpp">
       <Filter>SukenLib\Utility</Filter>
     </ClCompile>
@@ -178,9 +175,6 @@
       <Filter>SukenLib\GameEngine\Event</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\Utility\MCE.h">
-      <Filter>SukenLib\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="SukenLib\Utility\Radian.h">
       <Filter>SukenLib\Utility</Filter>
     </ClInclude>
     <ClInclude Include="SukenLib\Utility\Picture.h">

@@ -1,7 +1,7 @@
 #pragma once
 
 #define DEBUG
-#define DEBUG_DRAW
+//#define DEBUG_DRAW
 //#define SCENE_TRANSITION_ANIMATION
 //#define USE_LUA  //Luaスクリプトを使うならコメントアウトを解除する
 //そしてプロジェクト直下にlua5.1.dllを配置
@@ -71,6 +71,7 @@ namespace suken {
 	//Key.h
 	class CKey;
 	//KeyInputString.h
+	class CKeyInputNum;
 	class CKeyInputString;
 	//Mouse.h
 	class CMouse;
@@ -111,12 +112,6 @@ namespace suken {
 
 		//MCE.h
 			class CMCE;
-		//Radian.h
-			double DegToRad(double deg);
-			float DegToRad(float deg);
-			float DegToRad(int deg);
-			class CRadian;
-			class CRadianF;
 		//Picture.h
 			class CPicture;
 
