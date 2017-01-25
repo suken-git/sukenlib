@@ -4,6 +4,10 @@
 #define Key(Key) if(Event.key.GetDown(Event.key.Key))
 
 bool suken::CKeyInput::fActiveElse = false;
+unsigned int suken::CKeyInput::color = 0;
+unsigned int suken::CKeyInput::edgeColor = 0;
+unsigned int suken::CKeyInput::backColor = 0xFFFFFF;
+unsigned int suken::CKeyInput::backEdgeColor = 0;
 
 suken::CKeyInput::CKeyInput() {
 
@@ -128,11 +132,11 @@ void suken::CKeyInput::SetFont(const char* font, int thick, bool ItalicFlag, int
 	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
 }
 
-void suken::CKeyInput::SetColor(unsigned int color, unsigned int edgeColor = 0, unsigned int backColor = 0xFFFFFF, unsigned int backEdgeColor = 0) {
-	this->color = color;
-	this->edgeColor = edgeColor;
-	this->backColor = backColor;
-	this->backEdgeColor = backEdgeColor;
+void suken::CKeyInput::SetColor(unsigned int color, unsigned int edgeColor, unsigned int backColor, unsigned int backEdgeColor) {
+	suken::CKeyInput::color = color;
+	suken::CKeyInput::edgeColor = edgeColor;
+	suken::CKeyInput::backColor = backColor;
+	suken::CKeyInput::backEdgeColor = backEdgeColor;
 }
 
 void suken::CKeyInput::KeyInput() {
