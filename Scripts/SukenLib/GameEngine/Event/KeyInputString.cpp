@@ -3,7 +3,11 @@
 
 #define Key(Key) if(Event.key.GetDown(Event.key.Key))
 
-bool fActiveElse = false;
+bool suken::CKeyInput::fActiveElse = false;
+
+suken::CKeyInput::CKeyInput() {
+
+}
 
 suken::CKeyInputNum::CKeyInputNum() {
 	str = "";
@@ -37,125 +41,10 @@ suken::CKeyInputNum::CKeyInputNum(int* link, char size, int height, const char* 
 	width = GetDrawStringWidthToHandle(str.c_str(), str.size(),this->font) + 2;
 }
 
-suken::CKeyInputNum::~CKeyInputNum() {
-	//DeleteFontToHandle(font);
-}
-
-void suken::CKeyInputNum::KeyInput() {
-	Key(RIGHT) {
-		if (num < str.size()) {
-			num++;
-		}
-	}
-	Key(LEFT) {
-		if (num > 0) {
-			num--;
-		}
-	}
-
-	Key(NUM0)Add("0");
-	Key(NUM1)Add("1");
-	Key(NUM2)Add("2");
-	Key(NUM3)Add("3");
-	Key(NUM4)Add("4");
-	Key(NUM5)Add("5");
-	Key(NUM6)Add("6");
-	Key(NUM7)Add("7");
-	Key(NUM8)Add("8");
-	Key(NUM9)Add("9");
-
-	Key(BACK) {
-		if (num != 0) {
-			str.erase(str.begin() + (num-1));
-			width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
-			num--;
-		}
-	}
-
-	Key(_DELETE) {
-		if (num != str.size()) {
-			str.erase(str.begin() + num);
-			width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
-		}
-	}
-
-	Key(ESCAPE) {
-		fActive = false;
-		fActiveElse = false;
-		str = std::to_string((long long)*link);
-		num = str.size();
-		width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
-	}
-
-	Key(RETURN) {
-		fActive = false;
-		fActiveElse = false;
-		*link = atoi(str.c_str());
-		str = std::to_string((long long)*link);
-		num = str.size();
-		width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
-	}
-}
-
-void suken::CKeyInputNum::Add(const char* c) {
-	if (str.size() < size) {
-		str.insert(num, c);
-		width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
-		num++;
-	}
-}
-
-void suken::CKeyInputNum::Draw(int x, int y, bool activeOnly) {
-	if (!activeOnly) {
-		if (!fActiveElse) {
-			if (str.size() == 0) {
-				if (Event.LMouse.GetClick(x, y, x + height, y + height)) {
-					fActive = true;
-					fActiveElse = true;
-				}
-			}
-			else {
-				if (Event.LMouse.GetClick(x, y, x + width, y + height)) {
-					fActive = true;
-					fActiveElse = true;
-				}
-			}
-		}
-	}
-
-	if (fActive) {
-		KeyInput();
-
-		DrawBox(x, y, x + width, y + height, 0xFFFFFF, true);
-		DrawBox(x, y, x + width, y + height, 0, false);
-		DrawBox(x + GetDrawStringWidthToHandle(str.c_str(), num, this->font), y + 1, x + GetDrawStringWidthToHandle(str.c_str(), num, this->font) + 2, y + height - 1, 0xFF0000, true);
-		DrawStringToHandle(x + 1, y, str.c_str(), color, font ,edgeColor);
-	}
-	else if(!activeOnly){
-		DrawStringToHandle(x + 1, y, str.c_str(), color, font, edgeColor);
-	}
-}
-
-void suken::CKeyInputNum::Actve() {
-	if (!fActiveElse) {
-		fActive = true;
-		fActiveElse = true;
-	}
-}
-
-void suken::CKeyInputNum::SetFont(const char* font, int color, int thick, bool ItalicFlag, int fontType, int edgeSize, int edgeColor) {
-	this->font = CreateFontToHandle(font, height, thick, fontType, -1, edgeSize, ItalicFlag);
-	this->color = color;
-	this->edgeColor = edgeColor;
-	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
-}
-
-
-
 suken::CKeyInputString::CKeyInputString() {
 	str = "";
 	link = nullptr;
-	size = 9;
+	size = 0;
 	width = 0;
 	height = 0;
 	font = NULL;
@@ -184,8 +73,126 @@ suken::CKeyInputString::CKeyInputString(std::string* link, char size, int height
 	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
 }
 
-suken::CKeyInputString::~CKeyInputString() {
+suken::CKeyInput::~CKeyInput() {
 	//DeleteFontToHandle(font);
+}
+
+void suken::CKeyInput::Add(const char* c) {
+	if (str.size() < size) {
+		str.insert(num, c);
+		width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
+		num++;
+	}
+}
+
+void suken::CKeyInput::Draw(int x, int y, bool activeOnly) {
+	if (!activeOnly) {
+		if (!fActiveElse) {
+			if (str.size() == 0) {
+				if (Event.LMouse.GetClick(x, y, x + height, y + height)) {
+					fActive = true;
+					fActiveElse = true;
+				}
+			}
+			else {
+				if (Event.LMouse.GetClick(x, y, x + width, y + height)) {
+					fActive = true;
+					fActiveElse = true;
+				}
+			}
+		}
+	}
+
+	if (fActive) {
+		KeyInput();
+
+		DrawBox(x, y, x + width, y + height, backColor, true);
+		DrawBox(x, y, x + width, y + height, backEdgeColor, false);
+		DrawBox(x + GetDrawStringWidthToHandle(str.c_str(), num, this->font), y + 1, x + GetDrawStringWidthToHandle(str.c_str(), num, this->font) + 2, y + height - 1, 0xFF0000, true);
+		DrawStringToHandle(x + 1, y, str.c_str(), color, font, edgeColor);
+	}
+	else if (!activeOnly) {
+		DrawStringToHandle(x + 1, y, str.c_str(), color, font, edgeColor);
+	}
+}
+
+void suken::CKeyInput::Actve() {
+	if (!fActiveElse) {
+		fActive = true;
+		fActiveElse = true;
+	}
+}
+
+void suken::CKeyInput::SetFont(const char* font, int thick, bool ItalicFlag, int fontType, int edgeSize) {
+	this->font = CreateFontToHandle(font, height, thick, fontType, -1, edgeSize, ItalicFlag);
+	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
+}
+
+void suken::CKeyInput::SetColor(unsigned int color, unsigned int edgeColor = 0, unsigned int backColor = 0xFFFFFF, unsigned int backEdgeColor = 0) {
+	this->color = color;
+	this->edgeColor = edgeColor;
+	this->backColor = backColor;
+	this->backEdgeColor = backEdgeColor;
+}
+
+void suken::CKeyInput::KeyInput() {
+
+}
+
+void suken::CKeyInputNum::KeyInput() {
+	Key(RIGHT) {
+		if (num < str.size()) {
+			num++;
+		}
+	}
+	Key(LEFT) {
+		if (num > 0) {
+			num--;
+		}
+	}
+
+	Key(NUM0)Add("0");
+	Key(NUM1)Add("1");
+	Key(NUM2)Add("2");
+	Key(NUM3)Add("3");
+	Key(NUM4)Add("4");
+	Key(NUM5)Add("5");
+	Key(NUM6)Add("6");
+	Key(NUM7)Add("7");
+	Key(NUM8)Add("8");
+	Key(NUM9)Add("9");
+
+	Key(BACK) {
+		if (num != 0) {
+			str.erase(str.begin() + (num - 1));
+			width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
+			num--;
+		}
+	}
+
+	Key(_DELETE) {
+		if (num != str.size()) {
+			str.erase(str.begin() + num);
+			width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
+		}
+	}
+
+	Key(ESCAPE) {
+		fActive = false;
+		fActiveElse = false;
+		str = std::to_string((long long)*link);
+		num = str.size();
+		width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
+	}
+
+	Key(RETURN) {
+		fActive = false;
+		fActiveElse = false;
+		*link = atoi(str.c_str());
+		str = std::to_string((long long)*link);
+		num = str.size();
+		width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
+	}
 }
 
 void suken::CKeyInputString::KeyInput() {
@@ -238,7 +245,7 @@ void suken::CKeyInputString::KeyInput() {
 		Key(X)Add("X");
 		Key(Y)Add("Y");
 		Key(Z)Add("Z");
-		Key(YEN)Add("_");
+		Key(BACKSLASH)Add("_");
 	}
 	else {
 		Key(A)Add("a");
@@ -299,57 +306,4 @@ void suken::CKeyInputString::KeyInput() {
 		num = str.size();
 		width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
 	}
-}
-
-void suken::CKeyInputString::Add(const char* c) {
-	if (str.size() < size) {
-		str.insert(num, c);
-		width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
-		num++;
-	}
-}
-
-void suken::CKeyInputString::Draw(int x, int y, bool activeOnly) {
-	if (!activeOnly) {
-		if (!fActiveElse) {
-			if (str.size() == 0) {
-				if (Event.LMouse.GetClick(x, y, x + height, y + height)) {
-					fActive = true;
-					fActiveElse = true;
-				}
-			}
-			else {
-				if (Event.LMouse.GetClick(x, y, x + width, y + height)) {
-					fActive = true;
-					fActiveElse = true;
-				}
-			}
-		}
-	}
-
-	if (fActive) {
-		KeyInput();
-
-		DrawBox(x, y, x + width, y + height, 0xFFFFFF, true);
-		DrawBox(x, y, x + width, y + height, 0, false);
-		DrawBox(x + GetDrawStringWidthToHandle(str.c_str(), num, this->font), y + 1, x + GetDrawStringWidthToHandle(str.c_str(), num, this->font) + 2, y + height - 1, 0xFF0000, true);
-		DrawStringToHandle(x + 1, y, str.c_str(), color, font, edgeColor);
-	}
-	else if (!activeOnly) {
-		DrawStringToHandle(x + 1, y, str.c_str(), color, font, edgeColor);
-	}
-}
-
-void suken::CKeyInputString::Actve() {
-	if (!fActiveElse) {
-		fActive = true;
-		fActiveElse = true;
-	}
-}
-
-void suken::CKeyInputString::SetFont(const char* font, int color, int thick, bool ItalicFlag, int fontType, int edgeSize, int edgeColor) {
-	this->font = CreateFontToHandle(font, height, thick, fontType, -1, edgeSize, ItalicFlag);
-	this->color = color;
-	this->edgeColor = edgeColor;
-	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
 }

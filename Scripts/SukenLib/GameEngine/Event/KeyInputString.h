@@ -5,57 +5,53 @@
 
 namespace suken {
 
-	class CKeyInputNum {
+	class CKeyInput {
 	public:
-		CKeyInputNum();
-		CKeyInputNum(int* link, char size, int height,const char* font = nullptr);
+		CKeyInput();
 
-		~CKeyInputNum();
+		~CKeyInput();
 
 		void Draw(int x, int y, bool activeOnly = false);
 
 		void Actve();
 
-		void SetFont(const char* font,int color, int thick, bool ItalicFlag = false, int fontType = -1, int edgeSize = -1, int edgeColor = 0);
+		void SetFont(const char* font, int thick = 1, bool ItalicFlag = false, int fontType = -1, int edgeSize = -1);
 
-	private:
+		void SetColor(unsigned int color, unsigned int edgeColor = 0, unsigned int backColor = 0xFFFFFF, unsigned int backEdgeColor = 0);
+	protected:
 		std::string str;
-		int* link;
-		int size;
-		int width,height;
-		int font;
-		int num;
-		bool fActive;
-		int color,edgeColor;
-
-		void KeyInput();
-		void Add(const char* c);
-	};
-
-	class CKeyInputString {
-	public:
-		CKeyInputString();
-		CKeyInputString(std::string* link, char size, int height, const char* font = nullptr);
-
-		~CKeyInputString();
-
-		void Draw(int x, int y, bool activeOnly = false);
-
-		void Actve();
-
-		void SetFont(const char* font, int color, int thick, bool ItalicFlag = false, int fontType = -1, int edgeSize = -1, int edgeColor = 0);
-
-	private:
-		std::string str;
-		std::string* link;
 		int size;
 		int width, height;
 		int font;
 		int num;
 		bool fActive;
-		int color, edgeColor;
+
+		static bool fActiveElse;
+		static unsigned int color, edgeColor, backColor,backEdgeColor;
+
+		virtual void KeyInput();
+		void Add(const char* c);
+	};
+
+	class CKeyInputNum : public CKeyInput {
+	public:
+		CKeyInputNum();
+		CKeyInputNum(int* link, char size, int height,const char* font = nullptr);
+
+	private:
+		int* link;
 
 		void KeyInput();
-		void Add(const char* c);
+	};
+
+	class CKeyInputString : public CKeyInput {
+	public:
+		CKeyInputString();
+		CKeyInputString(std::string* link, char size, int height, const char* font = nullptr);
+
+	private:
+		std::string* link;
+
+		void KeyInput();
 	};
 }
