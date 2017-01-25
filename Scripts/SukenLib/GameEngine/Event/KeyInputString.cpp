@@ -127,6 +127,14 @@ void suken::CKeyInput::Actve() {
 	}
 }
 
+int suken::CKeyInput::GetWidth() {
+	return width;
+}
+
+bool suken::CKeyInput::GetActive() {
+	return fActive;
+}
+
 void suken::CKeyInput::SetFont(const char* font, int thick, bool ItalicFlag, int fontType, int edgeSize) {
 	this->font = CreateFontToHandle(font, height, thick, fontType, -1, edgeSize, ItalicFlag);
 	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;

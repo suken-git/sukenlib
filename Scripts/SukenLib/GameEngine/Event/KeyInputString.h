@@ -15,6 +15,10 @@ namespace suken {
 
 		void Actve();
 
+		int GetWidth();
+
+		bool GetActive();
+
 		void SetFont(const char* font, int thick = 1, bool ItalicFlag = false, int fontType = -1, int edgeSize = -1);
 
 		static void SetColor(unsigned int color, unsigned int edgeColor = 0, unsigned int backColor = 0xFFFFFF, unsigned int backEdgeColor = 0);
