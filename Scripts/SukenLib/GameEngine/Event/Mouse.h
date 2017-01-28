@@ -143,6 +143,10 @@ public:
 	void SetRight();
 /**
 *	@brief 説明
+*/
+	void SetMiddle();
+/**
+*	@brief 説明
 * @return 戻り値
 */
 	int GetX();
@@ -168,7 +172,7 @@ private:
 	int mouseY;///<  @brief 現在のマウスのｙ座標
 	bool mouseInput;///<  @brief 現フレームのマウス入力の有無
 	bool preMouseInput;///<  @brief 前フレームのマウス入力の有無
-	bool IsLeft;///<  @brief 担当するマウスボタンが左かどうか true:左　false:右
+	char state;///<  @brief 担当するマウスボタンがどれか 0:左　1:右  2:真ん中
 };
 
 

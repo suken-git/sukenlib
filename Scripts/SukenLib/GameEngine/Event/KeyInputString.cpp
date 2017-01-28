@@ -42,7 +42,7 @@ suken::CKeyInputNum::CKeyInputNum(int* link, char size, int height, const char* 
 	}
 	num = str.size();
 	str.reserve(this->size);
-	width = GetDrawStringWidthToHandle(str.c_str(), str.size(),this->font) + 2;
+	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
 }
 
 suken::CKeyInputString::CKeyInputString() {
@@ -120,10 +120,11 @@ void suken::CKeyInput::Draw(int x, int y, bool activeOnly) {
 	}
 }
 
-void suken::CKeyInput::Actve() {
+void suken::CKeyInput::Active() {
 	if (!fActiveElse) {
 		fActive = true;
 		fActiveElse = true;
+
 	}
 }
 
@@ -133,6 +134,22 @@ int suken::CKeyInput::GetWidth() {
 
 bool suken::CKeyInput::GetActive() {
 	return fActive;
+}
+
+void suken::CKeyInput::SetString() {
+
+}
+
+void suken::CKeyInputNum::SetString() {
+	str = std::to_string((long long)*link);
+	num = str.size();
+	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
+}
+
+void suken::CKeyInputString::SetString() {
+	str = *link;
+	num = str.size();
+	width = GetDrawStringWidthToHandle(str.c_str(), str.size(), this->font) + 2;
 }
 
 void suken::CKeyInput::SetFont(const char* font, int thick, bool ItalicFlag, int fontType, int edgeSize) {

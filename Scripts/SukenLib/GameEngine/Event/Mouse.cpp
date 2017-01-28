@@ -259,21 +259,31 @@ bool suken::CMouse::GetRelease( int *_x1 , int *_y1 , int *_x2 , int *_y2 )
 }
 void suken::CMouse::Loop()
 {
-	GetMousePoint( &mouseX, &mouseY );
+	GetMousePoint(&mouseX, &mouseY);
 	preMouseInput = mouseInput;
-	if(IsLeft){
-		mouseInput = (bool)( GetMouseInput() & MOUSE_INPUT_LEFT );
-	}else{
-		mouseInput = (bool)( GetMouseInput() & MOUSE_INPUT_RIGHT );
+	switch (state) {
+	case 0:
+		mouseInput = (bool)(GetMouseInput() & MOUSE_INPUT_LEFT);
+		break;
+	case 1:
+		mouseInput = (bool)(GetMouseInput() & MOUSE_INPUT_RIGHT);
+		break;
+	case 2:
+		mouseInput = (bool)(GetMouseInput() & MOUSE_INPUT_MIDDLE);
+		break;
 	}
 }
 void suken::CMouse::SetLeft()
 {
-	IsLeft = true;
+	state = 0;
 }
 void suken::CMouse::SetRight()
 {
-	IsLeft = false;
+	state = 1;
+}
+void suken::CMouse::SetMiddle()
+{
+	state = 2;
 }
 int suken::CMouse::GetX(){
 	return this->mouseX;

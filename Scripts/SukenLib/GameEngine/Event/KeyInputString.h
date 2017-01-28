@@ -13,11 +13,13 @@ namespace suken {
 
 		void Draw(int x, int y, bool activeOnly = false);
 
-		void Actve();
+		void Active();
 
 		int GetWidth();
 
 		bool GetActive();
+
+		virtual void SetString();
 
 		void SetFont(const char* font, int thick = 1, bool ItalicFlag = false, int fontType = -1, int edgeSize = -1);
 
@@ -31,7 +33,7 @@ namespace suken {
 		bool fActive;
 
 		static bool fActiveElse;
-		static unsigned int color, edgeColor, backColor,backEdgeColor;
+		static unsigned int color, edgeColor, backColor, backEdgeColor;
 
 		virtual void KeyInput();
 		void Add(const char* c);
@@ -40,7 +42,9 @@ namespace suken {
 	class CKeyInputNum : public CKeyInput {
 	public:
 		CKeyInputNum();
-		CKeyInputNum(int* link, char size, int height,const char* font = nullptr);
+		CKeyInputNum(int* link, char size, int height, const char* font = nullptr);
+
+		void SetString();
 
 	private:
 		int* link;
@@ -52,6 +56,8 @@ namespace suken {
 	public:
 		CKeyInputString();
 		CKeyInputString(std::string* link, char size, int height, const char* font = nullptr);
+
+		void SetString();
 
 	private:
 		std::string* link;

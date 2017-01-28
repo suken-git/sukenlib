@@ -35,6 +35,7 @@ public:
 	CKey key;///<  @brief à–¾
 	CMouse LMouse;///<  @brief à–¾
 	CMouse RMouse;///<  @brief à–¾
+	CMouse MMouse;///<  @brief à–¾
 private:
 	bool IsActivated;///<  @brief à–¾
 };
