@@ -1,3 +1,5 @@
+#light
+0
 #width
 64
 #height
@@ -6,5 +8,9 @@
 20
 #number
 0
-#graph
-#pic/chip.png
+#graphA
+#chip
+#graphB
+#chip
+#graphC
+#chip
