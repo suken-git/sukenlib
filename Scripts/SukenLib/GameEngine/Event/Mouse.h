@@ -1,6 +1,7 @@
 #pragma once
 #include"../../Manager.h"
 #include"EventData.h"
+#include"../Physics/Vector2D.h"
 
 namespace suken{
 const int MOUSE_OFF		=	10;///<  @brief à–¾
@@ -155,6 +156,11 @@ public:
 * @return –ß‚è’l
 */
 	int GetY();
+/**
+*	@brief à–¾
+* @return –ß‚è’l
+*/
+	Vector2D GetVector2D();
 /**
 *	@brief à–¾
 * @return –ß‚è’l

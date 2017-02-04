@@ -206,14 +206,10 @@ suken::CMouseIn suken::CMouse::Release( int _x1 , int _y1 , int _x2 , int _y2 )
 }
 bool suken::CMouse::GetRelease()
 {
-	if( 0 < mouseX && System.GetWindowX() > mouseX ){
-		if( 0 < mouseY && System.GetWindowY() > mouseY ){
-			if( !mouseInput && preMouseInput ){
-				if( Event.GetValid() ){
-					return true;
-				}
-			} 
-		}	
+	if (!mouseInput && preMouseInput) {
+		if (Event.GetValid()) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -290,6 +286,10 @@ int suken::CMouse::GetX(){
 }
 int suken::CMouse::GetY(){
 	return this->mouseY;
+}
+suken::Vector2D suken::CMouse::GetVector2D() {
+	Vector2D buf((float)mouseX, (float)mouseY);
+	return buf;
 }
 bool suken::CMouse::GetInput(){
 	return this->mouseInput;
